@@ -1,0 +1,124 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Total Milk Pouring Farmers Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right" 
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+    </div>
+    <div class="row">
+
+     
+
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="milkPouringDetails?.length < 1"
+      >
+        <table  
+        class="table table-striped ah-table text-center"
+        datatable
+        [dtOptions]="dtOptions"
+        [dtTrigger]="dtTrigger"
+      >  
+          <thead class="bg-success text-white">
+            <tr>
+              <th class="tableheader_color"  >S.No.</th>
+              <th class="tableheader_color"  >District</th>
+              <th class="tableheader_color"  >RBK </th>
+              <th class="tableheader_color"  >Village</th>
+              <th class="tableheader_color"  >Farmer Code</th>
+              <th class="tableheader_color"  >Farmer Name</th>
+              <th class="tableheader_color"  >Total Buffalo Milk in Ltrs.</th>
+              <th class="tableheader_color"  >Total Buffalo Milk Amount</th>
+              <th class="tableheader_color"  >Total Cow Milk in Ltrs.</th>
+              <th class="tableheader_color"  >Total Cow Milk Amount</th>
+              <th class="tableheader_color"  >Milk Pouring Start Date</th>
+              <th class="tableheader_color"  >Last Milk Poured Date</th>
+              <th class="tableheader_color"  >No. of Days Milk Poured</th>
+            </tr>
+            <tr >             
+              <th  class="tableheader_color"  >(1)</th>
+              <th  class="tableheader_color" >(2)</th>
+              <th  class="tableheader_color" >(3)</th>
+              <th  class="tableheader_color" >(4)</th>
+              <th  class="tableheader_color" >(5)</th>
+              <th  class="tableheader_color" >(6)</th>
+              <th  class="tableheader_color" >(7)</th>
+              <th  class="tableheader_color" >(8)</th>
+              <th  class="tableheader_color" >(9)</th>
+              <th  class="tableheader_color" >(10)</th>
+              <th  class="tableheader_color"  >(11)</th>
+              <th  class="tableheader_color" >(12)</th>
+              <th  class="tableheader_color" >(13)</th>
+            </tr> 
+          </thead>
+          <tbody *ngIf="milkPouringDetails?.length > 0">
+            
+            <tr *ngFor="let obj of milkPouringDetails; let i = index"    > 
+              <td>{{ i + 1 }}</td> 
+              <td class="text_align_color">{{ obj.DISTRICT_NAME }}</td>
+              <td class="text_align_color">{{ obj.RBK_NAME }}</td>
+              <td class="text_align_color">{{ obj.VILLAGE_NAME }}</td>
+              <td class="text_align_color">{{ obj.FARMER_CODE }}</td>
+              <td class="text_align_color">
+                <b>{{ obj.NAME }}</b>
+              </td>
+              <td class="number_align">{{ obj.TOTAL_BUFFALO_MILK_LTR | number }}</td>
+              <td class="number_align">{{ obj.TOTAL_BUFFALO_MILK_AMOUNT | number }}</td>
+              <td class="number_align">{{ obj.TOTAL_COW_MILK_LTR  | number}}</td>
+              <td class="number_align">{{ obj.TOTAL_COW_MILK_AMOUNT  | number}}</td>
+              <td class="number_align">{{ obj.MILK_POUR_START_DATE   }}</td>
+              <td class="number_align">{{ obj.MILK_POUR_LAST_DATE   }}</td>
+              <td class="number_align">{{ obj.TOTAL_MILK_POUR_DAYS | number }}</td>
+
+            </tr>
+          </tbody>
+          <tbody *ngIf="milkPouringDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td  class="font-weight-bold number_align">{{ reportTotals.TOTAL_BUFFALO_MILK_LTR | number}}</td>
+              <td  class="font-weight-bold number_align">{{ reportTotals.TOTAL_BUFFALO_MILK_AMOUNT | number }}</td>
+              <td  class="font-weight-bold number_align">{{ reportTotals.TOTAL_COW_MILK_LTR  | number}}</td>
+              <td  class="font-weight-bold number_align">{{ reportTotals.TOTAL_COW_MILK_AMOUNT | number }}</td>
+              <td>--</td>
+              <td>--</td>
+              <td  class="font-weight-bold number_align">{{ reportTotals.TOTAL_MILK_POUR_DAYS | number }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+
+
+    </div>
+
+    <div class="row"> <div  class="col-md-12" style="font-size:15px;color: brown ;">Note: We are displaying only 5000 Records and Total are entire records, Excel will download all records  </div>
+  </div>
+</div>
+
+ 

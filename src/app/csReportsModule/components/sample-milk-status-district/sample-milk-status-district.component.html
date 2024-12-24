@@ -1,0 +1,83 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Income Generated Through Sample Milk Collection</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <h5 class="pull-left">
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <!-- <button
+              type="button"
+              class="btn btn-danger btn-sm pull-right"
+              (click)="btnPDF()"
+            >
+              <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+              Download PDF
+            </button> -->
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="sampleMilkStatusDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>Year</th>
+              <th>Month</th>
+              <th>No Of Socities</th>
+              <th>No.of Societies poured sample milk with society code</th>
+              <th>Income generated from pouring of sample milk(in Rs.)</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="sampleMilkStatusDetails?.length > 0">
+            <tr *ngFor="let obj of sampleMilkStatusDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.TXN_YEAR }}</td>
+              <td>{{ obj.TXN_MONTH_NAME }}</td>
+              <td>{{ obj.TOTAL | indianNumber }}</td>
+              <td>{{ obj.MILK_POURED_SOC | indianNumber }}</td>
+              <td>{{ obj.AMOUNT | indianNumber }}</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="sampleMilkStatusDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td>{{ reportTotals.TOTAL | indianNumber }}</td>
+              <td>{{ reportTotals.MILK_POURED_SOC | indianNumber }}</td>
+              <td>{{ reportTotals.AMOUNT | indianNumber }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        *ngIf="sampleMilkStatusDetails?.length < 1"
+      >
+        <h5 class="text-danger text-center">No Data Available</h5>
+      </div>
+    </div>
+  </div>
+</div>

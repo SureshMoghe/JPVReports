@@ -1,0 +1,29 @@
+<!-- <div class="col-md-12" align="right">
+  <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+    Back
+  </button>
+</div> -->
+<div class="col-md-12" align="right">
+  <div class="row">
+  <div class="col-md-5" align="right">
+  <b>  Phase Name :</b><span class="text-success"> {{phasename}}  </span>   </div> 
+  <div class="col-md-5" align="right">  
+  <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+    Back
+  </button>
+</div></div></div>
+<app-volunteer-wise-milk-pouring
+  [(districtId)]="districtId"
+  [(districtName)]="districtName"
+  [(routeId)]="routeId"
+  [(routeName)]="routeName"
+  [(mandalId)]="mandalId"
+  [(mandalName)]="mandalName"
+  [(rbkId)]="rbkId"
+  [(rbkName)]="rbkName"
+  [(phaseid)]="phaseid"
+  [(phasename)]="phasename"
+
+  (onVolunteerChange)="onVolunteerChange($event)"
+  (onNonMilkPouringChange)="onNonMilkPouringChange($event)"
+></app-volunteer-wise-milk-pouring>

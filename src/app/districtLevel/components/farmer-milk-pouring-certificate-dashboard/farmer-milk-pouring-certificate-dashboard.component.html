@@ -1,0 +1,175 @@
+<div class="row">
+    <div class="col mb-2">
+      <div class="stats-card primary" (click)="btnFarmerDashboardDetails('0')">
+        <div class="overlay"></div>
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div class="stats-text">
+              <p class="text-uppercase text-muted mb-1">
+                <small>PENDING</small>
+              </p>
+              <h5 class="font-weight-bold mb-0">
+                {{ dashboardCounts.Pending }}
+              </h5>
+            </div>
+            <div class="circle">
+              <i class="fas fa-hourglass-half"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-2">
+      <div class="stats-card success" (click)="btnFarmerDashboardDetails('1')">
+        <div class="overlay"></div>
+  
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div class="stats-text">
+              <p class="text-uppercase text-muted mb-1">
+                <small>APPROVED</small>
+              </p>
+              <h5 class="font-weight-bold mb-0">
+                {{ dashboardCounts.Approve }}
+              </h5>
+            </div>
+            <div class="circle">
+              <i class="fas fa-check-double"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-2">
+      <div class="stats-card reject" (click)="btnFarmerDashboardDetails('2')">
+        <div class="overlay"></div>
+  
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div class="stats-text">
+              <p class="text-uppercase text-muted mb-1">
+                <small>REJECTED</small>
+              </p>
+              <h5 class="font-weight-bold mb-0">
+                {{ dashboardCounts.Reject }}
+              </h5>
+            </div>
+            <div class="circle">
+              <i class="fas fa-times-circle"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-2">
+      <div class="stats-card primary" (click)="btnFarmerDashboardDetails('3')">
+        <div class="overlay"></div>
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div class="stats-text">
+              <p class="text-uppercase text-muted mb-1">
+                <small>PENDING AT HIGHER LEVEL</small>
+              </p>
+              <h5 class="font-weight-bold mb-0">
+                {{ dashboardCounts.Pending_at_higher_level }}
+              </h5>
+            </div>
+            <div class="circle">
+              <i class="fas fa-hourglass-half"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row mt-3" [hidden]="farmerCertList?.length < 1">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0 secondary-heading pb-0">{{ headingText }}</h5>
+        </div>
+        <div class="card-body">
+          <div class="col-md-12 table-responsive">
+            <table
+              class="table table-striped ah-table text-center"
+              datatable
+              [dtOptions]="dtOptions"
+              [dtTrigger]="dtTrigger"
+            >
+              <thead class="bg-success text-white">
+                <tr>
+                  <th>S.No.</th>
+                  <th>MANDAL</th>
+                  <th>AMCU</th>
+                  <th>RBK</th>
+                  <th>VILLAGE</th>
+                  <th>FARMER</th>
+                  <th>FARMER CODE</th>
+                  <th>MILK IN LTRS</th>
+                  <!-- <th [hidden]="requestType !== '0'">ACTION TAKEN</th> -->
+                  <th>REJECTED REASON</th>
+                  <!-- <th [hidden]="requestType !== '0'">SUBMIT</th> -->
+                </tr>
+              </thead>
+              <tbody [hidden]="farmerCertList?.length < 1">
+                <tr *ngFor="let obj of farmerCertList; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ obj.MANDAL }}</td>
+                  <td>{{ obj.AMCU }}</td>
+                  <td>{{ obj.RBK_NAME }}</td>
+                  <td>{{ obj.VILLAGE }}</td>
+                  <td>
+                    <b>{{ obj.FARMER_NAME }}</b>
+                  </td>
+                  <td>{{ obj.FARMER_CODE }}</td>
+                  <td>{{ obj.MILK_IN_LITRES }}</td>
+                  <!-- <td [hidden]="requestType !== '0'">
+                    <select
+                      id="actionTaken"
+                      class="form-control"
+                      [(ngModel)]="obj.STATUS"
+                    >
+                      <option value="">-- SELECT ACTION TAKEN --</option>
+                      <option value="1002">APPROVE</option>
+                      <option value="1003">REJECT</option>
+                    </select>
+                  </td> -->
+                  <td>
+                    <select
+                      [hidden]="obj.STATUS !== '1003'"
+                      id="actionTaken"
+                      class="form-control"
+                      [(ngModel)]="obj.REJECTED_REASON"
+                    >
+                      <option value="">-- SELECT REJECT REASON --</option>
+                      <option
+                        value="{{ obj.REMARKS_ID }}"
+                        *ngFor="let obj of rejectedReasonList"
+                      >
+                        {{ obj.REMARKS }}
+                      </option>
+                    </select>
+                    <p [hidden]="requestType !== '2'">
+                      {{ obj.REJECTED_REASON }}
+                    </p>
+                  </td>
+                  <!-- <td [hidden]="requestType !== '0'">
+                    <button
+                      type="button"
+                      class="btn btn-primary btn-sm"
+                      (click)="btnVerify(obj)"
+                    >
+                      VERIFY
+                    </button>
+                  </td> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+

@@ -1,0 +1,94 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Farmer Nature Of Unit Detail Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> Bank : </b><span class="text-success">{{ bank }}</span>
+        </h5>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> Branch : </b><span class="text-success">{{ branch }}</span>
+        </h5>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="detailLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <tr>
+                <th>S.No.</th>
+                <th>Beneficiary Code</th>
+                <th>Beneficiary Name</th>
+                <th>Beneficiary Father Name</th>
+                <th>Beneficiary Aadhar No</th>
+                <th>Mobile Number</th>
+                <th>Ifsc Code</th>
+                <th>Account Number</th>
+                <th>Live Stock</th> 
+                <th>Application Hard Copy Received Copy</th>
+                <th>Status</th>
+                <th>Remarks</th>
+                <th>Updated Date</th>
+                <th>Nature Of Unit</th>
+              </tr>
+          </thead>
+          <tbody *ngIf="detailLevelDetails?.length > 0">
+            <tr *ngFor="let obj of detailLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.BEN_CODE }}</td>
+              <td>
+                <b>{{ obj.BEN_NAME }}</b>
+              </td>
+              <td>{{ obj.BEN_FATHER_NAME }}</td>
+              <td>{{ obj.UID_NUM }}</td>
+              <td>{{ obj.MOBILE_NUMBER }}</td>
+              <td>{{ obj.IFSC_CODE }}</td>
+              <td>{{ obj.ACCOUNT_NUMBER }}</td>
+              <td>{{ obj.LIVE_STOCK }}</td>
+              <td>{{ obj.APP_HARD_COPY_REV_DATE }}</td>
+              <td>{{ obj.STATUS }}</td>
+              <td>{{ obj.REMARKS }}</td>
+              <td>{{ obj.UPDATED_DATE }}</td>
+              <td>{{ obj.NATURE_OF_UNIT }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

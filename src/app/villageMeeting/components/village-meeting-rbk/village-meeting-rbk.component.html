@@ -1,0 +1,255 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Village Level Meetings RBK Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div class="col-md-6">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-6">
+        <h5>
+          <b> Mentor : </b><span class="text-success">{{ mentorName }}</span>
+        </h5>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="rbkLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>RBK</th>
+              <th>MDAC Code</th>
+              <th>Routes</th>
+              <th>Villages</th>
+              <th>No Of Villages Scheduled Meetings</th>
+              <th>No Of Villages Not Scheduled Meetings</th>
+              <th>No Of Meetings Scheduled</th>
+              <th>Minutes Of Meeting Submitted</th>
+              <th>Minutes Of Meeting Not Submitted</th>
+              <th>No Of Functionaries Updated</th>
+              <th>No Of Functionaries Not Updated</th>
+              <th>Participants</th>
+              <th>No Of Animal Owners</th>
+              <th>No Of Govt Supported Scheme Beneficiaries</th>
+              <th>Secretaries Created</th>
+              <th>Assistant Secretaries Created</th>
+              <th>No Of Buildings Inspected</th>
+              <th>No Of Buildings Not Inspected</th>
+              <th>Calibrations Done Villages</th>
+              <th>Calibrations Not Done Villages</th>
+              <th>No Of Promoters Added Villages</th>
+              <th>No Of Promoters Not Added Villages</th>
+            </tr>
+
+            <tr >             
+              <th >(1)</th>
+              <th >(2)</th>
+              <th >(3)</th>
+              <th >(4)</th>
+              <th >(5)</th>
+              <th >(6)</th>
+              <th >(7)</th>
+              <th >(8)</th>
+              <th >(9)</th>
+              <th >(10)</th>
+              <th >(11)</th>
+              <th >(12)</th>
+              <th >(13)</th>
+              <th >(14)</th>
+              <th >(15)</th>
+              <th >(16)</th>
+              <th >(17)</th>
+              <th >(18)</th>
+              <th >(19)</th>
+              <th >(20)</th>
+              <th >(21)</th>
+              <th >(22)</th>
+              <th >(23)</th>
+               
+
+            </tr>
+
+          </thead>
+          <tbody *ngIf="rbkLevelDetails?.length > 0">
+            <tr *ngFor="let obj of rbkLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td  class="text_align_color">
+                <a
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetDetails(obj)"
+                  ><b>{{ obj.RBK_NAME }}</b></a
+                >
+              </td>
+              <td  class="number_align">{{ obj.MDAC_CODE }}</td>
+              <td  class="number_align">{{ obj.TOTAL_ROUTES | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_VILLAGES | indianNumber }}</td>
+              <td  class="number_align">{{ obj.SCHEDULE_MEETINGS | indianNumber }}</td>
+              <td  class="number_align">{{ obj.NOT_SCHEDULE_MEETING | indianNumber }}</td>
+              <td  class="number_align">{{ obj.NO_OF_METG_CONDUCTED_IN_VILL | indianNumber }}</td>
+              <td  class="number_align">{{ obj.MEETING_MINUTES_SUBMITTED | indianNumber }}</td>
+              <td  class="number_align">{{ obj.MEETING_NOT_MINUTES_SUBMITTED | indianNumber }}</td>
+              <td  class="number_align">
+                <a
+                  *ngIf="obj.FUNCTIONARIES_UPDATED !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetFunctionaryDetails(obj)"
+                  ><b>{{ obj.FUNCTIONARIES_UPDATED | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.FUNCTIONARIES_UPDATED === '0'">{{
+                  obj.FUNCTIONARIES_UPDATED
+                }}</span>
+              </td>
+              <td  class="number_align">{{ obj.FUNCTIONARIES_NOT_UPDATED | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_NO_PARTICIPANTS | indianNumber }}</td>
+              <td  class="number_align">{{ obj.OWNER_OF_ANIMAL | indianNumber }}</td>
+              <td  class="number_align">{{ obj.CHEYUTHA_NO_BEN | indianNumber }}</td>
+              <td  class="number_align">
+                <a
+                  *ngIf="obj.TOTAL_SECRETARY !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetSecAssSecDetails(obj, '1')"
+                  ><b>{{ obj.TOTAL_SECRETARY | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.TOTAL_SECRETARY === '0'">{{
+                  obj.TOTAL_SECRETARY
+                }}</span>
+              </td>
+              <td  class="number_align">
+                <a
+                  *ngIf="obj.TOTAL_ASSI_SECRETARY !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetSecAssSecDetails(obj, '2')"
+                  ><b>{{ obj.TOTAL_ASSI_SECRETARY | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.TOTAL_ASSI_SECRETARY === '0'">{{
+                  obj.TOTAL_ASSI_SECRETARY
+                }}</span>
+              </td>
+              <td  class="number_align">
+                <a
+                  *ngIf="obj.TOTAL_BULDING_INSPS_VILL !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetBuildingInspectDetails(obj)"
+                  ><b>{{ obj.TOTAL_BULDING_INSPS_VILL | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.TOTAL_BULDING_INSPS_VILL === '0'">{{
+                  obj.TOTAL_BULDING_INSPS_VILL
+                }}</span>
+              </td>
+              <td  class="number_align">{{ obj.TOTAL_BULDING_NOT_INSPS_VILL | indianNumber }}</td>
+              <td  class="number_align">
+                <a
+                  *ngIf="obj.TOTAL_CALIB_DONE_VILLAGES !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetCalibrationDetails(obj)"
+                  ><b>{{ obj.TOTAL_CALIB_DONE_VILLAGES | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.TOTAL_CALIB_DONE_VILLAGES === '0'">{{
+                  obj.TOTAL_CALIB_DONE_VILLAGES
+                }}</span>
+              </td>
+              <td  class="number_align">{{ obj.TOTAL_CALIB_NOT_DONE_VILLAGES | indianNumber }}</td>
+              <td  class="number_align">
+                <a
+                  *ngIf="obj.TOTAL_PROMOTERS_ADDED_VILL !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetPromotersDetails(obj)"
+                  ><b>{{ obj.TOTAL_PROMOTERS_ADDED_VILL | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.TOTAL_PROMOTERS_ADDED_VILL === '0'">{{
+                  obj.TOTAL_PROMOTERS_ADDED_VILL
+                }}</span>
+              </td>
+              <td  class="number_align">{{ obj.TOTAL_PROMOTERS_NOT_ADDED_VILL | indianNumber }}</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="rbkLevelDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_ROUTES | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_VILLAGES | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.SCHEDULE_MEETINGS | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.NOT_SCHEDULE_MEETING | indianNumber }}</td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.NO_OF_METG_CONDUCTED_IN_VILL | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.MEETING_MINUTES_SUBMITTED | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.MEETING_NOT_MINUTES_SUBMITTED | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">{{ reportTotals.FUNCTIONARIES_UPDATED | indianNumber }}</td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.FUNCTIONARIES_NOT_UPDATED | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_NO_PARTICIPANTS | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.OWNER_OF_ANIMAL | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.CHEYUTHA_NO_BEN | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_SECRETARY | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_ASSI_SECRETARY | indianNumber }}</td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.TOTAL_BULDING_INSPS_VILL | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.TOTAL_BULDING_NOT_INSPS_VILL | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.TOTAL_CALIB_DONE_VILLAGES | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.TOTAL_CALIB_NOT_DONE_VILLAGES | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.TOTAL_PROMOTERS_ADDED_VILL | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.TOTAL_PROMOTERS_NOT_ADDED_VILL | indianNumber }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

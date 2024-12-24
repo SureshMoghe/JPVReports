@@ -1,0 +1,156 @@
+<div class="row">
+    <div class="col-md-3">
+      <h5>
+        <b> From Date : </b><span class="text-success">{{ fromDate }}</span>
+      </h5>
+    </div>
+    <div class="col-md-3">
+      <h5>
+        <b>To Date : </b><span class="text-success">{{ toDate }}</span>
+      </h5> 
+    </div>
+    <div class="col-md-6" align="right">
+      <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+        Back
+      </button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">MDSS Registered Farmers to be facilitated with animal Grounding  </h5>
+    </div>
+
+    <div class="card-body"> 
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-8">
+               
+                 <span class="text-success">{{ distmanrbk }}</span>
+               
+            </div>
+
+              <button
+              type="button"
+              class="btn btn-success btn-sm pull-right"
+              (click)="btnExcel()"
+            >
+              <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+              Download Excel
+            </button>  
+            <!-- <button
+              type="button"
+              class="btn btn-danger btn-sm pull-right"
+              (click)="btnPDF()"
+            >
+              <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+              Download PDF
+            </button> -->
+          </div>   </div>
+<div class="row">
+   
+
+     
+
+  <div
+    class="col-md-12 table-responsive"
+    [hidden]="routeListDetails?.length < 1"
+  >
+    <table
+      class="table table-bordered ah-table text-center "
+      datatable
+      [dtOptions]="dtOptions"
+      [dtTrigger]="dtTrigger"
+    >
+      <thead class="bg-success text-white">
+        <tr>
+         
+          <th  class="tableheader_color" >S.No.</th>
+          <th   class="tableheader_color" >District Name</th>
+          <th   class="tableheader_color" >Mandal Name</th>
+          <th   class="tableheader_color" >Sec Name</th>
+          <th   class="tableheader_color" >Village Name</th>
+          <th   class="tableheader_color" >Farmer Code</th>
+          <th   class="tableheader_color" >Farmer Name</th>
+          <th   class="tableheader_color" >Mobile Number</th>
+          <th   class="tableheader_color" >Animal Type</th>
+          <th   class="tableheader_color" >Grounding Status</th>
+          <th   class="tableheader_color" >Society Code</th> 
+          <th   class="tableheader_color" >Society Name</th> 
+          <th   class="tableheader_color" >Start Date</th> 
+          <th   class="tableheader_color" >Latest Date</th> 
+          <th   class="tableheader_color" >Milk Qty</th> 
+          <th   class="tableheader_color" >Milk Amount</th> 
+        </tr>
+
+        <tr >             
+          <th  class="tableheader_color"  >(1)</th>
+          <th  class="tableheader_color" >(2)</th>
+          <th  class="tableheader_color" >(3)</th>
+          <th  class="tableheader_color" >(4)</th>
+          <th  class="tableheader_color" >(5)</th>
+          <th  class="tableheader_color" >(6)</th>
+          <th  class="tableheader_color" >(7)</th>
+          <th  class="tableheader_color" >(8)</th>
+          <th  class="tableheader_color" >(9)</th>
+          <th  class="tableheader_color" >(10)</th>
+          <th  class="tableheader_color" >(11)</th>
+          <th  class="tableheader_color" >(12)</th>
+          <th  class="tableheader_color" >(13)</th>
+          <th  class="tableheader_color" >(14)</th>
+          <th  class="tableheader_color" >(15)</th>
+          <th  class="tableheader_color" >(16)</th>
+
+        </tr> 
+
+       
+      </thead>
+      <tbody *ngIf="routeListDetails?.length > 0">
+        <tr *ngFor="let obj of routeListDetails; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td  class="text_align_color">   {{ obj.DISTRICT_NAME }}   </td>
+          <td  class="text_align_color">{{ obj.MANDAL_NAME   }}</td>
+          <td  class="text_align_color">{{ obj.SEC_NAME   }}</td>
+          <td  class="text_align_color">{{ obj.VILLAGE_NAME }}</td>
+          <td  class="text_align_color">{{ obj.FARMER_CODE   }}</td>
+          <td  class="text_align_color">{{ obj.FARMER_NAME  }}</td>
+          <td  class="text_align_color">{{ obj.MOBILE_NUMBER   }}</td>  
+          <td  class="text_align_color">{{ obj.ANIMAL_TYPE   }}</td>  
+          <td  class="text_align_color">{{ obj.GROUNDING_STATUS   }}</td>   
+          <td  class="text_align_color">{{ obj.SOCIETY_CODE   }}</td>
+          <td  class="text_align_color">{{ obj.SOCIETY_NAME   }}</td>
+          <td  class="text_align_color">{{ obj.START_DATE   }}</td>
+          <td  class="text_align_color">{{ obj.LATEST_DATE   }}</td>
+          <td  class="number_align">{{ obj.MILK_QTY   }}</td>
+          <td  class="number_align">{{ obj.MILK_AMOUNT   }}</td>
+          
+        </tr>
+      </tbody>
+       <tbody *ngIf="routeListDetails?.length > 0">
+        <tr>
+       <!--   <td>--</td>
+          <td> 
+            <b>TOTAL</b>
+          </td>
+          <td>{{ reportTotals.TOTAL_RBK | indianNumber }}</td>
+          <td>{{ reportTotals.TOTAL_VILLAGE | indianNumber }}</td>
+          <td>{{ reportTotals.TOTAL_VOLUNTEERS | indianNumber }}</td>
+          <td>{{ reportTotals.TOTAL_VV_LOGEDIN | indianNumber }}</td>
+          <td>
+            {{ reportTotals.TOTAL_FARMERS_WITH_OUT_AINM | indianNumber }}
+          </td>
+          <td>{{ reportTotals.TOTAL_FARMERS_WITH_AINM | indianNumber }}</td>
+          <td>{{ reportTotals.TOTAL_APPROVED_FMR | indianNumber }}</td>
+          <td>
+            {{ reportTotals.TOTAL_APPROVED_FMR_PERCNT | indianNumber }}
+          </td>
+          <td>{{ reportTotals.TOTAL_ANIMALS | indianNumber }}</td>
+          <td>{{ reportTotals.AH_DEPT_VV_ANM_YES | indianNumber }}</td>
+          <td>{{ reportTotals.AH_DEPT_YES_VV_ANM_NO | indianNumber }}</td>-->
+        </tr>
+      </tbody> 
+    </table>
+  </div>
+</div>
+
+</div>

@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-12" align="right">
+    <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+      Back
+    </button>
+  </div>
+</div>
+<app-grounding-detail-level
+  [(districtId)]="districtId"
+  [(districtName)]="districtName"
+  [(mandalId)]="mandalId"
+  [(mandalName)]="mandalName"
+  [(secId)]="secId"
+  [(secName)]="secName"
+  [(status)]="status"
+></app-grounding-detail-level>

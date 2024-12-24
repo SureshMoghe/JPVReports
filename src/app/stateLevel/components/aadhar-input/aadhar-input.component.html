@@ -1,0 +1,4 @@
+<div>
+    <label for="aadhar">Aadhar Number:</label>
+    <input id="aadhar" type="text" [value]="maskedAadhar" (input)="onInput($event)" (focus)="onFocus()" (blur)="onBlur()" maxlength="12" />
+</div>

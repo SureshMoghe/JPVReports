@@ -1,0 +1,98 @@
+<div class="card">
+    <div class="card-header p-2">
+
+        <h5 class="mb-0" *ngIf="Type === 2">Societies Data Received Report</h5>
+        <h5 class="mb-0" *ngIf="Type === 4">Total Societies Data Received Report</h5>
+        <h5 class="mb-0" *ngIf="Type === 5">Societies Data Not Received Report</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                    Download Excel
+                </button>
+                <!-- <button type="button" class="btn btn-danger btn-sm pull-right" (click)="btnPDF()">
+                    <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+                    Download PDF
+                </button> -->
+            </div>
+            <div class="col-md-3">
+                <h5>
+                    <b> District : </b><span class="text-success">{{districtName}}</span>
+                </h5>
+            </div>
+            <div class="col-md-12 table-responsive" [hidden]="stateLevelDetails?.length < 1">
+                <table class="table table-bordered ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead class="bg-success text-white">
+                        <tr>
+                            <th class="tableheader_color">S.No</th>
+                            <th class="tableheader_color">Date</th>
+                            <th class="tableheader_color">District</th>
+                            <th class="tableheader_color">Society Code</th>
+                            <th class="tableheader_color">Society Name</th>
+                            <th class="tableheader_color">No of<br>Registered<br>Farmers</th>
+                            <th class="tableheader_color">No of<br>Milk<br>Pourers</th>
+                            <th *ngIf="!(Type === 2 || Type === 4)" class="tableheader_color"> Last Milk Received Date</th>
+                            <th *ngIf="Type !== 5" class="tableheader_color">Quantity </th>
+                            <th *ngIf="Type !== 5" class="tableheader_color"> Amount</th>
+                            <th *ngIf="Type !== 4" class="tableheader_color">Shift</th>
+                        </tr>
+                        <tr>
+                            <th class="tableheader_color">(1)</th>
+                            <th class="tableheader_color">(2)</th>
+                            <th class="tableheader_color">(3)</th>
+                            <th class="tableheader_color">(4)</th>
+                            <th class="tableheader_color">(5)</th>
+                            <th class="tableheader_color">(6)</th>
+                            <th class="tableheader_color">(7)</th>
+                            <th *ngIf="!(Type === 2 || Type === 4)" class="tableheader_color">(8)</th>
+                            <th *ngIf="Type !== 5" class="tableheader_color">(8)</th>
+                            <th *ngIf="Type !== 5" class="tableheader_color">(9)</th>
+                            <th *ngIf="Type !== 4" class="tableheader_color">(10)</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="stateLevelDetails?.length > 0">
+                        <tr *ngFor="let obj of stateLevelDetails; let i = index">
+                            <td class="number_align">{{ i + 1}}</td>
+                            <td style="text-align: left;" class="table_cells_borders">{{obj.TXN_DATE}}</td>
+                            <td style="text-align: left;" class="table_cells_borders">{{obj.DISTRICT}}</td>
+                            <td class="number_align">{{obj.SOCIETY_CODE}}</td>
+                            <td style="text-align: left;" class="table_cells_borders">{{obj.SOCIETY_NAME}}</td>
+                            <td class="number_align">{{obj.NO_OF_REGIS_FMRS}}</td>
+                            <td class="number_align">{{obj.NO_OF_MILK_POURERS}}</td>
+                            <td *ngIf="!(Type === 2 || Type === 4)" style="text-align: left;" class="table_cells_borders">{{obj.TXN_DATE}}
+                            </td>
+                            <td *ngIf="Type !== 5" class="number_align">{{obj.TOTAL_MILK_QTY}}</td>
+                            <td *ngIf="Type !== 5" class="number_align">{{obj.TOTAL_AMOUNT}}</td>
+                            <td *ngIf="Type !== 4" style="text-align: left;" class="table_cells_borders">{{obj.SHIFT ? obj.SHIFT : '--'}}
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="stateLevelDetails?.length > 0">
+                        <tr>
+                            <td class="number_align">--</td>
+                            <td class="number_align">--</td>
+                            <td class="text_align_color"> <b>TOTAL</b> </td>
+                            <td class="number_align">--</td>
+                            <td class="number_align">--</td>
+                            <td *ngIf="!(Type === 2 || Type === 4)" class="font-weight-bold number_align">
+                                {{reportTotalstwo.NO_OF_REGISTERED_FARMERS | indianNumber }}</td>
+                            <td *ngIf="!(Type === 2 || Type === 4)" class="font-weight-bold number_align">
+                                {{reportTotalstwo.NO_OF_MILK_POURERS | indianNumber }}</td>
+                            <td *ngIf="Type !== 5" class="font-weight-bold number_align">{{reportTotals.NO_OF_REGISTERED_FARMERS |
+                                indianNumber }}</td>
+                            <td *ngIf="Type !== 5" class="font-weight-bold number_align">{{reportTotals.NO_OF_MILK_POURERS | indianNumber }}
+                            </td>
+                            <td *ngIf="!(Type === 2 || Type === 4)" class="number_align">--</td>
+                            <td *ngIf="Type !== 5" class="font-weight-bold number_align">{{reportTotals.TOTAL_MILK_QTY | number:'1.2-2' }}
+                            </td>
+                            <td *ngIf="Type !== 5" class="font-weight-bold number_align">{{reportTotals.TOTAL_AMOUNT| number:'1.2-2' }}</td>
+                            <td *ngIf="Type !== 4" class="text_align_color">--</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,859 @@
+<!-- 
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div *ngIf="receivedObject">
+                <h5 class="text-white">Designation:<span
+                        class="text-white">{{receivedObject.DESIGNATION}}({{receivedObject.POSITION}})</span></h5>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="container-fluid mt-4">
+    <div id="myAccordion">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">
+                        <b> 1. Personal Details</b>
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#myAccordion">
+                <div *ngFor="let obj of DistDataSecond">
+                    <div class="card-body">
+                        <div class="row mt-2">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+
+                                    <label for="FirstName">First Name<span style="color: red">*</span></label>
+                                    <input type="text" class="form-control" id="FirstName" placeholder="Enter First Name" maxlength="40"
+                                        [(ngModel)]="obj.FIRST_NAME" maxlength="50" autocomplete="off"
+                                        onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) ||event.keyCode == 8 || event.keyCode == 32'>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="MiddleName">Middle Name</label>
+                                    <input type="text" class="form-control" id="MiddleName" placeholder="Enter Middle Name " maxlength="40"
+                                        [(ngModel)]="obj.MIDDLE_NAME" maxlength="50" autocomplete="off"
+                                        onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) ||event.keyCode == 8 || event.keyCode == 32'>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="LastName">Last Name <span style="color: red">*</span></label>
+                                    <input type="text" class="form-control" id="LastName" placeholder="Enter Last Name" maxlength="40"
+                                        [(ngModel)]="obj.LAST_NAME" maxlength="50" autocomplete="off"
+                                        onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) ||event.keyCode == 8 || event.keyCode == 32'>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="DOB">Date Of Birth (as per SSC)<span style="color: red">*</span></label>
+                                    <input id="dateOfBirth" name="dateOfBirth" [(ngModel)]="obj.DATE_OF_BIRTH_SCC" type="text"
+                                        disabled="true" class="form-control" />
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="EmailID">Email ID<span style="color: red">*</span></label>
+                                    <input type="text" class="form-control" id="EmailID" placeholder="Enter Email ID"
+                                        [(ngModel)]="obj.EMAIL_ID" maxlength="30" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="MobileNO">Mobile Number <span style="color: red">*</span></label>
+                                    <input type="text" class="form-control" id="MobileNO" placeholder="Enter Mobile Number"
+                                        [(ngModel)]="obj.MOBILE_NUMBER" maxlength="10" (keypress)="keyPressNumbers($event)">
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+
+
+                        </div>
+                        <!-- <div class="row mt-2">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <input id="dateOfBirth" name="dateOfBirth" [(ngModel)]="DateOfBirth" type="text" bsDatepicker
+                                        placeholder="MM-DD-YYYY" class="form-control" (ngModelChange)="formatDateONE($event, obj)" />
+
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="row mt-2">
+                            <div class="col-md-1"></div>
+                            <label for="PermanentAddress"><b>Gender</b><span style="color: red">*</span></label>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-1"></div>
+
+                            <div class="col-md-1">
+                                <input type="radio" class="form-check-input" id="Male" name="Gender" value="Male" [(ngModel)]="obj.GENDER"
+                                    checked>
+                                <label class="form-radio-label" class="TopMvove" for="Male">Male</label>
+                            </div>
+                            <div class="col-md-1">
+                                <input type="radio" class="form-check-input" id="Female" name="Gender" value="Female"
+                                    [(ngModel)]="obj.GENDER">
+                                <label class="form-radio-label" class="TopMvove" for="Female">Female</label>
+                            </div>
+                            <div class="col-md-1">
+                                <input type="radio" class="form-check-input" id="Others" name="Gender" value="Others"
+                                    [(ngModel)]="obj.GENDER">
+                                <label class="form-radio-label" class="TopMvove" for="Others">Others</label>
+                            </div>
+                            <div class="col-md-4">
+                                <div>
+                                    <label for="so">S/O D/O Guardian<span style="color: red">*</span></label>
+                                    <input type="text" class="form-control" id="so" placeholder="Enter S/O  D/O Guardian"
+                                        [(ngModel)]="obj.FATHER_OR_MOTHER_NAME">
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+
+                        </div>
+
+
+
+                        <div class="row mt-2">
+                            <div class="col-md-1"></div>
+                            <label for="PermanentAddress"><b>Permanent Address</b><span style="color: red">*</span></label>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="DNoP">D.No And Street Name<span style="color: red">*</span></label>
+                                    <input type="text" class="form-control" id="DNoP" placeholder="Enter D.No And Street Name"
+                                        [(ngModel)]="obj.ADRESS">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+
+                                    <label for="CitVill">Village/Area<span style="color: red">*</span></label>
+                                    <input type="text" class="form-control" id="CitVill" placeholder="Enter Village/Area"
+                                        [(ngModel)]="obj.VILLAGE_AREA_PR">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+
+                                <div class="form-group">
+                                    <label for="City">City/Mandal</label>
+                                    <input type="text" class="form-control" id="City" placeholder="Enter City"
+                                        [(ngModel)]="obj.CITY_OR_MANDAL_PR">
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="State">State<span style="color: red">*</span></label>
+                                    <select class="form-control" id="State" [(ngModel)]="obj.STATE_PR" (change)="LoadDist(obj.STATE_PR)">
+                                        <option disabled selected value="undefined">-- Select--</option>
+                                        <option value="{{obj.STATEID}}" *ngFor="let obj of StateList">{{obj.STATENAME}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+
+                                    <label for="District">District<span style="color: red">*</span></label>
+                                    <select class="form-control" id="District" [(ngModel)]="obj.DISTRICT_PR">
+                                        <option disabled selected value="undefined">-- Select--</option>
+                                        <option value="{{obj.DISTRICTID}}" *ngFor="let obj of DistList">{{obj.DISTRICTNAME}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="Pincode">Pincode<span style="color: red">*</span></label>
+                                    <input type="text" class="form-control" id="Pincode" placeholder="Enter Pincode"
+                                        [(ngModel)]="obj.PINCODE_PR" (keypress)="keyPressNumbers($event)" maxlength="6">
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+
+
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-md-1"></div>
+                            <label for="CurrentAddress"><b>Current Address</b><span style="color: red">*</span></label>
+                        </div>
+                        <!-- <div class="row mt-2">
+                            <div class="col-md-1"></div>
+
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="isChecked" [(ngModel)]="isChecked"
+                                    (click)="addSameAddress(obj)" checked>
+                                <label class="form-check-label" id="checkbot" for="isChecked">Same as Permanent Address</label>
+                            </div>
+
+
+                        </div> -->
+                        <div class="row mt-5">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="CuDNoP">D.No And Street Name<span style="color: red">*</span></label>
+                                    <input type="text" [disabled]="isChecked" class="form-control" id="CuDNoP"
+                                        placeholder="Enter D.No And Street Name" [(ngModel)]="obj.D_NO_STREET_NAME_CR">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="CuStreet">Village/Area<span style="color: red">*</span></label>
+
+                                    <input type="text" [disabled]="isChecked" class="form-control" id="CuCitVill"
+                                        placeholder="Enter Village/Area" [(ngModel)]="obj.VILLAGE_AREA_CR">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+
+                                <div class="form-group">
+                                    <label for="CuCity">City/Mandal</label>
+                                    <input type="text" [disabled]="isChecked" class="form-control" id="CuCity" placeholder="Enter City"
+                                        [(ngModel)]="obj.CITY_OR_MANDAL_CR">
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+
+                                    <label for="CUState">State<span style="color: red">*</span></label>
+                                    <select class="form-control" id="CUState" [disabled]="isChecked" [(ngModel)]="obj.STATE_CR"
+                                        (change)="LoadDistCurrent(obj.STATE_CR)">
+                                        <option disabled selected value="undefined">-- Select--</option>
+                                        <option value="{{obj.STATEID}}" *ngFor="let obj of StateList">{{obj.STATENAME}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="CuDistrict">District<span style="color: red">*</span></label>
+
+                                    <div *ngIf="obj.STATE_PR === obj.STATE_CR; else notEqual">
+                                        <select class="form-control" [disabled]="isChecked" id="CuDistrict" [(ngModel)]="obj.DISTRICT_CR">
+                                            <option disabled selected value="undefined">-- Select--</option>
+                                            <option value="{{obj.DISTRICTID}}" *ngFor="let obj of DistList">{{obj.DISTRICTNAME}}</option>
+                                        </select>
+                                    </div>
+
+                                    <ng-template #notEqual>
+                                        <div>
+                                            <select class="form-control" [disabled]="isChecked" id="CuDistrict"
+                                                [(ngModel)]="obj.DISTRICT_CR">
+                                                <option disabled selected value="undefined">-- Select--</option>
+                                                <option value="{{obj.DISTRICTID}}" *ngFor="let obj of DistListCurrent">{{obj.DISTRICTNAME}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </ng-template>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="CuPincode">Pincode<span style="color: red">*</span></label>
+                                    <input type="text" [disabled]="isChecked" class="form-control" id="CuPincode"
+                                        placeholder="Enter Pincode" [(ngModel)]="obj.PINCODE_CR" (keypress)="keyPressNumbers($event)"
+                                        maxlength="6">
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+
+
+                        </div>
+                        <!-- <div *ngIf="isPersonalDetailsSub">
+                            <div class="row mt-5">
+                                <div class="col-md-5"></div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary" (click)="PersonalDaetailSub(obj)">Save</button>
+                                </div>
+
+                                <div class="col-md-5"></div>
+                            </div>
+                        </div> -->
+                        <!-- <div *ngIf="isPersonalDetailsUpadte"> -->
+                        <!-- <div class="row mt-5">
+                            <div class="col-md-5"></div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary" (click)="PersonalDaetailUpadte(obj)">Update</button>
+                            </div>
+                            <div class="col-md-5"></div>
+                        </div> -->
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="heading">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo">
+                        <b>2. Qualifications Details</b>
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="heading" data-parent="#myAccordion">
+
+                <div *ngFor="let obj of DistDataSecond">
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <label class="form-radio-label" id="Phd" for="Phd"><b>PhD <span style="color: red">*</span></b></label>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-1"></div>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" name="PHD" id="PhDYes" value="Yes" [(ngModel)]="obj.PHD">
+                                <label class="form-radio-label" class="TopMvove" for="PhDYes">Yes</label>
+                            </div>
+                            <div class="ml-2"></div>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" name="PHD" id="PhDNo" value="No" [(ngModel)]="obj.PHD">
+                                <label class="form-radio-label" class="TopMvove" for="PhDNo">No</label>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-1"></div>
+                            <label class="form-label" id="pg" for="pg"><b>Post Graduation <span style="color: red">*</span></b></label>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-1"></div>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" value="Yes" name="PG" [(ngModel)]="obj.POST_GRADUATION"
+                                    (change)="PgYChange()">
+                                <label class="form-radio-label" class="TopMvove" for="PGYes">Yes</label>
+                            </div>
+                            <div class="ml-2"></div>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" value="No" name="PG" [(ngModel)]="obj.POST_GRADUATION"
+                                    (change)="PgNChange()">
+                                <label class="form-radio-label" class="TopMvove" for="PGNo">No</label>
+                            </div>
+                        </div>
+                        <div *ngIf="obj.POST_GRADUATION === 'Yes'">
+                            <div class="row mt-2">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="Course">Course<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" id="Course" placeholder="Enter Course"
+                                            [(ngModel)]="obj.COURSE_GRDN_PG">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="BraSpl">Branch/Specialization<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" id="BraSpl" placeholder="Enter Branch/Specialization"
+                                            [(ngModel)]="obj.BRANCH_SPECIALIZATION_PG">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="PCollege">College<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" id="PCollege" placeholder="Enter College"
+                                            [(ngModel)]="obj.COLLEGE_PG">
+                                    </div>
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="YearOfPassout">Year Of Passout<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" id="YearOfPassout" placeholder="Enter Year Of Passout"
+                                            [(ngModel)]="obj.YEAR_OF_PASSEDOUT_PG" (keypress)="keyPressNumbers($event)" maxlength="4">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="MaGra">Marks/Grade<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" id="BraSpl" placeholder="Enter Marks/Grade"
+                                            [(ngModel)]="obj.MARKS_GRADE__GRDN_PG">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="UploadDocuments">Upload Documents<span style="color: red">*</span></label><br>
+                                        <!-- <input type="file" class="form-control" id="UploadDocuments" placeholder="Enter Upload Documents"
+                                            (change)="PGUploadDocumentsChange($event)" accept="application/pdf" autocomplete="off"
+                                            [(ngModel)]="obj.UPLOAD_DCNTS__GRDN_PG"> -->
+
+                                        <button class="btn btn-success mt-4" (click)="btnPdfView(obj.UPLOAD_DCNTS__GRDN_PG)">VIEW</button>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-1"></div>
+                            <label class="form-label" id="pg" for="pg"><b>Graduation/Degree</b><span style="color: red">*</span></label>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="GdCourse">Course<span style="color: red">*</span></label>
+                                    <input type="text" class="form-control" id="Course" placeholder="Enter Course"
+                                        [(ngModel)]="obj.COURSE_GRDN_DEGREE">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="GDBraSpl">Branch/Specialization<span style="color: red">*</span></label>
+                                    <input type="text" class="form-control" id="GDBraSpl" placeholder="Enter Branch/Specialization"
+                                        [(ngModel)]="obj.BRANCH_SPECIALIZATION">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="GDPCollege">College<span style="color: red">*</span></label>
+                                    <input type="text" class="form-control" id="GDPCollege" placeholder="Enter College"
+                                        [(ngModel)]="obj.COLLEGE__GRDN_DEGREE">
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="GdYearOfPassout">Year Of Passout<span style="color: red">*</span></label>
+                                    <input type="text" class="form-control" id="GdYearOfPassout" placeholder="Enter Year Of Passout"
+                                        [(ngModel)]="obj.YEAR_OF_PASSEDOUT_GRDN_DEGREE" (keypress)="keyPressNumbers($event)" maxlength="4">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="GDMaGra">Marks/Grade<span style="color: red">*</span></label>
+                                    <input type="text" class="form-control" id="GDBraSpl" placeholder="Enter Marks/Grade"
+                                        [(ngModel)]="obj.MARKS_GRADE__GRDN_DEGREE">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="GDUploadDocuments">Upload Documents<span style="color: red">*</span></label><br>
+                                    <!-- <input type="file" class="form-control" id="GDUploadDocuments" placeholder="Enter Upload Documents"
+                                        [(ngModel)]="obj.UPLOAD_DCNTS__GRDN_DEGREE" (change)="GDUploadDocumentsChange($event)"> -->
+                                    <button class="btn btn-success mt-4" (click)="btnPdfView(obj.UPLOAD_DCNTS__GRDN_DEGREE)">VIEW</button>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-2">
+
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-1"></div>
+                            <label class="form-label" id="pg" for="pg"><b>Inter/Diploma</b><span style="color: red">*</span></label>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="IdCourse">Course<span style="color: red">*</span></label>
+                                    <input type="text" class="form-control" id="IdCourse" placeholder="Enter Course"
+                                        [(ngModel)]="obj.COURSE_INTER_DIPL">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="IPCollege">College<span style="color: red">*</span></label>
+                                    <input type="text" class="form-control" id="IPCollege" placeholder="Enter College"
+                                        [(ngModel)]="obj.COLLEGE_DIPL">
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="IdYearOfPassout">Year Of Passout<span style="color: red">*</span></label>
+                                    <input type="text" class="form-control" id="IdYearOfPassout" placeholder="Enter Year Of Passout"
+                                        [(ngModel)]="obj.YEAR_OF_PASSEDOUT_DIPL" (keypress)="keyPressNumbers($event)" maxlength="4">
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="IMaGra">Marks/Grade<span style="color: red">*</span></label>
+                                    <input type="text" class="form-control" id="IMaGra" placeholder="Enter Marks/Grade"
+                                        [(ngModel)]="obj.MARKS_GRADE_DIPL">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="IUploadDocuments">Upload Documents<span style="color: red">*</span></label><br>
+                                    <!-- <input type="file" class="form-control" id="IUploadDocuments" placeholder="Enter Upload Documents"
+                                        [(ngModel)]="obj.UPLOAD_DCNTS_DIPL" (change)="IUploadDocumentsChange($event)"> -->
+                                    <button class="btn btn-success mt-4" (click)="btnPdfView(obj.UPLOAD_DCNTS_DIPL)">VIEW</button>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+
+
+
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-1"></div>
+                            <label class="form-label" id="pg" for="pg"><b>SSC</b><span style="color: red">*</span></label>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="cbseState">CBSE/State Syllabus<span style="color: red">*</span></label>
+                                    <input type="text" class="form-control" id="cbseState" placeholder="Enter CBSE/State Syllabus"
+                                        [(ngModel)]="obj.CBSE_STATE_SYLLABUS">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="SSchool">School<span style="color: red">*</span></label>
+                                    <input type="text" class="form-control" id="SSchool" placeholder="Enter School"
+                                        [(ngModel)]="obj.SCHOOL">
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="SYearOfPassout">Year Of Passout<span style="color: red">*</span></label>
+                                    <input type="text" class="form-control" id="SYearOfPassout" placeholder="Enter Year Of Passout"
+                                        [(ngModel)]="obj.YEAR_OF_PASSEDOUT_SSC" (keypress)="keyPressNumbers($event)" maxlength="4">
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="SMaGra">Marks/Grade<span style="color: red">*</span></label>
+                                    <input type="text" class="form-control" id="SMaGra" placeholder="Enter Marks/Grade"
+                                        [(ngModel)]="obj.MARKS_GRADE_SSC">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="SUploadDocuments">Upload Documents<span style="color: red">*</span></label><br>
+                                    <!-- <input type="file" class="form-control" id="SUploadDocuments" placeholder="Enter Upload Documents"
+                                        [(ngModel)]="obj.UPLOAD_DCNTS_SSC" (change)="SUploadDocumentsChange($event)"> -->
+                                    <button class="btn btn-success mt-4" (click)="btnPdfView(obj.UPLOAD_DCNTS_SSC)">VIEW</button>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <!-- <div *ngIf="isQualificationDetailsSub"> -->
+                        <!-- <div class="row mt-5">
+                                <div class="col-md-5"></div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary" (click)="QualificationDaetailSub()">Save</button>
+                                </div>
+
+                                <div class="col-md-5"></div>
+                            </div> -->
+                        <!-- </div> -->
+                        <!-- <div *ngIf="isQualificationDetailsUpdate"> -->
+                        <!-- <div class="row mt-5">
+                            <div class="col-md-5"></div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary" (click)="QualificationDaetailUpdate(obj)">Update</button>
+                            </div>
+
+                            <div class="col-md-5"></div>
+                        </div> -->
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree">
+                        <b>3.Experience details</b>
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#myAccordion">
+                <div class="card-body">
+                    <div class="row mt-2">
+                        <div class="col-md-1"></div>
+                        <div class="form-check">
+                            <div id="Fresher">
+                                <div *ngFor="let obj of DistDataSecond">
+                                    <div *ngIf="obj.SKILLS !== null">
+                                        <input type="radio" class="form-check-input" name="freshexpe" value="Fresher" checked>
+                                        <label class="form-radio-label" class="TopMvove" for="Fresher"><b>Fresher</b><span
+                                                style="color: red">*</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ml-2"></div>
+                        <div class="form-check">
+                            <div id="Experience">
+                                <div *ngIf="DistDataExper?.length > 0">
+                                    <input type="radio" class="form-check-input" name="freshexpe" value="Experience" checked>
+                                    <label class="form-radio-label" class="TopMvove" for="Experience"><b>Experience</b><span
+                                            style="color: red">*</span></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="DistDataExper?.length > 0">
+                        <div *ngFor="let obj of DistDataExper">
+                            <div class="row mt-4">
+                                <div class="col-md-1"></div>
+                                <div class="ttchange">
+                                    <label class="form-label">
+                                        <b>Total Experience:</b>
+                                    </label>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="Years">Years<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" id="Years" placeholder="Enter Years" [(ngModel)]="obj.YEARS"
+                                            (keypress)="keyPressNumbers($event)" maxlength="2">
+                                    </div>
+
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="Months">Months<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" id="Months" placeholder="Enter Months"
+                                            [(ngModel)]="obj.MONTHS" (keypress)="keyPressNumbers($event)" maxlength="2">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                </div>
+                            </div>
+                            <!-- <div *ngIf="isTable"> -->
+                            <div class="row mt-2">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10">
+                                    <table class="table mt-5">
+                                        <thead>
+                                            <tr>
+                                                <th>Organization Name</th>
+                                                <th>Role</th>
+                                                <th>Duties</th>
+                                                <!-- <th></th> -->
+                                                <th>From Date</th>
+                                                <!-- <th></th> -->
+                                                <th>To Date</th>
+                                            </tr>
+                                        </thead>
+                                        <!-- <tbody *ngIf="DistData?.length > 0">
+                                            <tr *ngFor="let row of DistData; let i = index">
+
+                                                <td><input class="form-control" type="text" [(ngModel)]="row.ORGANIZATION_NAME"
+                                                        (ngModelChange)="updateData(i, 'ORGANIZATION_NAME', $event)"></td>
+                                                <td><input class="form-control" type="text" [(ngModel)]="row.ROLE"
+                                                        (ngModelChange)="updateData(i, 'ROLE', $event)"></td>
+                                                <td><textarea class="form-control" type="text" [(ngModel)]="row.DUTIES"
+                                                        (ngModelChange)="updateData(i, 'DUTIES', $event)"></textarea></td>
+
+                                                <td><input id="FROM_DATE" name="FROM_DATE" [(ngModel)]="row.FROM_DATE" type="text"
+                                                        class="form-control" disabled="true" /></td>
+                                                <td><input id="FROM_DATE" name="FROM_DATE" type="text" bsDatepicker placeholder="MM-DD-YYYY"
+                                                        class="form-control" [(ngModel)]="row.FROM_DATE"
+                                                        (ngModelChange)="updateData(i, 'FROM_DATE', $event)" /></td>
+
+                                                <td><input id="TO_DATE" name="TO_DATE" [(ngModel)]="row.TO_DATE" type="text"
+                                                        class="form-control" disabled="true" /></td>
+                                                <td><input id="TO_DATE" name="TO_DATE" [(ngModel)]="row.TO_DATE" type="text" bsDatepicker
+                                                        placeholder="MM-DD-YYYY" class="form-control"
+                                                        (ngModelChange)="updateData(i, 'TO_DATE', $event)" /></td>
+
+                                            </tr>
+                                        </tbody> -->
+                                        <tbody *ngIf="DistData?.length > 0">
+                                            <tr *ngFor="let row of DistData; let i = index">
+                                                <td>{{ row.ORGANIZATION_NAME}}</td>
+                                                <td>{{ row.ROLE}}</td>
+                                                <td>{{ row.DUTIES}}</td>
+                                                <td>{{ row.FROM_DATE}}</td>
+                                                <td>{{ row.TO_DATE}}</td>
+
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <label class="form-radio-label" id="EmployeeStatus" for="EmployeeStatus"><b>Employee Status <span
+                                            style="color: red">*</span></b></label>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-1"></div>
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" id="working" name="EmpStatus" value="Working"
+                                        [(ngModel)]="obj.CURRENT_EMP_STATUS" (change)="CurrentlyWorkingData()">
+                                    <label class="form-radio-label" class="TopMvove" for="Fresher">Working
+                                    </label>
+                                </div>
+                                <div class="ml-2"></div>
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" name="EmpStatus" id="Notworking" value="Notworking"
+                                        (change)="NotWorkingData()" [(ngModel)]="obj.CURRENT_EMP_STATUS">
+                                    <label class="form-radio-label" class="TopMvove" for="Notworking">Notworking
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div *ngIf="obj.CURRENT_EMP_STATUS === 'Working'">
+                                            <label for="ExperienceLatter">Upload Current Organization Offer Letter<span
+                                                    style="color: red">*</span></label>
+                                        </div>
+                                        <div *ngIf="obj.CURRENT_EMP_STATUS === 'Notworking'">
+                                            <label for="ExperienceLatter">Upload Current Organization Experience
+                                                Letter<span style="color: red">*</span></label>
+                                        </div>
+                                        <!-- <input type="file" class="form-control" id="ExperienceLatter" [(ngModel)]="ExperienceLatter"
+                                            (change)="ExperienceLatterUploadDocumentsChange($event)"> -->
+                                        <button class="btn btn-success mt-4" (click)="btnPdfView(obj.EXPERIENCE_LTR_UPLOAD)">VIEW</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="CvUpload">Upload CV<span style="color: red">*</span></label><br>
+                                        <!-- <input type="file" (change)="UploadDocumentsChange($event)" class="form-control" id="CvUpload"
+                                            [(ngModel)]="CvUpload"> -->
+                                        <button class="btn btn-success mt-4" (click)="btnPdfView(obj.CV_UPLOAD)">VIEW</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+
+                                </div>
+
+                            </div>
+                            <!-- </div> -->
+                            <!-- <div *ngIf="ExperienceDaetailSave">
+                            <div class="row mt-5">
+                                <div class="col-md-5"></div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary" (click)="ExperienceDaetailSub()">Save</button>
+                                </div>
+
+                                <div class="col-md-5"></div>
+                            </div>
+                        </div> -->
+                            <!-- <div *ngIf="ExperienceDaetailUpadte"> -->
+                            <!-- <div class="row mt-5">
+                                <div class="col-md-5"></div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary" (click)="ExperienceDaetailUpadted(obj)">Update</button>
+                                </div>
+
+                                <div class="col-md-5"></div>
+                            </div> -->
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                    <div *ngFor="let obj of DistDataSecond">
+                        <div *ngIf="obj.SKILLS !== null">
+                            <div class="row mt-2">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+
+                                        <label for="Skills">Skills<span style="color: red">*</span></label>
+                                        <textarea class="form-control" id="Skills" [(ngModel)]="obj.SKILLS"
+                                            placeholder="Enter Skills"> </textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+
+                                        <label for="CvUploadFresher">Upload CV<span style="color: red">*</span></label><br>
+                                        <!-- <input type="file" class="form-control" id="CvUploadFresher" [(ngModel)]="obj.CV_UPLOAD"
+                                            (change)="CvUploadFresherDocumentsChange($event)"> -->
+                                        <button class="btn btn-success mt-4" (click)="btnPdfView(obj.CV_UPLOAD)">VIEW</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+
+                                </div>
+                                <div class="col-md-1"></div>
+
+
+                            </div>
+                            <!-- <div *ngIf="fresherSave">
+                            <div class="row mt-5">
+                                <div class="col-md-5"></div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary" (click)="FresherDaetailSub()">Save</button>
+                                </div>
+
+                                <div class="col-md-5"></div>
+                            </div>
+                             </div> -->
+                            <!-- <div class="row mt-5">
+                                <div class="col-md-5"></div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary" (click)="FresherDaetailUpadte(obj)">Update</button>
+                                </div>
+                                <div class="col-md-5"></div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

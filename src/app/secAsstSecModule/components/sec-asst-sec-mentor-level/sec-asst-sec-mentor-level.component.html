@@ -1,0 +1,132 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Secretary/Assistant Secretary Mentor Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div class="col-md-12">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="mentorLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>Mentor</th>
+              <th>Routes</th>
+              <th>RBKS</th>
+              <th>Villages</th>
+              <th>Secretaries</th>
+              <th>Assistant Secretaries</th>
+              <th>Secretaries Not Added</th>
+              <th>Assistant Secretaries Not Added</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="mentorLevelDetails?.length > 0">
+            <tr *ngFor="let obj of mentorLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.MENTOR_NAME }}</td>
+              <td>{{ obj.TOTAL_ROUTES | indianNumber }}</td>
+              <td>{{ obj.TOTAL_RBK | indianNumber }}</td>
+              <td>{{ obj.TOTAL_VILLAGES | indianNumber }}</td>
+              <td>
+                <a
+                  *ngIf="obj.TOTAL_SECRETARY !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetDetails(obj)"
+                  ><b>{{ obj.TOTAL_SECRETARY | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.TOTAL_SECRETARY === '0'">{{
+                  obj.TOTAL_SECRETARY
+                }}</span>
+              </td>
+              <td>
+                <a
+                  *ngIf="obj.TOTAL_ASSI_SECRETARY !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnAsstSecDetails(obj)"
+                  ><b>{{ obj.TOTAL_ASSI_SECRETARY | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.TOTAL_ASSI_SECRETARY === '0'">{{
+                  obj.TOTAL_ASSI_SECRETARY
+                }}</span>
+              </td>
+              <td>
+                <a
+                  *ngIf="obj.NOT_ADDED_SECRETARY !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnAsstSecNotAddedDetails(obj, '1')"
+                  ><b>{{ obj.NOT_ADDED_SECRETARY | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.NOT_ADDED_SECRETARY === '0'">{{
+                  obj.NOT_ADDED_SECRETARY
+                }}</span>
+              </td>
+              <td>
+                <a
+                  *ngIf="obj.NOT_ADDED_ASSI_SECRETARY !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnAsstSecNotAddedDetails(obj, '2')"
+                  ><b>{{ obj.NOT_ADDED_ASSI_SECRETARY | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.NOT_ADDED_ASSI_SECRETARY === '0'">{{
+                  obj.NOT_ADDED_ASSI_SECRETARY
+                }}</span>
+              </td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="mentorLevelDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td>{{ reportTotals.TOTAL_ROUTES | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_RBK | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_VILLAGES | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_SECRETARY | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_ASSI_SECRETARY | indianNumber }}</td>
+              <td>{{ reportTotals.NOT_ADDED_SECRETARY | indianNumber }}</td>
+              <td>
+                {{ reportTotals.NOT_ADDED_ASSI_SECRETARY | indianNumber }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

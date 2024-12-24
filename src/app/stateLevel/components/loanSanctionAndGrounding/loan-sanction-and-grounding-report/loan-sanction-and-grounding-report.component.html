@@ -1,0 +1,302 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Loan Sanction And Grounding Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row align-items-center">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="natureOfUnit"
+            >Nature Of Unit <span style="color: red">*</span></label
+          >
+          <select
+            id="natureOfUnit"
+            class="form-control"
+            [(ngModel)]="natureOfUnit"
+            (change)="onNatureOfUnitChange()"
+          >
+            <option value="">-- SELECT NATURE OF UNIT --</option>
+            <option value="ALL">ALL</option>
+            <option value="Live Stock-COW">COW</option>
+            <option value="Live Stock-BUFFALO">BUFFALO</option>
+            <option value="Live Stock-SHEEP">SHEEP</option>
+            <option value="Live Stock-GOAT">GOAT</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="type">TYPE <span style="color: red">*</span></label>
+          <select
+            id="type"
+            class="form-control"
+            [(ngModel)]="type"
+            (change)="onTypeChange()"
+          >
+            <option value="">-- SELECT TYPE --</option>
+            <option value="1">DISTRICT WISE</option>
+            <option value="2">DIVISION WISE</option>
+            <option value="3">AVH WISE</option>
+            <option value="4">MANDAL WISE</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <button
+          type="button"
+          class="btn btn-primary btn-sm mt-3"
+          (click)="btnLoadReport()"
+        >
+          <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+          GO
+        </button>
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right mt-3"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right mt-3"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="groundingDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th [hidden]="type !== '1'">District Name</th>
+              <th [hidden]="type !== '2'">Division Name</th>
+              <th [hidden]="type !== '3'">AH Name</th>
+              <th [hidden]="type !== '4'">District</th>
+              <th [hidden]="type !== '4'">Mandal Name</th>
+              <th>Beneficiaries</th>
+              <th>Willing Beneficiaries</th>
+              <th>Applications Submitted by AH</th>
+              <th>Applications Approved by Banks</th>
+              <th>Sanctioned Loan Amount</th>
+              <th>Documentation Completed Applications</th>
+              <th>Grounding Completed</th>
+              <th>Animal Health Card Distributed</th>
+              <th>Total Photos Uploaded</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="groundingDetails?.length > 0">
+            <tr *ngFor="let obj of groundingDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td [hidden]="type !== '1'">{{ obj.DISTRICT_NAME }}</td>
+              <td [hidden]="type !== '2'">{{ obj.DIVISION }}</td>
+              <td [hidden]="type !== '3'">{{ obj.AVH_NAME }}</td>
+              <td [hidden]="type !== '4'">{{ obj.DISTRICT_NAME }}</td>
+              <td [hidden]="type !== '4'">{{ obj.MANDAL_NAME }}</td>
+              <td>{{ obj.TOTAL_BENEFICIARIES | indianNumber }}</td>
+              <td>{{ obj.TOTAL_WILLING_BENEFICIARIES | indianNumber }}</td>
+              <td>{{ obj.TOTAL_APPLI_SUBMITTED_BY_AH | indianNumber }}</td>
+              <td>{{ obj.TOTAL_APPLI_APPROVED_BY_BANKS | indianNumber }}</td>
+              <td>{{ obj.LOAN_AMOUNT_SANCTIONED | indianNumber }}</td>
+              <td>{{ obj.TOTAL_APPLI_COMPLETED_DOCU | indianNumber }}</td>
+              <td>{{ obj.TOTAL_GROUNDINGS_COMPLETED | indianNumber }}</td>
+              <td>{{ obj.TOTAL_ANIMAL_HELCARD_DISTRI | indianNumber }}</td>
+              <td>{{ obj.TOTAL_PHOTOS_UPLOADED | indianNumber }}</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="groundingDetails?.length > 0">
+            <tr [hidden]="type !== '1'">
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td>
+                {{ reportDistrictTotals.TOTAL_BENEFICIARIES | indianNumber }}
+              </td>
+              <td>
+                {{
+                  reportDistrictTotals.TOTAL_WILLING_BENEFICIARIES
+                    | indianNumber
+                }}
+              </td>
+              <td>
+                {{
+                  reportDistrictTotals.TOTAL_APPLI_SUBMITTED_BY_AH
+                    | indianNumber
+                }}
+              </td>
+              <td>
+                {{
+                  reportDistrictTotals.TOTAL_APPLI_APPROVED_BY_BANKS
+                    | indianNumber
+                }}
+              </td>
+              <td>
+                {{ reportDistrictTotals.LOAN_AMOUNT_SANCTIONED | indianNumber }}
+              </td>
+              <td>
+                {{
+                  reportDistrictTotals.TOTAL_APPLI_COMPLETED_DOCU | indianNumber
+                }}
+              </td>
+              <td>
+                {{
+                  reportDistrictTotals.TOTAL_GROUNDINGS_COMPLETED | indianNumber
+                }}
+              </td>
+              <td>
+                {{
+                  reportDistrictTotals.TOTAL_ANIMAL_HELCARD_DISTRI
+                    | indianNumber
+                }}
+              </td>
+              <td>
+                {{ reportDistrictTotals.TOTAL_PHOTOS_UPLOADED | indianNumber }}
+              </td>
+            </tr>
+            <tr [hidden]="type !== '2'">
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td>
+                {{ reportDivisionTotals.TOTAL_BENEFICIARIES | indianNumber }}
+              </td>
+              <td>
+                {{
+                  reportDivisionTotals.TOTAL_WILLING_BENEFICIARIES
+                    | indianNumber
+                }}
+              </td>
+              <td>
+                {{
+                  reportDivisionTotals.TOTAL_APPLI_SUBMITTED_BY_AH
+                    | indianNumber
+                }}
+              </td>
+              <td>
+                {{
+                  reportDivisionTotals.TOTAL_APPLI_APPROVED_BY_BANKS
+                    | indianNumber
+                }}
+              </td>
+              <td>
+                {{ reportDivisionTotals.LOAN_AMOUNT_SANCTIONED | indianNumber }}
+              </td>
+              <td>
+                {{
+                  reportDivisionTotals.TOTAL_APPLI_COMPLETED_DOCU | indianNumber
+                }}
+              </td>
+              <td>
+                {{
+                  reportDivisionTotals.TOTAL_GROUNDINGS_COMPLETED | indianNumber
+                }}
+              </td>
+              <td>
+                {{
+                  reportDivisionTotals.TOTAL_ANIMAL_HELCARD_DISTRI
+                    | indianNumber
+                }}
+              </td>
+              <td>
+                {{ reportDivisionTotals.TOTAL_PHOTOS_UPLOADED | indianNumber }}
+              </td>
+            </tr>
+            <tr [hidden]="type !== '3'">
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td>{{ reportAHTotals.TOTAL_BENEFICIARIES | indianNumber }}</td>
+              <td>
+                {{ reportAHTotals.TOTAL_WILLING_BENEFICIARIES | indianNumber }}
+              </td>
+              <td>
+                {{ reportAHTotals.TOTAL_APPLI_SUBMITTED_BY_AH | indianNumber }}
+              </td>
+              <td>
+                {{
+                  reportAHTotals.TOTAL_APPLI_APPROVED_BY_BANKS | indianNumber
+                }}
+              </td>
+              <td>
+                {{ reportAHTotals.LOAN_AMOUNT_SANCTIONED | indianNumber }}
+              </td>
+              <td>
+                {{ reportAHTotals.TOTAL_APPLI_COMPLETED_DOCU | indianNumber }}
+              </td>
+              <td>
+                {{ reportAHTotals.TOTAL_GROUNDINGS_COMPLETED | indianNumber }}
+              </td>
+              <td>
+                {{ reportAHTotals.TOTAL_ANIMAL_HELCARD_DISTRI | indianNumber }}
+              </td>
+              <td>{{ reportAHTotals.TOTAL_PHOTOS_UPLOADED | indianNumber }}</td>
+            </tr>
+            <tr [hidden]="type !== '4'">
+              <td>--</td>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td>
+                {{ reportMandalTotals.TOTAL_BENEFICIARIES | indianNumber }}
+              </td>
+              <td>
+                {{
+                  reportMandalTotals.TOTAL_WILLING_BENEFICIARIES | indianNumber
+                }}
+              </td>
+              <td>
+                {{
+                  reportMandalTotals.TOTAL_APPLI_SUBMITTED_BY_AH | indianNumber
+                }}
+              </td>
+              <td>
+                {{
+                  reportMandalTotals.TOTAL_APPLI_APPROVED_BY_BANKS
+                    | indianNumber
+                }}
+              </td>
+              <td>
+                {{ reportMandalTotals.LOAN_AMOUNT_SANCTIONED | indianNumber }}
+              </td>
+              <td>
+                {{
+                  reportMandalTotals.TOTAL_APPLI_COMPLETED_DOCU | indianNumber
+                }}
+              </td>
+              <td>
+                {{
+                  reportMandalTotals.TOTAL_GROUNDINGS_COMPLETED | indianNumber
+                }}
+              </td>
+              <td>
+                {{
+                  reportMandalTotals.TOTAL_ANIMAL_HELCARD_DISTRI | indianNumber
+                }}
+              </td>
+              <td>
+                {{ reportMandalTotals.TOTAL_PHOTOS_UPLOADED | indianNumber }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

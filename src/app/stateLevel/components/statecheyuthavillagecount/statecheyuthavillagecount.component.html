@@ -1,0 +1,142 @@
+<div class="row">
+    <div class="col-md-3">
+      <h5>
+        <b> From Date : </b><span class="text-success">{{ fromDate }}</span>
+      </h5>
+    </div>
+    <div class="col-md-3">
+      <h5>
+        <b>To Date : </b><span class="text-success">{{ toDate }}</span>
+      </h5>
+    </div>
+    <div class="col-md-6" align="right">
+      <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+        Back
+      </button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Govt Supported Scheme  Village Wise Report</h5>
+    </div> 
+
+    <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+
+            <div class="col-md-8">
+               
+                 <span class="text-success">{{ distmanrbk }}</span>
+               
+            </div>
+
+              <button
+              type="button"
+              class="btn btn-success btn-sm pull-right"
+              (click)="btnExcel()"
+            >
+              <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+              Download Excel
+            </button>  
+            <!-- <button
+              type="button"
+              class="btn btn-danger btn-sm pull-right"
+              (click)="btnPDF()"
+            >
+              <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+              Download PDF
+            </button> -->
+          </div>   </div>
+<div class="row" >
+
+  <div
+          class="col-md-12 table-responsive"
+          [hidden]="routeListDetails?.length < 1"
+        >
+          <table  
+            class="table table-striped ah-table text-center"
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger" 
+          > 
+          
+          <thead class="bg-success text-white"   style="border: 1px solid white;">   
+            <tr  style="height:100px;">
+              <th  class="tableheader_color">S.No.</th>
+          <th  class="tableheader_color">DISTRICT NAME</th>
+          <th  class="tableheader_color">MANDAL NAME</th>
+          <th  class="tableheader_color">RBK Name</th>
+          <th  class="tableheader_color">Village Name</th>
+          <th  class="tableheader_color">Total Registered Farmers</th>
+          <th  class="tableheader_color">Total Milk Pouring Farmers</th>
+          <th  class="tableheader_color">Total Cow Milk (Ltrs)</th>
+          <th class="tableheader_color">Total Cow Milk Amount (Rs)</th> 
+          <th class="tableheader_color">Total Buffalo Milk (Ltrs)</th>
+          <th class="tableheader_color"> Total Buffalo Milk Amount (Rs)</th>
+          <th class="tableheader_color">	Total Milk (Rs)</th>
+          <th class="tableheader_color">	Total Milk Amount (Rs)</th>
+        </tr>
+        <tr >             
+          <th  class="tableheader_color"  >(1)</th>
+          <th  class="tableheader_color" >(2)</th>
+          <th  class="tableheader_color" >(3)</th>
+          <th  class="tableheader_color" >(4)</th>
+          <th  class="tableheader_color" >(5)</th>
+          <th  class="tableheader_color" >(6)</th>
+          <th  class="tableheader_color" >(7)</th>
+          <th  class="tableheader_color" >(8)</th>
+          <th  class="tableheader_color" >(9)</th>
+          <th  class="tableheader_color" >(10)</th>
+
+          <th  class="tableheader_color" >(11)</th>
+          <th  class="tableheader_color" >(12)</th>
+          <th  class="tableheader_color" >(13)</th>
+          
+        </tr> 
+      </thead>
+      <tbody *ngIf="routeListDetails?.length > 0"  >
+        <tr *ngFor="let obj of routeListDetails; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td style="text-align: left;" class="table_cells_borders">{{  obj.DISTRICT }}   </td>
+          <td style="text-align: left;" class="table_cells_borders">{{  obj.MANDAL_NAME   }}</td>
+          <td style="text-align: left;" class="table_cells_borders">{{  obj.RBK_NAME }}</td>
+          <td style="text-align: left;" class="table_cells_borders">{{  obj.VILLAGE_NAME }}</td>
+          <td class="number_align">{{  obj.TOTAL_REG_FARMERS | indianNumber}}</td>
+          <td class="number_align">{{  obj.TOTAL_MILK_POURING_FARMERS | indianNumber}}</td>
+          <td class="number_align">{{  obj.TOTAL_COW_MILK_LTR	 | indianNumber}}</td>
+          <td class="number_align">{{  obj.TOTAL_COW_MILK_AMOUNT| indianNumber }}</td>
+          <td class="number_align">{{  obj.TOTAL_BUFFALO_MILK_LTR	 | indianNumber}}</td>
+          <td class="number_align">{{  obj.TOTAL_BUFFALO_MILK_AMOUNT	| indianNumber }}</td>
+          <td class="number_align">{{  obj.TOTAL_MILK_LTR	| indianNumber }}</td>
+          <td class="number_align">{{  obj.TOTAL_MILK_AMOUNT | indianNumber}}</td>   
+
+        </tr>
+      </tbody>
+      <tbody *ngIf="routeListDetails?.length > 0">
+       <tr>
+        <td  class="number_align" style="border-color: cadetblue !important">--</td>
+        <td  class="text_align_color"> <b>TOTAL</b>  </td> 
+        <td   class="font-weight-bold number_align">{{ reportTotals.TOTAL_RBK | indianNumber }}</td>
+        <td   class="font-weight-bold number_align">{{ reportTotals.TOTAL_VILLAGE | indianNumber }}</td>
+        <td   class="font-weight-bold number_align">{{ reportTotals.TOTAL_VOLUNTEERS | indianNumber }}</td>
+
+        <td   class="font-weight-bold number_align">{{ reportTotals.tt_REG_FARMERS | indianNumber }}</td>
+        <td   class="font-weight-bold number_align"> {{ reportTotals.tt_MILK_POURING_FARMERS| indianNumber }} </td>
+        <td   class="font-weight-bold number_align">{{ reportTotals.tt_COW_MILK_LTR.toFixed(2) | indianNumber }}</td>
+        <td   class="font-weight-bold number_align">{{ reportTotals.tt_COW_MILK_AMOUNT.toFixed(2) | indianNumber }}</td>
+        <td   class="font-weight-bold number_align"> {{ reportTotals.tt_BUFFALO_MILK_LTR.toFixed(2) | indianNumber }}     </td>
+        <td   class="font-weight-bold number_align">{{ reportTotals.tt_BUFFALO_MILK_AMOUNT.toFixed(2) | indianNumber }}</td>
+        <td   class="font-weight-bold number_align">{{ reportTotals.tt_MILK_LTR.toFixed(2) | indianNumber }}</td>
+        <td   class="font-weight-bold number_align">{{ reportTotals.tt_MILK_AMOUNT.toFixed(2) | indianNumber }}</td> 
+
+
+ 
+
+        </tr>
+      </tbody> 
+    </table>
+  </div>
+</div>
+
+</div>

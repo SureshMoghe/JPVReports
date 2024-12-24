@@ -1,0 +1,154 @@
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Society Abstract Report</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <button
+            type="button"
+            class="btn btn-success btn-sm pull-right"
+            (click)="btnExcel()"
+          >
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            Download Excel
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger btn-sm pull-right"
+            (click)="btnPDF()"
+          >
+            <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+            Download PDF
+          </button>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="districtId"
+              >District <span style="color: red">*</span></label
+            >
+            <select
+              id="districtId"
+              class="form-control"
+              [(ngModel)]="districtId"
+              (change)="onDistrictIdChange()"
+            >
+              <option value="">ALL</option>
+              <option
+                value="{{ obj.DISTRICT_ID }}"
+                *ngFor="let obj of districtList"
+              >
+                {{ obj.DISTRICT_NAME }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="fromDate"
+              >From Date : <span style="color: red">*</span></label
+            >
+            <app-date-picker
+              [PlaceHolder]="'Please Select From Date'"
+              [(selectedDate)]="fromDate"
+            ></app-date-picker>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="toDate"
+              >To Date : <span style="color: red">*</span></label
+            >
+            <app-date-picker
+              [PlaceHolder]="'Please Select To Date'"
+              [(selectedDate)]="toDate"
+            ></app-date-picker>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <button
+            type="button"
+            class="btn btn-primary btn-sm mt-3"
+            (click)="btnLoadReport()"
+          >
+            <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+            GO
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div
+          class="col-md-12 table-responsive"
+          [hidden]="societyAbstractDetails?.length < 1"
+        >
+          <table
+            class="table table-striped ah-table text-center"
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger"
+          >
+            <thead class="bg-success text-white">
+              <tr>
+                <th>S.No.</th>
+                <th>District</th>
+                <th>MDAC Code</th>
+                <th>Society ID</th>
+                <th>Society</th>
+                <th>No. of Farmers</th>
+                <th>No. of Milk Pouring Farmers</th>
+                <th>Total Buffalo Milk in Ltrs.</th>
+                <th>Total Buffalo Milk Amount</th>
+                <th>Total Cow Milk in Ltrs.</th>
+                <th>Total Cow Milk Amount</th>
+                <th>Total Milk in Ltrs.</th>
+                <th>Total Amount</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="societyAbstractDetails?.length > 0">
+              <tr *ngFor="let obj of societyAbstractDetails; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ obj.DISTRICT_NAME }}</td>
+                <td>{{ obj.MDAC_CODE }}</td>
+                <td>{{ obj.SOCIETY_ID }}</td>
+                <td>
+                  <b>{{ obj.SOCIETY_NAME }}</b>
+                </td>
+                <td>{{ obj.NO_OF_FARMERS | indianNumber }}</td>
+                <td>{{ obj.NO_OF_MILK_POURER_FARMERS | indianNumber }}</td>
+                <td>{{ obj.TOTAL_BUFFALO_MILK_LTR | indianNumber }}</td>
+                <td>{{ obj.TOTAL_BUFFALO_MILK_AMOUNT | indianNumber }}</td>
+                <td>{{ obj.TOTAL_COW_MILK_LTR | indianNumber }}</td>
+                <td>{{ obj.TOTAL_COW_MILK_AMOUNT | indianNumber }}</td>
+                <td>{{ obj.TOTAL_MILK_ITR | indianNumber }}</td>
+                <td>{{ obj.TOTAL_AMOUNT | indianNumber }}</td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="societyAbstractDetails?.length > 0">
+              <tr>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>
+                  <b>TOTAL</b>
+                </td>
+                <td>{{ reportTotals.NO_OF_FARMERS | indianNumber }}</td>
+                <td>{{ reportTotals.NO_OF_MILK_POURER_FARMERS | indianNumber }}</td>
+                <td>{{ reportTotals.TOTAL_BUFFALO_MILK_LTR | indianNumber }}</td>
+                <td>
+                  {{ reportTotals.TOTAL_BUFFALO_MILK_AMOUNT | indianNumber }}
+                </td>
+                <td>{{ reportTotals.TOTAL_COW_MILK_LTR | indianNumber }}</td>
+                <td>{{ reportTotals.TOTAL_COW_MILK_AMOUNT | indianNumber }}</td>
+                <td>{{ reportTotals.TOTAL_MILK_ITR | indianNumber }}</td>
+                <td>{{ reportTotals.TOTAL_AMOUNT | indianNumber }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

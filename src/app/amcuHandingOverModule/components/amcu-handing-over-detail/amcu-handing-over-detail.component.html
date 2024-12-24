@@ -1,0 +1,145 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">AMCU Handing Over Detail Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> Mentor : </b><span class="text-success">{{ mentorName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> RBK : </b><span class="text-success">{{ rbkName }}</span>
+        </h5>
+      </div>
+
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="inspectionDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>Village Name</th>
+              <th>AMC ID</th>
+              <th>Route ID</th>
+              <th>Inspection Date</th>
+              <th>Inspection Time</th>
+              <th>Desktop Working</th>
+              <th>CPU Working</th>
+              <th>Mouse Working</th>
+              <th>KeyBoard Working</th>
+              <th>UPS Working</th>
+              <th>Electronic Scale Working</th>
+              <th>Ultrasonic Milk Working</th>
+              <th>Cow Milk FAT/SNF Indicators Working</th>
+              <th>Buffalo Milk FAT/SNF Indicators Working</th>
+              <th>UPS 1KVA Working</th>
+              <th>Battery In Condition</th>
+              <th>Remote Display Unit Working</th>
+              <th>24PIN 80COL Matrix Printer Working</th>
+              <th>Ultrasonic Stirrer Working</th>
+              <th>Internet Device Working</th>
+              <th>Signed Copy PDF</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="inspectionDetails?.length > 0">
+            <tr *ngFor="let obj of inspectionDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.VILLAGE_NAME }}</td>
+              <td>{{ obj.AMC_ID }}</td>
+              <td>{{ obj.ROUTE_NAME }}</td>
+              <td>{{ obj.INSPECTION_DATE }}</td>
+              <td>{{ obj.INSPECTION_TIME }}</td>
+              <td>
+                {{ obj.IS_DESKTOP_COMPUTER_WORKING === "1" ? "YES" : "NO" }}
+              </td>
+              <td>{{ obj.IS_CPU_WORKING === "1" ? "YES" : "NO" }}</td>
+              <td>{{ obj.IS_MOUSE_WORKING === "1" ? "YES" : "NO" }}</td>
+              <td>{{ obj.IS_KEYBOARD_WORKING === "1" ? "YES" : "NO" }}</td>
+              <td>{{ obj.IS_UPS_WORKING === "1" ? "YES" : "NO" }}</td>
+              <td>
+                {{ obj.ELECTRONIC_WEIGH_SCALE_WORKING === "1" ? "YES" : "NO" }}
+              </td>
+              <td>
+                {{ obj.ULTRASONIC_MILK_ANALYZ_WORKING === "1" ? "YES" : "NO" }}
+              </td>
+              <td>
+                {{ obj.COW_MILK_FAT_SNF_INDICATORS === "1" ? "YES" : "NO" }}
+              </td>
+              <td>
+                {{ obj.BUF_MILK_FAT_SNF_INDICATORS === "1" ? "YES" : "NO" }}
+              </td>
+              <td>{{ obj.IS_UPS_1KVA_WORKING === "1" ? "YES" : "NO" }}</td>
+              <td>{{ obj.IS_BATTERY_IN_CONDITION === "1" ? "YES" : "NO" }}</td>
+              <td>
+                {{ obj.IS_REMOTE_DISPLAY_UNIT_WORKING === "1" ? "YES" : "NO" }}
+              </td>
+              <td>
+                {{ obj.IS_24PIN_80CL_PRINTR_WORKING === "1" ? "YES" : "NO" }}
+              </td>
+              <td>
+                {{ obj.IS_ULTRASONIC_STIRRER_WORKING === "1" ? "YES" : "NO" }}
+              </td>
+              <td>{{ obj.INTERNET_DEVICE === "1" ? "YES" : "NO" }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="
+                    obj.SIGNED_COPY_PDF !== null &&
+                    obj.SIGNED_COPY_PDF !== '' &&
+                    obj.SIGNED_COPY_PDF !== undefined
+                  "
+                  (click)="btnPdfView(obj.SIGNED_COPY_PDF)"
+                >
+                  VIEW
+                </button>
+                <span
+                  *ngIf="
+                    obj.SIGNED_COPY_PDF === null ||
+                    obj.SIGNED_COPY_PDF === '' ||
+                    obj.SIGNED_COPY_PDF === undefined
+                  "
+                  >NA</span
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

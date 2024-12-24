@@ -1,0 +1,92 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Month Wise Milk Procurement Status</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <h5 class="pull-left">
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <!-- <button
+            type="button"
+            class="btn btn-danger btn-sm pull-right"
+            (click)="btnPDF()"
+          >
+            <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+            DOWNLOAD PDF
+          </button> -->
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="milkProcurementDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>Year</th>
+              <th>Month</th>
+              <th>No Of Socities</th>
+              <th>Registered Farmers</th>
+              <th>Active Farmers</th>
+              <th>Quantity Of Milk In Liters</th>
+              <th>AVG FAT</th>
+              <th>AVG SNF</th>
+              <th>Amount As Per AMCU</th>
+              <th>AVG. LTR/Day</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="milkProcurementDetails?.length > 0">
+            <tr *ngFor="let obj of milkProcurementDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.TXN_YEAR }}</td>
+              <td>{{ obj.TXN_MONTH_NAME }}</td>
+              <td>{{ obj.SOCITIES | indianNumber }}</td>
+              <td>{{ obj.REG_FARMERS | indianNumber }}</td>
+              <td>{{ obj.ACTIVE_FARMERS | indianNumber }}</td>
+              <td>{{ obj.MILK_QTY | indianNumber }}</td>
+              <td>{{ obj.FAT_IN_MILK | indianNumber }}</td>
+              <td>{{ obj.SNF_IN_MILK | indianNumber }}</td>
+              <td>{{ obj.MILK_AMOUNT | indianNumber }}</td>
+              <td>{{ obj.AVG_LTR_DAY | indianNumber }}</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="milkProcurementDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td>{{ reportTotals.SOCITIES | indianNumber }}</td>
+              <td>{{ reportTotals.REG_FARMERS | indianNumber }}</td>
+              <td>{{ reportTotals.ACTIVE_FARMERS | indianNumber }}</td>
+              <td>{{ reportTotals.MILK_QTY | indianNumber }}</td>
+              <td>{{ reportTotals.FAT_IN_MILK | indianNumber }}</td>
+              <td>{{ reportTotals.SNF_IN_MILK | indianNumber }}</td>
+              <td>{{ reportTotals.MILK_AMOUNT | indianNumber }}</td>
+              <td>{{ reportTotals.AVG_LTR_DAY | indianNumber }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

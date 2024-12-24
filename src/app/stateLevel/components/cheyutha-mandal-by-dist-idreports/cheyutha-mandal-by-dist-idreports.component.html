@@ -1,0 +1,355 @@
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Govt Supported Scheme  Mandal Level Report</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <button
+            type="button"
+            class="btn btn-success btn-sm pull-right"
+            (click)="btnExcel()" 
+          >
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            Download Excel
+          </button>
+          <!-- <button
+            type="button"
+            class="btn btn-danger btn-sm pull-right"
+            (click)="btnPDF()"
+          >
+            <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+            Download PDF
+          </button> -->
+        </div>
+        <div class="col-md-12">
+          <!-- <h5><b>From Date:</b><span class="text-success">{{ fromDate }}</span></h5> &nbsp; &nbsp;
+          <h5><b>To Date:</b><span class="text-success">{{ toDate }}</span></h5> &nbsp; &nbsp; -->
+          <h5>
+            <b> District : </b
+            ><span class="text-success">{{ districtName }}</span>
+          </h5>
+        </div>
+  
+        <div
+          class="col-md-12 table-responsive"
+          [hidden]="districtLevelDetails?.length < 1"
+        >
+          <table
+            class="table table-striped ah-table text-center"
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger"
+          >
+            <thead class="bg-success text-white">
+              <tr>
+                    <th rowspan="2"  class="tableheader_color">S.No.</th> 
+                    <th rowspan="2" class="tableheader_color">Mandal Name</th>
+                    <th rowspan="2"  class="tableheader_color">No.of Rbks</th>
+                    <th rowspan="2" class="tableheader_color">No.of Villages</th>
+                    <th rowspan="2" class="tableheader_color" >MDSS<br>Registered<br>Farmers</th>
+                    <th colspan="6" class="tableheader_color"> Beneficiaries </th>
+                    <!-- <th rowspan="2" class="tableheader_color" >Cheyutha<br>Beneficiaries</th>    
+                    <th rowspan="2"  class="tableheader_color"> Stree Nidhi Beneficiaries	</th>
+                    <th rowspan="2" class="tableheader_color" >  Unnathi Beneficiaries	</th>
+                    <th rowspan="2"  class="tableheader_color"> Bank Linkage Beneficiaries	</th>
+                    <th rowspan="2"  class="tableheader_color"> Total Beneficiaries</th>
+                    <th rowspan="2" class="tableheader_color" >Total No.of <br>Animals</th>  -->
+                   
+                    <!-- <th  >Cheyutha<br>Beneficiaries<br> registered<br>as JPV<br>Farmers</th>
+                    <th  >Total Cheyutha<br>Beneficiaries<br>Grounded<br>with animals</th> -->
+                    <th  rowspan="2" class="tableheader_color">MDSS HH Survey Registered Farmers
+                      <!-- JPV registered<br>farmers<br>grounded with<br>animals -->
+                    </th>
+
+                     
+                    <th colspan="7" class="tableheader_color"> Survey of Govt Supported Scheme  / Streenidhi / Unnathi / BankLinkage Beneficiaries</th>
+
+                    <!-- <th  rowspan="2" class="tableheader_color">Non-JPV<br>registered<br>farmers<br>grounded<br>with animals</th>  
+                    <th rowspan="2" class="tableheader_color"> Surveyed with  Animals</th>
+                    <th rowspan="2" class="tableheader_color"> Surveyed without Animals</th>
+                    <th rowspan="2" class="tableheader_color"> TOTAL SURVEYED BENEFICIARIES</th> -->
+
+                    <th  rowspan="2" class="tableheader_color">MDSS Registered <br>Farmers
+                      to be Facilitated <br>with
+                      Animal Grounding
+                      
+                      </th>  
+                      <!-- JPV registered<br>farmers to<br>be facilitated<br>with animal<br>grounding  -->
+                   
+                      <th  rowspan="2"   class="tableheader_color">Surveyed Dead </th>
+                      <th  rowspan="2"   class="tableheader_color">Surveyed Migrated </th>
+              </tr> 
+              <tr> 
+
+                <th  class="tableheader_color" >Govt Supported Scheme  </th>    
+                <th    class="tableheader_color"> Stree Nidhi  	</th>
+                <th   class="tableheader_color" >  Unnathi  	</th>
+                <th    class="tableheader_color"> Bank Linkage  	</th>
+                <th    class="tableheader_color"> Total  Beneficiaries</th>
+                <th   class="tableheader_color" >Total No.of <br>Animals</th> 
+
+                <!-- <th  class="tableheader_color"> Direct Registred Farmers</th> -->
+               <!-- <th   class="tableheader_color">Total Beneficiaries</th>   -->
+               <th  class="tableheader_color"> Volunteer Surveyed Under Cheyutha</th>                
+               <th  class="tableheader_color"> Surveyed with  Animals</th>
+ 
+               <th  class="tableheader_color"> Surveyed & Registered as Farmers</th>             
+               <th  class="tableheader_color"> Surveyed with Animals Rejected</th>
+               <th  class="tableheader_color"> Surveyed with Animals Pending for Approval </th>
+ 
+ 
+                <th   class="tableheader_color"> Surveyed without Animals</th>  
+                <th  class="tableheader_color">Pending for HH Survey</th>
+               <!-- <th  class="tableheader_color"> Surveyed Beneficiaries</th>
+              <th  class="tableheader_color"> Surveyed with  Animals</th>
+
+              <th  class="tableheader_color"> Surveyed with Animals Approved</th>             
+              <th  class="tableheader_color"> Surveyed Animals Rejected</th>
+              <th  class="tableheader_color"> Surveyed Animals Approval Pending</th>
+
+              <th  class="tableheader_color"> Surveyed without Animals</th>
+              <th  class="tableheader_color">Not Surveyed Beneficiaries</th>  -->
+
+               
+                <!-- <th   class="tableheader_color">Total Beneficiaries</th>  
+               <th  class="tableheader_color"> Total Surveyed Beneficiaries</th>                
+               <th  class="tableheader_color"> Surveyed with  Animals</th>
+                <th   class="tableheader_color"> Surveyed without Animals</th>   -->
+ 
+               </tr>  
+
+              <tr >             
+                <th  class="tableheader_color"  >(1)</th>
+                <th  class="tableheader_color" >(2)</th>
+                <th  class="tableheader_color" >(3)</th>
+                <th  class="tableheader_color" >(4)</th>
+                <th  class="tableheader_color" >(5)</th>
+                <th  class="tableheader_color" >(6)</th>
+                <th  class="tableheader_color" >(7)</th>
+                <th  class="tableheader_color" >(8)</th>
+                <th  class="tableheader_color" >(9)</th>
+                <th  class="tableheader_color" >(10)</th>
+  
+                <th  class="tableheader_color" >(11)</th>
+                <th  class="tableheader_color" >(12)</th>
+                <th  class="tableheader_color" >(13)</th>
+                <th  class="tableheader_color" >(14)</th>
+                <th  class="tableheader_color" >(15)</th>
+                <th  class="tableheader_color" >(16)</th>
+                <th  class="tableheader_color" >(17)</th>
+                <th  class="tableheader_color" >(18)</th>
+
+                <th  class="tableheader_color" >(19)</th>
+                <th  class="tableheader_color" >(20)</th>
+                  <th  class="tableheader_color" >(21)</th>  
+                  <th  class="tableheader_color" >(22)</th>  
+              </tr>  
+            </thead>
+            <tbody *ngIf="districtLevelDetails?.length > 0">
+              <tr *ngFor="let obj of districtLevelDetails; let i = index"> 
+                <td>{{ i + 1 }}</td>
+                <td style="text-align: left;" class="table_cells_borders">  
+                   <a  style="cursor: pointer; text-decoration: underline"  class="text-primary"
+                    (click)="btnGetDetails(obj)"><b>{{ obj.MANDAL_NAME }}</b></a>
+                </td> 
+                <td class="number_align">
+                  
+                  <!-- <b>{{ obj.RBK_COUNT}}</b> -->
+                  <a  style="cursor: pointer; text-decoration: underline"  class="text-primary"
+                  (click)="btnGetDetails(obj)"><b>{{ obj.RBK_COUNT }}</b></a>
+                
+                </td>
+                <td class="number_align">   <a  style="cursor: pointer; text-decoration: underline"  class="text-primary"
+                  (click)="btnGetvillageDetails(obj)"><b>{{ obj.VILLAGE_COUNT}}</b></a>
+              </td> 
+
+              <td class="number_align">   <a  style="cursor: pointer; text-decoration: underline"  class="text-primary"
+                (click)="btnGetTOTALFARMERREGISDetails(obj)"><b>{{ obj.TOTAL_FARMER_REGIS }}</b></a>
+            </td> 
+
+            <td class="number_align">  <a  style="cursor: pointer; text-decoration: underline"  class="text-primary"
+                  (click)="btnGetBeneficiaryDetails(obj)"><b>{{ obj.TOTAL_CHEYUTHA_REGIS }}</b></a>
+              </td> 
+
+              <!-- <td>{{ obj.STREENIDHI_BEN_COUNT | indianNumber }}</td> -->
+
+              <td class="number_align">   <a  style="cursor: pointer; text-decoration: underline"  class="text-primary"
+                (click)="btnGetStatestreenidhiDetails(obj)"><b>{{ obj.STREENIDHI_BEN_COUNT }}</b></a>
+            </td> 
+            
+
+            <td class="number_align">  <a  style="cursor: pointer; text-decoration: underline"  class="text-primary"
+              (click)="btnGetStateunnathiDetails(obj)"><b>{{ obj.UNNATHI_BEN_COUNT }}</b></a>
+          </td> 
+
+              <!-- <td>{{ obj.UNNATHI_BEN_COUNT | indianNumber }}</td>
+              <td>{{ obj.BANK_LINKAGE_BEN_COUNT | indianNumber }}</td> -->
+
+              <td class="number_align">   <a  style="cursor: pointer; text-decoration: underline"  class="text-primary"
+                (click)="btnGetbanklinkDetails(obj)"><b>{{ obj.BANK_LINKAGE_BEN_COUNT }}</b></a>
+            </td> 
+
+            <td class="number_align">
+                <!-- {{ obj.TOTAL_BEN_COUNT | indianNumber }} -->
+
+                <a  style="cursor: pointer; text-decoration: underline"  class="text-primary"
+                (click)="btnGetTotalCheyuthaBeneficiariesGroundedwithanimalsDetails(obj)"><b>{{ obj.TOTAL_BEN_COUNT }}</b></a>
+
+
+
+              </td>
+              <!-- <td>{{ obj.TOTAL_NO_ANIMALS | indianNumber }}</td> -->
+              <td class="number_align">
+                  
+
+                <a  style="cursor: pointer; text-decoration: underline"  class="text-primary"
+                (click)="btnGettotalnoofanimalsDetails(obj)"><b>{{ obj.TOTAL_NO_ANIMALS }}</b></a>
+
+
+
+              </td>
+             
+
+            <!-- <td>   <a  style="cursor: pointer; text-decoration: underline"  class="text-primary"
+              (click)="btnGetcheybenregjpvfarmerSDetails(obj)"><b>{{ obj.TOTAL_JPV_FARMERS }}</b></a>
+          </td>
+          <td>   <a  style="cursor: pointer; text-decoration: underline"  class="text-primary"
+            (click)="btnGetTotalCheyuthaBeneficiariesGroundedwithanimalsDetails(obj)"><b>{{ obj.TOT_CHEY_BEN_GRD_ANIMALS }}</b></a>
+        </td> -->
+
+        <!-- TOTAL_JPV_FARM_GROUNDED -->
+
+        <td class="number_align">   <a  style="cursor: pointer; text-decoration: underline"  class="text-primary"
+            (click)="btnGetcheybenregjpvfarmerSgroundanimalDetails(obj)"><b>{{ obj.REG_BEN_COUNT }}</b></a>  
+        </td>
+        <!-- <td class="number_align">{{ obj.DIRECT_REG_COUNT | indianNumber }} </td> -->
+
+        <!-- <td class="number_align">  <a  style="cursor: pointer; text-decoration: underline"  class="text-primary"
+          (click)="btnGetNoncheybenregjpvfarmerSgroundanimalDetails(obj)"><b>{{ obj.BEN_COUNT }}</b></a>      </td> -->
+          <!-- NON_REG_CHYUTH_BEN -->
+
+      
+      <td class="number_align">         <!-- <b>{{ obj.SURVEYED_NON_REG_BEN | indianNumber }}</b> -->
+        <a  style="cursor: pointer; text-decoration: underline"  class="text-primary"
+        (click)="btnSurvyednonRegisteredBeneficiariesDetails(obj)"><b>{{ obj.SURVEYED_COUNT | indianNumber}}</b></a>     </td>
+
+      <td class="number_align">     <!-- <b>{{ obj.SURVEYED_WITH_ANIMAL | indianNumber }}</b> -->  
+        <a  style="cursor: pointer; text-decoration: underline"  class="text-primary"
+        (click)="btnGetsurveyedwithanimalsDetails(obj)"><b>{{ obj.SUR_WITH_ANIMALS_COUNT | indianNumber}}</b></a>  </td>
+
+
+      <td class="number_align">
+         <!-- {{ obj.SUR_ANIMALS_APP_COUNT | indianNumber }} -->
+        <a
+        style="cursor: pointer; text-decoration: underline"
+        class="text-primary"
+        (click)="btnGetSurveyedRegFarmersCountDetails(obj,29)" 
+        ><b>{{ obj.SUR_ANIMALS_APP_COUNT | indianNumber }}</b></a
+      >
+      
+      </td>             
+      <td class="number_align">
+        <!-- {{ obj.SUR_ANIMALS_REJ_COUNT | indianNumber }}  -->
+        <a
+        style="cursor: pointer; text-decoration: underline"
+        class="text-primary"
+        (click)="btnGetSurveyedRegFarmersCountDetails(obj,30)" 
+        ><b>{{ obj.SUR_ANIMALS_REJ_COUNT | indianNumber }}</b></a
+      >
+
+      </td>
+      <td class="number_align">
+        <!-- {{ obj.SUR_ANIMALS_PEND_COUNT | indianNumber }}  -->
+
+
+        <a
+        style="cursor: pointer; text-decoration: underline"
+        class="text-primary"
+        (click)="btnGetSurveyedRegFarmersCountDetails(obj,31)" 
+        ><b>{{ obj.SUR_ANIMALS_PEND_COUNT | indianNumber }}</b></a
+      >
+
+      </td>
+
+
+        <td class="number_align">   <a  style="cursor: pointer; text-decoration: underline"  class="text-primary"
+          (click)="btnGetsurveyedwithoutanimalsDetails(obj)"><b>{{ obj.SUR_WITH_OUT_ANIMALS_COUNT | indianNumber}}</b></a> </td>   
+      
+        <td class="number_align">   <a  style="cursor: pointer; text-decoration: underline"  class="text-primary"
+          (click)="btnnonsurveyedDetails(obj)"><b>{{ obj.SURVEYED_PENDING_COUNT }}</b></a>      </td>
+
+        <td class="number_align">   <a  style="cursor: pointer; text-decoration: underline"  class="text-primary"
+          (click)="btnGetjpvRegFaranimalgroundingDetails(obj)"><b>{{ obj.TOT_FACILITE }}</b></a>      </td>
+
+                <!-- <td>{{ obj.TOTAL_CHEYUTHA_REGIS | indianNumber }}</td> 
+                <td>{{ obj.TOTAL_FARMER_REGIS | indianNumber }}</td>
+                <td>{{ obj.TOTAL_JPV_FARMERS | indianNumber }}</td>
+                <td>{{ obj.TOTAL_JPV_FARM_GROUNDED | indianNumber }}</td>
+                <td>{{ obj.NON_REG_CHYUTH_BEN | indianNumber }}</td>
+                <td>{{ obj.TOT_CHEY_BEN_GRD_ANIMALS | indianNumber }}</td>
+                <td>{{ obj.TOT_FACILITE | indianNumber }}</td>
+              
+          
+              
+              -->
+
+                 
+
+              <td class="number_align"> {{ obj.DEAD_COUNT | indianNumber }}  </td>
+              <td class="number_align"> {{ obj.MIGRATED_COUNT | indianNumber }}  </td>
+
+              </tr>
+            </tbody>
+            <tbody *ngIf="districtLevelDetails?.length > 0"> 
+              <tr>
+                <td  class="number_align" style="border-color: cadetblue !important">--</td>
+                <td  class="text_align_color"> <b>TOTAL</b>   
+
+                </td>
+                <td class="font-weight-bold number_align">{{ totreportTotals.tt_rbk_count | indianNumber }}</td>
+                <td class="font-weight-bold number_align">{{ totreportTotals.tt_villagecnt | indianNumber }}</td>
+                <td class="font-weight-bold number_align">{{ totreportTotals.tt_FARMER_REGIS | indianNumber }}</td>
+                <td class="font-weight-bold number_align">{{ totreportTotals.tt_CHEYUTHA_REGIS | indianNumber }}</td>
+
+
+                <td class="font-weight-bold number_align">{{ totreportTotals.tt_Stree_Nidhi_Beneficiaries | indianNumber }}</td>
+                <td class="font-weight-bold number_align">{{ totreportTotals.tt_Unnathi_Beneficiaries | indianNumber }}</td>
+                <td class="font-weight-bold number_align">{{ totreportTotals.tt_Bank_Linkage_Beneficiaries | indianNumber }}</td>
+                <td class="font-weight-bold number_align">{{ totreportTotals.tt_Total_Beneficiaries | indianNumber }}</td>
+
+                <td class="font-weight-bold number_align">{{ totreportTotals.tt_total_no_animals | indianNumber }}</td>
+ 
+               
+                
+                <!-- <td>{{ totreportTotals.tt_JPV_FARMERS | indianNumber }}</td>
+                <td>{{ totreportTotals.tt_CHEY_BEN_GRD_ANIMALS | indianNumber }}</td> -->
+                <td class="font-weight-bold number_align">{{ totreportTotals.tt_REG_BEN_COUNT | indianNumber }}</td>
+                <!-- <td   class="font-weight-bold number_align"> {{ totreportTotals.tt_DIRECT_REG_COUNT | indianNumber }} </td> -->
+                <!-- <td class="font-weight-bold number_align">{{ totreportTotals.tt_BEN_COUNT | indianNumber }}</td>  -->
+                <td   class="font-weight-bold number_align"> {{ totreportTotals.tt_SURVEYED_COUNT | indianNumber }} </td>
+                <td   class="font-weight-bold number_align"> {{ totreportTotals.tt_SUR_WITH_ANIMALS_COUNT | indianNumber }} </td>
+                
+                 
+                <td   class="font-weight-bold number_align"> {{ totreportTotals.tt_SUR_ANIMALS_APP_COUNT | indianNumber }} </td>
+                <td   class="font-weight-bold number_align"> {{ totreportTotals.tt_SUR_ANIMALS_REJ_COUNT | indianNumber }} </td>
+                <td   class="font-weight-bold number_align"> {{ totreportTotals.tt_SUR_ANIMALS_PEND_COUNT | indianNumber }} </td>
+               
+
+                <td   class="font-weight-bold number_align"> {{ totreportTotals.tt_SUR_WITH_OUT_ANIMALS_COUNT | indianNumber }} </td> 
+                <td class="font-weight-bold number_align">{{ totreportTotals.tt_SURVEYED_PENDING_COUNT | indianNumber }}</td>
+                <td class="font-weight-bold number_align">{{ totreportTotals.tt_FACILITE | indianNumber }}</td>
+
+                
+                <td   class="font-weight-bold number_align">{{ totreportTotals.tt_DEAD_COUNT | indianNumber }}</td>
+                <td   class="font-weight-bold number_align">{{ totreportTotals.tt_MIGRATED_COUNT | indianNumber }}</td>
+				
+                
+              </tr>
+            </tbody>
+          </table>
+        </div> 
+      </div>
+    </div>
+  </div>
+  

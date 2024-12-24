@@ -1,0 +1,72 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">AMCU Network Submitted Villages List Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div class="col-md-6">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-6">
+        <h5>
+          <b> Network : </b><span class="text-success">{{ networkType }}</span>
+        </h5>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="networkSubmittedDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>Mandal</th>
+              <th>RBK</th>
+              <th>Village</th>
+              <th>Network</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="networkSubmittedDetails?.length > 0">
+            <tr *ngFor="let obj of networkSubmittedDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.MANDAL_NAME }}</td>
+              <td>{{ obj.RBK_NAME }}</td>
+              <td>{{ obj.VILLAGE_NAME }}</td>
+              <td>{{ obj.NEWTWORK_TYE }}</td>
+              <td>{{ obj.BUILDING_LAT }}</td>
+              <td>{{ obj.BUILDING_LONG }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="col-md-12" align="right">
+  <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+    BACK
+  </button>
+</div>
+<app-volunteer-wise-milk-pouring
+  [(districtId)]="districtId"
+  [(districtName)]="districtName"
+  [(routeId)]="routeId"
+  [(routeName)]="routeName"
+  [(mandalId)]="mandalId"
+  [(mandalName)]="mandalName"
+  [(rbkId)]="rbkId"
+  [(rbkName)]="rbkName"
+  (onVolunteerChange)="onVolunteerChange($event)"
+  (onNonMilkPouringChange)="onNonMilkPouringChange($event)"
+></app-volunteer-wise-milk-pouring>

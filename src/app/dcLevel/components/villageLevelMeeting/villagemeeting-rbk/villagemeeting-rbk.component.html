@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-3">
+    <h5>
+      <b> From Date : </b><span class="text-success">{{ fromDate }}</span>
+    </h5>
+  </div>
+  <div class="col-md-3">
+    <h5>
+      <b>To Date : </b><span class="text-success">{{ toDate }}</span>
+    </h5>
+  </div>
+  <div class="col-md-6">
+    <button
+      type="button"
+      class="btn btn-primary btn-sm pull-right"
+      (click)="btnBack()"
+    >
+      BACK
+    </button>
+  </div>
+</div>
+<app-village-meeting-rbk
+  [(districtId)]="districtId"
+  [(districtName)]="districtName"
+  [(mentorId)]="mentorId"
+  [(mentorName)]="mentorName"
+  [(fromDate)]="fromDate"
+  [(toDate)]="toDate"
+  (onRbkChange)="onRbkChange($event)"
+  (onFunctionariesClickChange)="onFunctionariesClickChange($event)"
+  (onSecAssSecClickChange)="onSecAssSecClickChange($event)"
+  (onBuildingInspectClickChange)="onBuildingInspectClickChange($event)"
+  (onCalibrationClickChange)="onCalibrationClickChange($event)"
+  (onPromotersClickChange)="onPromotersClickChange($event)"
+></app-village-meeting-rbk>

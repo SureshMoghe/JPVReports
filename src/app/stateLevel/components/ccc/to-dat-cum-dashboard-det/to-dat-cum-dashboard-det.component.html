@@ -1,0 +1,1154 @@
+<h2 class="text-success" style="text-align: center;">DASHBOARD</h2>
+
+<div class="col-md-12 row ">
+
+
+    <div class="col-md-2">
+        <div class="form-group">
+            <label for="District">DISTRICT<span style="color: red">*</span></label>
+            <select class="form-control" id="District" [(ngModel)]="District" (change)="ondistrictchange(District)">
+                <option selected value="undefined">-- Select District--</option>
+                <option value="{{obj.DIST_CODE}}" *ngFor="let obj of DistList">{{obj.DISTRICT}}</option>
+            </select>
+
+
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="form-group">
+            <label for="Phase">PHASE<span style="color: red">*</span></label>
+            <select class="form-control" id="Phase" [(ngModel)]="Phase" (change)="onphasechange(Phase)">
+                <option selected value="undefined">-- Select Phase--</option>
+                <option value="{{obj.PHASEID}}" *ngFor="let obj of PhaseList">{{obj.PHASE}}</option>
+            </select>
+
+
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="form-group">
+            <label for="District">ROUTE <span style="color: red">*</span></label>
+            <select class="form-control" id="District" [(ngModel)]="route_id">
+                <option selected value="undefined">-- Select Route--</option>
+                <option value="{{obj.ROUTE_ID}}" *ngFor="let obj of RoutsList">{{obj.ROUTE
+                    }}</option>
+            </select>
+
+
+        </div>
+    </div>
+
+
+    <div class="col-md-2" *ngIf="IsDates">
+        <div class="form-group">
+            <label for="fromDate">From Date : <span style="color: red">*</span></label>
+            <app-date-picker [PlaceHolder]="'Please Select From Date'" [(selectedDate)]="fromDate"></app-date-picker>
+        </div>
+    </div>
+    <div class="col-md-2" *ngIf="IsDates">
+        <div class="form-group">
+            <label for="toDate">To Date : <span style="color: red">*</span></label>
+            <app-date-picker [PlaceHolder]="'Please Select To Date'" [(selectedDate)]="toDate"></app-date-picker>
+        </div>
+    </div>
+
+
+    <div class="col-md-2 mt-4">
+        <button type="button" class="btn btn-primary btn-sm" (click)="btnLoadReport()">
+            <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+            GO
+        </button>
+    </div>
+
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+            <li class="nav-item waves-effect waves-light">
+                <a class="nav-link active" id="daily-tab" data-toggle="tab" href="#daily" role="tab" aria-controls="daily"
+                    aria-selected="false" (click)="dailycountsclick('1')">Daily Counts</a>
+            </li>
+            <li class="nav-item waves-effect waves-light">
+                <a class="nav-link" id="daily-tab" data-toggle="tab" href="#daily" role="tab" aria-controls="daily" aria-selected="false"
+                    (click)="Cmucountsclick('2')">Cumulative Counts</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade active show" id="daily" role="tabpanel" aria-labelledby="daily-tab">
+                <div class="row mt-0 align-items-center text-center text-primary">
+                    <div class="col-md-12 col-sm-12" style="border-style:lines;">
+                        <div *ngFor="let obj of arrayList">
+                            <div class="row body-box mt-3">
+
+
+                                <div class="col-md-3" style="text-align: center;">
+                                    <div class="form-group total-indent box1">
+                                        <label><b>NO OF MANDALS</b></label><br>
+                                        <span class="text-black">
+
+                                            <a style="cursor: pointer; text-decoration: underline" (click)="btnGetDetailsIndent('9','')">
+                                                <b>
+                                                    {{obj.NO_OF_MANDALS}}
+                                                </b></a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 ">
+                                    <div class="form-group total-awc box1">
+                                        <label> <b>NO OF RBKs</b></label><br>
+                                        <span class="text-black"><a style="cursor: pointer; text-decoration: underline"
+                                                (click)="btnGetDetailsIndent('9','')">
+                                                <b>
+
+                                                    {{obj.NO_OF_RBKS}}
+                                                </b></a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group zero-indent box1">
+                                        <label> <b>NO OF VILLAGES</b></label><br>
+                                        <span class="text-black"><a style="cursor: pointer; text-decoration: underline"
+                                                (click)="btnGetDetailsIndent('10','')">
+                                                <b>
+
+                                                    {{obj.NO_OF_VILLAGES}}
+                                                </b></a>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group balance box1">
+                                        <label> <b>NO OF CLUSTERS</b></label><br>
+                                        <span class="text-black"><a style="cursor: pointer; text-decoration: underline"
+                                                (click)="btnGetDetailsIndent('11','')">
+                                                <b>
+
+                                                    {{obj.NO_OF_CLUSTERS}}
+                                                </b></a>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group balance-awc box2">
+                                        <label> <b>NO OF VOLUNTEERS </b></label><br>
+                                        <span class="text-black"><a style="cursor: pointer; text-decoration: underline"
+                                                (click)="btnGetDetailsIndent('11','')">
+                                                <b>
+
+                                                    {{obj.NO_OF_VOLUNTEERS}}
+                                                </b></a>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group awc-complet box2">
+                                        <label> <b>VOLUNTEERS LOGGED IN </b></label><br>
+                                        <span class="text-black">
+                                            <a style="cursor: pointer; text-decoration: underline" (click)="btnGetDetailsIndent('12','')">
+                                                <b>
+
+                                                    {{obj.VOLUNTEERS_LOGGED_IN}}
+                                                </b></a>
+
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group box2">
+                                        <label> <b>TOTAL HOUSE HOLDERS</b></label><br>
+                                        <span class="text-black"><a style="cursor: pointer; text-decoration: underline"
+                                                (click)="btnGetDetailsIndent('12','')">
+                                                <b>
+
+                                                    {{obj.TOTAL_HOUSE_HOLDERS}}
+                                                </b></a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngFor="let obj of CountList;">
+                            <div class="row">
+                                <div class="col-md-2">
+                                </div>
+                                <div class="col-md-8 mt-2">
+                                    <div class="form-group total-HH">
+                                        <label> <b>TOTAL HOUSE HOLDERS</b></label><br>
+                                        <span class="text-black"><a (click)="btnGetDetailsIndent('12','')">
+                                                <b>{{obj.TOTAL_HH}}
+                                                </b></a>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-1"></div>
+                                </div>
+                                <div class="col-md-2"></div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group box3">
+                                        <label> <b>SURVEYED<br> HOUSE HOLDERS</b></label><br>
+                                        <span class="text-black"><a (click)="btnGetDetailsIndent('12','')">
+                                                <b>{{obj.SURVEY}}
+                                                </b></a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group box3">
+                                        <label> <b>WITH <br>ANIMALS</b></label><br>
+                                        <span class="text-black"><a (click)="btnGetDetailsIndent('12','')">
+                                                <b>{{obj.WA}}
+                                                </b></a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group box3">
+                                        <label> <b>WITH OUT<br> ANIMALS</b></label><br>
+                                        <span class="text-black"><a (click)="btnGetDetailsIndent('12','')">
+                                                <b>{{obj.WOA}}
+                                                </b></a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group box3">
+                                        <label> <b>MIGRATED<br> HOUSE HOLDERS</b></label><br>
+                                        <span class="text-black"><a (click)="btnGetDetailsIndent('12','')">
+                                                <b>{{obj.MIGRATED}}
+                                                </b></a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group box3">
+                                        <label> <b>DEATH <br>HOUSE HOLDERS</b></label><br>
+                                        <span class="text-black"><a (click)="btnGetDetailsIndent('12','')">
+                                                <b>{{obj.DEATH}}
+                                                </b></a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group box3">
+                                        <label> <b>PENDING<br> HOUSE HOLDERS</b></label><br>
+                                        <span class="text-black"><a (click)="btnGetDetailsIndent('12','')">
+                                                <b>{{obj.PENDING}}
+                                                </b></a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row bg-light-blue">
+                                <!-- <div class="col-md-12 text-center">
+                                <div class="form-group">
+                                    <label style="color:rgb(240, 9, 163);font-size:18px;"> <b><u>MILK POWERING DETAILS</u></b></label><br>
+                                  <span style="color:black">
+                                    <b> 4500</b>
+                                    </span> 
+                                </div>
+                              </div> -->
+                                <div class="row mt-3">
+                                    <div class="col-md-1"></div>
+                                    <div class="row col-md-11">
+                                        <div class="col-md-4">
+                                            <div class="row box6">
+                                                <div class="col-md-12">
+                                                    <div class="form-group ">
+                                                        <label> <b><u>WITH ANIMALS</u></b></label><br>
+                                                        <span class="text-black">
+                                                            <!-- <a (click)="btnGetDetailsIndent('13','1')"> -->
+                                                            <b> {{obj.WA}}
+                                                            </b>
+                                                            <!-- </a> -->
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group vender-kmf-one ">
+                                                                <label> <b>APPROVEL</b></label><br>
+
+                                                                <span class="text-black">
+                                                                    <a (click)="btnGetDetailsIndent('13','1')">
+                                                                        <b>{{obj.WA_A}}
+                                                                        </b></a>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group vender-kmf-two">
+                                                                <label> <b>PENDING</b></label><br>
+                                                                <span class="text-black">
+                                                                    <a (click)="btnGetDetailsIndent('13','1')">
+                                                                        <b> {{obj.WA_P}}
+                                                                        </b></a>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group vender-kmf-two">
+                                                                <label> <b>REJECTED</b></label><br>
+                                                                <span class="text-black">
+                                                                    <a (click)="btnGetDetailsIndent('13','1')">
+                                                                        <b>{{obj.WA_R}}
+                                                                        </b></a>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row box6">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label> <b><u>MIGRATED</u></b></label><br>
+                                                        <span class="text-black">
+                                                            <!-- <a (click)="btnGetDetailsIndent('13','1')"> -->
+                                                            <b>
+                                                                {{obj.MIGRATED}}
+                                                            </b>
+                                                            <!-- </a> -->
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group vender-gcmmf-one">
+                                                                <label> <b> APPROVE</b></label><br>
+                                                                <span class="text-black">
+                                                                    <a (click)="btnGetDetailsIndent('13','2')">
+                                                                        <b> {{obj.MA}}
+                                                                        </b></a>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group vender-gcmmf-two">
+                                                                <label> <b> PENDING</b></label><br>
+                                                                <span class="text-black"><a (click)="btnGetDetailsIndent('13','2')">
+                                                                        <b> {{obj.MP}}
+                                                                        </b></a>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group vender-gcmmf-two">
+                                                                <label> <b> REJECTED</b></label><br>
+                                                                <span class="text-black"><a (click)="btnGetDetailsIndent('13','2')">
+                                                                        <b> {{obj.MR}}
+                                                                        </b></a>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row box6">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label> <b><u>DEATH</u></b></label><br>
+                                                        <span class="text-black">
+                                                            <!-- <a (click)="btnGetDetailsIndent('13','1')"> -->
+                                                            <b> {{obj.DEATH}}
+                                                            </b>
+                                                            <!-- </a> -->
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group vender-meghana-one">
+                                                                <label> <b>APPROVED</b></label><br>
+
+                                                                <span class="text-black"><a (click)="btnGetDetailsIndent('13','3')">
+                                                                        <b> {{obj.DA}}
+                                                                        </b></a>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group vender-meghana-two">
+                                                                <label> <b> PENDING</b></label><br>
+                                                                <span class="text-black"><a (click)="btnGetDetailsIndent('13','3')">
+                                                                        <b> {{obj.DP}}
+                                                                        </b></a>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group vender-kmf-two">
+                                                                <label> <b>REJECTED</b></label><br>
+                                                                <span class="text-black">
+                                                                    <a (click)="btnGetDetailsIndent('13','3')">
+                                                                        <b> {{obj.DR}}
+                                                                        </b></a>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngFor="let obj of CountListTwo">
+                            <div class="row">
+                                <!-- <div class="col-md-12 text-center">
+                                <div class="form-group">
+                                    <label style="color:green;font-size:18px;"> <b><u>VILLAGE MEATING SCHUDULD</u></b></label>
+                                </div>
+                            </div> -->
+                                <div class="row col-md-12">
+                                    <!-- <div class="row"> -->
+                                    <div class="col-md-4">
+                                        <div class="row box8">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label> <b><u>VILLAGE MEETINGS</u></b></label><br>
+                                                    <span class="text-black">
+                                                        <!-- <a (click)="btnGetDetailsIndent('13','1')"> -->
+                                                        <b> {{obj.VILLAGE_MEETINGS}}
+                                                        </b>
+                                                        <!-- </a> -->
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-kmf-one">
+                                                            <label> <b>SCHEDULED</b></label><br>
+                                                            <span class="text-black">
+                                                                <a (click)="btnGetDetailsIndent('14','1')">
+                                                                    <b> {{obj.SCHEDULE_MEETINGS}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-kmf-two">
+                                                            <label> <b>NOT SCHEDULED</b></label><br>
+                                                            <span class="text-black">
+                                                                <a (click)="btnGetDetailsIndent('14','2')">
+                                                                    <b> {{obj.NOT_SCHEDULE_MEETING}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-4">
+                                        <div class="row box9">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label> <b><u>MEETINGS CONDUCTED</u></b></label><br>
+                                                    <span class="text-black">
+                                                        <!-- <a (click)="btnGetDetailsIndent('13','1')"> -->
+                                                        <b>0
+                                                        </b>
+                                                        <!-- </a> -->
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-gcmmf-one">
+                                                            <label> <b> CONDUCTED
+                                                                </b></label><br>
+                                                            <span class="text-black">
+                                                                <a (click)="btnGetDetailsIndent('14','1')">
+                                                                    <b> {{obj.CONDUCTED_MEETINGS}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-gcmmf-two">
+                                                            <label> <b>NOT CONDUCTED </b></label><br>
+                                                            <span class="text-black"><a (click)="btnGetDetailsIndent('14','2')">
+                                                                    <b> {{obj.NOT_CONDUCTED_MEETINGS}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="row box10">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label> <b><u>MINUTES OF MEETING</u></b></label><br>
+                                                    <span class="text-black">
+                                                        <!-- <a (click)="btnGetDetailsIndent('13','1')"> -->
+                                                        <b> 0
+                                                        </b>
+                                                        <!-- </a> -->
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-gcmmf-one">
+                                                            <label> <b> SCHEDULED</b></label><br>
+                                                            <span class="text-black">
+                                                                <a (click)="btnGetDetailsIndent('14','1')">
+                                                                    <b> {{obj.MEETING_MINUTES_SUBMITTED}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-gcmmf-two">
+                                                            <label> <b>NOT SCHEDULED</b></label><br>
+                                                            <span class="text-black"><a (click)="btnGetDetailsIndent('14','2')">
+                                                                    <b> {{obj.MEETING_NOT_MINUTES_SUBMITTED}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <div class="form-group">
+                                        <label style="color:green;font-size:18px;"> <b><u></u></b></label>
+                                    </div>
+                                </div>
+                                <div class="row col-md-12">
+                                    <!-- <div class="row"> -->
+                                    <div class="col-md-4">
+                                        <div class="row box11">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label> <b><u>PROMOTERS SELECTION
+                                                            </u></b></label><br>
+                                                    <span class="text-black">
+                                                        <!-- <a (click)="btnGetDetailsIndent('13','1')"> -->
+                                                        <b> 0
+                                                        </b>
+                                                        <!-- </a> -->
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-kmf-one">
+                                                            <label> <b>COMPLETED
+                                                                </b></label><br>
+                                                            <span class="text-black">
+                                                                <a (click)="btnGetDetailsIndent('14','1')">
+                                                                    <b> {{obj.TOTAL_PROMOTERS_ADDED_VILL}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-kmf-two">
+                                                            <label> <b>NOT</b></label><br>
+                                                            <span class="text-black">
+                                                                <a (click)="btnGetDetailsIndent('14','2')">
+                                                                    <b> {{obj.TOTAL_PROMOTERS_NOT_ADDED_VILL}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-4">
+                                        <div class="row box11">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label> <b><u>SECRETARY/ ASSISTANT SECRETARY SELECTION
+
+                                                            </u></b></label><br>
+                                                    <span class="text-black">
+                                                        <!-- <a (click)="btnGetDetailsIndent('13','1')"> -->
+                                                        <b> 0
+                                                        </b>
+                                                        <!-- </a> -->
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-gcmmf-one">
+                                                            <label> <b> SELECTED
+
+                                                                </b></label><br>
+                                                            <span class="text-black">
+                                                                <a (click)="btnGetDetailsIndent('14','1')">
+                                                                    <b> {{obj.TOTAL_SECRETARY}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-gcmmf-two">
+                                                            <label> <b>NOT</b></label><br>
+                                                            <span class="text-black"><a (click)="btnGetDetailsIndent('14','2')">
+                                                                    <b> {{obj.TOTAL_ASSI_SECRETARY}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="row box11">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label> <b><u>MDAC ACCOUNT CREATION</u></b></label><br>
+                                                    <span class="text-black">
+                                                        <!-- <a (click)="btnGetDetailsIndent('13','1')"> -->
+                                                        <b> 0
+                                                        </b>
+                                                        <!-- </a> -->
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-gcmmf-one">
+                                                            <label> <b> CREATED</b></label><br>
+                                                            <span class="text-black">
+                                                                <a (click)="btnGetDetailsIndent('14','1')">
+                                                                    <b> 0
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-gcmmf-two">
+                                                            <label> <b>NOT </b></label><br>
+                                                            <span class="text-black"><a (click)="btnGetDetailsIndent('14','2')">
+                                                                    <b> 0
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- </div> -->
+                                </div>
+
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <div class="form-group">
+                                        <label style="color:green;font-size:18px;"> <b><u></u></b></label>
+                                    </div>
+                                </div>
+                                <div class="row col-md-12">
+                                    <!-- <div class="row"> -->
+                                    <div class="col-md-6">
+                                        <div class="row box12">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label> <b><u>AMCU BUILDING
+                                                            </u></b></label><br>
+                                                    <span class="text-black">
+                                                        <!-- <a (click)="btnGetDetailsIndent('13','1')"> -->
+                                                        <b> 0
+                                                        </b>
+                                                        <!-- </a> -->
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-kmf-one">
+                                                            <label> <b>IDENTIFIED </b></label><br>
+                                                            <span class="text-black">
+                                                                <a (click)="btnGetDetailsIndent('14','1')">
+                                                                    <b> {{obj.TOTAL_BULDING_INSPS_VILL}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-kmf-two">
+                                                            <label> <b>NOT</b></label><br>
+                                                            <span class="text-black">
+                                                                <a (click)="btnGetDetailsIndent('14','2')">
+                                                                    <b> {{obj.TOTAL_BULDING_NOT_INSPS_VILL}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="row box12">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label> <b><u>SAMPLE MILK
+                                                            </u></b></label><br>
+                                                    <span class="text-black">
+                                                        <!-- <a (click)="btnGetDetailsIndent('13','1')"> -->
+                                                        <b> 0
+                                                        </b>
+                                                        <!-- </a> -->
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-gcmmf-one">
+                                                            <label> <b> IDENTIFIED </b></label><br>
+                                                            <span class="text-black">
+                                                                <a (click)="btnGetDetailsIndent('14','1')">
+                                                                    <b> {{obj.SAMPLE_MILK_DONE_VILLAGES}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-gcmmf-two">
+                                                            <label> <b>NOT</b></label><br>
+                                                            <span class="text-black"><a (click)="btnGetDetailsIndent('14','2')">
+                                                                    <b> {{obj.SAMPLE_MILK_NOT_DONE_VILLAGES}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <!-- </div> -->
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <div class="form-group">
+                                        <label style="color:green;font-size:18px;"> <b><u></u></b></label>
+                                    </div>
+                                </div>
+                                <div class="row col-md-12">
+                                    <!-- <div class="row"> -->
+                                    <div class="col-md-2">
+                                        <div class="row box11">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label> <b><u>MILK COLLECTION STATUS
+                                                            </u></b></label><br>
+                                                    <span class="text-black">
+                                                        <!-- <a (click)="btnGetDetailsIndent('13','1')"> -->
+                                                        <b> {{obj.MILK_COLLECTION_STATUS}}
+                                                        </b>
+                                                        <!-- </a> -->
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-kmf-one">
+                                                            <label> <b>STARTED
+                                                                </b></label><br>
+                                                            <span class="text-black">
+                                                                <a (click)="btnGetDetailsIndent('14','1')">
+                                                                    <b> {{obj.MILK_COLL_STATUS_STARTED}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-kmf-two">
+                                                            <label> <b>NOT STARTED
+                                                                </b></label><br>
+                                                            <span class="text-black">
+                                                                <a (click)="btnGetDetailsIndent('14','2')">
+                                                                    <b> {{obj.MILK_COLL_STATUS_NOT_STARTED}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-2">
+                                        <div class="row box11">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label> <b><u>DATA RECEIVED STATUS
+                                                            </u></b></label><br>
+                                                    <span class="text-black">
+                                                        <!-- <a (click)="btnGetDetailsIndent('13','1')"> -->
+                                                        <b> 0
+                                                        </b>
+                                                        <!-- </a> -->
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-gcmmf-one">
+                                                            <label> <b> RECEIVED
+                                                                </b></label><br>
+                                                            <span class="text-black">
+                                                                <a (click)="btnGetDetailsIndent('14','1')">
+                                                                    <b> {{obj.DATA_REC_STATUS_REC}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-gcmmf-two">
+                                                            <label> <b>NOT RECEIVED
+                                                                </b></label><br>
+                                                            <span class="text-black"><a (click)="btnGetDetailsIndent('14','2')">
+                                                                    <b> {{obj.DATA_REC_STATUS_NOT_REC}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="row box11">
+                                            <br>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label> <b><u>NO OF FARMERS
+                                                            </u></b></label><br>
+                                                    <span class="text-black">
+                                                        <!-- <a (click)="btnGetDetailsIndent('13','1')"> -->
+                                                        <b> {{obj.NO_OF_FRMS}}
+                                                        </b>
+                                                        <!-- </a> -->
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-gcmmf-one">
+                                                            <label> <b> MILK <br>POURING<br> FARMERS
+                                                                </b></label><br>
+                                                            <span class="text-black">
+                                                                <a (click)="btnGetDetailsIndent('14','1')">
+                                                                    <b> {{obj.NO_OF_FRMS_MILK_POURING}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group vender-gcmmf-two">
+                                                            <label> <b>MILK <br>IN<br> LITERS
+                                                                </b></label><br>
+                                                            <span class="text-black"><a (click)="btnGetDetailsIndent('14','2')">
+                                                                    <b> {{obj.NO_OF_FRMS_MILK_IN_LTRS}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="row box11">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label> <b><u>NO OF PROMOTERS
+                                                            </u></b></label><br>
+                                                    <span class="text-black">
+                                                        <!-- <a (click)="btnGetDetailsIndent('13','1')"> -->
+                                                        <b> {{obj.NO_OF_PRMTRS}}
+                                                        </b>
+                                                        <!-- </a> -->
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group vender-gcmmf-one">
+                                                            <label> <b> MILK POURING<br> PROMOTERS
+                                                                </b></label><br>
+                                                            <span class="text-black">
+                                                                <a (click)="btnGetDetailsIndent('14','1')">
+                                                                    <b> {{obj.NO_OF_PRMTRS_MILK_POURING}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group vender-gcmmf-two">
+                                                            <label> <b>MILK IN <br>LITERS
+                                                                </b></label><br>
+                                                            <span class="text-black"><a (click)="btnGetDetailsIndent('14','2')">
+                                                                    <b> {{obj.NO_OF_PRMTRS_MILK_IN_LTRS}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group vender-gcmmf-two">
+                                                            <label> <b>MILK NOT POURING PROMOTERS
+                                                                </b></label><br>
+                                                            <span class="text-black"><a (click)="btnGetDetailsIndent('14','2')">
+                                                                    <b> {{obj.NO_OF_PRMTRS_MILK_NOT_POURING}}
+                                                                    </b></a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <!-- </div> -->
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+                        <br>
+                        <br>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="cumulative" role="tabpanel" aria-labelledby="cumulative-tab">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="row justify-content-center amul-db-counts">
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12" style="cursor: pointer">
+                                    <div class="card counts-card bg-light-blue">
+                                        <div class="overlay">
+                                            <img src="http://apddcf.ap.gov.in/cdn/img/milk-bg.png" class="img-fluid" />
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="text-uppercase">
+                                                <small>No of Districts</small>
+                                            </p>
+                                            <h5 class="font-weight-bold mb-0">
+                                                0
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12" style="cursor: pointer">
+                                    <div class="card counts-card bg-light-orange">
+                                        <div class="overlay">
+                                            <img src="http://apddcf.ap.gov.in/cdn/img/milk-bg.png" class="img-fluid" />
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="text-uppercase">
+                                                <small>No of RBKS</small>
+                                            </p>
+                                            <h5 class="font-weight-bold mb-0">
+                                                0
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12" style="cursor: pointer">
+                                    <div class="card counts-card bg-light-purple">
+                                        <div class="overlay">
+                                            <img src="http://apddcf.ap.gov.in/cdn/img/milk-bg.png" class="img-fluid" />
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="text-uppercase">
+                                                <small>No of Villages</small>
+                                            </p>
+                                            <h5 class="font-weight-bold mb-0">
+                                                0
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                    <div class="card counts-card bg-light-green">
+                                        <div class="overlay">
+                                            <img src="http://apddcf.ap.gov.in/cdn/img/milk-bg.png" class="img-fluid" />
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="text-uppercase">
+                                                <small>Total Amount</small>
+                                            </p>
+                                            <h5 class="font-weight-bold mb-0">
+                                                0
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12" style="cursor: pointer">
+                                    <div class="card counts-card bg-light-indigo">
+                                        <div class="overlay">
+                                            <img src="http://apddcf.ap.gov.in/cdn/img/milk-bg.png" class="img-fluid" />
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="text-uppercase">
+                                                <small>No of Womens Farmers Registered</small>
+                                            </p>
+                                            <h5 class="font-weight-bold mb-0">
+                                                0
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12" style="cursor: pointer">
+                                    <div class="card counts-card bg-light-blue bg-light-aqua">
+                                        <div class="overlay">
+                                            <img src="http://apddcf.ap.gov.in/cdn/img/milk-bg.png" class="img-fluid" />
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="text-uppercase">
+                                                <small>No of Women Farmers Pouring Milk</small>
+                                            </p>
+                                            <h5 class="font-weight-bold mb-0">
+
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="card counts-card bg-light-grey">
+                                        <div class="overlay">
+                                            <img src="http://apddcf.ap.gov.in/cdn/img/milk-bg.png" class="img-fluid" />
+                                        </div>
+                                        <div class="card-body py-md-5">
+                                            <p class="text-uppercase mb-4">
+                                                <small>Total Milk Poured</small>
+                                            </p>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <p class="text-uppercase">
+                                                        <small>BUFFALO MILK</small>
+                                                    </p>
+                                                    <h5 class="font-weight-bold mb-0">
+
+                                                    </h5>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <p class="text-uppercase">
+                                                        <small>COW MILK</small>
+                                                    </p>
+                                                    <h5 class="font-weight-bold mb-0">
+
+                                                        Litres
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>

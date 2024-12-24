@@ -1,0 +1,98 @@
+.btn-link {
+    text-decoration: none !important;
+}
+
+
+
+#buttonHC {
+
+    margin-top: 30px;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 100px;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+#checkbot {
+    margin-top: 8px;
+
+}
+
+.TopMvove {
+
+    margin-top: 8px;
+}
+
+.large-modal .modal-dialog {
+    max-width: 85%;
+    /* Set the maximum width as a percentage of the parent container */
+    width: 85%;
+    /* Set the width as a percentage of the parent container */
+    margin: 1.75rem auto;
+    /* Center the modal horizontally */
+}
+
+.large-modal .modal-content {
+    height: 330vh;
+    /* overflow-y: scroll; */
+
+    /* Set the height as a percentage of the viewport height */
+}
+
+#countdown {
+    margin-top: 33px;
+}
+
+
+.small-modal .modal-dialog {
+    max-width: 50%;
+    /* Set the maximum width as a percentage of the parent container */
+    width: 50%;
+    /* Set the width as a percentage of the parent container */
+    margin: 1.75rem auto;
+    /* Center the modal horizontally */
+}
+
+.small-modal .modal-content {
+    height: 80vh;
+    /* overflow-y: scroll; */
+
+    /* Set the height as a percentage of the viewport height */
+}
+
+.short-modal .modal-dialog {
+    max-width: 40%;
+    /* Set the maximum width as a percentage of the parent container */
+    width: 40%;
+    /* Set the width as a percentage of the parent container */
+    margin: 1.75rem auto;
+    /* Center the modal horizontally */
+}
+
+.short-modal .modal-content {
+    height: 45vh;
+    /* overflow-y: scroll; */
+
+    /* Set the height as a percentage of the viewport height */
+}
+
+.ttchange {
+
+    margin-top: 32px;
+    margin-left: 5px;
+}

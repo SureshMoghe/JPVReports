@@ -1,0 +1,169 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">
+      Farmer Invalid Bank Account Verification RBK Level Report
+    </h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> Mandal : </b><span class="text-success">{{ mandalName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> RBK : </b><span class="text-success">{{ rbkName }}</span>
+        </h5>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="rbkLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>Village</th>
+              <th>Invalid Accounts</th>
+              <th>DA Verified</th>
+              <th>Pending At DA</th>
+              <th>Pending At Mentor</th>
+              <th>Invalid Bank Account APROVED</th>
+              <th>Invalid Bank Account Rejected</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="rbkLevelDetails?.length > 0">
+            <tr *ngFor="let obj of rbkLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.VILLAGE_NAME }}</td>
+              <td>
+                <a
+                  *ngIf="obj.TOTAL_INVALID_ACCOUNTS !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnInvalidAccounts(obj)"
+                  ><b>{{ obj.TOTAL_INVALID_ACCOUNTS | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.TOTAL_INVALID_ACCOUNTS === '0'">{{
+                  obj.TOTAL_INVALID_ACCOUNTS
+                }}</span>
+              </td>
+              <td>
+                <a
+                  *ngIf="obj.TOTAL_DA_VERIFIED !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnDAVerifiedApprovedRejected(obj, '')"
+                  ><b>{{ obj.TOTAL_DA_VERIFIED | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.TOTAL_DA_VERIFIED === '0'">{{
+                  obj.TOTAL_DA_VERIFIED
+                }}</span>
+              </td>
+              <td>
+                <a
+                  *ngIf="obj.PENDING_AT_DA !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnPendingAtDA(obj)"
+                  ><b>{{ obj.PENDING_AT_DA | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.PENDING_AT_DA === '0'">{{
+                  obj.PENDING_AT_DA
+                }}</span>
+              </td>
+              <td>
+                <a
+                  *ngIf="obj.MENTOR_PENDING !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnPendingAtMentor(obj)"
+                  ><b>{{ obj.MENTOR_PENDING | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.MENTOR_PENDING === '0'">{{
+                  obj.MENTOR_PENDING
+                }}</span>
+              </td>
+              <td>
+                <a
+                  *ngIf="obj.TOTAL_INVALID_BNK_ACC_APPROVED !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnDAVerifiedApprovedRejected(obj, '1')"
+                  ><b>{{
+                    obj.TOTAL_INVALID_BNK_ACC_APPROVED | indianNumber
+                  }}</b></a
+                >
+                <span *ngIf="obj.TOTAL_INVALID_BNK_ACC_APPROVED === '0'">{{
+                  obj.TOTAL_INVALID_BNK_ACC_APPROVED
+                }}</span>
+              </td>
+              <td>
+                <a
+                  *ngIf="obj.TOTAL_INVALID_BNK_ACC_REJECTED !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnDAVerifiedApprovedRejected(obj, '2')"
+                  ><b>{{
+                    obj.TOTAL_INVALID_BNK_ACC_REJECTED | indianNumber
+                  }}</b></a
+                >
+                <span *ngIf="obj.TOTAL_INVALID_BNK_ACC_REJECTED === '0'">{{
+                  obj.TOTAL_INVALID_BNK_ACC_REJECTED
+                }}</span>
+              </td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="rbkLevelDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td>{{ reportTotals.TOTAL_INVALID_ACCOUNTS | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_DA_VERIFIED | indianNumber }}</td>
+              <td>{{ reportTotals.PENDING_AT_DA | indianNumber }}</td>
+              <td>{{ reportTotals.MENTOR_PENDING | indianNumber }}</td>
+              <td>
+                {{ reportTotals.TOTAL_INVALID_BNK_ACC_APPROVED | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.TOTAL_INVALID_BNK_ACC_REJECTED | indianNumber }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

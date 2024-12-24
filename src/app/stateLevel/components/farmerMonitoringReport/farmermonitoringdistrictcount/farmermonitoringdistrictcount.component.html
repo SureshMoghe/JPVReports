@@ -1,0 +1,147 @@
+
+
+  <div class="row align-items-center">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="fromDate"
+          >From Date : <span style="color: red">*</span></label
+        >
+        <app-date-picker
+          [PlaceHolder]="'Please Select From Date'"
+          [(selectedDate)]="fromDate"
+        ></app-date-picker>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="toDate">To Date : <span style="color: red">*</span></label>
+        <app-date-picker
+          [PlaceHolder]="'Please Select To Date'"
+          [(selectedDate)]="toDate"
+        ></app-date-picker>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <button
+        type="button"
+        class="btn btn-primary btn-sm mt-3"
+        (click)="btnLoadReport()"
+      >
+        <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+        Go 
+      </button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Farmer Monitoring All State Count</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <!-- <div class="col-md-12">
+          <button
+            type="button"
+            class="btn btn-success btn-sm pull-right"
+            (click)="btnExcel()"
+          >
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            Download Excel
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger btn-sm pull-right"
+            (click)="btnPDF()"
+          >
+            <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+            Download PDF
+          </button>
+        </div> -->
+
+
+
+  <div *ngIf="Tableload"
+          class="col-md-12 table-responsive headertable" 
+         
+        >
+          <table
+            class="table table-striped ah-table text-center"
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger"
+          >
+            <thead class="bg-success text-white">
+              <tr>
+                <th rowspan="2">S.No.</th>
+                <th colspan="3">No of Districts</th>
+                <th colspan="3">No of Mandals</th>
+                <th colspan="3">No of RBKs</th>
+                <th colspan="3">No of Societies</th>
+                <th colspan="3">No of Farmers</th>
+                <th colspan="3">No of Liters</th>
+                <th colspan="3">Amount Rs.</th>
+              </tr>
+                <tr>
+                <th>Last Year Same Date</th>
+                <th>Last Month Same Date</th>
+                <th>Present Day</th>
+
+                <th>Last Year Same Date</th>
+                <th>Last Month Same Date</th>
+                <th>Present Day</th>
+
+                <th>Last Year Same Date</th>
+                <th>Last Month Same Date</th>
+                <th>Present Day</th>
+
+                <th>Last Year Same Date</th>
+                <th>Last Month Same Date</th>
+                <th>Present Day</th>
+
+                <th>Last Year Same Date</th>
+                <th>Last Month Same Date</th>
+                <th>Present Day</th>
+
+                <th>Last Year Same Date</th>
+                <th>Last Month Same Date</th>
+                <th>Present Day</th>
+
+                <th>Last Year Same Date</th>
+                <th>Last Month Same Date</th>
+                <th>Present Day</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="districtLevelDetails?.length > 0">
+              <tr *ngFor="let obj of districtLevelDetails; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ obj.LAST_YEAR_OF_DISTRICTS }}</td>
+                <td>{{ obj.LAST_MONTH_OF_DISTRICTS }}</td>
+                <td>{{ obj.PRESENT_DISTRICTS }}</td>
+                <td>{{ obj. LAST_YEAR_OF_MANDALS }}</td>
+                <td>{{ obj.LAST_MONTH_OF_MANDALS }}</td>
+                <td>{{ obj.PRESENT_MANDALS }}</td>
+                <td>{{ obj.LAST_YEAR_OF_RBKS }}</td>
+                <td>{{ obj.LAST_MONTH_OF_RBKS }}</td>
+                <td>{{ obj.PRESENT_RBKS }}</td>
+                <td>{{ obj.LAST_YEAR_OF_SOCIETYS }}</td>
+                <td>{{ obj.LAST_MONTH_OF_SOCIETYS }}</td>
+                <td>{{ obj.PRESENT_SOCIETYS }}</td>
+                <td>{{ obj.LAST_YEAR_OF_FARMERS }}</td> 
+                <td>{{ obj.LAST_MONTH_OF_FARMERS}}</td>
+                <td>{{ obj.PRESENT_FARMERS }}</td>
+                <td>{{ obj.LAST_YEAR_OF_MILK_IN_LTR }}</td>
+                <td>{{ obj.LAST_MONTH_OF_MILK_IN_LTR }}</td>
+                <td>{{ obj.PRESENT_MILK_IN_LTR }}</td>
+                <td>{{ obj.LAST_YEAR_TOTAL_MILK_AMOUNT }}</td>
+                <td>{{ obj.LAST_MONTH_TOTAL_MILK_AMOUNT }}</td>
+                <td> {{ obj.PRESENT_TOTAL_MILK_AMOUNT }}</td>
+               
+              </tr>
+            </tbody>
+           
+          </table>
+        </div>
+        </div>
+        </div>
+
+

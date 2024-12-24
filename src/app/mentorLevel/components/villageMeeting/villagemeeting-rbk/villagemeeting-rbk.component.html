@@ -1,0 +1,47 @@
+<div class="row align-items-center">
+  <div class="col-md-3">
+    <div class="form-group">
+      <label for="fromDate"
+        >From Date : <span style="color: red">*</span></label
+      >
+      <app-date-picker
+        [PlaceHolder]="'Please Select From Date'"
+        [(selectedDate)]="fromDate"
+      ></app-date-picker>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group">
+      <label for="toDate">To Date : <span style="color: red">*</span></label>
+      <app-date-picker
+        [PlaceHolder]="'Please Select To Date'"
+        [(selectedDate)]="toDate"
+        [maxDate]="0"
+      ></app-date-picker>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <button
+      type="button"
+      class="btn btn-primary btn-sm mt-3"
+      (click)="btnLoadReport()"
+    >
+      <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+      GO
+    </button>
+  </div>
+</div>
+<app-village-meeting-rbk
+  [(districtId)]="districtId"
+  [(districtName)]="districtName"
+  [(mentorId)]="mentorId"
+  [(mentorName)]="mentorName"
+  [(fromDate)]="fromDate"
+  [(toDate)]="toDate"
+  (onRbkChange)="onRbkChange($event)"
+  (onFunctionariesClickChange)="onFunctionariesClickChange($event)"
+  (onSecAssSecClickChange)="onSecAssSecClickChange($event)"
+  (onBuildingInspectClickChange)="onBuildingInspectClickChange($event)"
+  (onCalibrationClickChange)="onCalibrationClickChange($event)"
+  (onPromotersClickChange)="onPromotersClickChange($event)"
+></app-village-meeting-rbk>

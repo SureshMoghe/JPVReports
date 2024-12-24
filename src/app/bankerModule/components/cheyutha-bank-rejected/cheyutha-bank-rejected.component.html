@@ -1,0 +1,81 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Govt Supported Scheme  Bank Status RBK Level Rejected Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> Mandal : </b><span class="text-success">{{ mandalName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> RBK : </b><span class="text-success">{{ rbkName }}</span>
+        </h5>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="rejectedDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>Bank Name</th>
+              <th>Beneficiary Name</th>
+              <th>Beneficiary Father Name</th>
+              <th>Date Of Birth</th>
+              <th>Mobile No</th>
+              <th>Application Hard Copy Received Date</th>
+              <th>Status</th>
+              <th>Updated Date</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="rejectedDetails?.length > 0">
+            <tr *ngFor="let obj of rejectedDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.BANK }}</td>
+              <td>{{ obj.BEN_NAME }}</td>
+              <td>{{ obj.BEN_FATHER_NAME }}</td>
+              <td>{{ obj.DOB_DT }}</td>
+              <td>{{ obj.MOBILE_NUMBER }}</td>
+              <td>{{ obj.APP_HARD_COPY_REV_DATE }}</td>
+              <td>{{ obj.STATUS }}</td>
+              <td>{{ obj.UPDATED_DATE }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

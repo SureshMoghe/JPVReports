@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-3">
+        <h5>
+            <b>From Date: </b><span class="text-success">{{fromDate}}</span>
+        </h5>
+    </div>
+    <div class="col-md-3">
+        <h5>
+            <b>To Date: </b> <span class="text-success">{{toDate}}</span>
+        </h5>
+    </div>
+    <div class="col-md-3">
+        <h5>
+            <b>Phase: </b><span class="text-success">{{phasename}}</span>
+        </h5>
+    </div>
+    <div class="col-md-3" align="right">
+        <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+            Back
+        </button>
+
+    </div>
+</div>
+
+<app-farmer-approval-details-level-details [(districtId)]="districtId" [(districtName)]="districtName" [(mandalId)]="mandalId"
+    [(rbkName)]="rbkName" [(mandalName)]="mandalName" [(phaseid)]="phaseid" [(phasename)]="phasename" [(rbkId)]="rbkId"
+    [(fromDate)]="fromDate" [(toDate)]="toDate" [(VillageName)]="VillageName" [(villageId)]="villageId"
+    [(clusterId)]="clusterId"></app-farmer-approval-details-level-details>

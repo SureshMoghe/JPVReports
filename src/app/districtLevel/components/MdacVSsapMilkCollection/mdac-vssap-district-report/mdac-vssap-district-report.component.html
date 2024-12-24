@@ -1,0 +1,29 @@
+<div class="row align-items-center">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="toDate"
+          >Transaction Date : <span style="color: red">*</span></label
+        >
+        <app-date-picker
+          [PlaceHolder]="'Please Select To Date'"
+          [(selectedDate)]="txnDate"
+        ></app-date-picker>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <button
+        type="button"
+        class="btn btn-primary btn-sm mt-3"
+        (click)="btnLoadReport()"
+      >
+        <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+        GO
+      </button>
+    </div>
+  </div>
+  <app-mdac-vssap-district
+  [(txnDate)]="txnDate"
+  [(districtId)]="districtId"
+  [(districtName)]="districtName"
+></app-mdac-vssap-district>
+  

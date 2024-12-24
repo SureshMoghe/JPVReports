@@ -1,0 +1,681 @@
+
+
+<div class="card" *ngIf="Districtdiv">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Total Districts Report</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <button
+            type="button"
+            class="btn btn-success btn-sm pull-right"
+            (click)="btnExcel()"
+          >
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            Download Excel
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger btn-sm pull-right"
+            (click)="btnPDF()"
+          >
+            <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+            Download PDF
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div
+          class="col-md-12 table-responsive"
+          [hidden]="totalDistrictsDetails?.length < 1"
+        >
+          <table  class="table table-striped ah-table text-center " >
+          
+            <thead class="bg-success text-white" style="border: 1px solid white;">
+  
+              <!-- border-color: white; -->
+              <tr   >
+                <th   class="tableheader_color"  >S.No.</th>
+                <th  class="tableheader_color"  >District</th>
+                <th class="tableheader_color"  > RBKs</th>
+                <th   class="tableheader_color" >Villages</th>
+                <th   class="tableheader_color" >Women Farmers</th>
+                <th   class="tableheader_color" >Milk Pouring Women Farmers</th>
+                <th  class="tableheader_color" >Total Buffalo Milk in Ltrs.</th>
+                <th   class="tableheader_color" >Total Buffalo Milk Amount</th>
+                <th  class="tableheader_color" >Total Cow Milk in Ltrs.</th>
+                <th  class="tableheader_color" >Total Cow Milk Amount</th>
+              </tr>
+             
+              <tr >             
+                <th  class="tableheader_color"  >(1)</th>
+                <th  class="tableheader_color" >(2)</th>
+                <th  class="tableheader_color" >(3)</th>
+                <th  class="tableheader_color" >(4)</th>
+                <th  class="tableheader_color" >(5)</th>
+                <th  class="tableheader_color" >(6)</th>
+                <th  class="tableheader_color" >(7)</th>
+                <th  class="tableheader_color" >(8)</th>
+                <th  class="tableheader_color" >(9)</th>
+                <th  class="tableheader_color" >(10)</th>
+              </tr> 
+  
+            </thead>
+            <tbody *ngIf="totalDistrictsDetails?.length > 0">
+              <tr *ngFor="let obj of totalDistrictsDetails; let i = index">
+                <td   class="number_align">{{ i + 1 }}</td>
+                <!-- <td class="text_align_color">
+                  <b>{{ obj.DISTRICT_NAME }}</b>
+                </td> -->
+                <td style="text-align: left;" class="table_cells_borders">
+                  <a
+                    style="cursor: pointer; text-decoration: underline"
+                    class="text-primary " 
+                    (click)="btnGetDetails(obj)"
+                    ><b>{{ obj.DISTRICT_NAME }}</b></a
+                  >
+                </td> 
+  
+                <td  class="number_align">{{ obj.TOTAL_RBKS }}</td>
+                <td   class="number_align">{{ obj.TOTAL_VILLAGES }}</td>
+                <td   class="number_align">{{ obj.TOTAL_FARMERS }}</td>
+                <td   class="number_align">{{ obj.TOTAL_WOMEN_FARMERS }}</td>
+                <td  class="number_align">{{ obj.TOTAL_BUFFALO_MILK_LTR }}</td>
+                <td   class="number_align">{{ obj.TOTAL_BUFFALO_MILK_AMOUNT }}</td>
+                <td  class="number_align">{{ obj.TOTAL_COW_MILK_LTR }}</td>
+                <td   class="number_align">{{ obj.TOTAL_COW_MILK_AMOUNT }}</td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="totalDistrictsDetails?.length > 0">
+              <tr  >
+                <td class="number_align" style="border-color: cadetblue !important">--</td>
+                <td  class="text_align_color">
+                  <b>TOTAL</b>
+                </td>
+                <td   class="font-weight-bold number_align">{{ reportTotals.TOTAL_RBKS }}</td>
+                <td   class="font-weight-bold number_align">{{ reportTotals.TOTAL_VILLAGES }}</td>
+                <td    class="font-weight-bold number_align">{{ reportTotals.TOTAL_FARMERS }}</td>
+                <td   class="font-weight-bold number_align">{{ reportTotals.TOTAL_WOMEN_FARMERS }}</td>
+                <td   class="font-weight-bold number_align">{{ reportTotals.TOTAL_BUFFALO_MILK_LTR }}</td>
+                <td   class="font-weight-bold number_align">{{ reportTotals.TOTAL_BUFFALO_MILK_AMOUNT }}</td>
+                <td    class="font-weight-bold number_align">{{ reportTotals.TOTAL_COW_MILK_LTR }}</td>
+                <td    class="font-weight-bold number_align">{{ reportTotals.TOTAL_COW_MILK_AMOUNT }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="Mandaldiv">
+    <div class="col-md-12 row">
+        <div class="col-md-3">
+          <label for="toDate">
+              DISTRICT :
+              <span class="text-success">
+                <b> {{ districtname | uppercase }}</b>
+              </span>
+            </label>
+      </div>
+      <div class="col-md-3"></div>
+      <div class="col-md-3"></div>
+     <div class="col-md-3"> 
+         <button
+             type="button"
+             class="btn btn-info btn-sm mt-3 pull-right"
+             (click)="btnback()"
+             >
+             <i class="fa fa-arrow-left mr-2" aria-hidden="true"></i>
+              Back
+         </button>
+        
+     </div>
+   
+   
+      </div>
+  </div>
+      <div class="card" *ngIf="Mandaldiv">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Total Mandal Report</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <button
+            type="button"
+            class="btn btn-success btn-sm pull-right"
+            (click)="btnExcel1()"
+          >
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            Download Excel
+          </button>
+          <!-- <button
+            type="button"
+            class="btn btn-danger btn-sm pull-right"
+            (click)="btnPDF()"
+          >
+            <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+            Download PDF
+          </button> -->
+        </div>
+      </div>
+      <div class="row">
+        <div
+          class="col-md-12 table-responsive"
+          [hidden]="totalMandalDetails?.length < 1"
+        >
+          <table  class="table table-striped ah-table text-center " >
+          
+            <thead class="bg-success text-white" style="border: 1px solid white;">
+  
+              <!-- border-color: white; -->
+              <tr   >
+                <th   class="tableheader_color"  >S.No.</th>
+                <th  class="tableheader_color"  >Mandal</th>
+                <th class="tableheader_color"  > RBKs</th>
+                <th   class="tableheader_color" >Villages</th>
+                <th   class="tableheader_color" >Women Farmers</th>
+                <th   class="tableheader_color" >Milk Pouring Women Farmers</th>
+                <th  class="tableheader_color" >Total Buffalo Milk in Ltrs.</th>
+                <th   class="tableheader_color" >Total Buffalo Milk Amount</th>
+                <th  class="tableheader_color" >Total Cow Milk in Ltrs.</th>
+                <th  class="tableheader_color" >Total Cow Milk Amount</th>
+              </tr>
+             
+              <tr >             
+                <th  class="tableheader_color"  >(1)</th>
+                <th  class="tableheader_color" >(2)</th>
+                <th  class="tableheader_color" >(3)</th>
+                <th  class="tableheader_color" >(4)</th>
+                <th  class="tableheader_color" >(5)</th>
+                <th  class="tableheader_color" >(6)</th>
+                <th  class="tableheader_color" >(7)</th>
+                <th  class="tableheader_color" >(8)</th>
+                <th  class="tableheader_color" >(9)</th>
+                <th  class="tableheader_color" >(10)</th>
+              </tr> 
+  
+            </thead>
+            <tbody *ngIf="totalMandalDetails?.length > 0">
+              <tr *ngFor="let obj of totalMandalDetails; let i = index">
+                <td   class="number_align">{{ i + 1 }}</td>
+                <!-- <td class="text_align_color">
+                  <b>{{ obj.DISTRICT_NAME }}</b>
+                </td> -->
+                <td style="text-align: left;" class="table_cells_borders">
+                  <a
+                    style="cursor: pointer; text-decoration: underline"
+                    class="text-primary " 
+                    (click)="btnGetDetails1(obj)"
+                    ><b>{{ obj.MANDAL_NAME }}</b></a
+                  >
+                </td> 
+  
+                <td  class="number_align">{{ obj.TOTAL_RBKS }}</td>
+                <td   class="number_align">{{ obj.TOTAL_VILLAGES }}</td>
+                <td   class="number_align">{{ obj.TOTAL_FARMERS }}</td>
+                <td   class="number_align">{{ obj.TOTAL_WOMEN_FARMERS }}</td>
+                <td  class="number_align">{{ obj.TOTAL_BUFFALO_MILK_LTR }}</td>
+                <td   class="number_align">{{ obj.TOTAL_BUFFALO_MILK_AMOUNT }}</td>
+                <td  class="number_align">{{ obj.TOTAL_COW_MILK_LTR }}</td>
+                <td   class="number_align">{{ obj.TOTAL_COW_MILK_AMOUNT }}</td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="totalMandalDetails?.length > 0">
+              <tr  >
+                <td class="number_align" style="border-color: cadetblue !important">--</td>
+                <td  class="text_align_color">
+                  <b>TOTAL</b>
+                </td>
+                <td   class="font-weight-bold number_align">{{ reportTotals1.TOTAL_RBKS }}</td>
+                <td   class="font-weight-bold number_align">{{ reportTotals1.TOTAL_VILLAGES }}</td>
+                <td    class="font-weight-bold number_align">{{ reportTotals1.TOTAL_FARMERS }}</td>
+                <td   class="font-weight-bold number_align">{{ reportTotals1.TOTAL_WOMEN_FARMERS }}</td>
+                <td   class="font-weight-bold number_align">{{ reportTotals1.TOTAL_BUFFALO_MILK_LTR }}</td>
+                <td   class="font-weight-bold number_align">{{ reportTotals1.TOTAL_BUFFALO_MILK_AMOUNT }}</td>
+                <td    class="font-weight-bold number_align">{{ reportTotals1.TOTAL_COW_MILK_LTR }}</td>
+                <td    class="font-weight-bold number_align">{{ reportTotals1.TOTAL_COW_MILK_AMOUNT }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="Rbkdiv">
+    <div class="col-md-12 row">
+        <div class="col-md-3">
+          <label for="toDate">
+              DISTRICT :
+              <span class="text-success">
+                <b> {{ districtname | uppercase }}</b>
+              </span>
+            </label>
+      </div>
+      <div class="col-md-3">
+        <label for="toDate">
+            MANDAL :
+            <span class="text-success">
+              <b> {{ mandalname | uppercase }}</b>
+            </span>
+          </label>
+      </div>
+      <div class="col-md-3"></div>
+     <div class="col-md-3"> 
+         <button
+             type="button"
+             class="btn btn-info btn-sm mt-3 pull-right"
+             (click)="btnback1()"
+             >
+             <i class="fa fa-arrow-left mr-2" aria-hidden="true"></i>
+              Back
+         </button>
+        
+     </div>
+   
+   
+      </div>
+  </div>
+      <div class="card" *ngIf="Rbkdiv">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Total RBK Report</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <button
+            type="button"
+            class="btn btn-success btn-sm pull-right"
+            (click)="btnExcel2()"
+          >
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            Download Excel
+          </button>
+          <!-- <button
+            type="button"
+            class="btn btn-danger btn-sm pull-right"
+            (click)="btnPDF()"
+          >
+            <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+            Download PDF
+          </button> -->
+        </div>
+      </div>
+      <div class="row">
+        <div
+          class="col-md-12 table-responsive"
+          [hidden]="totalRbkDetails?.length < 1"
+        >
+          <table  class="table table-striped ah-table text-center " >
+          
+            <thead class="bg-success text-white" style="border: 1px solid white;">
+  
+              <!-- border-color: white; -->
+              <tr   >
+                <th   class="tableheader_color"  >S.No.</th>                 
+                <th class="tableheader_color"  > RBKs</th>
+                <th   class="tableheader_color" >Villages</th>
+                <th   class="tableheader_color" >Women Farmers</th>
+                <th   class="tableheader_color" >Milk Pouring Women Farmers</th>
+                <th  class="tableheader_color" >Total Buffalo Milk in Ltrs.</th>
+                <th   class="tableheader_color" >Total Buffalo Milk Amount</th>
+                <th  class="tableheader_color" >Total Cow Milk in Ltrs.</th>
+                <th  class="tableheader_color" >Total Cow Milk Amount</th>
+              </tr>
+             
+              <tr >             
+                <th  class="tableheader_color"  >(1)</th>
+                <th  class="tableheader_color" >(2)</th>
+                <th  class="tableheader_color" >(3)</th>
+                <th  class="tableheader_color" >(4)</th>
+                <th  class="tableheader_color" >(5)</th>
+                <th  class="tableheader_color" >(6)</th>
+                <th  class="tableheader_color" >(7)</th>
+                <th  class="tableheader_color" >(8)</th>
+                <th  class="tableheader_color" >(9)</th>
+                 
+              </tr> 
+  
+            </thead>
+            <tbody *ngIf="totalRbkDetails?.length > 0">
+              <tr *ngFor="let obj of totalRbkDetails; let i = index">
+                <td   class="number_align">{{ i + 1 }}</td>
+                <!-- <td class="text_align_color">
+                  <b>{{ obj.DISTRICT_NAME }}</b>
+                </td> -->
+                <td style="text-align: left;" class="table_cells_borders">
+                  <a
+                    style="cursor: pointer; text-decoration: underline"
+                    class="text-primary " 
+                    (click)="btnGetDetails2(obj)"
+                    ><b>{{ obj.RBK_NAME }}</b></a
+                  >
+                </td> 
+  
+                <!-- <td  class="number_align">{{ obj.TOTAL_RBKS }}</td> -->
+                <td   class="number_align">{{ obj.TOTAL_VILLAGES }}</td>
+                <td   class="number_align">{{ obj.TOTAL_FARMERS }}</td>
+                <td   class="number_align">{{ obj.TOTAL_WOMEN_FARMERS }}</td>
+                <td  class="number_align">{{ obj.TOTAL_BUFFALO_MILK_LTR }}</td>
+                <td   class="number_align">{{ obj.TOTAL_BUFFALO_MILK_AMOUNT }}</td>
+                <td  class="number_align">{{ obj.TOTAL_COW_MILK_LTR }}</td>
+                <td   class="number_align">{{ obj.TOTAL_COW_MILK_AMOUNT }}</td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="totalRbkDetails?.length > 0">
+              <tr  >
+                <td class="number_align" style="border-color: cadetblue !important">--</td>
+                <td  class="text_align_color">
+                  <b>TOTAL</b>
+                </td>
+                <!-- <td   class="font-weight-bold number_align">{{  reportTotals2.TOTAL_RBKS }}</td> -->
+                <td   class="font-weight-bold number_align">{{  reportTotals2.TOTAL_VILLAGES }}</td>
+                <td    class="font-weight-bold number_align">{{ reportTotals2.TOTAL_FARMERS }}</td>
+                <td   class="font-weight-bold number_align">{{  reportTotals2.TOTAL_WOMEN_FARMERS }}</td>
+                <td   class="font-weight-bold number_align">{{  reportTotals2.TOTAL_BUFFALO_MILK_LTR }}</td>
+                <td   class="font-weight-bold number_align">{{  reportTotals2.TOTAL_BUFFALO_MILK_AMOUNT }}</td>
+                <td    class="font-weight-bold number_align">{{ reportTotals2.TOTAL_COW_MILK_LTR }}</td>
+                <td    class="font-weight-bold number_align">{{ reportTotals2.TOTAL_COW_MILK_AMOUNT }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="Villagediv">
+    <div class="col-md-12 row">
+        <div class="col-md-3">
+          <label for="toDate">
+              DISTRICT :
+              <span class="text-success">
+                <b> {{ districtname | uppercase }}</b>
+              </span>
+            </label>
+      </div>
+      <div class="col-md-3">
+        <label for="toDate">
+            MANDAL :
+            <span class="text-success">
+              <b> {{ mandalname | uppercase }}</b>
+            </span>
+          </label>
+      </div>
+      <div class="col-md-3">
+        <label for="toDate">
+            RBK :
+            <span class="text-success">
+              <b> {{ rbkname | uppercase }}</b>
+            </span>
+          </label>
+
+      </div>
+     <div class="col-md-3"> 
+         <button
+             type="button"
+             class="btn btn-info btn-sm mt-3 pull-right"
+             (click)="btnback2()"
+             >
+             <i class="fa fa-arrow-left mr-2" aria-hidden="true"></i>
+              Back
+         </button>
+        
+     </div>
+   
+   
+      </div>
+  </div>
+      <div class="card" *ngIf="Villagediv">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Total Village Report</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <button
+            type="button"
+            class="btn btn-success btn-sm pull-right"
+            (click)="btnExcel3()"
+          >
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            Download Excel
+          </button>
+          <!-- <button
+            type="button"
+            class="btn btn-danger btn-sm pull-right"
+            (click)="btnPDF()"
+          >
+            <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+            Download PDF
+          </button> -->
+        </div>
+      </div>
+      <div class="row" *ngIf="Villagediv">
+        <div
+          class="col-md-12 table-responsive"          
+        >
+          <table  class="table table-striped ah-table text-center " >
+          
+            <thead class="bg-success text-white" style="border: 1px solid white;">
+  
+              <!-- border-color: white; -->
+              <tr   >
+                <th   class="tableheader_color"  >S.No.</th>                
+                <th   class="tableheader_color" >Villages</th>
+                <th   class="tableheader_color" >Women Farmers</th>
+                <th   class="tableheader_color" >Milk Pouring Women Farmers</th>
+                <th  class="tableheader_color" >Total Buffalo Milk in Ltrs.</th>
+                <th   class="tableheader_color" >Total Buffalo Milk Amount</th>
+                <th  class="tableheader_color" >Total Cow Milk in Ltrs.</th>
+                <th  class="tableheader_color" >Total Cow Milk Amount</th>
+              </tr>
+             
+              <tr >             
+                <th  class="tableheader_color"  >(1)</th>
+                <th  class="tableheader_color" >(2)</th>
+                <th  class="tableheader_color" >(3)</th>
+                <th  class="tableheader_color" >(4)</th>
+                <th  class="tableheader_color" >(5)</th>
+                <th  class="tableheader_color" >(6)</th>
+                <th  class="tableheader_color" >(7)</th>
+                <th  class="tableheader_color" >(8)</th> 
+                 
+              </tr> 
+  
+            </thead>
+            <tbody >
+              <tr *ngFor="let obj of totalVillageDetails; let i = index">
+                <td   class="number_align">{{ i + 1 }}</td>
+                <!-- <td class="text_align_color">
+                  <b>{{ obj.DISTRICT_NAME }}</b>
+                </td> -->
+                <td style="text-align: left;" class="table_cells_borders">
+                  <a
+                    style="cursor: pointer; text-decoration: underline"
+                    class="text-primary " 
+                    (click)="btnGetDetails3(obj)"
+                    ><b>{{ obj.VILLAGE_NAME}}</b></a
+                  >
+                </td> 
+  
+                <!-- <td  class="number_align">{{ obj.TOTAL_RBKS }}</td> -->
+                <!-- <td   class="number_align">{{ obj.TOTAL_VILLAGES }}</td> -->
+                <td   class="number_align">{{ obj.TOTAL_FARMERS }}</td>
+                <td   class="number_align">{{ obj.TOTAL_WOMEN_FARMERS }}</td>
+                <td   class="number_align">{{ obj.TOTAL_BUFFALO_MILK_LTR }}</td>
+                <td   class="number_align">{{ obj.TOTAL_BUFFALO_MILK_AMOUNT }}</td>
+                <td   class="number_align">{{ obj.TOTAL_COW_MILK_LTR }}</td>
+                <td   class="number_align">{{ obj.TOTAL_COW_MILK_AMOUNT }}</td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="totalVillageDetails?.length > 0">
+              <tr  >
+                <td class="number_align" style="border-color: cadetblue !important">--</td>
+                <td  class="text_align_color">
+                  <b>TOTAL</b>
+                </td>
+                <!-- <td   class="font-weight-bold number_align">{{  reportTotals2.TOTAL_RBKS }}</td> -->
+                <!-- <td   class="font-weight-bold number_align">{{  reportTotals3.TOTAL_VILLAGES }}</td> -->
+                <td    class="font-weight-bold number_align">{{ reportTotals3.TOTAL_FARMERS }}</td>
+                <td   class="font-weight-bold number_align">{{  reportTotals3.TOTAL_WOMEN_FARMERS }}</td>
+                <td   class="font-weight-bold number_align">{{  reportTotals3.TOTAL_BUFFALO_MILK_LTR }}</td>
+                <td   class="font-weight-bold number_align">{{  reportTotals3.TOTAL_BUFFALO_MILK_AMOUNT }}</td>
+                <td    class="font-weight-bold number_align">{{ reportTotals3.TOTAL_COW_MILK_LTR }}</td>
+                <td    class="font-weight-bold number_align">{{ reportTotals3.TOTAL_COW_MILK_AMOUNT }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="Bendiv">
+    <div class="col-md-12 row">
+        <div class="col-md-3">
+          <label for="toDate">
+              DISTRICT :
+              <span class="text-success">
+                <b> {{ districtname | uppercase }}</b>
+              </span>
+            </label>
+      </div>
+      <div class="col-md-3">
+        <label for="toDate">
+            MANDAL :
+            <span class="text-success">
+              <b> {{ mandalname | uppercase }}</b>
+            </span>
+          </label>
+      </div>
+      <div class="col-md-2">
+        <label for="toDate">
+            RBK :
+            <span class="text-success">
+              <b> {{ rbkname | uppercase }}</b>
+            </span>
+          </label>
+
+      </div>
+      <div class="col-md-2">
+        <label for="toDate">
+            VILLAGE :
+            <span class="text-success">
+              <b> {{ villagename | uppercase }}</b>
+            </span>
+          </label>
+
+      </div>
+     <div class="col-md-2"> 
+         <button
+             type="button"
+             class="btn btn-info btn-sm mt-3 pull-right"
+             (click)="btnback3()"
+             >
+             <i class="fa fa-arrow-left mr-2" aria-hidden="true"></i>
+              Back
+         </button>
+        
+     </div>
+   
+   
+      </div>
+  </div>
+      <div class="card" *ngIf="Bendiv">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Total Farmer Report</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <button
+            type="button"
+            class="btn btn-success btn-sm pull-right"
+            (click)="btnExcel4()"
+          >
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            Download Excel
+          </button>
+          <!-- <button
+            type="button"
+            class="btn btn-danger btn-sm pull-right"
+            (click)="btnPDF()"
+          >
+            <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+            Download PDF
+          </button> -->
+        </div>
+      </div>
+      <div class="row" *ngIf="Bendiv">
+        <div
+          class="col-md-12 table-responsive"           
+        >
+          <table  class="table table-striped ah-table text-center " >
+          
+            <thead class="bg-success text-white" style="border: 1px solid white;">
+  
+              <!-- border-color: white; -->
+              <tr   >
+                <th   class="tableheader_color"  >S.No.</th>                
+                <th   class="tableheader_color" >District Code</th>
+                <th   class="tableheader_color" >District Name</th>
+                <th   class="tableheader_color" >RBK Code</th>
+                <th  class="tableheader_color" >RBK Name</th>
+                <th   class="tableheader_color" >Village Code</th>
+                <th  class="tableheader_color" >Village Name</th>
+                <th  class="tableheader_color" >AMC-ID</th>
+                <!-- <th  class="tableheader_color" >Village Name-1</th> -->
+                <th  class="tableheader_color" >Farmer Code</th>
+                <th  class="tableheader_color" >Farmer Name</th>
+                <th  class="tableheader_color" >Mobile Number</th>
+              </tr>
+             
+              <tr >             
+                <th  class="tableheader_color"  >(1)</th>
+                <th  class="tableheader_color" >(2)</th>
+                <th  class="tableheader_color" >(3)</th>
+                <th  class="tableheader_color" >(4)</th>
+                <th  class="tableheader_color" >(5)</th>
+                <th  class="tableheader_color" >(6)</th>
+                <th  class="tableheader_color" >(7)</th>
+                <th  class="tableheader_color" >(8)</th> 
+                <th  class="tableheader_color" >(9)</th> 
+                <th  class="tableheader_color" >(10)</th> 
+                <th  class="tableheader_color" >(11)</th> 
+                 
+              </tr> 
+  
+            </thead>
+            <tbody  >
+              <tr *ngFor="let obj of totalBenDetails; let i = index">
+                <td   class="number_align">{{ i + 1 }}</td>               
+                <td   class="number_align">{{ obj.DISTRICT_CODE }}</td>
+                <td   style="text-align: left;" class="table_cells_borders"> {{ obj.DISTRICT_NAME }} </td>  
+                <td   class="number_align">{{ obj.RBK_CODE }}</td>
+                <td   style="text-align: left;" class="table_cells_borders"> {{ obj.RBK_NAME }} </td> 
+                <td   class="number_align">{{ obj.VILLAGE_CODE }}</td>
+                <td   style="text-align: left;" class="table_cells_borders"> {{ obj.VILLAGE_NAME }} </td>
+                <td   class="number_align">{{ obj.AMC_ID }}</td>
+                <!-- <td   style="text-align: left;" class="table_cells_borders"> {{ obj.VILLAGE_NAME_1 }} </td> -->
+                <td   class="number_align">{{ obj.FARMER_CODE }}</td>
+                <td   style="text-align: left;" class="table_cells_borders"> {{ obj.NAME }} </td>
+                <td   class="number_align">{{ obj.MOBILE_NUMBER }}</td>
+              </tr>
+            </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  

@@ -1,0 +1,138 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Volunteer Register As Farmer State Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="stateLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>District</th>
+              <th>Mandals</th>
+              <th>RBKS</th>
+              <th>Volunteers</th>
+              <th>Volunteers As Farmers</th>
+              <th>Volunteers Milk Pouring</th>
+              <th>Volunteers Milk Not Pouring</th>
+              <th>No Of Milch Animals</th>
+            </tr>
+
+
+            <tr >             
+              <th  class="tableheader_color"  >(1)</th>
+              <th  class="tableheader_color" >(2)</th>
+              <th  class="tableheader_color" >(3)</th>
+              <th  class="tableheader_color" >(4)</th>
+              <th  class="tableheader_color" >(5)</th>
+              <th  class="tableheader_color" >(6)</th>
+              <th  class="tableheader_color" >(7)</th>
+              <th  class="tableheader_color" >(8)</th>
+              <th  class="tableheader_color" >(9)</th>
+              
+            </tr> 
+          </thead>
+          <tbody *ngIf="stateLevelDetails?.length > 0">
+            <tr *ngFor="let obj of stateLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td class="text_align_color">
+                <a
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetDetails(obj)"
+                  ><b>{{ obj.DISTRICT }}</b></a
+                >
+              </td>
+              <td class="number_align">{{ obj.MANDALS | indianNumber }}</td>
+              <td class="number_align">{{ obj.TOTAL_RBK | indianNumber }}</td>
+              <td class="number_align">{{ obj.TOTAL_VV | indianNumber }}</td>
+              <td class="number_align">
+                <a
+                  *ngIf="obj.TOTAL_VV_REG_FMR !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetVolunteerDetails(obj, '1')"
+                  ><b>{{ obj.TOTAL_VV_REG_FMR }}</b></a
+                >
+                <span *ngIf="obj.TOTAL_VV_REG_FMR === '0'"
+                  ><b>{{ obj.TOTAL_VV_REG_FMR }}</b></span
+                >
+              </td>
+              <td class="number_align">
+                <a
+                  *ngIf="obj.TOTAL_VV_MILK_PORU !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetVolunteerDetails(obj, '2')"
+                  ><b>{{ obj.TOTAL_VV_MILK_PORU }}</b></a
+                >
+                <span *ngIf="obj.TOTAL_VV_MILK_PORU === '0'"
+                  ><b>{{ obj.TOTAL_VV_MILK_PORU }}</b></span
+                >
+              </td>
+              <td class="number_align">
+                <a
+                  *ngIf="obj.TOTAL_VV_MILK_NOT_PORU !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetVolunteerDetails(obj, '3')"
+                  ><b>{{ obj.TOTAL_VV_MILK_NOT_PORU }}</b></a
+                >
+                <span *ngIf="obj.TOTAL_VV_MILK_NOT_PORU === '0'"
+                  ><b>{{ obj.TOTAL_VV_MILK_NOT_PORU }}</b></span
+                >
+              </td>
+              <td class="number_align">{{ obj.NO_OF_MILCH_ANM | indianNumber }}</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="stateLevelDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td class="font-weight-bold number_align">{{ reportTotals.MANDALS | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_RBK | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_VV | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_VV_REG_FMR | indianNumber }}</td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.TOTAL_VV_MILK_PORU | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.TOTAL_VV_MILK_NOT_PORU | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">{{ reportTotals.NO_OF_MILCH_ANM | indianNumber }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

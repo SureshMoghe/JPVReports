@@ -1,0 +1,141 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">MDAC vs SAP Milk Collection State Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="stateLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-bordered ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th rowspan="2">S.No.</th>
+              <th rowspan="2">District</th>
+              <th rowspan="2">Transaction Date</th>
+              <th rowspan="2">Shift</th>
+              <th rowspan="2">Milk Type</th>
+              <th colspan="5">Collection Data</th>
+              <th colspan="4">SAP Data</th>
+              <th colspan="3">Difference</th>
+            </tr>
+            <tr>
+              <th>No Of Farmers</th>
+              <th>Milk In Liters</th>
+              <th>FAT</th>
+              <th>SNF</th>
+              <th>Amount</th>
+              <th>Weight Liter</th>
+              <th>Weight KG</th>
+              <th>FAT</th>
+              <th>SNF</th>
+              <th>Milk In Liters</th>
+              <th>FAT</th>
+              <th>SNF</th>
+            </tr>
+            <tr >             
+              <th >(1)</th>
+              <th >(2)</th>
+              <th >(3)</th>
+              <th >(4)</th>
+              <th >(5)</th>
+              <th >(6)</th>
+              <th >(7)</th>
+              <th >(8)</th>
+              <th >(9)</th>
+              <th >(10)</th>
+              <th >(11)</th>
+              <th >(12)</th>
+              <th >(13)</th>
+              <th >(14)</th>
+              <th >(15)</th>
+              <th >(16)</th>
+              <th >(17)</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="stateLevelDetails?.length > 0">
+            <tr *ngFor="let obj of stateLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td  class="text_align_color">
+                <a
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetDetails(obj)"
+                  ><b>{{ obj.DISTRICT }}</b></a
+                >
+              </td>
+              <td  class="text_align_color">{{ obj.TXN_DATE }}</td>
+              <td  class="text_align_color">{{ obj.SHIFT }}</td>
+              <td  class="text_align_color">{{ obj.MILK_TYPE }}</td>
+              <td  class="number_align">{{ obj.NO_OF_FARMERS | indianNumber }}</td>
+              <td  class="number_align">{{ obj.MILK_IN_LITERS | indianNumber }}</td>
+              <td  class="number_align">{{ obj.AVG_FAT | indianNumber }}</td>
+              <td  class="number_align">{{ obj.AVG_SNF | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_AMOUNT | indianNumber }}</td>
+              <td  class="number_align">{{ obj.SAP_WEIGHT_LITER | indianNumber }}</td>
+              <td  class="number_align">{{ obj.SAP_WEIGHT_KG | indianNumber }}</td>
+              <td  class="number_align">{{ obj.SAP_AVG_FAT | indianNumber }}</td>
+              <td  class="number_align">{{ obj.SAP_AVG_SNF | indianNumber }}</td>
+              <td  class="number_align">{{ obj.DIFFERENCE_MILK_IN_LITERS | indianNumber }}</td>
+              <td  class="number_align">{{ obj.DIFFERENCE_AVG_FAT | indianNumber }}</td>
+              <td  class="number_align">{{ obj.DIFFERENCE_AVG_SNF | indianNumber }}</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="stateLevelDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.NO_OF_FARMERS | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.MILK_IN_LITERS | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.AVG_FAT | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.AVG_SNF | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_AMOUNT | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.SAP_WEIGHT_LITER | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.SAP_WEIGHT_KG | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.SAP_AVG_FAT | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.SAP_AVG_SNF | indianNumber }}</td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.DIFFERENCE_MILK_IN_LITERS | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.DIFFERENCE_AVG_FAT | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.DIFFERENCE_AVG_SNF | indianNumber }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

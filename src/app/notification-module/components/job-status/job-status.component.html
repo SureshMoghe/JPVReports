@@ -1,0 +1,54 @@
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">Job Details Status</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                    Download Excel
+                </button>
+            </div>
+            <div class="col-md-12 table-responsive" [hidden]="jobDetailsList?.length < 1">
+                <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead class="bg-success text-white">
+                        <tr>
+                            <th class="tableheader_color">S.No</th>
+                            <th class="tableheader_color">REGISTRATION ID</th>
+                            <th class="tableheader_color">DESIGNATION</th>
+                            <th class="tableheader_color">POSITION</th>
+                            <th class="tableheader_color">APPLIED DATE</th>
+                            <th class="tableheader_color">STATUS</th>
+                        </tr>
+                        <tr>
+                            <th class="tableheader_color">(1)</th>
+                            <th class="tableheader_color">(2)</th>
+                            <th class="tableheader_color">(3)</th>
+                            <th class="tableheader_color">(4)</th>
+                            <th class="tableheader_color">(5)</th>
+                            <th class="tableheader_color">(6)</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="jobDetailsList?.length > 0">
+                        <tr *ngFor="let obj of jobDetailsList; let i = index">
+                            <td class="number_align" class="table_cells_borders">{{ i + 1}}</td>
+                            <td class="table_cells_borders number_align">{{obj.REGISTRATION_ID}}</td>
+                            <td style="text-align: left;" class="table_cells_borders">{{obj.DESIGNATION}}</td>
+                            <td style="text-align: left;" class="table_cells_borders">{{obj.POSITION}}</td>
+                            <td class="number_align" class="table_cells_borders">{{obj.APPLY_DATE}}</td>
+                            <!-- <td style="text-align: left;" class="table_cells_borders">{{obj.STATUS}}</td> -->
+                            <td style="text-align: left;" class="table_cells_borders">
+                                <span
+                                    [ngStyle]="{'color': obj.STATUS === 'Pending' ? 'blue' : obj.STATUS === 'Rejected' ? 'red' : obj.STATUS === 'Approved' ? 'green' : 'black'}"
+                                    *ngIf="obj.STATUS">
+                                    <b>{{obj.STATUS}}</b>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

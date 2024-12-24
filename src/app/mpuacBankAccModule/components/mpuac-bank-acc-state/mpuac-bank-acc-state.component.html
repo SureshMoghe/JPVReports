@@ -1,0 +1,95 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">MDAC Bank Account State Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="stateLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>District</th>
+              <th>Mandals</th>
+              <th>RBKS</th>
+              <th>RBKS Having MDAC Bank Account</th>
+              <th>RBKS NOT Having MDAC Bank Account</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="stateLevelDetails?.length > 0">
+            <tr *ngFor="let obj of stateLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>
+                <a
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetDetails(obj)"
+                  ><b>{{ obj.DISTRICT }}</b></a
+                >
+              </td>
+              <td>{{ obj.TOTAL_MANDAL | indianNumber }}</td>
+              <td>{{ obj.TOTAL_RBKS | indianNumber }}</td>
+              <td>{{ obj.TOTAL_MPUSS_UPDATED_RBKS | indianNumber }}</td>
+              <td>
+                <a
+                  *ngIf="obj.TOTAL_NOT_MPUSS_UPDATED_RBKS !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnNoMdacAccount(obj)"
+                  ><b>{{
+                    obj.TOTAL_NOT_MPUSS_UPDATED_RBKS | indianNumber
+                  }}</b></a
+                >
+                <span *ngIf="obj.TOTAL_NOT_MPUSS_UPDATED_RBKS === '0'">{{
+                  obj.TOTAL_NOT_MPUSS_UPDATED_RBKS
+                }}</span>
+              </td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="stateLevelDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td>{{ reportTotals.TOTAL_MANDAL | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_RBKS | indianNumber }}</td>
+              <td>
+                {{ reportTotals.TOTAL_MPUSS_UPDATED_RBKS | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.TOTAL_NOT_MPUSS_UPDATED_RBKS | indianNumber }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

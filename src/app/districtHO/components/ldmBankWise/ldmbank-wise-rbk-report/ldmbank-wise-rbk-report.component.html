@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-12" align="right">
+    <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+      BACK
+    </button>
+  </div>
+</div>
+
+<app-ldm-bank-wise-rbk
+  [(bankName)]="bankName"
+  [(districtId)]="districtId"
+  [(districtName)]="districtName"
+  [(mandalId)]="mandalId"
+  [(mandalName)]="mandalName"
+  [(ifscCode)]="ifscCode"
+  [(branchName)]="branchName"
+  (onPendingChange)="onPendingChange($event)"
+  (onApprovedRejectedChange)="onApprovedRejectedChange($event)"
+>
+</app-ldm-bank-wise-rbk>

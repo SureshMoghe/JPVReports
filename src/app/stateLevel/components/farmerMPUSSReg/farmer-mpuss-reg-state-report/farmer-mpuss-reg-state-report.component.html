@@ -1,0 +1,62 @@
+<div class="row align-items-center">
+  <div class="col-md-3">
+    <div class="form-group">
+      <label for="fromDate"
+        >From Date : <span style="color: red">*</span></label
+      >
+      <app-date-picker
+        [PlaceHolder]="'Please Select From Date'"
+        [(selectedDate)]="fromDate"
+      ></app-date-picker>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group">
+      <label for="toDate">To Date : <span style="color: red">*</span></label>
+      <app-date-picker
+        [PlaceHolder]="'Please Select To Date'"
+        [(selectedDate)]="toDate"
+      ></app-date-picker>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group"> 
+  
+      <label for="PhaseType"
+        >Phase Type <span style="color: red">*</span></label>
+        
+    
+      <select
+      id="PhaseType"
+      class="form-control"
+      [(ngModel)]="PhaseType"
+      (change)="onReportPhaseTypeChange()"
+    >  
+      <option
+        value="{{ obj.PHASEID }}"
+        *ngFor="let obj of PhaseTypeList"
+      >
+        {{ obj.PHASENAME }}
+      </option>
+    </select>
+
+    </div>
+  </div> 
+  <div class="col-md-3">
+    <button
+      type="button"
+      class="btn btn-primary btn-sm mt-3"
+      (click)="btnLoadReport()"
+    >
+      <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+      GO
+    </button>
+  </div>
+</div>
+<app-farmer-mpuss-reg-state
+  [(fromDate)]="fromDate"
+  [(toDate)]="toDate"
+  [(phaseid)]="phaseid"
+  [(phasename)]="phasename"
+  (onDistrictChange)="onDistrictChange($event)"
+></app-farmer-mpuss-reg-state>

@@ -1,0 +1,24 @@
+<!-- <div class="col-md-12" align="right">
+  <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+    Back
+  </button>
+</div> -->
+<div class="col-md-12" align="right">
+  <div class="row">
+  <div class="col-md-5" align="right">
+  <b>  Phase Name :</b><span class="text-success"> {{phasename}} </span>
+   </div> 
+   <div class="col-md-5" align="right"> 
+  <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+    Back
+  </button>
+</div></div></div>
+<app-farmer-milk-pouring-route
+  [(districtId)]="districtId"
+  [(districtName)]="districtName"
+  [(routeId)]="routeId"
+  [(routeName)]="routeName"
+  [(phaseid)]="phaseid"
+  [(phasename)]="phasename"
+  (onMandalChange)="onMandalChange($event)"
+></app-farmer-milk-pouring-route>

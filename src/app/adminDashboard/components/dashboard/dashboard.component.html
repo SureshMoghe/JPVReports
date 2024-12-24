@@ -1,0 +1,67 @@
+<div class="row" [hidden]="sessions?.length < 1">
+  <div class="col-md-6 p-2">
+    <div class="card">
+      <div class="card-body">
+        <div id="chart">
+          <apx-chart
+            [series]="sessionLinechartOptions.series"
+            [chart]="sessionLinechartOptions.chart"
+            [xaxis]="sessionLinechartOptions.xaxis"
+            [stroke]="sessionLinechartOptions.stroke"
+            [colors]="sessionLinechartOptions.colors"
+            [dataLabels]="sessionLinechartOptions.dataLabels"
+            [legend]="sessionLinechartOptions.legend"
+            [markers]="sessionLinechartOptions.markers"
+            [grid]="sessionLinechartOptions.grid"
+            [yaxis]="sessionLinechartOptions.yaxis"
+            [title]="sessionLinechartOptions.title"
+            [subtitle]="sessionLinechartOptions.subtitle"
+            [fill]="sessionLinechartOptions.fill"
+          ></apx-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 p-2">
+    <div class="card">
+      <div class="card-body">
+        <div id="chart">
+          <apx-chart
+            [series]="sessionStackedOptions.series"
+            [chart]="sessionStackedOptions.chart"
+            [dataLabels]="sessionStackedOptions.dataLabels"
+            [plotOptions]="sessionStackedOptions.plotOptions"
+            [responsive]="sessionStackedOptions.responsive"
+            [xaxis]="sessionStackedOptions.xaxis"
+            [legend]="sessionStackedOptions.legend"
+            [title]="sessionStackedOptions.title"
+            [fill]="sessionStackedOptions.fill"
+          ></apx-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 p-2">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="text-primary">
+          <b>TOTAL SESSIONS : </b> {{ pieChart.totalSessions }}
+        </h6>
+        <div id="chart">
+          <apx-chart
+            [series]="semiDonutSessionChartOptions.series"
+            [chart]="semiDonutSessionChartOptions.chart"
+            [labels]="semiDonutSessionChartOptions.labels"
+            [grid]="semiDonutSessionChartOptions.grid"
+            [plotOptions]="semiDonutSessionChartOptions.plotOptions"
+            [responsive]="semiDonutSessionChartOptions.responsive"
+            [title]="semiDonutSessionChartOptions.title"
+            [fill]="semiDonutSessionChartOptions.fill"
+            [legend]="semiDonutSessionChartOptions.legend"
+            [tooltip]="semiDonutSessionChartOptions.tooltip"
+          ></apx-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">Field Amcs Portal Data</h5>
+    </div>
+    <div class="card-body">
+        <div class="row align-items-center">
+            <div class="col-md-2">
+                <div class="form-group">
+</div></div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="amcuportal">Select Amcs <span style="color: red">*</span></label>
+                    <select id="amcuportal" class="form-control" [(ngModel)]="amcuportal" (change)="onAmcsChange()">
+                        <option disabled selected value="undefined"> -- Please Select Amcs -- </option>
+                        <!-- <option value="0">ALL</option> -->
+                        <option value="{{ obj.ID }}" *ngFor="let obj of AMCSLIST">
+                            {{ obj.NAME }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="fromDate">Date : <span style="color: red">*</span></label>
+                    <app-date-picker [PlaceHolder]="'Please Select Date'" [(selectedDate)]="fromDate"></app-date-picker>
+                </div>
+            </div>
+        </div>
+       
+        <div class="row align-items-center">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 table-responsive">
+                <table class="table table-striped ah-table text-center"> 
+                 
+                    <thead class="bg-success text-white">
+                        <tr>
+                            <th  class="tableheader_color">S.No</th> 
+                            <th  class="tableheader_color">District Name</th>
+                            <th  class="tableheader_color">Quantity</th>
+                            <th  class="tableheader_color">SUBMIT</th> 
+                        </tr> 
+                        <tr>
+                            <th class="tableheader_color">(1)</th>
+                            <th class="tableheader_color">(2)</th>
+                            <th class="tableheader_color">(3)</th>
+                            <th class="tableheader_color">(4)</th> 
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="DISTRICTLIST?.length > 0">
+                        <tr *ngFor="let obj of DISTRICTLIST; let i = index">
+                            <td class="number_align">{{ i + 1}}</td> 
+                            <td  style="text-align: left;" class="table_cells_borders">{{obj.DISTRICT +' - ' +obj.DIST_CODE }}</td>
+                            <td class="table_cells_borders number_align"> 
+                                 
+                                        <input type="text" class="form-control" [(ngModel)]="obj.Quantity"
+                                            placeholder="Please Enter Quantity" maxlength="12" autocomplete="off"
+                                            NumbersOnly>
+                                    
+                            </td>
+                            <td class="table_cells_borders"  style="text-align: left;" > 
+                                 
+                                    <button type="button" class="btn btn-primary btn-sm mt-3" (click)="btnSubmit(obj)">
+                                        <i class="mr-2" aria-hidden="true"></i>
+                                        SUBMIT
+                                    </button>
+                                 
+                            </td> 
+                        </tr>
+                    </tbody> 
+                </table>
+            </div>
+            <div class="col-md-1"></div>
+        </div> 
+    </div> 
+</div>

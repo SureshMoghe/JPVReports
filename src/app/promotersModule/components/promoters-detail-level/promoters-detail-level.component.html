@@ -1,0 +1,131 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Promoters Detail Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> Mentor : </b><span class="text-success">{{ mentorName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> RBK : </b><span class="text-success">{{ rbkName }}</span>
+        </h5>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="personDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th class="tableheader_color">S.No.</th>
+              <th class="tableheader_color">Mandal</th>
+              <th class="tableheader_color">Village</th>
+              <th class="tableheader_color">AMC ID</th>
+              <th class="tableheader_color">Route ID</th>
+              <th class="tableheader_color">MPUSS</th>
+              <th class="tableheader_color">Prom ID</th>
+              <th class="tableheader_color">Promoters Name</th>
+              <th class="tableheader_color">Date Of Birth</th>
+              <th class="tableheader_color">D/O OR W/O</th>
+              <th class="tableheader_color">Father/Spouse Name</th>
+              <th class="tableheader_color">Promoters Aadhar</th>
+              <th class="tableheader_color">Father/Spouse Aadhar</th>
+              <th class="tableheader_color">Promoters Mobile</th>
+              <th class="tableheader_color">Father/Spouse Mobile</th>
+              <th class="tableheader_color">Educational Qualification</th>
+              <th class="tableheader_color">Bank Account No</th>
+              <th class="tableheader_color">Ifsc Code</th>
+              <th class="tableheader_color">Bank Name</th>
+              <th class="tableheader_color">Branch</th>
+              <th class="tableheader_color">Address</th>
+              <th class="tableheader_color">Pincode</th>
+            </tr>
+            <tr>
+              <th class="tableheader_color">1</th>
+              <th class="tableheader_color">2</th>
+              <th class="tableheader_color">3</th>
+              <th class="tableheader_color">4</th>
+              <th class="tableheader_color">5</th>
+              <th class="tableheader_color">6</th>
+              <th class="tableheader_color">7</th>
+              <th class="tableheader_color">8</th>
+              <th class="tableheader_color">9</th>
+              <th class="tableheader_color">10</th>
+              <th class="tableheader_color">11</th>
+              <th class="tableheader_color">12</th>
+              <th class="tableheader_color">13</th>
+              <th class="tableheader_color">14</th>
+              <th class="tableheader_color">15</th>
+              <th class="tableheader_color">16</th>
+              <th class="tableheader_color">17</th>
+              <th class="tableheader_color">18</th>
+              <th class="tableheader_color">19</th>
+              <th class="tableheader_color">20</th>
+              <th class="tableheader_color">21</th>
+              <th class="tableheader_color">22</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="personDetails?.length > 0">
+            <tr *ngFor="let obj of personDetails; let i = index">
+              <td class="number_align">{{ i + 1 }}</td>
+              <td style="text-align: left; white-space: nowrap;" class="table_cells_borders">{{ obj.MANDAL_NAME }}</td>
+              <td style="text-align: left; white-space: nowrap;" class="table_cells_borders">{{ obj.VILLAGE_NAME }}</td>
+              <td class="number_align" style="white-space: nowrap;">{{ obj.AMC_ID }}</td>
+              <td style="text-align: left; white-space: nowrap;" class="table_cells_borders">{{ obj.ROUTE_NAME }}</td>
+              <td class="number_align" style="white-space: nowrap;">{{ obj.MPUSS }}</td>
+              <td class="number_align" style="white-space: nowrap;">{{ obj.PROM_ID }}</td>
+              <td style="text-align: left; white-space: nowrap;" class="table_cells_borders">{{ obj.PROMOTERS_NAME }}</td>
+              <td class="number_align" style="white-space: nowrap;">{{ obj.DOB }}</td>
+              <td style="text-align: left; white-space: nowrap;" class="table_cells_borders">{{ obj.DO_OR_WO }}</td>
+              <td style="text-align: left; white-space: nowrap;" class="table_cells_borders">{{ obj.FATHER_SPOUSE_NAME }}</td>
+              <td class="number_align" style="white-space: nowrap;">{{ obj.AADHAR }}</td>
+              <td class="number_align" style="white-space: nowrap;">{{ obj.FATHER_SPOUSE_AADHAR }}</td>
+              <td class="number_align" style="white-space: nowrap;">{{ obj.MOBILE }}</td>
+              <td class="number_align" style="white-space: nowrap;">{{ obj.FATHER_SPOUSE_MOBILE }}</td>
+              <td style="text-align: left; white-space: nowrap;" class="table_cells_borders">{{ obj.EDUCATION_QUALIFICATION }}</td>
+              <td class="number_align" style="white-space: nowrap;">{{ obj.BANK_ACCOUNT_NO }}</td>
+              <td class="number_align" style="white-space: nowrap;">{{ obj.IFSC_CODE }}</td>
+              <td style="text-align: left; white-space: nowrap;" class="table_cells_borders">{{ obj.BANK_NAME }}</td>
+              <td style="text-align: left; white-space: nowrap;" class="table_cells_borders">{{ obj.BRANCH }}</td>
+              <td class="number_align" style="white-space: nowrap;">{{ obj.ADDRESS_DNO }}</td>
+              <td class="number_align" style="white-space: nowrap;">{{ obj.PIN_CODE }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

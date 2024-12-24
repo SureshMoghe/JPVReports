@@ -1,0 +1,96 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Minutes Of Meeting Village Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div class="col-md-3">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-3">
+        <h5>
+          <b> Mandal : </b><span class="text-success">{{ mandalName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-3">
+        <h5>
+          <b> RBK : </b><span class="text-success">{{ rbkName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-3">
+        <h5>
+          <b> Village : </b><span class="text-success">{{ villageName }}</span>
+        </h5>
+      </div>
+
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="villageLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>Meeting Agenda</th>
+              <th>Meeting Venue</th>
+              <th>Meeting Venue Address</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Minutes</th>
+              <th>Scheduled On</th>
+              <th>Invitation Sent</th>
+              <th>No Of Women Govt Supported Scheme Beneficiaries</th>
+              <th>No Of Women Milch Animals Beneficiaries</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="villageLevelDetails?.length > 0">
+            <tr *ngFor="let obj of villageLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.MEETING_AGENDA }}</td>
+              <td>{{ obj.MEETING_VENUE }}</td>
+              <td>{{ obj.MEETING_VENUE_ADDRESS }}</td>
+              <td>{{ obj.MEETING_DATE }}</td>
+              <td>{{ obj.MEETING_TIME }}</td>
+              <td>{{ obj.MEETING_MINUTES }}</td>
+              <td>{{ obj.INSERTED_ON }}</td>
+              <td>{{ obj.INVITATION_SENT }}</td>
+              <td>{{ obj.NO_OF_WOMEN_CHEYUTH_BEN }}</td>
+              <td>{{ obj.NO_OF_WOMEN_MILCH_ANIM_BEN }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row" *ngIf="villageLevelDetails?.length == ''">
+      <div class="col-md-12" align="center">
+        <h3>Village Level Minutes Of Meeting Data Not Available</h3>
+      </div>
+    </div>
+  </div>
+</div>

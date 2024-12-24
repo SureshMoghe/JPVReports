@@ -1,0 +1,198 @@
+<div class="row align-items-center">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="fromDate"
+          >From Date : <span style="color: red">*</span></label
+        >
+        <app-date-picker
+          [PlaceHolder]="'Please Select From Date'"
+          [(selectedDate)]="fromDate"
+        ></app-date-picker>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="toDate">To Date : <span style="color: red">*</span></label>
+        <app-date-picker
+          [PlaceHolder]="'Please Select To Date'"
+          [(selectedDate)]="toDate"
+        ></app-date-picker>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <button
+        type="button"
+        class="btn btn-primary btn-sm mt-3"
+        (click)="btnLoadReport()"
+        
+      >
+        <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+        Go 
+      </button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Farmer Monitoring All District Report</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div *ngIf="Tableload"
+        class="col-md-12 table-responsive headertable"
+        
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+
+              <tr>
+                  <th rowspan="2">District Name</th>
+                  <th colspan="3">No of Mandals</th>
+                  <th colspan="3">No of Societies</th>
+                  <th colspan="3">No of Farmers</th>
+                  <th colspan="3">QTY Buffalo Liters</th>
+                  <th colspan="3">Fat - SNF</th>
+                  <th colspan="3">Amount Rs.</th>
+                  <th colspan="3">QTY Cow Liters</th>
+                  <th colspan="3">Fat - SNF</th>
+                  <th colspan="3">Amount Rs.</th>
+                  <th colspan="3">Qty Total Liters</th>
+                  <th colspan="3">Fat - SNF</th>
+                  <th colspan="3">Amount Rs.</th>
+                </tr>
+
+            <tr>
+              
+              <th>Last Year Same Date</th>
+              <th>Last Month Same Date</th>
+              <th>Present Day</th>
+
+              <th>Last Year Same Date</th>
+              <th>Last Month Same Date</th>
+              <th>Present Day</th>
+
+              <th>Last Year Same Date</th>
+              <th>Last Month Same Date</th>
+              <th>Present Day</th>
+
+              <th>Last Year Same Date</th>
+              <th>Last Month Same Date</th>
+              <th>Present Day</th>
+
+              <th>Last Year Same Date</th>
+              <th>Last Month Same Date</th>
+              <th>Present Day</th>
+
+              <th>Last Year Same Date</th>
+              <th>Last Month Same Date</th>
+              <th>Present Day</th>
+
+              <th>Last Year Same Date</th>
+              <th>Last Month Same Date</th>
+              <th>Present Day</th>
+
+              <th>Last Year Same Date</th>
+              <th>Last Month Same Date</th>
+              <th>Present Day</th>
+
+              <th>Last Year Same Date</th>
+              <th>Last Month Same Date</th>
+              <th>Present Day</th>
+
+              <th>Last Year Same Date</th>
+              <th>Last Month Same Date</th>
+              <th>Present Day</th>
+
+              <th>Last Year Same Date</th>
+              <th>Last Month Same Date</th>
+              <th>Present Day</th>
+
+              <th>Last Year Same Date</th>
+              <th>Last Month Same Date</th>
+              <th>Present Day</th>
+              
+              
+            </tr>
+          </thead>
+          <tbody *ngIf="alldistrictDetails?.length > 0">
+            <tr *ngFor="let obj of alldistrictDetails; let i = index">
+              <!-- <td>{{ i + 1 }}</td>  -->
+              <td ><a
+                style="cursor: pointer; text-decoration: underline"
+                class="text-primary"
+                (click)="btnGetDetails(obj)"
+                >
+                 {{ obj.DISTRICT }}
+                </a>
+                </td>
+              
+              <td>{{ obj. LAST_YEAR_OF_MANDALS }}</td>
+              <td>{{ obj.LAST_MONTH_OF_MANDALS }}</td>
+              <td>{{ obj.PRESENT_MANDALS }}</td>
+
+              <td>{{ obj.LAST_YEAR_OF_SOCIETYS }}</td>
+              <td>{{ obj.LAST_MONTH_OF_SOCIETYS}}</td>
+              <td>{{ obj.PRESENT_SOCIETYS }}</td>
+
+              <td>{{ obj.LAST_YEAR_OF_FARMERS }}</td> 
+              <td>{{ obj.LAST_MONTH_OF_FARMERS}}</td>
+              <td>{{ obj.PRESENT_FARMERS }}</td>
+
+              <td>{{ obj.LAST_YEAR_BUFFALO_MILK_IN_LTR }}</td>
+              <td>{{ obj.LAST_MONTH_BUFFALO_MILK_IN_LTR }}</td>
+              <td> {{ obj.PRESENT_BUFFALO_MILK_IN_LTR }}</td>
+
+              <td>{{ obj. LAST_YEAR_TOT_B_SNF_IN_M }}</td>
+              <td>{{obj.LAST_MONTH_TOT_B_SNF_IN_M }}</td>
+              <td>{{ obj.PRESENT_TOT_BUFFALO_SNF_IN_M }}</td>
+
+              <td>{{ obj.LAST_YEAR_TOT_BUFFALO_M_AMNT }}</td>
+              <td>{{ obj.LAST_MONTH_TOT_BUFFALO_M_AMNT }}</td>
+              <td>{{ obj.PRESENT_TOT_BUFFALO_M_AMNT }}</td>
+
+              <td>{{ obj.LAST_YEAR_COW_MILK_IN_LTR }}</td>
+              <td>{{ obj. LAST_MONTH_COW_MILK_IN_LTR }}</td>
+              <td>{{ obj. PRESENT_COW_MILK_IN_LTR }}</td>
+
+              <td>{{ obj.LAST_YEAR_TOTAL_COW_SNF_IN_M }}</td>
+              <td>{{ obj.LAST_MONTH_TOTAL_COW_SNF_IN_M }}</td>
+              <td>{{ obj.PRESENT_TOTAL_COW_SNF_IN_M }}</td>
+
+              <td>{{ obj.  LAST_YEAR_TOTAL_COW_M_AMOUNT }}</td>
+              <td>{{ obj. LAST_MONTH_TOTAL_COW_M_AMOUNT }}</td>
+              <td>{{ obj. PRESENT_TOTAL_COW_M_AMOUNT }}</td>
+
+              <td>{{ obj.LAST_YEAR_TOTAL_MILK_IN_LTR }}</td>
+              <td>{{ obj.LAST_MONTH_TOTAL_MILK_IN_LTR }}</td>
+              <td>{{ obj.PRESENT_TOTAL_MILK_IN_LTR }}</td>
+
+              <td>{{ obj. LAST_YEAR_TOT_SNF_IN_MILK }}</td>
+              <td>{{ obj. LAST_MONTH_TOT_SNF_IN_MILK }}</td>
+              <td>{{ obj.PRESENT_TOT_SNF_IN_M }}</td>
+
+              <!-- <td>{{ obj.LAST_YEAR_TOT_FAT_IN_M }}</td>
+              <td>{{ obj.LAST_MONTH_TOT_FAT_IN_M }}</td>
+              <td>{{ obj.PRESENT_TOT_FAT_IN_M }}</td> -->
+              
+              <td>{{ obj.LAST_YEAR_TOT_MILK_AMNT }}</td>
+              <td>{{ obj.LAST_MONTH_TOT_MILK_AMNT }}</td>
+              <td>{{ obj. PRESENT_TOT_MILK_AMNT }}</td>
+
+              
+
+              
+
+            </tr>
+          </tbody>
+         
+        </table>
+      </div>
+      </div>
+      </div>
+  
+

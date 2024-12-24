@@ -1,0 +1,70 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Discontinued Villages Status</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <!-- <button
+              type="button"
+              class="btn btn-danger btn-sm pull-right"
+              (click)="btnPDF()"
+            >
+              <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+              DOWNLOAD PDF
+            </button> -->
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="discontinuedVillagesDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>District</th>
+              <th>Villages</th>
+              <th>No. Of Milk Pouring Villages</th>
+              <th>No. Of Discontinued Villages</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="discontinuedVillagesDetails?.length > 0">
+            <tr *ngFor="let obj of discontinuedVillagesDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.DISTRICT }}</td>
+              <td>{{ obj.NO_OF_VILLAGES | indianNumber }}</td>
+              <td>{{ obj.NO_OF_MILK_POURED_VILLAGES | indianNumber }}</td>
+              <td>{{ obj.NO_OF_DISCONTINUED_VILLAGES | indianNumber }}</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="discontinuedVillagesDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td>{{ reportTotals.NO_OF_VILLAGES | indianNumber }}</td>
+              <td>{{ reportTotals.NO_OF_MILK_POURED_VILLAGES | indianNumber }}</td>
+              <td>{{ reportTotals.NO_OF_DISCONTINUED_VILLAGES | indianNumber }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

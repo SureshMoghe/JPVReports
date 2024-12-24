@@ -1,0 +1,109 @@
+
+
+
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">TOTAL MILK POURING DISTRICT WISE REPORT</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <button
+            type="button" 
+            class="btn btn-success btn-sm pull-right"
+            (click)="btnExcel()"
+          >
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            Download Excel
+          </button>
+          
+        </div>
+        <div
+          class="col-md-12 table-responsive"
+          [hidden]="stateLevelDetails?.length < 1"
+        >
+          <table  
+            class="table table-striped ah-table text-center"
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger"
+          >  
+          
+            <thead class="bg-success text-white"   style="border: 1px solid white;">    
+              <tr   >
+                <th  class="tableheader_color">S No</th>
+                <th  class="tableheader_color">District Code</th> 
+                <th   class="tableheader_color">District Name</th>
+                <th   class="tableheader_color">Total Women Farmers</th>
+                
+                
+                <th   class="tableheader_color">Total Cow Milk Ltr</th>
+                <th  class="tableheader_color">Total Cow Milk Amount</th>
+                <th  class="tableheader_color">Total Buffalo Milk Ltr</th>
+                <th   class="tableheader_color">Total Buffalo Milk Amount</th> 
+            </tr> 
+       
+             
+            <tr >             
+              <th  class="tableheader_color"  >(1)</th>
+              <th  class="tableheader_color" >(2)</th>
+              <th  class="tableheader_color" >(3)</th>
+              <th  class="tableheader_color" >(4)</th>
+              <th  class="tableheader_color" >(5)</th>
+              <th  class="tableheader_color" >(6)</th>
+              <th  class="tableheader_color" >(7)</th>
+              <th  class="tableheader_color" >(8)</th>
+              
+              
+
+            </tr> 
+            </thead>
+            <tbody *ngIf="stateLevelDetails?.length > 0" calss="table_cells_borders">
+              <tr *ngFor="let obj of stateLevelDetails; let i = index">
+                <td class="number_align">{{ i + 1 }}</td>
+                <td  class="table_cells_borders number_align">   {{ obj.DISTRICT_CODE }}     </td> 
+
+                <td style="text-align: left;" class="table_cells_borders">
+                  <a
+                    style="cursor: pointer; text-decoration: underline"
+                    class="text-primary " 
+                    (click)="btnGetDetails(obj)"
+                    ><b>{{ obj.DISTRICT_NAME }}</b></a
+                  >
+                </td> 
+                
+                <td  class="table_cells_borders number_align">   {{ obj.TOTAL_WOMEN_FARMERS }}             </td> 
+                <td  class="table_cells_borders number_align">   {{ obj.TOTAL_COW_MILK_LTR }}             </td> 
+
+
+                <td class="number_align">
+                   {{ obj.TOTAL_COW_MILK_AMOUNT | indianNumber }} 
+                </td>
+                <td class="number_align">
+                   {{ obj.TOTAL_BUFFALO_MILK_LTR | indianNumber }} 
+                </td>
+                <td class="number_align">
+                  {{ obj.TOTAL_BUFFALO_MILK_AMOUNT | indianNumber }} 
+                </td>
+                 
+
+              </tr>
+            </tbody> 
+            <tbody *ngIf="stateLevelDetails?.length > 0">
+              <tr>  <td  class="number_align" style="border-color: cadetblue !important">--</td>
+                <td  class="number_align" style="border-color: cadetblue !important">--</td>
+              <td  class="text_align_color"> <b>TOTAL</b>  </td> 
+              <td   class="font-weight-bold number_align">{{ totreportTotals.tt_TOTAL_WOMEN_FARMERS | indianNumber }}</td>
+              <td   class="font-weight-bold number_align">{{ totreportTotals.tt_TOTAL_COW_MILK_LTR | indianNumber }}</td>
+              <td   class="font-weight-bold number_align">{{ totreportTotals.tt_TOTAL_COW_MILK_AMOUNT | indianNumber }}</td>
+              <td   class="font-weight-bold number_align">{{ totreportTotals.tt_TOTAL_BUFFALO_MILK_LTR | indianNumber }}</td>
+              <td   class="font-weight-bold number_align">{{ totreportTotals.tt_TOTAL_BUFFALO_MILK_AMOUNT | indianNumber }}</td> 
+               
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

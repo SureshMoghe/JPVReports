@@ -1,0 +1,133 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0" *ngIf="status === '0'">
+      Applications Submitted ByAH Department Report
+    </h5>
+    <h5 class="mb-0" *ngIf="status === '1'">
+      Loans sanctioned By the Banker Report
+    </h5>
+    <h5 class="mb-0" *ngIf="status === '2'">Animal Grounding Report</h5>
+    <h5 class="mb-0" *ngIf="status === '3'">Rejected Applications Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> Mandal : </b><span class="text-success">{{ mandalName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> RBK : </b><span class="text-success">{{ secName }}</span>
+        </h5>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="detailedLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>Beneficiary Code</th>
+              <th>Beneficiary Name</th>
+              <th>Beneficiary Father Name</th>
+              <th>Aadhar Number</th>
+              <th>Date Of Birth</th>
+              <th>Mobile Number</th>
+              <th>Ifsc Code</th>
+              <th>Account Number</th>
+              <th>Live Stock</th>
+              <th>Action Taken</th>
+              <th>Remarks</th>
+              <th>Updated Date</th>
+              <th>Nature Of Unit</th>
+              <th>Submission Date</th>
+              <th>Loan Sanction Date</th>
+              <th>Loan Amount</th>
+              <th>Documentation Completion Date</th>
+              <th>Grounding Date</th>
+              <th>Animal Healthcard Issue Date</th>
+              <th>Photo Of Unit</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="detailedLevelDetails?.length > 0">
+            <tr *ngFor="let obj of detailedLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.BEN_CODE }}</td>
+              <td>{{ obj.BEN_NAME }}</td>
+              <td>{{ obj.BEN_FATHER_NAME }}</td>
+              <td>{{ obj.UID_NUM }}</td>
+              <td>{{ obj.DOB_DT }}</td>
+              <td>{{ obj.MOBILE_NUMBER }}</td>
+              <td>{{ obj.IFSC_CODE }}</td>
+              <td>{{ obj.ACCOUNT_NUMBER }}</td>
+              <td>{{ obj.LIVE_STOCK }}</td>
+              <td>{{ obj.ACTION_TAKEN }}</td>
+              <td>{{ obj.REMARKS }}</td>
+              <td>{{ obj.UPDATED_DATE }}</td>
+              <td>{{ obj.NATURE_OF_UNIT }}</td>
+              <td>{{ obj.SUBMISSION_DATE }}</td>
+              <td>{{ obj.LOAN_SANCTION_DATE }}</td>
+              <td>{{ obj.LOAN_AMOUNT }}</td>
+              <td>{{ obj.COMPLETION_DOCUMENTATION_DATE }}</td>
+              <td>{{ obj.GROUNDING_DATE }}</td>
+              <td>{{ obj.ANIMAL_HEALTHCARD_ISSUE_DATE }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="
+                    obj.PHOTO_OF_UNIT_IMG !== null &&
+                    obj.PHOTO_OF_UNIT_IMG !== '' &&
+                    obj.PHOTO_OF_UNIT_IMG !== undefined
+                  "
+                  (click)="btnPhotoView(obj.PHOTO_OF_UNIT_IMG)"
+                >
+                  VIEW
+                </button>
+                <span
+                  *ngIf="
+                    obj.PHOTO_OF_UNIT_IMG === null ||
+                    obj.PHOTO_OF_UNIT_IMG === '' ||
+                    obj.PHOTO_OF_UNIT_IMG === undefined
+                  "
+                  >NA</span
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

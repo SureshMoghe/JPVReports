@@ -1,0 +1,82 @@
+<div class="row align-items-center"> 
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="fromDate">From Date : <span style="color: red">*</span></label>
+            <app-date-picker [PlaceHolder]="'Please Select From Date'" [(selectedDate)]="fromDate"></app-date-picker>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="toDate">To Date : <span style="color: red">*</span></label>
+            <app-date-picker [PlaceHolder]="'Please Select To Date'" [(selectedDate)]="toDate"></app-date-picker>
+        </div>
+    </div> 
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="amcuportal">Select Amcs <span style="color: red">*</span></label>
+            <select id="amcuportal" class="form-control" [(ngModel)]="amcuportal" (change)="onAmcsChange()">
+                <option disabled selected value="undefined"> -- Please Select Amcs -- </option>
+                <!-- <option value="0">ALL</option> -->
+                <option value="{{ obj.ID }}" *ngFor="let obj of AMCSLIST">
+                    {{ obj.NAME }}
+                </option>
+            </select>
+        </div>
+    </div> 
+    <div class="col-md-3">
+        <button type="button" class="btn btn-primary btn-sm mt-3" (click)="btnLoadReport()">
+            <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+            Go
+        </button>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">Field AMCS Portal Data Report</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                    Download Excel
+                </button> 
+            </div>
+            <div class="col-md-12 table-responsive" [hidden]="UnionTransactionList?.length < 1">
+                <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead class="bg-success text-white">
+                        <tr>
+                            <th  class="tableheader_color">S.No</th>
+                            <th  class="tableheader_color">Date</th>
+                            <th  class="tableheader_color">District Name</th>
+                            <th  class="tableheader_color">Quantity</th> 
+                        </tr> 
+                        <tr>
+                            <th class="tableheader_color">(1)</th>
+                            <th class="tableheader_color">(2)</th>
+                            <th class="tableheader_color">(3)</th>
+                            <th class="tableheader_color">(4)</th> 
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="UnionTransactionList?.length > 0">
+                        <tr *ngFor="let obj of UnionTransactionList; let i = index">
+                            <td class="number_align">{{ i + 1}}</td>
+                            <td class="table_cells_borders number_align">{{obj.MILK_DATA.slice(0,10)}}</td>
+                            <td  style="text-align: left;" class="table_cells_borders">{{obj.DISTRICT}}</td>
+                            <td class="table_cells_borders number_align">{{obj.QUANTITY}}</td> 
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="UnionTransactionList?.length > 0">
+
+                        <tr>
+                            <td class="number_align">--</td>                            
+                            <td class="text_align_color"> <b>TOTAL</b> </td>
+                            <td class="number_align">--</td>
+                            <td class="font-weight-bold number_align">{{ reportTotals.QUANTITY |indianNumber }}</td>                         
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

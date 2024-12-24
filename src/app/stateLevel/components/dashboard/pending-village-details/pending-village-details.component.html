@@ -1,0 +1,206 @@
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Pending Village Details Report</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- <button
+            type="button"
+            class="btn btn-success btn-sm pull-right"
+            (click)="btnExcel()"
+          >
+  
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            Download Excel
+          </button> -->
+          <!-- <button
+            type="button"
+            class="btn btn-danger btn-sm pull-right"
+            (click)="btnPDF()"
+          >
+            <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+            Download PDF
+          </button> -->
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-md-3"> 
+          <div class="form-group">
+            <label for="districtId"
+              >District <span style="color: red">*</span></label
+            >
+            <select
+              id="districtId"
+              class="form-control"
+              [(ngModel)]="district_Id"
+              (change)="onDistrictIdChange()"
+            >
+              <option value="0">ALL</option>
+              <option
+                value="{{ obj.DISTRICT_ID }}"
+                *ngFor="let obj of districtList"
+              >
+                {{ obj.DISTRICT_NAME }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <label for="fromDate"
+              >From Date : <span style="color: red">*</span></label
+            >
+            <app-date-picker
+              [PlaceHolder]="'Please Select From Date'"
+              [(selectedDate)]="fromDate"
+            ></app-date-picker>
+          </div>
+        </div>
+        <!-- <div class="col-md-2">
+          <div class="form-group">
+            <label for="toDate"
+              >To Date : <span style="color: red">*</span></label
+            >
+            <app-date-picker
+              [PlaceHolder]="'Please Select To Date'"
+              [(selectedDate)]="toDate"
+            ></app-date-picker>
+          </div>
+        </div> -->
+  
+  
+<!--     
+        <div class="col-md-3">
+          <div class="form-group"> 
+        
+            <label for="PhaseType"
+              >Phase Type <span style="color: red">*</span></label>
+              
+          
+            <select
+            id="PhaseType"
+            class="form-control"
+            [(ngModel)]="PhaseType"
+            (change)="onReportPhaseTypeChange()"
+          >  
+            <option
+              value="{{ obj.PHASEID }}"
+              *ngFor="let obj of PhaseTypeList"
+            >
+              {{ obj.PHASENAME }}
+            </option>
+          </select>
+      
+          </div>
+        </div>  -->
+  
+  
+  
+        <div class="col-md-2">
+          <button
+            type="button"
+            class="btn btn-primary btn-sm mt-3"
+            (click)="btnLoadReport()"
+          >
+            <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+            GO
+          </button>
+        </div>
+        <div class="col-md-5" style="text-align: right;">
+        <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+          Back
+        </button>
+</div>
+      </div>
+      <div class="row">
+        <div
+          class="col-md-12 table-responsive"
+          [hidden]="societyAbstractDetails?.length < 1"
+        >
+          <table
+            class="table table-striped ah-table text-center"
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger"
+          >
+            <thead class="bg-success text-white">
+ 
+              <tr>
+                <th  class="tableheader_color" >S No</th>
+                <th  class="tableheader_color" >District Name</th>
+                <th  class="tableheader_color" >Mandal Name</th>
+                <th  class="tableheader_color" >RBK Name</th>
+                <th  class="tableheader_color" >Village Code</th>
+                <th  class="tableheader_color" >Village Name</th>
+                <th  class="tableheader_color" >Village Status</th>
+                <th  class="tableheader_color" >Milk Pouring Status on (Selected Date)</th>
+                <th  class="tableheader_color" >Milk Pouring Status After (Selected Date)</th>
+                <th  class="tableheader_color" >Last Milk Pouring Date</th>
+
+               
+              </tr>
+  
+  
+               <tr >             
+                <th  class="tableheader_color"  >(1)</th>
+                <th  class="tableheader_color" >(2)</th>
+                <th  class="tableheader_color" >(3)</th>
+                <th  class="tableheader_color" >(4)</th>
+                <th  class="tableheader_color" >(5)</th>
+                <th  class="tableheader_color" >(6)</th>
+                <th  class="tableheader_color" >(7)</th>
+                <th  class="tableheader_color" >(8)</th>
+                <th  class="tableheader_color" >(9)</th>
+                <th  class="tableheader_color" >(10)</th>
+                 
+              </tr> 
+            </thead>
+            <tbody *ngIf="societyAbstractDetails?.length > 0">
+              <tr *ngFor="let obj of societyAbstractDetails; let i = index">
+                <td>{{ i + 1 }}</td> 
+                <td  class="text_align_column">{{ obj.DISTRICT_NAME }}</td>
+                <td  class="text_align_column">{{ obj.MANDAL_NAME }}</td>
+                <td  class="text_align_column">{{ obj.RBK_NAME }}</td>
+                <td  class="number_align">
+                   {{ obj.VILLAGE_CODE }} 
+                </td>
+                <!-- <td  class="text_align_column">{{ obj.VILLAGE_NAME   }}</td> -->
+
+                <td style="text-align: left;" class="table_cells_borders">
+                  <a style="cursor: pointer; text-decoration: underline"
+                    class="text-primary " 
+                    (click)="btnGetDetails(obj)" ><b>{{ obj.VILLAGE_NAME }}</b></a>            </td> 
+
+                <td  class="text_align_column">{{ obj.CURRENT_STATUS   }}</td>
+                <td  class="text_align_column">{{ obj.DAY_STATUS  }}</td>
+                <td  class="text_align_column">{{ obj.POURING_STATUS   }}</td>
+                <td  class="number_align">{{ obj.LAST_POURING_DATE  }}</td>
+
+                
+              </tr>
+            </tbody>
+            <tbody *ngIf="societyAbstractDetails?.length > 0">
+              <!-- <tr>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>
+                  <b>TOTAL</b>
+                </td>
+                <td   class="font-weight-bold number_align">{{ reportTotals.NO_OF_FARMERS | indianNumber }}</td>
+                <td  class="font-weight-bold number_align">{{ reportTotals.NO_OF_MILK_POURER_FARMERS | indianNumber }}</td>
+                <td  class="font-weight-bold number_align">{{ reportTotals.TOTAL_BUFFALO_MILK_LTR | indianNumber }}</td>
+                <td  class="font-weight-bold number_align">   {{ reportTotals.TOTAL_BUFFALO_MILK_AMOUNT | indianNumber }}
+                </td>
+                <td  class="font-weight-bold number_align">{{ reportTotals.TOTAL_COW_MILK_LTR | indianNumber }}</td>
+                
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

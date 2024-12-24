@@ -1,0 +1,44 @@
+<div class="row align-items-center">
+  <div class="col-md-3">
+    <div class="form-group">
+      <label for="fromDate"
+        >From Date : <span style="color: red">*</span></label
+      >
+      <app-date-picker
+        [PlaceHolder]="'Please Select From Date'"
+        [(selectedDate)]="fromDate"
+      ></app-date-picker>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group">
+      <label for="toDate">To Date : <span style="color: red">*</span></label>
+      <app-date-picker
+        [PlaceHolder]="'Please Select To Date'"
+        [(selectedDate)]="toDate"
+      ></app-date-picker>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <button
+      type="button"
+      class="btn btn-primary btn-sm mt-3"
+      (click)="btnLoadReport()"
+    >
+      <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+      GO
+    </button>
+  </div>
+</div>
+<app-mom-village
+  [(districtId)]="districtId"
+  [(districtName)]="districtName"
+  [(mandalId)]="mandalId"
+  [(mandalName)]="mandalName"
+  [(rbkId)]="rbkId"
+  [(rbkName)]="rbkName"
+  [(villageId)]="villageId"
+  [(villageName)]="villageName"
+  [(fromDate)]="fromDate"
+  [(toDate)]="toDate"
+></app-mom-village>

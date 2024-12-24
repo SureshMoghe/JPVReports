@@ -1,0 +1,566 @@
+<div class="row">
+  
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body amul-db-tabs">
+        <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+          <li class="nav-item waves-effect waves-light">
+            <a
+              class="nav-link active"
+              id="daily-tab"
+              data-toggle="tab"
+              href="#daily"
+              role="tab"
+              aria-controls="daily"
+              aria-selected="false"
+              (click)="dailycountsclick('1')"
+              >Daily Counts</a
+            >
+          </li>
+          <li class="nav-item waves-effect waves-light">
+            <a
+              class="nav-link"
+              id="cumulative-tab"
+              data-toggle="tab"
+              href="#cumulative"
+              role="tab"
+              aria-controls="cumulative"
+              aria-selected="false"
+              (click)="Cmucountsclick('2')"
+              >Cumulative Counts</a
+            >
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div
+            class="tab-pane fade active show"
+            id="daily"
+            role="tabpanel"
+            aria-labelledby="daily-tab"
+          >
+            <div class="row">
+              <div class="col-md-8">
+                <div class="row justify-content-center amul-db-counts">
+                  <div
+                    class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
+                    (click)="btnCountsClick('NO_OF_DISTRICT')"
+                    style="cursor: pointer"
+                  >
+                    <div class="card counts-card bg-light-blue">
+                      <div class="overlay">
+                        <img
+                          src="https://apddcf.ap.gov.in/cdn/img/milk-bg.png"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="card-body">
+                        <p class="text-uppercase">
+                          <small>No of Districts</small>
+                        </p>
+                        <h5 class="font-weight-bold mb-0">
+                          {{ todayCounts.TOTAL_DISTRICT }}
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
+                    (click)="btnCountsClick('TOTAL_RBKS')"
+                    style="cursor: pointer"
+                  >
+                    <div class="card counts-card bg-light-orange">
+                      <div class="overlay">
+                        <img
+                          src="https://apddcf.ap.gov.in/cdn/img/milk-bg.png"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="card-body">
+                        <p class="text-uppercase">
+                          <small>No of RBKS</small>
+                        </p>
+                        <h5 class="font-weight-bold mb-0">
+                          {{ todayCounts.TOTAL_RBKS | indianNumber }}
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
+                    (click)="btnCountsClick('TOTAL_VILLAGES')"
+                    style="cursor: pointer"                  >
+                    <div class="card counts-card bg-light-purple">
+                      <div class="overlay">
+                        <img
+                          src="https://apddcf.ap.gov.in/cdn/img/milk-bg.png"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="card-body">
+                        <p class="text-uppercase">
+                          <small>No of Villages</small>
+                        </p>
+                        <h5 class="font-weight-bold mb-0">
+                          {{ todayCounts.TOTAL_VILLAGES | indianNumber }}
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="card counts-card bg-light-green">
+                      <div class="overlay">
+                        <img
+                          src="https://apddcf.ap.gov.in/cdn/img/milk-bg.png"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="card-body">
+                        <p class="text-uppercase">
+                          <small>Total Amount</small>
+                        </p>
+                        <h5 class="font-weight-bold mb-0">
+                          {{ todayCounts.TOTAL_AMOUNT | indianCurrency }}
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12"
+                    (click)="btnCountsClick('D_TOTAL_FARMERS')"
+                    style="cursor: pointer"
+                  >
+                    <div class="card counts-card bg-light-indigo">
+                      <div class="overlay">
+                        <img
+                          src="https://apddcf.ap.gov.in/cdn/img/milk-bg.png"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="card-body">
+                        <p class="text-uppercase">
+                          <small>No of Women Farmers Registered</small>
+                        </p>
+                        <h5 class="font-weight-bold mb-0">
+                          {{ todayCounts.TOTAL_FARMERS | indianNumber }}
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12"
+                    (click)="btnCountsClick('TOTAL_FARMERS_INTHIS_MONTH')"
+                    style="cursor: pointer"
+                  >
+                    <div class="card counts-card bg-light-blue bg-light-aqua">
+                      <div class="overlay">
+                        <img
+                          src="https://apddcf.ap.gov.in/cdn/img/milk-bg.png"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="card-body">
+                        <p class="text-uppercase">
+                          <small>Newly Milk Pouring Farmers</small>
+                        </p>
+                        <h5 class="font-weight-bold mb-0">
+                          {{
+                            todayCounts.TOTAL_FARMERS_INTHIS_MONTH
+                              | indianNumber
+                          }}
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12"
+                    (click)="btnCountsClick('D_TOTAL_WOMEN_FARMERS')"
+                    style="cursor: pointer"
+                  >
+                    <div class="card counts-card bg-light-blue bg-light-aqua">
+                      <div class="overlay">
+                        <img
+                          src="https://apddcf.ap.gov.in/cdn/img/milk-bg.png"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="card-body">
+                        <p class="text-uppercase">
+                          <small>No of Women Farmers Pouring Milk</small>
+                        </p>
+                        <h5 class="font-weight-bold mb-0">
+                          {{ todayCounts.TOTAL_WOMEN_FARMERS | indianNumber }}
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="row">
+                  <div
+                    class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                  >
+                    <div class="card counts-card bg-light-grey">
+                      <div class="overlay">
+                        <img
+                          src="https://apddcf.ap.gov.in/cdn/img/milk-bg.png"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="card-body py-md-5">
+                        <p class="text-uppercase mb-4">
+                          <small>Total Milk Poured</small> 
+                        </p>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <p class="text-uppercase">
+                              <small>BUFFALO MILK</small>
+                            </p>
+                            <h5 class="font-weight-bold mb-0">
+                              {{
+                                todayCounts.TOTAL_BUFFALO_MILK_LTR
+                                  | indianNumber
+                              }}
+                              Litres
+                            </h5>
+                          </div>
+
+                          <div class="col-md-6">
+                            <p class="text-uppercase">
+                              <small>COW MILK</small>
+                            </p>
+                            <h5 class="font-weight-bold mb-0">
+                              {{
+                                todayCounts.TOTAL_COW_MILK_LTR | indianNumber
+                              }}
+                              Litres
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="tab-pane fade"
+            id="cumulative"
+            role="tabpanel"
+            aria-labelledby="cumulative-tab"
+          >
+            <div class="row">
+              <div class="col-md-8">
+                <div class="row justify-content-center amul-db-counts">
+                  <div
+                    class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
+                    (click)="btnCountsClick('NO_OF_DISTRICT')"
+                    style="cursor: pointer"
+                  >
+                    <div class="card counts-card bg-light-blue">
+                      <div class="overlay">
+                        <img
+                          src="https://apddcf.ap.gov.in/cdn/img/milk-bg.png"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="card-body">
+                        <p class="text-uppercase">
+                          <small>No of Districts</small>
+                        </p>
+                        <h5 class="font-weight-bold mb-0">
+                          {{ cummulativeCounts.TOTAL_DISTRICT }}
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
+                    (click)="btnCountsClick('TOTAL_RBKS')"
+                    style="cursor: pointer"
+                  >
+                    <div class="card counts-card bg-light-orange">
+                      <div class="overlay">
+                        <img
+                          src="https://apddcf.ap.gov.in/cdn/img/milk-bg.png"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="card-body">
+                        <p class="text-uppercase">
+                          <small>No of RBKS</small>
+                        </p>
+                        <h5 class="font-weight-bold mb-0">
+                          {{ cummulativeCounts.TOTAL_RBKS | indianNumber }}
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
+                    (click)="btnCountsClick('TOTAL_VILLAGES')"
+                    style="cursor: pointer"
+                  >
+                    <div class="card counts-card bg-light-purple">
+                      <div class="overlay">
+                        <img
+                          src="https://apddcf.ap.gov.in/cdn/img/milk-bg.png"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="card-body">
+                        <p class="text-uppercase">
+                          <small>No of Villages</small>
+                        </p>
+                        <h5 class="font-weight-bold mb-0">
+                          {{ cummulativeCounts.TOTAL_VILLAGES | indianNumber }}
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="card counts-card bg-light-green">
+                      <div class="overlay">
+                        <img
+                          src="https://apddcf.ap.gov.in/cdn/img/milk-bg.png"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="card-body">
+                        <p class="text-uppercase">
+                          <small>Total Amount</small>
+                        </p>
+                        <h5 class="font-weight-bold mb-0">
+                          {{ cummulativeCounts.TOTAL_AMOUNT | indianCurrency }}
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"
+                    (click)="btnCountsClick('TOTAL_FARMERS')"
+                    style="cursor: pointer"
+                  >
+                    <div class="card counts-card bg-light-indigo">
+                      <div class="overlay">
+                        <img
+                          src="https://apddcf.ap.gov.in/cdn/img/milk-bg.png"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="card-body">
+                        <p class="text-uppercase">
+                          <small>No of Womens Farmers Registered</small>
+                        </p>
+                        <h5 class="font-weight-bold mb-0">
+                          {{ cummulativeCounts.TOTAL_FARMERS | indianNumber }}
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"
+                    (click)="btnCountsClick('TOTAL_WOMEN_FARMERS')"
+                    style="cursor: pointer"
+                  >
+                    <div class="card counts-card bg-light-blue bg-light-aqua">
+                      <div class="overlay">
+                        <img
+                          src="https://apddcf.ap.gov.in/cdn/img/milk-bg.png"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="card-body">
+                        <p class="text-uppercase">
+                          <small>No of Women Farmers Pouring Milk</small>
+                        </p>
+                        <h5 class="font-weight-bold mb-0">
+                          {{
+                            cummulativeCounts.TOTAL_WOMEN_FARMERS | indianNumber
+                          }}
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="row">
+                  <div
+                    class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                  >
+                    <div class="card counts-card bg-light-grey">
+                      <div class="overlay">
+                        <img
+                          src="https://apddcf.ap.gov.in/cdn/img/milk-bg.png"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="card-body py-md-5">
+                        <p class="text-uppercase mb-4">
+                          <small>Total Milk Poured</small>
+                        </p>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <p class="text-uppercase">
+                              <small>BUFFALO MILK</small>
+                            </p>
+                            <h5 class="font-weight-bold mb-0">
+                              {{
+                                cummulativeCounts.TOTAL_BUFFALO_MILK_LTR
+                                  | indianNumber
+                              }}
+                              Litres
+                            </h5>
+                          </div>
+
+                          <div class="col-md-6">
+                            <p class="text-uppercase">
+                              <small>COW MILK</small>
+                            </p>
+                            <h5 class="font-weight-bold mb-0">
+                              {{
+                                cummulativeCounts.TOTAL_COW_MILK_LTR
+                                  | indianNumber
+                              }}
+                              Litres
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-md-6" *ngIf="stateMilkProd?.length > 0">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0 secondary-heading pb-0">Districts</h5>
+      </div>
+      <div class="card-body"> 
+        <div id="chart">
+          <apx-chart
+            [series]="pieChartOptions.series"
+            [chart]="pieChartOptions.chart"
+            [labels]="pieChartOptions.labels"
+            [responsive]="pieChartOptions.responsive"
+            [legend]="pieChartOptions.legend"
+            [fill]="pieChartOptions.fill"
+            [tooltip]="pieChartOptions.tooltip"
+          ></apx-chart>
+        </div>
+      </div>
+    </div>
+  </div>  
+
+  <div class="col-md-6" *ngIf="dayWiseMilkPoured?.length > 0">  
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0 secondary-heading pb-0">
+          Day Wise Milk Poured Villages & Societies
+        </h5>
+        <!-- <h5
+          style="cursor: pointer"
+          class="btn-link pull-right"
+          *ngIf="isPersonLoggedIn"
+          (click)="btnFutureDateReport()"
+        >
+          Future Dates Milk Pouring Report
+      </h5> -->
+      </div>
+      <div class="card-body p-0"  >
+        <div id="chart"  style="cursor: pointer">            
+       
+          <!-- [chart1]="bOptions.chart1"   +(click)="btnSocietyAbstractReport()" -->
+           
+            <!-- [series]="bOptions.series"
+            [chart]="bOptions.chart"           
+            [dataLabels]="bOptions.dataLabels"
+            [plotOptions]="bOptions.plotOptions"
+            [xaxis]="bOptions.xaxis"
+            [fill]="bOptions.fill"
+            [tooltip]="bOptions.tooltip"  (click)="btnSocietyAbstractReport('0')"-->
+
+            <apx-chart   (click)="btnSocietyAbstractReport('0')"
+          
+            [series]="stbchartOptions.series"
+            [chart]="stbchartOptions.chart"
+            [dataLabels]="stbchartOptions.dataLabels"
+            [plotOptions]="stbchartOptions.plotOptions"
+            [xaxis]="stbchartOptions.xaxis"
+            [stroke]="stbchartOptions.stroke"
+            [fill]="stbchartOptions.fill"
+            [yaxis]="stbchartOptions.yaxis"
+            [title]="stbchartOptions.title"
+            [tooltip]="stbchartOptions.tooltip"
+            [legend]="stbchartOptions.legend"
+
+          ></apx-chart> 
+         
+
+
+
+          
+            <!-- <apx-chart  (click)="btnSocietyAbstractReport()"
+              [series]="chartOptions.series"
+              [chart]="chartOptions.chart"
+              [stroke]="chartOptions.stroke"
+              [dataLabels]="chartOptions.dataLabels"
+              [plotOptions]="chartOptions.plotOptions"
+              [xaxis]="chartOptions.xaxis"
+              [colors]="chartOptions.colors"
+              [fill]="chartOptions.fill"
+              [yaxis]="chartOptions.yaxis"
+              [legend]="chartOptions.legend"
+            ></apx-chart> -->
+          
+
+
+          <!-- <apx-chart (click)="btnSocietyAbstractReport()"
+          [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [stroke]="chartOptions.stroke"
+    [dataLabels]="chartOptions.dataLabels"
+    [plotOptions]="chartOptions.plotOptions"
+    [xaxis]="chartOptions.xaxis"
+    [colors]="chartOptions.colors"
+    [fill]="chartOptions.fill"
+    [yaxis]="chartOptions.yaxis"
+    [legend]="chartOptions.legend"
+    ></apx-chart> -->
+
+
+          
+
+       
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 

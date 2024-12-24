@@ -1,0 +1,109 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Farmer Abstract Transaction State Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right" 
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="stateLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>District</th>
+              <th>Societies</th>
+              <th>Milk Collected In Societies</th>
+              <th>Women Farmers</th>
+              <th>Cow Milk In LTRS</th>
+              <th>Cow Milk Amount</th>
+              <th>Buffalo Milk In LTRS</th>
+              <th>Buffalo Milk Amount</th>
+              <th>Milk In LTRS</th>
+              <th>Amount</th>
+            </tr>
+            <tr >             
+              <th >(1)</th>
+              <th >(2)</th>
+              <th >(3)</th>
+              <th >(4)</th>
+              <th >(5)</th>
+              <th >(6)</th>
+              <th >(7)</th>
+              <th >(8)</th>
+              <th >(9)</th>
+              <th >(10)</th>
+              <th >(11)</th>
+            </tr>
+
+          </thead>
+          <tbody *ngIf="stateLevelDetails?.length > 0">
+            <tr *ngFor="let obj of stateLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td  class="text_align_color">
+                <a
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetDetails(obj)"
+                  ><b>{{ obj.DISTRICT }}</b></a
+                >
+              </td>
+              <td   class="number_align">{{ obj.TOTAL_SOCIETY | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_MILK_COLL_SOCIETY | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_WOMEN_FARMERS | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_COW_MILK_LTR | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_COW_MILK_AMOUNT | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_BUFFALO_MILK_LTR | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_BUFFALO_MILK_AMOUNT | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_MILK_LTRS | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_AMOUNT | indianNumber }}</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="stateLevelDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td  class="font-weight-bold number_align">{{ reportTotals.TOTAL_SOCIETY | indianNumber }}</td>
+              <td  class="font-weight-bold number_align">{{ reportTotals.TOTAL_MILK_COLL_SOCIETY | indianNumber }}</td>
+              <td  class="font-weight-bold number_align">{{ reportTotals.TOTAL_WOMEN_FARMERS | indianNumber }}</td>
+              <td  class="font-weight-bold number_align">{{ reportTotals.TOTAL_COW_MILK_LTR | indianNumber }}</td>
+              <td  class="font-weight-bold number_align">{{ reportTotals.TOTAL_COW_MILK_AMOUNT | indianNumber }}</td>
+              <td  class="font-weight-bold number_align">{{ reportTotals.TOTAL_BUFFALO_MILK_LTR | indianNumber }}</td>
+              <td  class="font-weight-bold number_align">
+                {{ reportTotals.TOTAL_BUFFALO_MILK_AMOUNT | indianNumber }}
+              </td>
+              <td  class="font-weight-bold number_align">{{ reportTotals.TOTAL_MILK_LTRS | indianNumber }}</td>
+              <td  class="font-weight-bold number_align">{{ reportTotals.TOTAL_AMOUNT | indianNumber }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

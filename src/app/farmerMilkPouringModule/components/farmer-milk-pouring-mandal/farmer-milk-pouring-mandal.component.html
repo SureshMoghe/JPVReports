@@ -1,0 +1,148 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Volunteer Wise Farmer Milk Pouring Mandal Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> Route : </b><span class="text-success">{{ routeName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> Mandal : </b><span class="text-success">{{ mandalName }}</span>
+        </h5>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="mandalLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-bordered ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th rowspan="2">S.No.</th>
+              <th rowspan="2">RBK</th>
+              <th rowspan="2">Villages</th>
+              <th rowspan="2">Volunteers</th>
+              <th rowspan="2">Households</th>
+              <th colspan="4">Survyed & Registered Households With Animals</th>
+              <th rowspan="2">
+                Milk Pouring Farmers Without Milch Animals Registered
+              </th>
+              <th rowspan="2">Households Without Animals</th>
+              <th rowspan="2">Unsurveyed Households</th>
+              <th rowspan="2">
+                Farmer Registered By Mentor/RIC/ DA/WEA/AHA Milch Animals Data
+                Collection Pending
+              </th>
+            </tr>
+            <tr>
+              <th>Registered Farmers</th>
+              <th>Milk Pouring Farmers</th>
+              <th>Milk Not Pouring Farmers</th>
+              <th>No Of Milch Animals</th>
+            </tr>
+
+            
+			   <tr >             
+          <th >(1)</th>
+          <th >(2)</th>
+          <th >(3)</th>
+          <th >(4)</th>
+          <th >(5)</th>
+          <th >(6)</th>
+          <th >(7)</th>
+          <th >(8)</th>
+          <th >(9)</th>
+          <th >(10)</th>
+          <th >(11)</th>
+          <th >(12)</th>
+          <th >(13)</th>
+        </tr>
+          </thead>
+          <tbody *ngIf="mandalLevelDetails?.length > 0">
+            <tr *ngFor="let obj of mandalLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td class="text_align_color">
+                <a
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetDetails(obj)"
+                  ><b>{{ obj.RBK_NAME }}</b></a
+                >
+              </td>
+              <td class="number_align">{{ obj.TOTAL_VILLAGES | indianNumber }}</td>
+              <td class="number_align">{{ obj.TOTAL_VV | indianNumber }}</td>
+              <td class="number_align">{{ obj.TOTAL_HH | indianNumber }}</td>
+              <td class="number_align">{{ obj.TOTAL_REG_FARMERS | indianNumber }}</td>
+              <td class="number_align">{{ obj.TOT_REG_MPOUR_FAR_WITH_M_ANM | indianNumber }}</td>
+              <td class="number_align">{{ obj.TOT_SUR_REG_MILK_NOT_POUR_FAR | indianNumber }}</td>
+              <td class="number_align">{{ obj.NO_OF_MILCH_ANM | indianNumber }}</td>
+              <td class="number_align">{{ obj.TOT_REG_MPOUR_FAR_WO_M_ANM | indianNumber }}</td>
+              <td class="number_align">{{ obj.TOT_HH_WITHOUT_ANM | indianNumber }}</td>
+              <td class="number_align">{{ obj.TOTAL_PENDING_HH | indianNumber }}</td>
+              <td class="number_align">{{ obj.FMR_REGI_MILCH_ANM_COLL_PED | indianNumber }}</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="mandalLevelDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_VILLAGES | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_VV | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_HH | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_REG_FARMERS | indianNumber }}</td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.TOT_REG_MPOUR_FAR_WITH_M_ANM | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.TOT_SUR_REG_MILK_NOT_POUR_FAR | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">{{ reportTotals.NO_OF_MILCH_ANM | indianNumber }}</td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.TOT_REG_MPOUR_FAR_WO_M_ANM | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOT_HH_WITHOUT_ANM | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_PENDING_HH | indianNumber }}</td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.FMR_REGI_MILCH_ANM_COLL_PED | indianNumber }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

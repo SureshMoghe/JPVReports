@@ -1,0 +1,29 @@
+<div class="row align-items-center">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="districtId"> District</label>
+      <select
+        id="districtId"
+        class="form-control"
+        [(ngModel)]="districtId"
+        (change)="onDistrictChange()"
+      >
+        <option value="">-- Select District --</option>
+        <option *ngFor="let obj of districtList" value="{{ obj.DISTRICT_ID }}">
+          {{ obj.DISTRICT_NAME }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <button
+      type="button"
+      class="btn btn-primary btn-sm mt-3"
+      (click)="btnLoadReport()"
+    >
+      <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+      GO
+    </button>
+  </div>
+</div>
+<app-mdac-society-wise [(districtId)]="districtId"></app-mdac-society-wise>

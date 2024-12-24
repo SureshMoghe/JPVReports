@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-md-3">
+    <h5>
+      <b> From Date : </b><span class="text-success">{{ fromDate }}</span>
+    </h5>
+  </div>
+  <div class="col-md-3">
+    <h5>
+      <b>To Date : </b><span class="text-success">{{ toDate }}</span>
+    </h5>
+  </div>
+
+  <div class="col-md-3">
+    <h5>
+      <b>Phase : </b><span class="text-success">{{ phasename }}</span>
+    </h5>
+  </div>
+
+  <div class="col-md-3" align="right">
+    <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+      Back
+    </button>
+  </div>
+</div>
+<app-non-milk-pouring
+  [(fromDate)]="fromDate"
+  [(toDate)]="toDate"
+  [(districtId)]="districtId"
+  [(districtName)]="districtName"
+  [(route)]="route"
+  [(routeName)]="routeName"
+  [(mandalId)]="mandalId"
+  [(mandalName)]="mandalName"
+  [(rbkId)]="rbkId"
+  [(rbkName)]="rbkName"
+  [(villageId)]="villageId"
+  [(villageName)]="villageName"
+  [(actionTaken)]="actionTaken"
+  [(phaseid)]="phaseid"
+  [(phasename)]="phasename"
+
+
+></app-non-milk-pouring>

@@ -1,0 +1,64 @@
+<div class="row align-items-center">
+  <div class="col-md-3">
+    <div class="form-group">
+      <label for="fromDate"
+        >From Date : <span style="color: red">*</span></label
+      >
+      <app-date-picker
+        [PlaceHolder]="'Please Select From Date'"
+        [(selectedDate)]="fromDate"
+      ></app-date-picker>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group">
+      <label for="toDate">To Date : <span style="color: red">*</span></label>
+      <app-date-picker
+        [PlaceHolder]="'Please Select To Date'"
+        [(selectedDate)]="toDate"
+      ></app-date-picker>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group">
+      <label for="typeOfInspection">
+        Type Of Inspection: <span style="color: red">*</span></label
+      >
+      <select
+        id="typeOfInspection"
+        class="form-control"
+        [(ngModel)]="typeOfInspection"
+        (change)="onTypeOfInspectionChange()"
+      >
+        <option value="">-- SELECT --</option>
+        <option value="{{ item.ID }}" *ngFor="let item of inspectionList">
+          {{ item.NAME }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <button
+      type="button"
+      class="btn btn-primary btn-sm mt-3"
+      (click)="btnLoadReport()"
+    >
+      <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+      GO
+    </button>
+  </div>
+</div>
+
+<app-amcu-inspection-mentor
+  [(fromDate)]="fromDate"
+  [(toDate)]="toDate"
+  [(typeOfInspection)]="typeOfInspection"
+  [(inspectionName)]="inspectionName"
+  [(uniqueId)]="uniqueId"
+  [(districtId)]="districtId"
+  [(districtName)]="districtName"
+  (onSocietiesNotInspectedClickChange)="
+    onSocietiesNotInspectedClickChange($event)
+  "
+  (onSocietiesInspectedClickChange)="onSocietiesInspectedClickChange($event)"
+></app-amcu-inspection-mentor>

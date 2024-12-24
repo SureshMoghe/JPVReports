@@ -1,0 +1,217 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Village Level Meetings State Level Report</h5>
+  </div>
+  <div class="card-body">
+    <!-- <div class="row align-items-center">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="fromDate">From Date : <span style="color: red;">*</span></label>
+            <input id="fromDate" type="date" class="form-control" placeholder="Please Select From Date" />         
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="toDate">To Date : <span style="color: red;">*</span></label>
+            <input id="toDate" type="date" class="form-control" placeholder="Please Select To Date" />         
+          </div>
+        </div>
+        <div class="col-md-6">
+          <button type="button" class="btn btn-primary btn-sm mt-3" (click)="btnLoadReport();">
+              <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+              GO</button>
+              <button type="button" class="btn btn-success btn-sm pull-right mt-3" (click)="btnExcel();">
+                  <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                  DOWNLOAD EXCEL</button>
+            <button type="button" class="btn btn-danger btn-sm  pull-right mt-3" (click)="btnPDF();">
+                <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+                DOWNLOAD PDF</button>
+        </div>
+    </div> -->
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="stateLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>District</th>
+              <th>Routes</th>
+              <th>Mentors</th>
+              <th>RBKS</th>
+              <th>Villages</th>
+              <th>Mentors Logged In</th>
+              <th>Mentors Not Logged In</th>
+              <th>No Of Villages Scheduled Meetings</th>
+              <th>No Of Villages Not Scheduled Meetings</th>
+              <th>No Of Meetings Scheduled</th>
+              <th>Minutes Of Meeting Submitted</th>
+              <th>Minutes Of Meeting Not Submitted</th>
+              <th>No Of Functionaries Updated</th>
+              <th>No Of Functionaries Not Updated</th>
+              <th>Participants</th>
+              <th>No Of Animal Owners</th>
+              <th>No Of Govt Supported Scheme  Beneficiaries</th>
+              <th>Secretaries Created</th>
+              <th>Assistant Secretaries Created</th>
+              <th>No Of Buildings Inspected</th>
+              <th>No Of Buildings Not Inspected</th>
+              <th>Calibrations Done Villages</th>
+              <th>Calibrations Not Done Villages</th>
+              <th>No Of Promoters Added Villages</th>
+              <th>No Of Promoters Not Added Villages</th>
+            </tr>
+
+            <tr >             
+              <th >(1)</th>
+              <th >(2)</th>
+              <th >(3)</th>
+              <th >(4)</th>
+              <th >(5)</th>
+              <th >(6)</th>
+              <th >(7)</th>
+              <th >(8)</th>
+              <th >(9)</th>
+              <th >(10)</th>
+              <th >(11)</th>
+              <th >(12)</th>
+              <th >(13)</th>
+              <th >(14)</th>
+              <th >(15)</th>
+              <th >(16)</th>
+              <th >(17)</th>
+              <th >(18)</th>
+              <th >(19)</th>
+              <th >(20)</th>
+              <th >(21)</th>
+              <th >(22)</th>
+              <th >(23)</th>
+              <th >(24)</th>
+              <th >(25)</th>
+              <th >(26)</th>
+
+            </tr>
+
+
+          </thead>
+          <tbody *ngIf="stateLevelDetails?.length > 0">
+            <tr *ngFor="let obj of stateLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td  class="text_align_color">
+                <a
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetDetails(obj)"
+                  ><b>{{ obj.DISTRICT }}</b></a
+                >
+              </td>
+              <td  class="number_align">{{ obj.TOTAL_ROUTES | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_MENTOR | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_RBK | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_VILLAGES | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_LOGIN | indianNumber }}</td>
+              <td  class="number_align">{{ obj.NOT_LOGIN | indianNumber }}</td>
+              <td  class="number_align">{{ obj.SCHEDULE_MEETINGS | indianNumber }}</td>
+              <td  class="number_align">{{ obj.NOT_SCHEDULE_MEETING | indianNumber }}</td>
+              <td  class="number_align">{{ obj.NO_OF_METG_CONDUCTED_IN_VILL | indianNumber }}</td>
+              <td  class="number_align">{{ obj.MEETING_MINUTES_SUBMITTED | indianNumber }}</td>
+              <td  class="number_align">{{ obj.MEETING_NOT_MINUTES_SUBMITTED | indianNumber }}</td>
+              <td  class="number_align">{{ obj.FUNCTIONARIES_UPDATED | indianNumber }}</td>
+              <td  class="number_align">{{ obj.FUNCTIONARIES_NOT_UPDATED | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_NO_PARTICIPANTS | indianNumber }}</td>
+              <td  class="number_align">{{ obj.OWNER_OF_ANIMAL | indianNumber }}</td>
+              <td  class="number_align">{{ obj.CHEYUTHA_NO_BEN | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_SECRETARY | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_ASSI_SECRETARY | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_BULDING_INSPS_VILL | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_BULDING_NOT_INSPS_VILL | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_CALIB_DONE_VILLAGES | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_CALIB_NOT_DONE_VILLAGES | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_PROMOTERS_ADDED_VILL | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_PROMOTERS_NOT_ADDED_VILL | indianNumber }}</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="stateLevelDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_ROUTES | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_MENTOR | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_RBK | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_VILLAGES | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_LOGIN | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.NOT_LOGIN | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.SCHEDULE_MEETINGS | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.NOT_SCHEDULE_MEETING | indianNumber }}</td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.NO_OF_METG_CONDUCTED_IN_VILL | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.MEETING_MINUTES_SUBMITTED | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.MEETING_NOT_MINUTES_SUBMITTED | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">{{ reportTotals.FUNCTIONARIES_UPDATED | indianNumber }}</td>
+              <td>
+                {{ reportTotals.FUNCTIONARIES_NOT_UPDATED | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_NO_PARTICIPANTS | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.OWNER_OF_ANIMAL | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.CHEYUTHA_NO_BEN | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_SECRETARY | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_ASSI_SECRETARY | indianNumber }}</td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.TOTAL_BULDING_INSPS_VILL | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.TOTAL_BULDING_NOT_INSPS_VILL | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.TOTAL_CALIB_DONE_VILLAGES | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.TOTAL_CALIB_NOT_DONE_VILLAGES | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.TOTAL_PROMOTERS_ADDED_VILL | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.TOTAL_PROMOTERS_NOT_ADDED_VILL | indianNumber }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

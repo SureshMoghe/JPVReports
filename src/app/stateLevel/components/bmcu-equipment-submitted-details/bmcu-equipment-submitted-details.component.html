@@ -1,0 +1,227 @@
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">
+        {{headingText}}
+      </h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <h5 class="pull-left">
+            <b> DISTRICT : </b
+            ><span class="text-success">{{ districtName }}</span>
+          </h5>
+  
+          <button
+            type="button"
+            class="btn btn-success btn-sm pull-right"
+            (click)="btnExcel()"
+          >
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            Download Excel
+          </button>
+          <!-- <button
+            type="button"
+            class="btn btn-danger btn-sm pull-right"
+            (click)="btnPDF()"
+          >
+            <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+            Download PDF
+          </button> -->
+        </div>
+  
+        <div
+          class="col-md-12 table-responsive"
+          [hidden]="comparitiveMilkPouringDetails?.length < 1"
+        >
+          <table
+            class="table table-striped ah-table text-center"
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger"
+          >
+            <thead class="bg-success text-white">
+              <tr>
+                <th>S NO</th>                
+                <th>MANDAL CODE</th>
+                <th>MANDAL NAME</th>
+                <th>BMCU CODE</th>
+                <th *ngIf="detailshide123">BMCU NAME</th>
+                <th *ngIf="detailshide12345">BMCU NAME</th>
+                <th *ngIf="detailshide">BMCU TYPE</th>
+                <!-- <th *ngIf="detailshide">EQUIPMENT NAME</th>
+                <th *ngIf="detailshide">CAPACITY</th>
+                <th *ngIf="detailshide">UOM</th>
+                <th *ngIf="detailshide">SERIAL NUMBER</th>
+                <th *ngIf="detailshide">MAKE</th>
+                <th *ngIf="detailshide">INSTALLATION DATE</th>
+                <th *ngIf="detailshide">WORKING CONDITION</th>
+                <th *ngIf="detailshide">EQUIPMENT IMAGE</th> -->
+                <th *ngIf="detailshide">LAST OPERATED YEAR</th>
+                <th *ngIf="detailshide">OPERATED BY</th>
+                <th *ngIf="detailshide">LATITUDE</th>
+                <th *ngIf="detailshide">LONGITUDE</th>
+                <th *ngIf="detailshide">BUILDING TYPE</th>
+                <th *ngIf="detailshide">BUILDING CONDITION</th>
+                <th *ngIf="detailshide">SAFETY ARRANGEMENTS</th>
+                <th *ngIf="detailshide">WATER AVAILABILITY</th>
+                <th *ngIf="detailshide">ELECTRICITY AVAILABILITY</th>
+                <th *ngIf="detailshide">DRAINAGE AVAILABILITY</th>
+                <th *ngIf="detailshide">ADDRESS</th>
+                <th *ngIf="detailshide">BUILDING IMAGE</th>                
+                <th *ngIf="detailshide">BMCU PDF</th>                
+                <th *ngIf="detailshide1" class="col-md-3">REMARKS</th>                
+                <th *ngIf="detailshide">SHIFTED DISTRICT</th>                
+                <th *ngIf="detailshide">SHIFTED MANDAL</th>                
+                <th *ngIf="detailshide">SHIFTED BMCU</th>                
+              </tr>              
+              <tr >             
+                <th >(1)</th>
+                <th >(2)</th>
+                <th >(3)</th>
+                <th >(4)</th>
+                <th >(5)</th>  
+                <th *ngIf="detailshide">(6)</th>
+                <!-- <th *ngIf="detailshide">(7)</th>
+                <th *ngIf="detailshide">(8)</th>
+                <th *ngIf="detailshide">(9)</th>
+                <th *ngIf="detailshide">(10)</th>
+                <th *ngIf="detailshide">(11)</th>
+                <th *ngIf="detailshide">(12)</th>
+                <th *ngIf="detailshide">(13)</th>
+                <th *ngIf="detailshide">(14)</th> -->
+                <th *ngIf="detailshide">(7)</th>
+                <th *ngIf="detailshide">(8)</th>
+                <th *ngIf="detailshide">(9)</th>
+                <th *ngIf="detailshide">(10)</th>
+                <th *ngIf="detailshide">(11)</th>               
+                <th *ngIf="detailshide">(12)</th>
+                <th *ngIf="detailshide">(13)</th>
+                <th *ngIf="detailshide">(14)</th>
+                <th *ngIf="detailshide">(15)</th>
+                <th *ngIf="detailshide">(16)</th>
+                <th *ngIf="detailshide">(17)</th>
+                <th *ngIf="detailshide">(18)</th>
+                <th *ngIf="detailshide">(19)</th>
+                <th *ngIf="detailshide1">(20)</th>                 
+                <th *ngIf="detailshide">(21)</th>
+                <th *ngIf="detailshide">(22)</th>
+                <th *ngIf="detailshide">(23)</th>                
+              </tr>
+  
+            </thead>
+            <tbody *ngIf="comparitiveMilkPouringDetails?.length > 0">
+              <tr
+                *ngFor="let obj of comparitiveMilkPouringDetails; let i = index"
+              >
+                <td>{{ i + 1 }}</td>
+                <td  class="number_align">{{ obj.MANDAL_CODE }}</td>
+                <td  class="text_align_color">{{ obj.MANDAL }}</td>
+                <td class="number_align">{{ obj.BMCU_CODE }}</td>
+                <!-- <td  class="text_align_color">{{ obj.BMCU }}</td> -->
+
+                <td class="text_align_color" *ngIf="detailshide123">
+                  <a
+                    *ngIf="obj.BMCU !== '0'"
+                    style="cursor: pointer; text-decoration: underline"
+                    class="text-primary"
+                    (click)="btnEquipDetails(obj,'42')"
+                    ><b>{{ obj.BMCU }}</b></a
+                  >
+                  <span *ngIf="obj.BMCU === '0'"
+                    >{{ obj.BMCU }}</span
+                  >
+                </td>
+
+
+                <td  *ngIf="detailshide12345" class="text_align_color">{{ obj.BMCU }}</td>
+
+                <td *ngIf="detailshide"  class="text_align_color">{{ obj.BMCU_TYPE }}</td>
+                <!-- <td *ngIf="detailshide"  class="text_align_color">{{ obj.DEVICE_NAME }}</td>
+                <td *ngIf="detailshide" class="number_align">{{ obj.CAPACITY_IN }}</td>
+                <td *ngIf="detailshide" class="text_align_color">{{ obj.UOM }}</td>
+                <td *ngIf="detailshide"  class="number_align">{{ obj.SERIAL_NUMBER }}</td>
+                <td *ngIf="detailshide" class="text_align_color">{{ obj.MAKER }}</td>
+                <td *ngIf="detailshide"  class="number_align">{{ obj.PURCHASE_DATE }}</td>
+                <td *ngIf="detailshide" class="text_align_color">{{ obj.WORKING_STATUS }}</td>
+              
+                
+                <td *ngIf="detailshide" class="number_align" style="width: 100px;">
+                    <button type="button" class="btn btn-link btn-sm" *ngIf="
+                                obj.PHOTO_UPD !== null &&
+                                obj.PHOTO_UPD !== '' &&
+                                obj.PHOTO_UPD !== 'NA' &&
+                                obj.PHOTO_UPD !== undefined
+                              " (click)="btnViewImage(obj.PHOTO_UPD)">
+                      VIEW
+                    </button>
+                    <span *ngIf="
+                                obj.PHOTO_UPD === null ||
+                                obj.PHOTO_UPD === '' ||
+                                obj.PHOTO_UPD === 'NA' ||
+                                obj.PHOTO_UPD === undefined
+                              ">NA</span>
+                  </td> -->
+                
+                <td *ngIf="detailshide" class="number_align">{{ obj.LAST_OPERATED_YEAR }}</td>
+                <td *ngIf="detailshide" class="text_align_color">{{ obj.OPERATED_BY }}</td>
+                <td *ngIf="detailshide" class="number_align">{{ obj.LATITUDE }}</td>
+                <td *ngIf="detailshide" class="number_align">{{ obj.LANGITUDE }}</td>
+                <td *ngIf="detailshide" class="text_align_color">{{ obj.BUILDING_TYPE }}</td>
+                <td *ngIf="detailshide" class="text_align_color">{{ obj.BUILDING_CONDITION }}</td>
+                <td *ngIf="detailshide" class="text_align_color">{{ obj.SAFTEY_ARGNT }}</td>
+                <td *ngIf="detailshide" class="text_align_color">{{ obj.WATER_AVAILB }}</td>
+                <td *ngIf="detailshide" class="text_align_color">{{ obj.ELECTRICT_AVAILB }}</td>
+                <td *ngIf="detailshide" class="text_align_color">{{ obj.DRAINING_AVAILB }}</td>
+                <td *ngIf="detailshide" class="text_align_color">{{ obj.ADDRESS }}</td>
+               
+               
+                
+                <!-- <td class="number_align">{{ obj.BUILDING_IMAGE }}</td> -->
+
+                <td *ngIf="detailshide" class="number_align" style="width: 100px;">
+                    <button type="button" class="btn btn-link btn-sm" *ngIf="
+                                obj.BUILDING_IMAGE !== null &&
+                                obj.BUILDING_IMAGE !== '' &&
+                                obj.BUILDING_IMAGE !== 'NA' &&
+                                obj.BUILDING_IMAGE !== undefined
+                              " (click)="btnViewImage(obj.BUILDING_IMAGE)">
+                      VIEW
+                    </button>
+                    <span *ngIf="
+                                obj.BUILDING_IMAGE === null ||
+                                obj.BUILDING_IMAGE === '' ||
+                                obj.BUILDING_IMAGE === 'NA' ||
+                                obj.BUILDING_IMAGE === undefined
+                              ">NA</span>
+                  </td>
+                <td *ngIf="detailshide" class="number_align" style="width: 100px;">
+                    <button type="button" class="btn btn-link btn-sm" *ngIf="
+                                obj.FINAL_PDF !== null &&
+                                obj.FINAL_PDF !== '' &&
+                                obj.FINAL_PDF !== 'NA' &&
+                                obj.FINAL_PDF !== undefined
+                              " (click)="btnPdfView(obj.FINAL_PDF)">
+                      VIEW
+                    </button>
+                    <span *ngIf="
+                                obj.FINAL_PDF === null ||
+                                obj.FINAL_PDF === '' ||
+                                obj.FINAL_PDF === 'NA' ||
+                                obj.FINAL_PDF === undefined
+                              ">NA</span>
+                  </td>
+
+                  <td *ngIf="detailshide1" class="text_align_color" >{{ obj.REMARKS }}</td>
+
+                  <td  class="text_align_color" *ngIf="detailshide">{{ obj.SHIFTED_DISTRICT }}</td>
+                  <td  class="text_align_color" *ngIf="detailshide">{{ obj.SHIFTED_MANDAL}}</td>
+                  <td  class="text_align_color" *ngIf="detailshide">{{ obj.SHIFTED_BMCU }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

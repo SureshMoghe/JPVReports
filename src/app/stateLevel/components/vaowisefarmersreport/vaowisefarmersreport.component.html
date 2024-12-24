@@ -1,0 +1,70 @@
+<div class="row align-items-center">
+    <div class="col-md-2">
+        <div class="form-group">
+
+            <label for="PhaseType">District <span style="color: red">*</span></label>
+
+
+            <select id="phase_type" class="form-control" [(ngModel)]="DistrictId" (change)="onDistrictChange()">
+                <option selected disabled value="undefined">--Select--</option>
+                <option value="{{ obj.DIST_CODE }}" *ngFor="let obj of DistrictList">
+                    {{ obj.DISTRICT }}
+                </option>
+            </select>
+
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+
+            <label for="Mandal">Mandal <span style="color: red">*</span></label>
+
+
+            <select id="phase_type" class="form-control" [(ngModel)]="MandalId" (change)="onMandalChange()">
+                <option selected disabled value="undefined">--Select--</option>
+                <option value="{{ obj.MANDAL_CODE }}" *ngFor="let obj of MandalList">
+                    {{ obj.MANDAL_NAME }}
+                </option>
+            </select>
+
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+
+            <label for="Route">Route <span style="color: red">*</span></label>
+
+
+            <select id="phase_type" class="form-control" [(ngModel)]="RouteId" (change)="loadPhase()">
+                <option selected disabled value="undefined">--Select--</option>
+                <option value="{{ obj.ROUNTE_NOS }}" *ngFor="let obj of RouteList">
+                    {{ obj.ROUTE_NAME }}
+                </option>
+            </select>
+
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+
+            <label for="Phase">Phase <span style="color: red">*</span></label>
+
+
+            <select id="phase_type" class="form-control" [(ngModel)]="PhaseId">
+                <option selected disabled value="undefined">--Select--</option>
+                <option value="{{ obj.PHASE_ID }}" *ngFor="let obj of PhaseTypeList">
+                    {{ obj.PHASE_NAME }}
+                </option>
+            </select>
+
+        </div>
+    </div>
+    <div class="col-md-2">
+        <button type="button" class="btn btn-primary btn-sm mt-3" (click)="btnLoadReport()">
+            <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+            GO
+        </button>
+    </div>
+</div>
+<app-vaowisefarmersreport-details [(DistrictId)]="DistrictId" [(RouteId)]="RouteId" [(MandalId)]="MandalId"
+    [(PhaseId)]="PhaseId"></app-vaowisefarmersreport-details>

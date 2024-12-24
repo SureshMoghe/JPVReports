@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-md-9"></div>
+    <div class="col-md-3" align="right">
+        <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+            Back
+        </button>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">Total RBKs</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12" [hidden]="CommonList?.length < 1">
+                <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                    Download Excel
+                </button>
+                <div class="col-md-12 table-responsive" [hidden]="CommonList?.length < 1">
+                    <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                        <thead class="bg-success text-white">
+                            <tr>
+                                <th class="tableheader_color">S No</th>
+                                <th class="tableheader_color">District</th>
+                                <th class="tableheader_color">RBK</th>
+                                <th class="tableheader_color">Total Villages</th>
+                                <th class="tableheader_color">Total Women Farmers</th>
+                                <th class="tableheader_color">Total Milk Pouring Women Farmers</th>
+                            </tr>
+                            <tr>
+                                <th class="tableheader_color">(1)</th>
+                                <th class="tableheader_color">(2)</th>
+                                <th class="tableheader_color">(3)</th>
+                                <th class="tableheader_color">(4)</th>
+                                <th class="tableheader_color">(5)</th>
+                                <th class="tableheader_color">(6)</th>
+                            </tr>
+
+                        </thead>
+                        <tbody *ngIf="CommonList?.length > 0">
+                            <tr *ngFor="let obj of CommonList; let i=index">
+                                <td class="number_align">{{ i + 1 }}</td>
+                                <td class="text_align_color">{{ obj.DISTRICT }}</td>
+                                <td class="number_align">{{ obj.TOTAL_RBKS }}</td>
+                                <td class="number_align">{{ obj.TOTAL_VILLAGES }}</td>
+                                <td class="number_align">{{ obj.TOT_FARMERS }}</td>
+                                <td class="number_align">{{ obj.ELG_FARMERS}}</td>
+
+                            </tr>
+                        </tbody>
+                        <tbody *ngIf="CommonList?.length > 0">
+                            <td>--</td>
+                            <td>
+                                <b>TOTAL</b>
+                            </td>
+                            <td class="font-weight-bold number_align">{{ Total_Report_count.RBK | indianNumber }}</td>
+                            <td class="font-weight-bold number_align">{{ Total_Report_count.TOTAL_VILLAGES | indianNumber }}</td>
+                            <td class="font-weight-bold number_align">{{ Total_Report_count.TOTAL_WOMEN_FARMERS | indianNumber }}</td>
+                            <td class="font-weight-bold number_align">{{ Total_Report_count.TOTAL_MILK_POURING_WOMEN_FARMERS | indianNumber
+                                }}</td>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

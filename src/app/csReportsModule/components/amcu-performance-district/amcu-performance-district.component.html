@@ -1,0 +1,100 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">AMCU Milk Collection Performance Status</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <h5 class="pull-left">
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <!-- <button
+                  type="button"
+                  class="btn btn-danger btn-sm pull-right"
+                  (click)="btnPDF()"
+                >
+                  <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+                  Download PDF
+                </button> -->
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="amcuDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>Year</th>
+              <th>Month</th>
+              <th>Societies</th>
+              <th>Above 200 Liters</th>
+              <th>161-200 Liters</th>
+              <th>101-160 Liters</th>
+              <th>51-100 Liters</th>
+              <th>26-50 Liters</th>
+              <th>10-25 Liters</th>
+              <th>Below 10 Liters</th>
+              <th>Discontinued Societies</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="amcuDetails?.length > 0">
+            <tr *ngFor="let obj of amcuDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.TXN_YEAR }}</td>
+              <td>{{ obj.TXN_MONTH_NAME }}</td>
+              <td>{{ obj.SOCITIES | indianNumber }}</td>
+              <td>{{ obj.MILK_IN_LITERS_ABOVE_200 | indianNumber }}</td>
+              <td>{{ obj.MILK_IN_LITERS_160_200 | indianNumber }}</td>
+              <td>{{ obj.MILK_IN_LITERS_101_160 | indianNumber }}</td>
+              <td>{{ obj.MILK_IN_LITERS_51_100 | indianNumber }}</td>
+              <td>{{ obj.MILK_IN_LITERS_26_50 | indianNumber }}</td>
+              <td>{{ obj.MILK_IN_LITERS_10_25 | indianNumber }}</td>
+              <td>{{ obj.MILK_IN_LITERS_BELOW_10 | indianNumber }}</td>
+              <td>{{ obj.DISCONTINUED_SOCIETIES | indianNumber }}</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="amcuDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td>--</td>
+              <td>{{ reportTotals.SOCITIES | indianNumber }}</td>
+              <td>
+                {{ reportTotals.MILK_IN_LITERS_ABOVE_200 | indianNumber }}
+              </td>
+              <td>{{ reportTotals.MILK_IN_LITERS_160_200 | indianNumber }}</td>
+              <td>{{ reportTotals.MILK_IN_LITERS_101_160 | indianNumber }}</td>
+              <td>{{ reportTotals.MILK_IN_LITERS_51_100 | indianNumber }}</td>
+              <td>{{ reportTotals.MILK_IN_LITERS_26_50 | indianNumber }}</td>
+              <td>{{ reportTotals.MILK_IN_LITERS_10_25 | indianNumber }}</td>
+              <td>{{ reportTotals.MILK_IN_LITERS_BELOW_10 | indianNumber }}</td>
+              <td>{{ reportTotals.DISCONTINUED_SOCIETIES | indianNumber }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-12 table-responsive" *ngIf="amcuDetails?.length < 1">
+        <h5 class="text-danger text-center">No Data Available</h5>
+      </div>
+    </div>
+  </div>
+</div>

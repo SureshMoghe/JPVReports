@@ -1,0 +1,651 @@
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark blue-green-gradient">
+    <!-- Navbar brand -->
+    <a class="navbar-brand d-flex align-items-center" style="cursor: pointer">
+        <img class="brand-logo" src="https://apddcf.ap.gov.in/cdn/img/ap-logo.png" style="width: 50px" />
+        <h5 class="brand-text text-white mb-0 font-weight-normal ml-1">
+            Andhra Pradesh Dairy Development Cooperative Federation Limited (APDDCF)
+        </h5>
+    </a>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+        <!-- Links -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item text-right">
+                <a class="navbar-brand d-flex align-items-center" style="cursor: pointer">
+                    <img class="brand-logo" src="https://apddcf.ap.gov.in/cdn/img/CM.png" style="width: 50px" />
+                    <div class="text-center">
+                        <h6 class="brand-text text-white mb-0 font-weight-normal ml-1">
+                            Sri Nara Chandrababu Naidu
+                        </h6>
+                        <p style="font-size: 12px; margin-bottom: 0; color: #fff">
+                            Hon’ble Chief Minister, <br />
+                            Andhra Pradesh
+                        </p>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- Collapsible content -->
+</nav>
+<!--/.Navbar-->
+
+<!--Menu-Navbar -->
+<nav class="
+    menu-navbar
+    navbar navbar-expand-lg navbar-dark
+    primary-color-dark
+    py-md-0
+    text-white
+  ">
+    <a class="navbar-brand d-md-none d-block" style="cursor: pointer">MENU</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+        aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav mr-auto align-items-center">
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link" routerLink="dashboard" *ngIf="dashboarddisplay" style="font-size: small;"><i
+                        class="fas fa-tachometer-alt"></i> DASHBOARD</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link" routerLink="FarmerRegistrationStatus" *ngIf="dashboarddisplay" style="font-size: small;"><i
+                        class="fas fa-address-card"></i> FARMERS STATUS</a>
+                <!-- FARMER REGISTRATION STATUS -->
+            </li>
+            <li *ngIf="dashboarddisplay" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link" routerLink="PasswordReset" style="font-size: small;"><i class="fas fa-undo"></i> PASSWORD RESET</a>
+            </li>
+            <li class="nav-item dropdown" routerLinkActive="active" *ngIf="dashboarddisplay">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false" style="cursor: pointer">
+                    <i class="fab fa-wpforms"></i> <span style="font-size: x-small;">ST1 - </span> <span
+                        style="font-size: small;">MENU</span>
+
+                </a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink-333">
+                    <a class="dropdown-item" routerLink="villageLevelMeetingsStateLevelReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"> <span style="font-size: small;">ST1.1 - </span>
+                        Village Level Meetings Report</a>
+                    <a class="dropdown-item" routerLink="MpuacBankAccStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST1.2 - </span>MDAC Bank Account
+                        Report</a>
+                    <a class="dropdown-item" routerLink="PromotersStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST1.3 - </span>Promoters Report</a>
+                    <a class="dropdown-item" routerLink="SecAsstSecStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST1.4 - </span>Secretary/Assistant
+                        Secretary Report</a>
+                    <a class="dropdown-item" routerLink="CalibrationStateLevelReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST1.5 - </span>Calibration Report</a>
+                    <a class="dropdown-item" routerLink="BuildingInspectionStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST1.6 - </span>Building Inspection
+                        Report</a>
+                    <a class="dropdown-item" routerLink="AmcuHandingOverStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST1.7 - </span>AMCU Handing Over
+                        Report</a>
+                    <a class="dropdown-item" routerLink="LoginReportStateLevel" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST1.8 - </span>Login Report</a>
+
+                    <!-- <a
+            class="dropdown-item"
+            routerLink="RouteMappingReport"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Route Mapping Report</a
+          > -->
+                    <a class="dropdown-item" routerLink="BuildingAbstractStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST1.9 - </span>Building Inspection
+                        Abstract Report</a>
+                    <a class="dropdown-item" routerLink="FarmerBankBAUStatusStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST1.10 - </span>Invalid Bank Account
+                        Report</a>
+                    <a class="dropdown-item" routerLink="PaymentStatusStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST1.11 - </span>Payment Status
+                        Report</a>
+                    <!-- <a class="dropdown-item" routerLink="GroundingStateLevelReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST1.12 - </span>Cheyutha Grounding
+                        Report</a> -->
+                    <a class="dropdown-item" routerLink="LoanSanctionAndGroundingReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST1.13 - </span>Loan Sanction And
+                        Grounding Report</a>
+                    <a class="dropdown-item" routerLink="AmcuInspectionStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST1.14 - </span>AMCUs Inspection
+                        Report</a>
+                    <a class="dropdown-item" routerLink="AmcuNetworkStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST1.15 - </span>AMCUs Network Inspection
+                        Report</a>
+                    <a class="dropdown-item" routerLink="MdacSocietyWiseReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST1.16 - </span>MDAC Society Wise
+                        Report</a>
+                    <a class="dropdown-item" routerLink="BmcuConstructionStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"> <span style="font-size: small;"> ST1.17 - </span>BMCU Construction
+                        Report</a>
+                    <a class="dropdown-item" routerLink="MomStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;"> ST1.18 - </span>Minutes Of Meeting
+                        Report</a>
+                    <a class="dropdown-item" routerLink="PacsLandAllotmentStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST1.19 - </span>MPFC Land Allotment
+                        Report</a>
+                    <a class="dropdown-item" routerLink="FarmerMilkPouringCertificateDashboard" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST1.20 - </span>Farmer Milk Pouring
+                        Certificate Dashboard</a>
+                    <a class="dropdown-item" routerLink="VolunteerCheck" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST1.21 - </span>Volunteer Check</a>
+                    <a class="dropdown-item" routerLink="LandAllotmentStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST1.22 - </span>BMCU Land Allotment
+                        Report</a>
+                    <a class="dropdown-item" routerLink="amcuLandAllotmentStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;"> ST1.23 - </span>AMCU Land Allotment
+                        Report</a>
+
+                    <a class="dropdown-item" routerLink="GSWSPERSONUPDATE" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;"> ST1.24 - </span>GSWS Person Details
+                        Update</a>
+
+
+                    <a class="dropdown-item" routerLink="Masterdetails" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;"> ST1.25 - </span>Master Details</a>
+
+                    <a *ngIf="admin" class="dropdown-item" routerLink="MeetingPhotosUpload" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;"> ST1.26 - </span>Dashboard Photos
+                        Upload</a>
+
+                    <a *ngIf="admin" class="dropdown-item" routerLink="MeetingPhotosList" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;"> ST1.27 - </span>Dashboard Uploaded
+                        Photos </a>
+
+
+                    <a class="dropdown-item" routerLink="SessionWiseMilkPouringStateLevelReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;"> ST1.28 - </span>Session Wise Milk
+                        Pouring Report</a>
+
+                    <!-- <a class="dropdown-item" routerLink="AadharMask" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;"> ST1.29 - </span>Aadhar Mask</a> -->
+
+
+                    <a class="dropdown-item" routerLink="BmcuEquipmentsStatusReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;"> ST1.29 - </span>BMCU Inspection Report</a>
+
+                    <a class="dropdown-item" routerLink="bmcuEquipmentsPAR" routerLinkActive="active" *ngIf="bmcuadminlogin"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;"> ST1.30 - </span>BMCU Inspection Approvals</a>
+
+
+
+                    <!-- <a
+      class="dropdown-item"
+      routerLink="Notifications"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      ><span style="font-size: small;"> ST1.26 - </span>Notifications</a
+    > -->
+
+
+                </div>
+            </li>
+
+            <li class="nav-item dropdown" routerLinkActive="active" *ngIf="dashboarddisplay">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false" style="cursor: pointer"><i class="fab fa-wpforms"></i> <span style="font-size: x-small;">ST2 -
+                    </span><span style="font-size: small;">FARMER REPORTS</span>
+                </a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink-333">
+                    <a class="dropdown-item" routerLink="VvFarmerDataStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"> <span style="font-size: small;">ST2.1 - </span> Volunteer Farmer
+                        Registration Report</a>
+                    <a class="dropdown-item" routerLink="FarmerMpussRegStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.2 - </span>Farmer Registration
+                        Report</a>
+                    <a class="dropdown-item" routerLink="FamerSmsStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.3 - </span>Farmer SMS Report</a>
+                    <a class="dropdown-item" routerLink="FarmerRegistrationDetailReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.4 - </span>Farmer Registration
+                        Detail Report</a>
+                    <a class="dropdown-item" routerLink="VvHHAnimalsStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"> <span style="font-size: small;">ST2.5 - </span>Volunteer Farmer
+                        Household Report</a>
+                    <a class="dropdown-item" routerLink="FarmerabstractTxnStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.6 - </span>Farmer Abstract
+                        Transaction Report</a>
+                    <a class="dropdown-item" routerLink="FarmerAbstractReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.7 - </span>Farmer Abstract
+                        Report</a>
+                    <a class="dropdown-item" routerLink="SocietyAbstractReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.8 - </span>Society Abstract
+                        Report</a>
+                    <a class="dropdown-item" routerLink="FarmerApprovalStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.9 - </span>Farmer Approval
+                        Report</a>
+                    <a class="dropdown-item" routerLink="FarmerRouteWiseMilkPouringReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.10 - </span>Farmer Route Wise Milk
+                        Pouring Report</a>
+                    <a class="dropdown-item" routerLink="FarmerMilkCollectionReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.11 - </span>Farmer Details Hits By
+                        Amul Teams Report</a>
+                    <a class="dropdown-item" routerLink="FarmerMilkPouringStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.12 - </span>Volunteer Wise Farmer
+                        Milk Pouring report</a>
+                    <a class="dropdown-item" routerLink="FarmerSchemeStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.13 - </span>Farmer Scheme Wise
+                        Report</a>
+                    <a class="dropdown-item" routerLink="VafStateLevelReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.14 - </span>Volunteer As Farmer
+                        Report</a>
+                    <a class="dropdown-item" routerLink="cmpStateLevelReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.15 - </span>Comparative Farmer Mik
+                        Pouring Report</a>
+                    <a class="dropdown-item" routerLink="MdacVSsapStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.16 - </span>MDAC vs SAP Milk
+                        Collection Report</a>
+                    <a *ngIf="splLoginReports === '1'" class="dropdown-item" routerLink="volunteerHhExcelDownload" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.17 - </span>Volunteer HH Excel
+                        Download Report</a>
+                    <a *ngIf="splLoginReports === '1'" class="dropdown-item" routerLink="farmerRecordPushStatusCheck"
+                        routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.18 -
+                        </span>Farmer Record Push Status Check</a>
+
+
+                    <a *ngIf="splLoginReports === '1'" class="dropdown-item" routerLink="Datapushreport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.19 - </span>Data Push Report</a>
+
+                    <a class="dropdown-item" routerLink="feedindentdashboard" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.20 - </span>Farmer Feed Indent
+                        Dashboard</a>
+
+
+
+
+                    <a class="dropdown-item" routerLink="farmermonitoringalldiscount" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.21 - </span>All Districts Counts</a>
+
+                    <a class="dropdown-item" routerLink="farmermonitoringalldistrict" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.22 - </span>All Districts By
+                        DistrictID</a>
+                    <!-- <a class="dropdown-item" routerLink="CheyuthaStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.23 - </span>Cheyutha All Districts
+                        Report</a> -->
+                    <a style="display:none;" class="dropdown-item" routerLink="farmermonitoringallmandals" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST2.24 - </span>All Mandals By
+                        DistrictID</a>
+
+
+
+                    <a class="dropdown-item" routerLink="SocietyMonitoringReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"> <span style="font-size: small;">ST2.25 - </span>Society Monitoring
+                        Report</a>
+
+                    <a class="dropdown-item" routerLink="amcuportaldata" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"> <span style="font-size: small;">ST2.26 - </span>Field AMCU Portal Data
+                    </a>
+
+
+                    <a class="dropdown-item" routerLink="MilkComparativeTxnReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"> <span style="font-size: small;">ST2.27 - </span>Comparative Report on
+                        Milk Transaction Data </a>
+                    <!-- // vaowisefarmersreport -->
+                    <a class="dropdown-item" routerLink="vaowisefarmersreport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }">
+                        <span style="font-size: small;">ST2.28 - </span>VO Wise Farmers Report</a>
+
+
+                    <!-- <a  
+          class="dropdown-item"
+          routerLink="amcuportaldataReport"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          > <span style="font-size: small;">ST2.27 - </span>Field AMCU Portal Data Report </a> -->
+
+                    <a *ngIf="admin" class="dropdown-item" routerLink="adminsmscodes" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"> <span style="font-size: small;">ST2.29 - </span>Admin SMS Codes</a>
+
+
+                    <a *ngIf="admin" class="dropdown-item" routerLink="adminUniontransationdetails" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"> <span style="font-size: small;">ST2.30 - </span>Union Wise Data Sync
+                        Status</a>
+                    <a *ngIf="admin" class="dropdown-item" routerLink="PromptFarmerDataPushStatus" routerLinkActive="active"
+                        style="display: none;" [routerLinkActiveOptions]="{ exact: true }">
+                        <span style="font-size: small;">ST2.31 - </span>Prompt Farmer Data Push Status</a>
+
+
+
+
+
+
+
+
+                </div>
+            </li>
+
+            <li class="nav-item dropdown" routerLinkActive="active" *ngIf="dashboarddisplay2">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false" style="cursor: pointer"><i class="fab fa-wpforms"></i> Farmer Reports
+                </a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink-333">
+
+                    <a class="dropdown-item" routerLink="FarmerMpussRegStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }">Farmer Registration Report</a>
+
+                    <a class="dropdown-item" routerLink="FarmerRegistrationDetailReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }">Farmer Registration Detail Report</a>
+
+
+
+                    <a class="dropdown-item" routerLink="FarmerSchemeStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }">Farmer Scheme Wise Report</a>
+                    <!-- <a class="dropdown-item" routerLink="CheyuthaStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }" All Districts Report</a> -->
+
+
+
+
+
+
+
+
+                    <a *ngIf="admin" class="dropdown-item" routerLink="adminsmscodes" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }">Admin SMS Codes</a>
+
+                </div>
+            </li>
+
+
+            <li class="nav-item dropdown" routerLinkActive="active">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false" style="cursor: pointer"><i class="fab fa-wpforms"></i><span style="font-size: x-small;">ST3 -
+                    </span> <span style="font-size: small;">MDSS</span>
+                </a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink-333">
+
+
+                    <a class="dropdown-item" routerLink="mdssregistrationrept" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST3.1 - </span>MDSS Reg Report</a>
+
+
+
+                    <a class="dropdown-item" routerLink="mdssfollowupabstractreport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST3.2 - </span>MDSS Followup Abstract
+                        Report</a>
+
+                    <a *ngIf="admin" class="dropdown-item" routerLink="MDSSRBKDetails" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST3.3 - </span> Approved RBKs Details
+                    </a>
+                    <a *ngIf="isState" class="dropdown-item" routerLink="DashBoardsForMdssRegistartion" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST3.4 - </span>Dashboard For MDSS
+                        Registration
+                    </a>
+                    <!-- <a
+        class="dropdown-item"
+        routerLink="MdssPromotersMilkPouringStatus"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        ><span style="font-size: small;">ST3.3 - </span>MDSS Promoters Milk Pouring Status</a
+        > -->
+
+                </div>
+            </li>
+
+
+
+            <li class="nav-item dropdown" routerLinkActive="active">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false" style="cursor: pointer"><i class="fab fa-wpforms"></i><span style="font-size: x-small;">ST4 -
+                    </span><span style="font-size: small;">BANK REPORTS</span>
+                </a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink-333">
+                    <a class="dropdown-item" routerLink="CheyuthaBankStateLevelReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST4.1 - </span>Govt Supported Scheme
+                        Bank Status
+                        Report</a>
+                    <a class="dropdown-item" routerLink="LdmbankWiseStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST4.2 - </span> LDM Bank
+                        Report</a>
+                    <a class="dropdown-item" routerLink="FarmerNatureOfUnitStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST4.3 - </span>Farmer Nature Of Unit
+                        Report</a>
+                    <a class="dropdown-item" routerLink="BankerLoanSanctionAndGroundingReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST4.4 - </span>Bank Loan Sanction And
+                        Grounding Report</a>
+                </div>
+            </li>
+
+
+            <li *ngIf="AppovalMenu" class="nav-item dropdown" routerLinkActive="active">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false" style="cursor: pointer"><i class="fab fa-wpforms"></i><span style="font-size: x-small;">ST5 -
+                    </span><span style="font-size: small;">APPROVALS</span>
+                </a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink-333">
+
+
+                    <a class="dropdown-item" routerLink="Bankdetailsallupdate" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST5.1 - </span>Farmer Bank Details
+                        Update</a>
+                    <a class="dropdown-item" routerLink="SocietyChangeDashboardForAllDistricts" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST5.2 - </span>Farmer Society Change
+                        Request Approvals</a>
+                    <a class="dropdown-item" routerLink="bmcusEquipmentStatus" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST5.3 - </span>BMCU Physical Verification
+                         </a>
+                    <a class="dropdown-item" routerLink="bmcusEquipmentFileUpload" routerLinkActive="active"  *ngIf="bmcusiddulugaru"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST5.4 - </span>BMCU Physical Verification
+                        File Upload</a>
+
+
+                        <a class="dropdown-item" routerLink="MdacAccountDashboard" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST5.5 - </span>
+                        MDAC ACCOUNT DASHBOARD
+                    </a>
+                    <a class="dropdown-item" routerLink="PromotersDashboard" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">ST5.6 - </span>
+                        PROMOTERS DASHBOARD
+                        </a>
+
+                </div>
+            </li>
+
+            <!-- <li class="nav-item dropdown" routerLinkActive="active">
+        <a
+          class="nav-link dropdown-toggle"
+          id="navbarDropdownMenuLink-333"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          style="cursor: pointer"
+          ><i class="fab fa-wpforms"></i> FarmerMonitoringReport
+        </a
+        >
+        <div
+          class="dropdown-menu dropdown-primary"
+          aria-labelledby="navbarDropdownMenuLink-333"
+        > -->
+            <!-- <a
+        class="dropdown-item"
+        routerLink="farmermonitoringalldiscount"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >All Districts Counts</a
+        >
+
+        <a
+        class="dropdown-item"
+        routerLink="farmermonitoringalldistrict"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >All Districts By DistrictID</a
+        >
+
+        <a
+        class="dropdown-item"
+        routerLink="farmermonitoringallmandals"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >All Mandals By DistrictID</a
+        > -->
+
+            <!-- <a
+        class="dropdown-item"
+        routerLink="farmermilkpouringstatus"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Milk pouring farmer status</a>
+
+        <a
+        class="dropdown-item"
+        routerLink="profitmakingsocitiesalldiscount"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Profit Making Socities alldistrict count</a>
+
+        <a
+        class="dropdown-item"
+        routerLink="profitmakingsocitiesalldistrict"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Profit Making Socities alldistrict</a>
+
+        <a
+        class="dropdown-item"
+        routerLink="profitmakingsocitiesallmandal"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Profit Making Socities allmandals</a> -->
+
+
+            <!-- <a *ngIf="admin"
+        class="dropdown-item"
+        routerLink="adminsmscodes"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Admin SMS Codes</a> -->
+
+
+
+            <!-- </div>
+
+        
+
+        
+         
+        
+   
+      </li> -->
+
+
+
+
+
+
+
+            <li class="nav-item dropdown" routerLinkActive="active" *ngIf="dashboarddisplay" style="display:none;">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false" style="cursor: pointer"><i class="fab fa-wpforms"></i><span style="font-size: x-small;">ST5 -
+                    </span> <span style="font-size: small;">GUIDELINES</span>
+                </a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink-333">
+                    <a *ngFor="let guideLine of guideLines;let i = index" class="dropdown-item" style="cursor: pointer"
+                        (click)="btnDocumentDownload(guideLine.URL)">
+                        <span style="font-size: small;">ST5.{{ i + 1 }} - </span> {{ guideLine.NAME }}
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link" routerLink="../prompt-module/PromptwelcomepageComponent" *ngIf="Prompt"><i class="fas fa-undo"></i>
+                    Prompt</a>
+            </li>
+
+            <!-- 1407 -->
+            <li class="nav-item dropdown" routerLinkActive="active" *ngIf="Departmentadmindiv">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false" style="cursor: pointer"><i class="fab fa-wpforms"></i> Others
+                </a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink-333">
+
+                    <a class="dropdown-item" routerLink="Milkdataveiwup" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }">Milk Secnario Update </a>
+                    <a class="dropdown-item" routerLink="FamerMilkDetailsRpt" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }">Milk Secnario Report </a>
+                    <a class="dropdown-item" routerLink="JobapplicationDetails" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;"></span>Job Application Details</a>
+                    <a class="dropdown-item" routerLink="ToDatCumDashBoard" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;"></span> CCC DashBoard</a>
+
+
+
+                </div>
+
+
+            </li>
+            <li class="nav-item dropdown" routerLinkActive="active" *ngIf="State_Departmentadmindiv">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false" style="cursor: pointer"><i class="fab fa-wpforms"></i> Others
+                </a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink-333">
+                    <a class="dropdown-item" routerLink="Milkdatadetails" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }">Milk Details Add </a>
+                    <a class="dropdown-item" routerLink="FamerMilkDetailsRpt" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }">Milk Secnario Report </a>
+
+                </div>
+
+
+            </li>
+
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item dropdown" routerLinkActive="active">
+                <a class="nav-link dropdown-toggle d-flex align-items-center" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
+                    <h6 class="mb-0 mr-1">
+                        Welcome <b>{{ userName }}</b>
+                    </h6>
+                    <i class="fas fa-user"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink-333">
+
+                    <a class="dropdown-item" style="cursor: pointer" routerLink="PasswordUpdate" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }" (click)="btnForgetPassword()">
+                        <i class="fas fa-key"></i> Update Password
+                    </a>
+
+                    <!-- <a class="dropdown-item" href="#" routerLink="">Profile</a> -->
+                    <a class="dropdown-item" style="cursor: pointer" (click)="btnLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    <hr class="my-1" />
+                    <a class="dropdown-item text-center" style="cursor: pointer">
+                        <span>Last logged in: <br />
+                            <b class="text-danger">{{ lastLoginTime }}</b></span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!--/.Menu-Navbar -->
+
+<!--Main Content -->
+<div id="page-container">
+    <div id="content-wrap">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="mx-auto" [ngClass]="dashboard ? 'col-md-12' : 'col-md-11'">
+                    <router-outlet (activate)="onActivate($event)"></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Footer Content -->
+    <footer class="page-footer font-small blue">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center pt-3">
+            <a style="cursor: pointer; color: #fff">
+                <img src="https://apddcf.ap.gov.in/cdn/img/apddcf-circle.png" style="width: 30px" />
+                Andhra Pradesh Dairy Development Cooperative Federation Limited (APDDCF)
+            </a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!--/.Footer-Content -->
+</div>
+<!--/.Main-Content -->

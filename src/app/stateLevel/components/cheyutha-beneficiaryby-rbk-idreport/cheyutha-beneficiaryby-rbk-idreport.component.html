@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-md-12" align="right">
+      <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+        Back
+      </button>
+    </div>
+  </div>
+  
+  <app-cheyutha-beneficiary-report
+    [(districtId)]="districtId"
+    [(districtName)]="districtName"
+    [(rbkId)]="rbkId"
+    [(rbkName)]="rbkName"
+    [(mandalId)]="mandalId"
+    [(mandalName)]="mandalName"
+   
+  ></app-cheyutha-beneficiary-report>
+  
+  <!-- (onPendingChange)="onPendingChange($event)"
+  (onApprovedChange)="onApprovedChange($event)"
+  (onRejectedChange)="onRejectedChange($event)" -->

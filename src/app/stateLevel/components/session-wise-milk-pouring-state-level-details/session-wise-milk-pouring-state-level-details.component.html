@@ -1,0 +1,202 @@
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Session Wise Milk Pouring State Level Report</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12"> 
+          <button
+            type="button"
+            class="btn btn-success btn-sm pull-right"
+            (click)="btnExcel()"
+          >
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            Download Excel
+          </button>
+          <!-- <button
+            type="button"
+            class="btn btn-danger btn-sm pull-right"
+            (click)="btnPDF()"
+          >
+            <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+            Download PDF
+          </button> -->
+        </div>
+        <div
+          class="col-md-12 table-responsive"
+          [hidden]="stateLevelDetails?.length < 1"
+        >
+          <table
+            class="table table-striped ah-table text-center"
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger"
+          >
+            <thead class="bg-success text-white">
+              <tr>
+                <th rowspan="2" class="tableheader_color">S No</th>
+                <th rowspan="2" class="tableheader_color">District</th>
+                <th rowspan="2" class="tableheader_color">Routes</th>
+                <!-- <th rowspan="2" class="tableheader_color">Mentors</th> -->
+                <th rowspan="2" class="tableheader_color">Mandals</th>
+                <th rowspan="2" class="tableheader_color">RBKs</th>
+                <th rowspan="2" class="tableheader_color">Societies</th>
+                <th rowspan="2" class="tableheader_color">No of Farmers Registered</th> 
+                <th colspan="3" class="tableheader_color">Milk Pouring Farmers</th>
+                <th rowspan="2" class="tableheader_color">Milk Not Pouring Farmers</th>
+              </tr>
+              <tr>
+                <th class="tableheader_color">Morning shift</th>
+                <th class="tableheader_color">Evening Shift</th>
+                <th class="tableheader_color">Total</th>
+              </tr>
+              <tr>
+                <th class="tableheader_color">1</th>
+                <th class="tableheader_color">2</th>
+                <th class="tableheader_color">3</th>
+                <th class="tableheader_color">4</th>
+                <th class="tableheader_color">5</th>
+                <th class="tableheader_color">6</th>
+                <th class="tableheader_color">7</th>
+                <th class="tableheader_color">8</th>
+                <th class="tableheader_color">9</th>
+                <th class="tableheader_color">10</th>
+                <th class="tableheader_color">11</th> 
+              </tr>
+            </thead>
+            <tbody *ngIf="stateLevelDetails?.length > 0">
+              <tr *ngFor="let obj of stateLevelDetails; let i = index">
+                <td class="number_align">{{ i + 1 }}</td>
+                <td class="text_align_color" style="white-space: nowrap;">
+                  <a
+                    style="cursor: pointer; text-decoration: underline"
+                    class="text-primary"
+                    (click)="btnGetDetails(obj)"
+                    ><b>{{ obj.DISTRICT_NAME| uppercase }}</b></a
+                  >
+                </td>
+                <td class="number_align">{{ obj.NO_OF_ROUTES | indianNumber }}</td>
+                <!-- <td class="number_align">{{ obj.TOTAL_MENTOR | indianNumber }}</td> -->
+                <td class="number_align">{{ obj.NO_OF_MANDALS | indianNumber }}</td>
+                <td class="number_align">{{ obj.NO_OF_RBKS | indianNumber }}</td>
+                <td class="number_align">{{ obj.NO_OF_SOCIETIES | indianNumber }}</td>
+                <td class="number_align">{{ obj.NO_OF_FARMERS_REGISTERED | indianNumber }}</td>
+                <td class="number_align">{{ obj.MORNING_MILK_POURERS | indianNumber }}</td>
+                <td class="number_align">{{ obj.EVENING_MILK_POURERS | indianNumber }}</td>
+                <td class="number_align">{{ obj.TOTAL_MILK_POURERS | indianNumber }}</td>
+                <td class="number_align">{{ obj.MILK_NOT_POURERS | indianNumber }}</td>
+                <!-- <td class="number_align">
+                  <a
+                    *ngIf="obj.TOTAL_PROMOTERS_UPDATED_RBK !== '0'"
+                    style="cursor: pointer; text-decoration: underline"
+                    class="text-primary"
+                    (click)="btnAddedRbkDetails(obj)"
+                    ><b>{{
+                      obj.TOTAL_PROMOTERS_UPDATED_RBK | indianNumber
+                    }}</b></a
+                  >
+                  <span *ngIf="obj.TOTAL_PROMOTERS_UPDATED_RBK === '0'">{{
+                    obj.TOTAL_PROMOTERS_UPDATED_RBK
+                  }}</span>
+                </td>
+                <td class="number_align">
+                  <a
+                    *ngIf="obj.TOTAL_PROM_NOT_UPDATED_RBK !== '0'"
+                    style="cursor: pointer; text-decoration: underline"
+                    class="text-primary"
+                    (click)="btnNotAddedRbkDetails(obj)"
+                    ><b>{{ obj.TOTAL_PROM_NOT_UPDATED_RBK | indianNumber }}</b></a
+                  >
+                  <span *ngIf="obj.TOTAL_PROM_NOT_UPDATED_RBK === '0'">{{
+                    obj.TOTAL_PROM_NOT_UPDATED_RBK
+                  }}</span>
+                </td>
+                <td class="number_align">
+                  <a
+                    *ngIf="obj.NUM_PROMETERS !== '0'"
+                    style="cursor: pointer; text-decoration: underline"
+                    class="text-primary"
+                    (click)="btnTotalPromotersDetails(obj)"
+                    ><b>{{ obj.NUM_PROMETERS | indianNumber }}</b></a
+                  >
+                  <span *ngIf="obj.NUM_PROMETERS === '0'">{{
+                    obj.NUM_PROMETERS
+                  }}</span>
+                </td> 
+                
+                <td class="number_align">
+                  <a
+                    *ngIf="obj.MILK_POURING_PROMO_MS !== '0'"
+                    style="cursor: pointer; text-decoration: underline"
+                    class="text-primary"
+                    (click)="btnMilkPouringPromotersDetailsMs(obj)"
+                    ><b>{{ obj.MILK_POURING_PROMO_MS | indianNumber }}</b></a
+                  >
+                  <span *ngIf="obj.MILK_POURING_PROMO_MS === '0'">{{
+                    obj.MILK_POURING_PROMO_MS
+                  }}</span>
+                </td>
+                <td class="number_align">
+                  <a
+                    *ngIf="obj.MILK_POURING_PROMO_ES !== '0'"
+                    style="cursor: pointer; text-decoration: underline"
+                    class="text-primary"
+                    (click)="btnMilkPouringPromotersDetailsEs(obj)"
+                    ><b>{{ obj.MILK_POURING_PROMO_ES | indianNumber }}</b></a
+                  >
+                  <span *ngIf="obj.MILK_POURING_PROMO_ES === '0'">{{
+                    obj.MILK_POURING_PROMO_ES
+                  }}</span>
+                </td> 
+  
+                <td class="number_align">
+                  <a
+                    *ngIf="obj.MILK_POURING_PROMO !== '0'"
+                    style="cursor: pointer; text-decoration: underline"
+                    class="text-primary"
+                    (click)="btnMilkPouringPromotersDetails(obj)"
+                    ><b>{{ obj.MILK_POURING_PROMO | indianNumber }}</b></a
+                  >
+                  <span *ngIf="obj.MILK_POURING_PROMO === '0'">{{
+                    obj.MILK_POURING_PROMO
+                  }}</span>
+                </td>
+                <td class="number_align">
+                  <a
+                    *ngIf="obj.MILK_NOT_POURING_PROMO !== '0'"
+                    style="cursor: pointer; text-decoration: underline"
+                    class="text-primary"
+                    (click)="btnMilkNotPouringPromotersDetails(obj)"
+                    ><b>{{ obj.MILK_NOT_POURING_PROMO | indianNumber }}</b></a
+                  >
+                  <span *ngIf="obj.MILK_NOT_POURING_PROMO === '0'">{{
+                    obj.MILK_NOT_POURING_PROMO
+                  }}</span>
+                </td> -->
+              </tr>  
+            </tbody>
+            <tbody *ngIf="stateLevelDetails?.length > 0">
+              <tr>
+                <td class="number_align" style="border-color: cadetblue !important">--</td>
+                <td class="text_align_color">
+                  <b>TOTAL</b>
+                </td>
+                <td class="font-weight-bold number_align">{{ reportTotals.Routes | indianNumber }}</td> 
+                <td class="font-weight-bold number_align">{{ reportTotals.Mandals | indianNumber }}</td>
+                <td class="font-weight-bold number_align">{{ reportTotals.RBKS | indianNumber }}</td>
+                <td class="font-weight-bold number_align">{{ reportTotals.Societies | indianNumber }}</td>
+                <td class="font-weight-bold number_align">{{ reportTotals.No_of_Farmers_Registered | indianNumber }}</td>
+                <td class="font-weight-bold number_align">{{ reportTotals.Morning_shift | indianNumber }}</td>
+                <td class="font-weight-bold number_align">{{ reportTotals.Evening_Shift | indianNumber }}</td>
+                <td class="font-weight-bold number_align">{{ reportTotals.Total | indianNumber }}</td>
+                <td class="font-weight-bold number_align">{{ reportTotals.Milk_Not_Pouring | indianNumber }}</td>
+                <!-- <td class="font-weight-bold number_align">{{ reportTotals.MILK_POURING_PROMO | indianNumber }}</td>
+                <td class="font-weight-bold number_align">{{ reportTotals.MILK_NOT_POURING_PROMO | indianNumber }}</td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

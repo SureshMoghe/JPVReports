@@ -1,0 +1,197 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Farmer Record Push Status Check</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-5 offset-3">
+        <div class="form-group">
+          <div class="ah-radio-buttons" (change)="onSelectionChange()">
+            <div class="custom-control custom-radio custom-control-inline">
+              <input
+                class="custom-control-input"
+                type="radio"
+                name="inputRadio"
+                id="inputRadio1"
+                value="1"
+                [(ngModel)]="inputRadio"
+              />
+              <label class="custom-control-label" for="inputRadio1">
+                Aadhaar No
+              </label>
+            </div>
+
+            <div class="custom-control custom-radio custom-control-inline">
+              <input
+                class="custom-control-input"
+                type="radio"
+                name="inputRadio"
+                id="inputRadio2"
+                value="2"
+                [(ngModel)]="inputRadio"
+              />
+              <label class="custom-control-label" for="inputRadio2">
+                Farmer Code
+              </label>
+            </div>
+          </div>
+          <input
+            id="uidNum"
+            type="text"
+            class="form-control"
+            [(ngModel)]="uidNum"
+            placeholder="{{ inputPlaceHolder }}"
+            maxlength="15"
+            autocomplete="off"
+            (keypress)="numberOnly($event)"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-3 pt-4" align="left">
+        <button
+          type="button"
+          class="btn btn-success btn-sm"
+          (click)="btnUidDetails()"
+        >
+          Check Status
+        </button>
+      </div>
+    </div>
+
+    <div
+      *ngIf="
+        personDetails.FARMER_CODE !== null &&
+        personDetails.FARMER_CODE !== '' &&
+        personDetails.FARMER_CODE !== undefined
+      "
+    >
+      <h5 class="sub-heading pb-0">
+        <label>Farmer Push Details</label>
+      </h5>
+
+      <div class="row px-4">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>
+              NAME :
+              <span class="text-success">
+                <b>{{ personDetails.FARMER_NAME }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>
+              CODE :
+              <span class="text-success">
+                <b>{{ personDetails.FARMER_CODE }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label
+              >MOBILE NUMBER :
+              <span class="text-success">
+                <b>{{ personDetails.MOBILE_NUMBER }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label
+              >DISTRICT :
+              <span class="text-success">
+                <b>{{ personDetails.DISTRICT }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label
+              >MANDAL NAME :
+              <span class="text-success">
+                <b>{{ personDetails.MANDAL_NAME }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label
+              >RBK NAME :
+              <span class="text-success">
+                <b>{{ personDetails.RBK_NAME1 }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label
+              >VILLAGE NAME :
+              <span class="text-success">
+                <b>{{ personDetails.VILLAGE_NAME }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label
+              >SOCIETY CODE :
+              <span class="text-success">
+                <b>{{ personDetails.VDCS_CODE }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label
+              >SOCIETY NAME :
+              <span class="text-success">
+                <b>{{ personDetails.VILLAGE_NAME }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>
+              IS RECORD PUSHED :
+              <span class="text-success">
+                <b>{{ personDetails.IS_RECORD_PUSHED }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3" *ngIf="personDetails.IS_RECORD_PUSHED === 'YES'">
+          <div class="form-group">
+            <label
+              >RECORD PUSHED ON :
+              <span class="text-success">
+                <b>{{ personDetails.RECORD_PUSHED_ON }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3" *ngIf="personDetails.IS_RECORD_PUSHED === 'NO'">
+          <div class="form-group">
+            <label
+              >STATUS :
+              <span class="text-success">
+                <b>{{ personDetails.STATUS }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

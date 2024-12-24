@@ -1,0 +1,166 @@
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">Farmer Approval State Level Report</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="fromDate">From Date : <span style="color: red">*</span></label>
+                    <app-date-picker [PlaceHolder]="'Please Select From Date'" [(selectedDate)]="fromDate"></app-date-picker>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="toDate">To Date : <span style="color: red">*</span></label>
+                    <app-date-picker [PlaceHolder]="'Please Select To Date'" [(selectedDate)]="toDate"></app-date-picker>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+
+                    <label for="PhaseType">Phase Type <span style="color: red">*</span></label>
+
+
+                    <select id="PhaseType" class="form-control" [(ngModel)]="PhaseType" (change)="onReportPhaseTypeChange()">
+                        <option value="{{ obj.PHASEID }}" *ngFor="let obj of PhaseTypeList">
+                            {{ obj.PHASENAME }}
+                        </option>
+                    </select>
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+
+                    <button style="margin-top: 30px;" type="button" class="btn btn-info" (click)="btnfind()">
+
+                        FIND
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-7"></div>
+            <div class="col-md-5">
+                <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                    Download Excel
+                </button>
+            </div>
+        </div>
+        <!-- <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button> -->
+
+        <div class="col-md-12 table-responsive" [hidden]="stateLevelDetails?.length < 1">
+            <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                <thead class="bg-success text-white">
+                    <tr>
+                        <th>S.No.</th>
+                        <th>District</th>
+                        <th>Mandals</th>
+                        <th>RBKS</th>
+                        <th>Villages</th>
+                        <th>Volunteers</th>
+                        <th>Volunteers Logged In</th>
+                        <th>Households</th>
+                        <th>Volunteer Surveyed Total Households</th>
+                        <th>Approved</th>
+                        <th>Rejected</th>
+                        <th>Pending Farmers With Animals</th>
+                        <th>Farmers Surveyed Without Animals</th>
+                        <th>VA/DA/WEA/ Approved</th>
+                        <th>Mentor Approved</th>
+                        <th>RIC Approved</th>
+                        <th>DA/Mentor/RIC Registered Farmer Withoutmilch Animals</th>
+                        <th>Milch Animal Data Collection Pending At Volunteer</th>
+                    </tr>
+
+                    <tr>
+                        <th>(1)</th>
+                        <th>(2)</th>
+                        <th>(3)</th>
+                        <th>(4)</th>
+                        <th>(5)</th>
+                        <th>(6)</th>
+                        <th>(7)</th>
+                        <th>(8)</th>
+                        <th>(9)</th>
+                        <th>(10)</th>
+                        <th>(11)</th>
+                        <th>(12)</th>
+                        <th>(13)</th>
+                        <th>(14)</th>
+                        <th>(15)</th>
+                        <th>(16)</th>
+                        <th>(17)</th>
+                        <th>(18)</th>
+                    </tr>
+
+                </thead>
+                <tbody *ngIf="stateLevelDetails?.length > 0">
+                    <tr *ngFor="let obj of stateLevelDetails; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td class="text_align_color">
+                            <a style="cursor: pointer; text-decoration: underline" class="text-primary" (click)="btnGetDetails(obj)"><b>{{
+                                    obj.DISTRICT_NAME }}</b></a>
+                        </td>
+                        <td class="number_align">{{ obj.TOTAL_MANDAL | indianNumber }}</td>
+                        <td class="number_align">{{ obj.TOTAL_RBK | indianNumber }}</td>
+                        <td class="number_align">{{ obj.TOTAL_VILLAGE | indianNumber }}</td>
+                        <td class="number_align">{{ obj.TOT_VV | indianNumber }}</td>
+                        <td class="number_align">{{ obj.TOT_VV_LOGIN | indianNumber }}</td>
+                        <td class="number_align">{{ obj.TOT_HH | indianNumber }}</td>
+                        <td class="number_align">{{ obj.VV_REG_FARMERS | indianNumber }}</td>
+                        <td class="number_align">{{ obj.APPROVED | indianNumber }}</td>
+                        <td class="number_align">{{ obj.REJECTED | indianNumber }}</td>
+                        <td class="number_align">{{ obj.PENDING_FMR_WITH_ANIMALS | indianNumber }}</td>
+                        <td class="number_align">{{ obj.PENDING_FMR_WITH_OUT_ANIMALS | indianNumber }}</td>
+                        <td class="number_align">{{ obj.VA_DA_APPROVED | indianNumber }}</td>
+                        <td class="number_align">{{ obj.MENTOR_APPROVED | indianNumber }}</td>
+                        <td class="number_align">{{ obj.RIC_APPROVED | indianNumber }}</td>
+                        <td class="number_align">{{ obj.WITHOUT_MILCH | indianNumber }}</td>
+                        <td class="number_align">{{ obj.MILCH_DATA_COL_PENDING | indianNumber }}</td>
+                    </tr>
+                </tbody>
+                <tbody *ngIf="stateLevelDetails?.length > 0">
+                    <tr>
+                        <td>--</td>
+                        <td>
+                            <b>TOTAL</b>
+                        </td>
+                        <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_MANDAL | indianNumber }}</td>
+                        <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_RBK | indianNumber }}</td>
+                        <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_VILLAGE | indianNumber }}</td>
+                        <td class="font-weight-bold number_align">{{ reportTotals.TOT_VV | indianNumber }}</td>
+                        <td class="font-weight-bold number_align">{{ reportTotals.TOT_VV_LOGIN | indianNumber }}</td>
+                        <td class="font-weight-bold number_align">{{ reportTotals.TOT_HH | indianNumber }}</td>
+                        <td class="font-weight-bold number_align">{{ reportTotals.VV_REG_FARMERS | indianNumber }}</td>
+                        <td class="font-weight-bold number_align">{{ reportTotals.APPROVED | indianNumber }}</td>
+                        <td class="font-weight-bold number_align">{{ reportTotals.REJECTED | indianNumber }}</td>
+                        <td class="font-weight-bold number_align">
+                            {{ reportTotals.PENDING_FMR_WITH_ANIMALS | indianNumber }}
+                        </td>
+                        <td class="font-weight-bold number_align">
+                            {{ reportTotals.PENDING_FMR_WITH_OUT_ANIMALS | indianNumber }}
+                        </td>
+                        <td class="font-weight-bold number_align">{{ reportTotals.VA_DA_APPROVED | indianNumber }}</td>
+                        <td class="font-weight-bold number_align">{{ reportTotals.MENTOR_APPROVED | indianNumber }}</td>
+                        <td class="font-weight-bold number_align">{{ reportTotals.RIC_APPROVED | indianNumber }}</td>
+                        <td class="font-weight-bold number_align">{{ reportTotals.WITHOUT_MILCH | indianNumber }}</td>
+                        <td class="font-weight-bold number_align">{{ reportTotals.MILCH_DATA_COL_PENDING | indianNumber }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

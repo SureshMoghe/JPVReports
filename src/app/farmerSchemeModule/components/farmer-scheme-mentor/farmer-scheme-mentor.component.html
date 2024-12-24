@@ -1,0 +1,125 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Farmer Scheme Wise Mentor Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div class="col-md-12">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="mentorLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-bordered ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th rowspan="2">S.No.</th>
+              <th rowspan="2">RBKS</th>
+              <th rowspan="2">Villages</th>
+              <th rowspan="2">Households</th>
+              <th rowspan="2">Registered Farmers</th>
+              <th rowspan="2">Milk Pourers</th>
+              <th rowspan="2">Milk Non Pouring Farmers</th>
+              <th colspan="3">Govt Supported Scheme  Beneficiary</th>
+            </tr>
+            <tr>
+              <th>Farmers</th>
+              <th>Milk Pourers</th>
+              <th>Milk Non Pourers</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="mentorLevelDetails?.length > 0">
+            <tr *ngFor="let obj of mentorLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>
+                <a
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetDetails(obj)"
+                  ><b>{{ obj.RBK_NAME }}</b></a
+                >
+              </td>
+              <td>{{ obj.TOTAL_VILLAGES | indianNumber }}</td>
+              <td>{{ obj.TOTAL_HH | indianNumber }}</td>
+              <td>{{ obj.TOTAL_FARMERS | indianNumber }}</td>
+              <td>{{ obj.TOTAL_MILK_POURERS | indianNumber }}</td>
+              <td>
+                <a
+                  *ngIf="obj.MILK_NON_POUR_FMR !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnNonMilkPourers(obj, '1')"
+                  ><b>{{ obj.MILK_NON_POUR_FMR | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.MILK_NON_POUR_FMR === '0'">{{
+                  obj.MILK_NON_POUR_FMR
+                }}</span>
+              </td>
+              <td>{{ obj.TOTAL_CHEYUTHA_FMR | indianNumber }}</td>
+              <td>{{ obj.TOTAL_CHEYUTHA_BEN_MILK_POUR | indianNumber }}</td>
+              <td>
+                <a
+                  *ngIf="obj.MILK_NON_POUR_CHEYUTHA_BEN !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnNonMilkPourers(obj, '2')"
+                  ><b>{{ obj.MILK_NON_POUR_CHEYUTHA_BEN | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.MILK_NON_POUR_CHEYUTHA_BEN === '0'">{{
+                  obj.MILK_NON_POUR_CHEYUTHA_BEN
+                }}</span>
+              </td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="mentorLevelDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td>{{ reportTotals.TOTAL_VILLAGES | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_HH | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_FARMERS | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_MILK_POURERS | indianNumber }}</td>
+              <td>{{ reportTotals.MILK_NON_POUR_FMR | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_CHEYUTHA_FMR | indianNumber }}</td>
+              <td>
+                {{ reportTotals.TOTAL_CHEYUTHA_BEN_MILK_POUR | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.MILK_NON_POUR_CHEYUTHA_BEN | indianNumber }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,142 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Volunteer Farmer HouseHold Mentor Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div class="col-md-6">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <!-- <div class="col-md-6">
+          <h5>
+            <b> MANDAL : </b><span class="text-success">{{ mandalName }}</span>
+          </h5>
+        </div> -->
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="mentorLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-bordered ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th rowspan="2">S.No.</th>
+              <th rowspan="2">RBK</th>
+              <th rowspan="2">Villages</th>
+              <th rowspan="2">Clusters</th>
+              <th rowspan="2">Volunteers</th>
+              <th rowspan="2">Volunteers Logged In</th>
+              <th rowspan="2">Households</th>
+              <th rowspan="2">Death</th>
+              <th rowspan="2">Migrated</th>
+              <th colspan="4">Surveyed Households</th>
+              <th rowspan="2">Pending Households</th>
+              <th colspan="4">Household As Per AH DEPT</th>
+            </tr>
+            <tr>
+              <th>Total</th>
+              <th>With Animals</th>
+              <th>No Of Animals</th>
+              <th>Without Animals</th>
+              <th>Total</th>
+              <th>With Animals</th>
+              <th>Total Animals</th>
+              <th>Without Animals</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="mentorLevelDetails?.length > 0">
+            <tr *ngFor="let obj of mentorLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <!-- <td>{{obj.RBK_NAME}}</td> -->
+              <td>
+                <a
+                  *ngIf="obj.TOTAL_SUR_HH !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetDetails(obj)"
+                  ><b>{{ obj.RBK_NAME }}</b></a
+                >
+                <span *ngIf="obj.TOTAL_SUR_HH === '0'"
+                  ><b>{{ obj.RBK_NAME }}</b></span
+                >
+              </td>
+              <td>{{ obj.TOTAL_VILLAGES | indianNumber }}</td>
+              <td>{{ obj.TOTAL_CLUSTERS | indianNumber }}</td>
+              <td>{{ obj.TOTAL_VV | indianNumber }}</td>
+              <td>{{ obj.TOTAL_VV_LOGEDIN | indianNumber }}</td>
+              <td>{{ obj.TOTAL_HH | indianNumber }}</td>
+              <td>{{ obj.TOTAL_SUYVYED_DEAD | indianNumber }}</td>
+              <td>{{ obj.TOTAL_SUYVYED_MIGRATED | indianNumber }}</td>
+              <td>{{ obj.TOTAL_SUR_HH | indianNumber }}</td>
+              <td>{{ obj.TOTAL_FARMERS_WITH_AINM_HH | indianNumber }}</td>
+              <td>{{ obj.TOTAL_ANIMALS | indianNumber }}</td>
+              <td>{{ obj.TOTAL_FARMERS_WITH_OUT_AINM_HH | indianNumber }}</td>
+              <td>{{ obj.TOTAL_PENDING | indianNumber }}</td>
+              <td>{{ obj.TOTAL_AH_DEPT_HH | indianNumber }}</td>
+              <td>{{ obj.TOTAL_FMR_WITH_AINM_AH_HH | indianNumber }}</td>
+              <td>{{ obj.TOTAL_ANIMALS_AH | indianNumber }}</td>
+              <td>{{ obj.TOTAL_FMR_WITH_OUT_AINM_AH_HH | indianNumber }}</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="mentorLevelDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td>{{ reportTotals.TOTAL_VILLAGES | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_CLUSTERS | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_VV | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_VV_LOGEDIN | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_HH | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_SUYVYED_DEAD | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_SUYVYED_MIGRATED | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_SUR_HH | indianNumber }}</td>
+              <td>
+                {{ reportTotals.TOTAL_FARMERS_WITH_AINM_HH | indianNumber }}
+              </td>
+              <td>{{ reportTotals.TOTAL_ANIMALS | indianNumber }}</td>
+              <td>
+                {{ reportTotals.TOTAL_FARMERS_WITH_OUT_AINM_HH | indianNumber }}
+              </td>
+              <td>{{ reportTotals.TOTAL_PENDING | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_AH_DEPT_HH | indianNumber }}</td>
+              <td>
+                {{ reportTotals.TOTAL_FMR_WITH_AINM_AH_HH | indianNumber }}
+              </td>
+              <td>{{ reportTotals.TOTAL_ANIMALS_AH | indianNumber }}</td>
+              <td>
+                {{ reportTotals.TOTAL_FMR_WITH_OUT_AINM_AH_HH | indianNumber }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

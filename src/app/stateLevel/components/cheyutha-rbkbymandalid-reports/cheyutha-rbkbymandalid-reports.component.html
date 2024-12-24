@@ -1,0 +1,60 @@
+
+<!-- <div class="row">
+    <div class="col-md-12" align="right">
+      <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+        Back
+      </button>
+    </div>
+  </div>    --> 
+  <div class="row">
+    <div class="col-md-3">
+      <h5>
+        <b> From Date : </b><span class="text-success">{{ fromDate }}</span>
+      </h5>
+    </div>
+    <div class="col-md-3">
+      <h5>
+        <b>To Date : </b><span class="text-success">{{ toDate }}</span>
+      </h5>
+    </div>
+     
+  
+    <div class="col-md-3" align="right">
+      <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+        Back
+      </button>
+    </div>
+  </div>
+  <app-cheyutha-rbk-reports
+    [(districtId)]="districtId"
+    [(districtName)]="districtName"
+    [(mandalId)]="mandalId"
+    [(mandalName)]="mandalName"
+    [(rbkid)]="rbkid"
+    [(rbkName)]="rbkName"   
+    [(fromDate)]="fromDate"
+    [(toDate)]="toDate" 
+    
+    (onRbkChange)="onRbkChange($event)"    
+    (onRouteChange)="onRouteChange($event)" 
+    (onVILLAGECOUNTChange)="onVILLAGECOUNTChange($event)"
+(onJpvRegisteredfarmerChange)="onJpvRegisteredfarmerChange($event)" 
+(oncheybeneRegjpvfarmerChange)="oncheybeneRegjpvfarmerChange($event)" 
+(oncheybeneRegjpvfarmergroundedanimalChange)="oncheybeneRegjpvfarmergroundedanimalChange($event)"
+(oncheybeneRegNonjpvfarmergroundedanimalChange)="oncheybeneRegNonjpvfarmergroundedanimalChange($event)"
+(onTotalCheyuthaBeneficiariesGroundedwithanimalsChange)="onTotalCheyuthaBeneficiariesGroundedwithanimalsChange($event)"
+(onjpvRegFaranimalgroundingChange)="onjpvRegFaranimalgroundingChange($event)"
+(onjpvStatestreenidhiChange)="onjpvStatestreenidhiChange($event)" 
+(onjpvStateunnathiChange)="onjpvStateunnathiChange($event)"   
+(onbanklinkChange)="onbanklinkChange($event)"  
+(ontotalnoofanimalsChange)="ontotalnoofanimalsChange($event)" 
+(onsurveyedwithanimalsChange)="onsurveyedwithanimalsChange($event)" 
+(onsurveyedwithoutanimalsChange)="onsurveyedwithoutanimalsChange($event)" 
+(onSurvyednonRegisteredBeneficiariesChange)="onSurvyednonRegisteredBeneficiariesChange($event)" 
+(onnonsurveyedChange)="onnonsurveyedChange($event)" 
+(onSurveyedRegFarmersCount)="onSurveyedRegFarmersCount($event)" 
+
+    >   
+  </app-cheyutha-rbk-reports>
+ 
+   

@@ -1,0 +1,401 @@
+<div class="card" >
+    <div class="card-header p-2">
+      <h5 class="mb-0">Milk Secnario Details Update</h5>
+    </div>
+    <div class="card-body" *ngIf="MilkSeanearoview">
+<div class="row">
+    <div class="col-md-3 mt-2 mb-4">
+        <div class="form-group">
+            <label for="oldRbkId"
+              >Select Year <span style="color: red">*</span></label
+            >
+            <select
+              id="oldRbkId"
+              class="form-control" [(ngModel)]="MilksecnarioCls.yearId"
+              
+            >
+              <option value="">-- SELECT Year --</option>
+              <option value="{{ obj.YEAR }}" *ngFor="let obj of YearDetailsdata">
+                {{ obj.YEAR }}
+              </option>
+            </select>
+          </div>
+        
+    </div>
+
+    <div class="col-md-3 mt-2 mb-4">
+        <div class="form-group">
+            <label for="oldRbkId"
+              >Select Month <span style="color: red">*</span></label
+            >
+            <select
+              id="oldRbkId"
+              class="form-control" (change)="onyearMChange()" [(ngModel)]="MilksecnarioCls.Months"
+              
+            >
+              <option value="">-- SELECT Month --</option>
+              <option value="{{ obj.MONTH_NO }}" *ngFor="let obj of MonthList">
+                {{ obj.MONTH }}
+              </option>
+            </select>
+          </div>
+    </div>
+    <div class="col-md-3 mt-2 mb-4">
+       
+    </div>
+    <div class="col-md-3 mt-2 mb-4">
+       
+    </div>
+
+    
+
+    
+
+</div>
+      <div class="row">
+        
+<div class="col-md-12" style="overflow-x:auto;"> 
+   
+     <table
+        class="table table-striped ah-table text-center" 
+        datatable [dtOptions]="dtOptions"
+        [dtTrigger]="dtTrigger"
+        
+      >
+        <thead class="bg-success text-white">
+          <tr>
+            <th rowspan="2">S.No.</th>
+            <th rowspan="2">District</th>
+            
+            <th colspan="3">Union </th>
+            <th colspan="3">Private</th>
+            <th colspan="3">Total</th>
+            <th rowspan="2">Action</th>
+            
+           
+          </tr>
+          <tr>
+           
+           
+            <th> No of Farmers(In Lakhs)</th>
+            <th>Milk Quantity(LLPD)</th>
+            <th>Benfite To Farmer(In Lakhs)</th>
+            <th> No of Farmers(In Lakhs)</th>
+            <th>Milk Quantity(LLPD)</th>
+            <th>Benfite To Farmer(In Lakhs)</th>
+            <th> No of Farmers(In Lakhs)</th>
+            <th>Milk Quantity(LLPD)</th>
+            <th>Benfite To Farmer(In Lakhs)</th>
+        </tr>
+           
+        </thead>
+        <tbody *ngIf="MilkSecnarioData?.length > 0">
+          <tr *ngFor="let obj of MilkSecnarioData; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ obj.DISTRICT_NAME }}</td>
+                       
+            <td>{{ obj.UNION_FAR }}</td>
+            <td>{{ obj.UNION_MILK }}</td>
+            <td>{{ obj.UNION_BENFIT }}</td>
+            <td>{{ obj.PVT_FAR }}</td>
+            <td>{{ obj.PVT_MILK }}</td>
+            <td>{{ obj.PVT_BENFIT }}</td>
+            <td>{{ obj.TOTAL_FAR }}</td>
+            <td>{{ obj.TOTAL_MILK }}</td>
+            <td>{{ obj.TOTAL_BENFIT }}</td>
+            <td>
+              <a *ngIf="obj.STATUS === '1'"
+                  
+                 
+                  class="btn btn-primary btn-sm fa fa-edit"
+                  (click)="btnActionDetailsEdit(obj)"
+                >
+                  
+            </a>
+               <span *ngIf="obj.STATUS === '0'" class="text-success" 
+                  ><b style="font:revert;"><a class="fa fa-edit"></a></b></span
+                >  
+            </td>    
+          </tr>
+        </tbody>
+      </table>
+        
+      </div>
+      </div>
+    </div>
+
+
+    <div class="card-body" *ngIf="MilkDetailsupdate">
+      <div class="row">
+        <div class="col-md-3 mt-2 mb-4">
+            <div class="form-group">
+              <label for="oldRbkId"
+                >District : </label
+              >
+              <label class="text-success"><b>{{districtname}}</b></label>
+            </div>
+          </div>
+          <div class="col-md-3 mt-2 mb-4">
+              <div class="form-group">
+                  <label for="oldRbkId"
+                    >Select Year &nbsp; :</label
+                  >
+                  <label class="text-success"><b>{{MilksecnarioCls.yearId}}</b></label>
+                </div>
+              
+          </div>
+      
+          <div class="col-md-3 mt-2 mb-4">
+              <div class="form-group">
+                  <label for="oldRbkId"
+                    >Select Month &nbsp; :</label
+                  >
+                  <label class="text-success"><b>{{monthname}}</b></label>
+                </div>
+          </div>
+          
+          <div class="col-md-3 mt-2 mb-4">
+            <button text="button"                    
+                     
+            class="btn btn-info btn-sm"
+            (click)="Backdata()"
+          > Back
+            
+        </button>
+          </div>
+      
+          
+      
+          
+      
+      </div>
+           
+              
+      <div class="col-md-12" style="overflow-x:auto;" *ngIf="FramerTablediv"> 
+         
+          
+            <table class="table table-striped ah-table text-center">
+              <thead class="bg-success text-white">
+                <tr >
+                  <th rowspan="2">Union Type</th>
+                  <th rowspan="2">Milk Type</th>
+                  <th colspan="3">Details fo Farmer</th>
+                  <th rowspan="2">Action</th>
+                </tr>
+                <tr>
+                  <th> No of Farmers(In Lakhs)</th>
+                  <th>Milk Quantity(LLPD)</th>
+                  <th>Benfite To Farmer(In Lakhs)</th>
+
+
+                </tr>
+              </thead>
+              <tbody *ngFor="let obj of MilkDataupdate">
+              <tr>
+                <td>Unions</td>
+                <td>Cow</td>
+                <td>{{obj.UNION_CM_FAR}}</td>
+                <td>{{obj.UNION_CM_MQ}}</td>
+                <td>{{obj.UNION_CM_BA}}</td>
+                 
+                <td>
+                  <button text="button" *ngIf="obj.UNION_CM_STATUS === '0'"                       
+                     
+                      class="btn btn-success btn-sm"
+                      (click)="btnActionDetails(1,obj.UNION_CM_TRANS)"
+                    > In Active
+                      
+                  </button>
+                  <button text="button" *ngIf="obj.UNION_CM_STATUS === '1'"                       
+                     
+                      class="btn btn-info btn-sm"
+                      (click)="btnActionDetails(2,obj.UNION_CM_TRANS)"
+                    > Re Active
+                      
+                  </button>
+                  <button text="button" *ngIf="obj.UNION_CM_STATUS === '2'"                       
+                     
+                      class="btn btn-warning btn-sm"
+                      (click)="btnActionDetails(1,obj.UNION_CM_TRANS)"
+                    > In Active
+                      
+                  </button>
+                  <button text="button" *ngIf="obj.UNION_CM_STATUS === '3'"                       
+                     
+                  class="btn btn-light btn-sm"                    
+                    > In Active
+                      
+                  </button>
+                  
+                </td>   
+              </tr>
+              <tr>
+                <td></td>
+                <td>Buffalo</td>
+                <td>{{obj.UNION_BM_FAR}}</td>            
+                
+                <td>{{obj.UNION_BM_MQ}}</td>
+                <td>{{obj.UNION_BM_BA}}</td>
+                                  
+                <td>
+                  <button type="button" *ngIf="obj.UNION_BM_STATUS === '0'"                       
+                     
+                      class="btn btn-success btn-sm"
+                      (click)="btnActionDetails(1,obj.UNION_BM_TRANS)"
+                    >In Active
+                      
+                  </button>
+                  <button type="button" *ngIf="obj.UNION_BM_STATUS === '1'"                       
+                     
+                      class="btn btn-info btn-sm "
+                      (click)="btnActionDetails(2,obj.UNION_BM_TRANS)"
+                    >Re Active
+                      
+                  </button>
+                  <button type="button" *ngIf="obj.UNION_BM_STATUS === '2'"                       
+                     
+                      class="btn btn-warning btn-sm"
+                      (click)="btnActionDetails(1,obj.UNION_BM_TRANS)"
+                    >In Active
+                      
+                  </button>
+                  <button type="button" *ngIf="obj.UNION_BM_STATUS === '3'"                       
+                     
+                  class="btn btn-light btn-sm"
+                      
+                    >In Active
+                      
+                  </button>
+                    
+                </td>  
+              </tr>
+              <tr>
+                <td></td>
+                <td>Total</td>
+                <td>{{obj.UNION_FAR}}</td>
+                              
+                <td>{{obj.UNION_MQ}}</td>
+                <td>{{obj.UNION_BA}}</td>  
+                 
+                 
+                <td>-</td>
+              </tr>
+               
+              <tr>
+                <td>Private Dairy</td>
+                <td>Cow</td>
+                <td>{{obj.PVT_CM_FAR}}</td>
+                <td>{{obj.PVT_CM_MQ}}</td>                
+                <td>{{obj.PVT_CM_BA}}</td>
+                
+                 
+                 
+                <td>
+                  <button type="button" *ngIf="obj.PVT_CM_STATUS === '0'"                      
+                     
+                      class="btn btn-success btn-sm"
+                      (click)="btnActionDetails(1,obj.PVT_CM_TRANS)"
+                    >
+                      In Active
+                  </button>
+                  <button type="button" *ngIf="obj.PVT_CM_STATUS === '1'"                      
+                     
+                      class="btn btn-info btn-sm"
+                      (click)="btnActionDetails(2,obj.PVT_CM_TRANS)"
+                    >
+                      Re Active
+                  </button>
+                  <button type="button" *ngIf="obj.PVT_CM_STATUS === '2'"                      
+                     
+                      class="btn btn-warning btn-sm"
+                      (click)="btnActionDetails(1,obj.PVT_CM_TRANS)"
+                    >
+                      In Active
+                  </button>
+                  <button type="button" *ngIf="obj.PVT_CM_STATUS === '3'"                      
+                     
+                  class="btn btn-light btn-sm"
+                       
+                    >
+                      In Active
+                  </button>
+                   
+                </td>  
+              </tr>
+              <tr>
+                <td></td>
+                <td>Buffalo</td>
+                <td>{{obj.PVT_BM_FAR}}</td>
+               
+                <td>{{obj.PVT_BM_MQ}}</td>
+                <td>{{obj.PVT_BM_BA}}</td>
+                
+                 
+                
+                <td>
+                  <button type="button" *ngIf="obj.PVT_BM_STATUS === '0'"                       
+                     
+                      class="btn btn-success btn-sm"
+                      (click)="btnActionDetails(1,obj.PVT_BM_TRANS)"
+                    >In Active
+                      
+                  </button>
+                  <button type="button" *ngIf="obj.PVT_BM_STATUS === '1'"                       
+                     
+                      class="btn btn-info btn-sm"
+                      (click)="btnActionDetails(2,obj.PVT_BM_TRANS)"
+                    >Re Active
+                      
+                  </button>
+                  <button type="button" *ngIf="obj.PVT_BM_STATUS === '2'"                       
+                     
+                      class="btn btn-warning btn-sm"
+                      (click)="btnActionDetails(1,obj.PVT_BM_TRANS)"
+                    >In Active
+                      
+                  </button>
+                  <button type="button" *ngIf="obj.PVT_BM_STATUS === '3'"                       
+                     
+                      class="btn btn-light btn-sm"
+                       
+                    >In Active
+                      
+                  </button>
+                     
+                </td>  
+              </tr>
+              <tr>
+                <td></td>
+                <td>Total</td>
+                <td>{{obj.PVT_FAR}}</td>
+                              
+                <td>{{obj.PVT_MQ}}</td>
+                <td>{{obj.PVT_BA}}</td>  
+                 
+                
+                <td>-</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>GeneralTotal</td>
+                <td>{{obj.T_FAR}}</td>
+                
+                <td>{{obj.T_MQ}}</td>
+                <td>{{obj.T_BA}}</td>
+                
+                 
+                <td></td>
+              </tr>
+            </tbody>
+            </table>
+            </div>
+            
+          </div>
+ </div>
+ 
+
+
+
+
+
+

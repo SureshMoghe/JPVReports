@@ -1,0 +1,48 @@
+<div class="row align-items-center">
+  <div class="col-md-3">
+    <div class="form-group">
+      <label for="districtId">District <span style="color: red">*</span></label>
+      <select
+        id="districtId"
+        class="form-control"
+        [(ngModel)]="districtId"
+        (change)="onDistrictChange()"
+      >
+        <option value="">ALL</option>
+        <option value="{{ obj.DISTRICT_ID }}" *ngFor="let obj of districtList">
+          {{ obj.DISTRICT_NAME }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+
+<!--   
+ <div class="col-md-3">
+  <div class="form-group"> 
+
+    <label for="PhaseType"
+      >Phase Type <span style="color: red">*</span></label>
+       
+    <select
+    id="PhaseType"
+    class="form-control"
+    [(ngModel)]="PhaseType"
+    (change)="onReportPhaseTypeChange()"
+  >  
+    <option
+      value="{{ obj.PHASEID }}"
+      *ngFor="let obj of PhaseTypeList"
+    >
+      {{ obj.PHASENAME }}
+    </option>
+  </select>
+
+  </div>
+</div>  -->
+
+</div>
+
+<app-cmp-state-level  (onDetailsChange)="onDetailsChange($event)">
+  <!-- [(phaseid)]="phaseid" [(phasename)]="phasename"  -->
+</app-cmp-state-level>

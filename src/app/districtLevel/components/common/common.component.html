@@ -1,0 +1,478 @@
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark blue-green-gradient">
+    <!-- Navbar brand -->
+    <a class="navbar-brand d-flex align-items-center" style="cursor: pointer">
+        <img class="brand-logo" src="https://apddcf.ap.gov.in/cdn/img/ap-logo.png" style="width: 50px" />
+        <h5 class="brand-text text-white mb-0 font-weight-normal ml-1">
+            Andhra Pradesh Dairy Development Cooperative Federation Limited (APDDCF)
+        </h5>
+    </a>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+        <!-- Links -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item text-right">
+                <a class="navbar-brand d-flex align-items-center" style="cursor: pointer">
+                    <img class="brand-logo" src="https://apddcf.ap.gov.in/cdn/img/CM.png" style="width: 50px" />
+                    <div class="text-center">
+                        <h6 class="brand-text text-white mb-0 font-weight-normal ml-1">
+                            Sri Nara Chandrababu Naidu
+                        </h6>
+                        <p style="font-size: 12px; margin-bottom: 0; color: #fff">
+                            Hon’ble Chief Minister, <br />
+                            Andhra Pradesh
+                        </p>
+                    </div>  
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- Collapsible content -->
+</nav>
+<!--/.Navbar-->
+
+<!--Menu-Navbar -->
+
+<nav class="
+    menu-navbar
+    navbar navbar-expand-lg navbar-dark
+    primary-color-dark
+    py-md-0
+    text-white
+  ">
+    <a class="navbar-brand d-md-none d-block" style="cursor: pointer">MENU</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+        aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav mr-auto align-items-center">
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link" routerLink="FarmerRegistrationStatus"><i class="fas fa-address-card"></i> <span
+                        style="font-size: 16px;"> Farmer Registration Status</span> </a>
+            </li>
+            <li class="nav-item dropdown" routerLinkActive="active">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false" style="cursor: pointer"><i class="fab fa-wpforms"></i> <span style="font-size: x-small;">DT1 -
+                    </span><span style="font-size: 14px;"> MENU</span>
+                </a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink-333">
+                    <a class="dropdown-item" routerLink="villageLevelMeetingsMentorLevelReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.1 - </span>Village Level Meetings
+                        Report</a>
+                    <a class="dropdown-item" routerLink="MpuacBankAccMandalReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.2 - </span>MDAC Bank Account
+                        Report</a>
+                    <a class="dropdown-item" routerLink="PromotersMentorReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.3 - </span>Promoters Report</a>
+                    <a class="dropdown-item" routerLink="SecAsstSecMentorReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.4 - </span>Secretary/Assistant
+                        Secretary Report</a>
+                    <a class="dropdown-item" routerLink="FarmerBankBAUStatusDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.4 - </span>Invalid Bank Account
+                        Report</a>
+                    <a class="dropdown-item" routerLink="PaymentStatusDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.5 - </span>Payment Status Report</a>
+                    <a class="dropdown-item" routerLink="AmcuInspectionDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.6 - </span>AMCUs Inspection
+                        Report</a>
+                    <a class="dropdown-item" routerLink="CalibrationMentorLevelReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.7 - </span>Calibration Report</a>
+                    <a class="dropdown-item" routerLink="BuildingInspectionMentorReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.8 - </span>Building Inspection
+                        Report</a>
+                    <a class="dropdown-item" routerLink="AmcuHandingOverMentorReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.9 - </span>AMCU Handing Over
+                        Report</a>
+                    <a class="dropdown-item" routerLink="BuildingAbstractMandalReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.10 - </span>Building Inspection
+                        Abstract Report</a>
+                    <a class="dropdown-item" routerLink="GroundingDistrictLevelReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.11 - </span>Govt Supported Scheme  Grounding
+                        Report</a>
+                    <a class="dropdown-item" routerLink="LoanSanctionAndGroundingReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.12 - </span>Loan Sanction And
+                        Grounding Report</a>
+                    <a class="dropdown-item" routerLink="MdacSocietyWiseReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.13 - </span>MDAC Society Wise
+                        Report</a>
+                    <a class="dropdown-item" routerLink="BmcuConstructionDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.14 - </span>BMCU Construction
+                        Report</a>
+                    <a class="dropdown-item" routerLink="MomDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.15 - </span>Minutes Of Meeting
+                        Report</a>
+                    <a class="dropdown-item" routerLink="PacsLandAllotmentDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.16 - </span>MPFC Land Allotment
+                        Report</a>
+                    <a class="dropdown-item" routerLink="LandAllotmentDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.17 - </span>BMCU Land Allotment
+                        Report</a>
+                    <a class="dropdown-item" routerLink="amcuLandAllotmentDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.18 - </span>AMCU Land Allotment
+                        Report</a>
+
+                    <a class="dropdown-item" routerLink="GswsPersonDetailsUpdate" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.19 - </span>Gsws Person Details
+                        Real-Time Update</a>
+
+                    <a class="dropdown-item" routerLink="Masterdetails" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.20 - </span>Master Details</a>
+
+
+
+                    <a class="dropdown-item" routerLink="FarmerMilkPouringCertificateDashboard" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT1.21 - </span>Farmer Milk Pouring
+                        Certificate Dashboard</a>
+
+                </div>
+            </li>
+            <li class="nav-item dropdown" routerLinkActive="active">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false" style="cursor: pointer"><i class="fab fa-wpforms"></i><span style="font-size: x-small;">DT2 -
+                    </span><span style="font-size: 14PX;;"> FARMER REPORTS</span>
+                </a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink-333">
+                    <a class="dropdown-item" routerLink="VvFarmerDataDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT2.1 - </span>Volunteer Farmer
+                        Registration Report</a>
+                    <a class="dropdown-item" routerLink="FarmerMpussRegDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT2.2 - </span>Farmer Registration
+                        Report</a>
+                    <a class="dropdown-item" routerLink="FarmerabstractTxnDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT2.3 - </span>Farmer Abstract
+                        Transaction Report</a>
+                    <a class="dropdown-item" routerLink="VvHHAnimalsDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT2.4 - </span>Volunteer Farmer
+                        HouseHold Report</a>
+                    <a class="dropdown-item" routerLink="FarmerApprovalDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT2.5 - </span>Farmer Approval
+                        Report</a>
+                    <a class="dropdown-item" routerLink="FamerSmsDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT2.6 - </span>Farmer SMS Report</a>
+                    <a class="dropdown-item" routerLink="FarmerMilkPouringDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT2.7 - </span>Volunteer Wise Farmer
+                        Milk Pouring report</a>
+                    <a class="dropdown-item" routerLink="FarmerSchemeDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT2.8 - </span>Farmer Scheme Wise
+                        Report</a>
+                    <a class="dropdown-item" routerLink="MdacVSsapDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT2.9 - </span>MDAC vs SAP Milk
+                        Collection Report</a>
+                    <a class="dropdown-item" routerLink="VafDistrictLevelReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT2.10 - </span>Volunteer As Farmer
+                        Report</a>
+                    <!-- <a class="dropdown-item" routerLink="SocietyAbstractDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT2.11 - </span>Society Abstract
+                        Report</a> -->
+
+                        <a class="dropdown-item" routerLink="SocietyAbstractReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT2.11 - </span>Society Abstract
+                        Report</a>
+
+                        
+
+
+
+                    <!-- <a
+        class="dropdown-item"
+        routerLink="farmermilkpouringdashboard"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        ><span style="font-size: small;">DT2.12 - </span>Farmer Milk Pouring Certificate Dashboard</a
+      > -->
+                    <a class="dropdown-item" routerLink="farmerfeedindentdashboard" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT2.13 - </span>Farmer Feed Indent
+                        Dashboard</a>
+                    <!-- <a class="dropdown-item" routerLink="CheyuthaStateReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT2.15 - </span>Cheyutha All Districts
+                        Report</a> -->
+
+                    <a class="dropdown-item" routerLink="vaowisefarmersreport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }">
+                        <span style="font-size: small;">DT2.16 - </span>VO Wise Farmers Report</a>
+
+
+                </div>
+            </li>
+            <li class="nav-item dropdown" routerLinkActive="active">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false" style="cursor: pointer"><i class="fab fa-wpforms"></i><span style="font-size: x-small;">DT3 -
+                    </span> <span style="font-size: small;">MDSS</span>
+                </a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink-333">
+
+
+                    <a class="dropdown-item" routerLink="mdssregistrationrept" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT3.1 - </span>MDSS Reg Report</a>
+
+
+
+                    <a class="dropdown-item" routerLink="mdssfollowupabstractreport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT3.2 - </span>MDSS Followup Abstract
+                        Report</a>
+                    <!-- <a
+                    class="dropdown-item"
+                    routerLink="MdssPromotersMilkPouringStatus"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    ><span style="font-size: small;">ST3.3 - </span>MDSS Promoters Milk Pouring Status</a
+                    > -->
+
+                </div>
+            </li>
+            <li class="nav-item dropdown" routerLinkActive="active">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false" style="cursor: pointer"><i class="fab fa-wpforms"></i><span style="font-size: x-small;">DT4 -
+                    </span> <span style="font-size: 14PX;;"> BANK REPORTS</span>
+                </a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink-333">
+                    <a class="dropdown-item" routerLink="CheyuthaBankDistrictLevelReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT4.1 - </span>Govt Supported Scheme Bank Status
+                        Report</a>
+                    <a class="dropdown-item" routerLink="LdmbankWiseDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT4.2 - </span> LDM Bank
+                        Report</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown" routerLinkActive="active">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false" style="cursor: pointer"><i class="fab fa-wpforms"></i><span style="font-size: x-small;">DT5 -
+                    </span> <span style="font-size: 14PX;;"> CS REPORTS</span>
+                </a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink-333">
+                    <a class="dropdown-item" routerLink="MilkProcurementDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT5.1 - </span>MONTH WISE MILK
+                        PROCUREMENT STATUS</a>
+                    <a class="dropdown-item" routerLink="PromotersVolunteersDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT5.2 - </span>PROMOTERS AND VOLUNTEERS
+                        MILK POURING STATUS</a>
+                    <a class="dropdown-item" routerLink="SampleMilkStatusDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT5.3 - </span>INCOME GENERATED THROUGH
+                        SAMPLE MILK COLLECTION</a>
+                    <a class="dropdown-item" routerLink="Top3MilkPourersMdacDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT5.4 - </span>TOP 3 MILK POURERS AND
+                        MDACs</a>
+                    <a class="dropdown-item" routerLink="AmcuPerformanceDistrictReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT5.5 - </span>AMCU MILK COLLECTION
+                        PERFORMANCE STATUS</a>
+                    <a class="dropdown-item" routerLink="DiscontinuedVillagesReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT5.6 - </span>STATUS OF DISCONTINUED
+                        VILLAGES</a>
+                    <a class="dropdown-item" routerLink="FarmerStatusReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT5.7 - </span>MILK POURERS STATUS</a>
+                    <a class="dropdown-item" routerLink="HouseholdSurveyReport" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"><span style="font-size: small;">DT5.8 - </span>HOUSEHOLD SURVEY
+                        REPORT</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown" routerLinkActive="active" style="display:none;">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false" style="cursor: pointer"><i class="fab fa-wpforms"></i><span style="font-size: x-small;">DT6 -
+                    </span> <span style="font-size: 14PX;;"> GUIDELINES</span>
+                </a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink-333">
+                    <a *ngFor="let guideLine of guideLines; let i = index " class="dropdown-item" style="cursor: pointer"
+                        (click)="btnDocumentDownload(guideLine.URL)">
+                        <span style="font-size: small;">DT6.{{ i + 1 }} - </span> {{ guideLine.NAME }}
+                    </a>
+                </div>
+            </li>
+
+
+
+
+            <li class="nav-item dropdown" routerLinkActive="active">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false" style="cursor: pointer"><i class="fab fa-wpforms"></i> <span style="font-size: x-small;">DT7 -
+                    </span> <span style="font-size: 14PX;;"> USER MANUALS</span>
+                </a>
+                <ul class="dropdown-menu multi-level dropdown-primary custom-sub-dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                    <li>
+                        <a class="dropdown-item" style="cursor: pointer" (click)="btnDocumentDownload(kccApplicationFormUrl)">
+                            <span style="font-size: small;">DT7.1 - </span> KCC Application Form
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" style="cursor: pointer" (click)="btnDownloadUsermentorManual(1)">
+                            <span style="font-size: small;">DT7.2 - </span> Invalid Bank Account Updation
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" style="cursor: pointer" (click)="btnDownloadUsermentorManual(2)">
+                            <span style="font-size: small;">DT7.3 - </span> Mentor Village Meeting PART-I
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" style="cursor: pointer" (click)="btnDownloadUsermentorManual(15)">
+                            <span style="font-size: small;">DT7.4 - </span> Edit Secretary & Assistant Secretary Details
+                        </a>
+                    </li>
+                    <li> <span style="color:brown;font-weight:bold">Inspection</span> </li>
+                    <!-- <li class="dropdown-submenu">
+            
+            
+            <a
+              class="dropdown-item"
+              style="cursor: pointer"
+              routerLinkActive="active"
+              >Inspection <i class="fa fa-angle-right"></i>              
+            </a>
+            <ul class="dropdown-menu"> -->
+                    <li>
+                        <a class="dropdown-item" style="cursor: pointer" (click)="btnDownloadUsermentorManual(4)">
+                            <span style="font-size: small;">DT7.5 - </span> Milk Inspection
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" style="cursor: pointer" (click)="btnDownloadUsermentorManual(5)">
+                            <span style="font-size: small;">DT7.6 - </span> Society Inspection
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" style="cursor: pointer" (click)="btnDownloadUsermentorManual(6)">
+                            <span style="font-size: small;">DT7.7 - </span> Payment Inspection
+                        </a>
+                    </li>
+                    <!-- </ul>
+          </li> -->
+
+                    <li>
+                        <a class="dropdown-item" style="cursor: pointer" (click)="btnDownloadUsermentorManual(7)">
+                            <span style="font-size: small;">DT7.8 - </span> Issue Tracking
+                        </a>
+                    </li>
+
+                    <li style="color:brown;font-weight:bold"> <span style="color:brown;font-weight:bold"> BMCU Contruction </span> </li>
+
+                    <!-- <li class="dropdown-submenu">
+            <a
+              class="dropdown-item"
+              style="cursor: pointer"
+              routerLinkActive="active"
+              >BMCU Contruction <i class="fa fa-angle-right"></i>
+            </a>
+            <ul class="dropdown-menu"> -->
+                    <li>
+                        <a class="dropdown-item" style="cursor: pointer" (click)="btnDownloadUsermentorManual(8)">
+                            <span style="font-size: small;">DT7.9 - </span> Feasibility Of Land
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" style="cursor: pointer" (click)="btnDownloadUsermentorManual(9)">
+                            <span style="font-size: small;">DT7.10 - </span> Registration Of Land
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" style="cursor: pointer" (click)="btnDownloadUsermentorManual(10)">
+                            <span style="font-size: small;">DT7.11 - </span> Other Facilities At Site
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" style="cursor: pointer" (click)="btnDownloadUsermentorManual(11)">
+                            <span style="font-size: small;">DT7.12 - </span> Basement Level
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" style="cursor: pointer" (click)="btnDownloadUsermentorManual(12)">
+                            <span style="font-size: small;">DT7.13 - </span> Super Structure Level
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" style="cursor: pointer" (click)="btnDownloadUsermentorManual(13)">
+                            <span style="font-size: small;">DT7.14 - </span> Finishing Level
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" style="cursor: pointer" (click)="btnDownloadUsermentorManual(14)">
+                            <span style="font-size: small;">DT7.15 - </span> Other Infrastructure
+                        </a>
+                    </li>
+                    <!-- </ul>
+          </li> -->
+
+                    <li>
+                        <a class="dropdown-item" style="cursor: pointer" (click)="btnDownloadUsermentorManual(16)">
+                            <span style="font-size: small;">DT7.16 - </span> Farmer Milk Pouring Certificate
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" style="cursor: pointer" (click)="btnDownloadUsermentorManual(17)">
+                            <span style="font-size: small;">DT7.17 - </span> Farmer Dead & Migration Approvals
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" style="cursor: pointer" (click)="btnDownloadUsermentorManual(18)">
+                            <span style="font-size: small;">DT7.18 - </span> Farmer Feed Indent Approvals
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+
+
+
+
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item dropdown" routerLinkActive="active">
+                <a class="nav-link dropdown-toggle d-flex align-items-center" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
+                    <h6 class="mb-0 mr-1">
+                        Welcome <b>{{ userName }}</b>
+                    </h6>
+                    <i class="fas fa-user"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink-333">
+
+                    <a class="dropdown-item" style="cursor: pointer" routerLink="PasswordUpdate" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }" (click)="btnForgetPassword()">
+                        <i class="fas fa-key"></i> update Password
+                    </a>
+                    <!-- <a class="dropdown-item" href="#" routerLink="">Profile</a> -->
+                    <a class="dropdown-item" style="cursor: pointer" (click)="btnLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    <hr class="my-1" />
+                    <a class="dropdown-item text-center" style="cursor: pointer">
+                        <span>Last logged in: <br />
+                            <b class="text-danger">{{ lastLoginTime }}</b></span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!--/.Menu-Navbar -->
+
+<!--Main Content -->
+<div id="page-container">
+    <div id="content-wrap">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-11 mx-auto">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Footer Content -->
+    <footer class="page-footer font-small blue">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center pt-3">
+            <a style="cursor: pointer; color: #fff">
+                <img src="http://apddcf.ap.gov.in/cdn/img/apddcf-circle.png" style="width: 30px" />
+                Andhra Pradesh Dairy Development Cooperative Federation Limited (APDDCF)
+            </a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!--/.Footer-Content -->
+</div>
+<!--/.Main-Content -->

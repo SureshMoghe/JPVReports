@@ -1,0 +1,117 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Farmer SMS District Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div class="col-md-12">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="districtLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>MANDAL</th>
+              <th>RBKS</th>
+              <th>Villages</th>
+              <th>Farmers Registered</th>
+              <th>Farmer Registrations SMS Sent</th>
+              <th>No Of Schedules Created</th>
+              <th>Schedule Invitation Sent</th>
+              <th>Volunteer Invited</th>
+              <th>Volunteer Invited Pending</th>
+              <th>No Of Participants</th>
+            </tr>
+
+            <tr >             
+              <th  class="tableheader_color"  >(1)</th>
+              <th  class="tableheader_color" >(2)</th>
+              <th  class="tableheader_color" >(3)</th>
+              <th  class="tableheader_color" >(4)</th>
+              <th  class="tableheader_color" >(5)</th>
+              <th  class="tableheader_color" >(6)</th>
+              <th  class="tableheader_color" >(7)</th>
+              <th  class="tableheader_color" >(8)</th>
+              <th  class="tableheader_color" >(9)</th>
+              <th  class="tableheader_color" >(10)</th>
+              <th  class="tableheader_color"  >(11)</th>
+            </tr> 
+          </thead>
+          <tbody *ngIf="districtLevelDetails?.length > 0">
+            <tr *ngFor="let obj of districtLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td class="text_align_color">
+                <a
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetDetails(obj)"
+                  ><b>{{ obj.MANDAL_NAME }}</b></a
+                >
+              </td>
+              <td class="number_align">{{ obj.TOTAL_RBKS | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_VILLAGES | indianNumber }}</td>
+              <td  class="number_align">{{ obj.FARMERS_REGISTERED | indianNumber }}</td>
+              <td  class="number_align">{{ obj.FMR_REGIS_SMS_SENT | indianNumber }}</td>
+              <td  class="number_align">{{ obj.NO_OF_SCHEDULES_CREATED | indianNumber }}</td>
+              <td  class="number_align">{{ obj.SCHEDULE_INVITATION_SENT | indianNumber }}</td>
+              <td  class="number_align">{{ obj.VV_INVITED | indianNumber }}</td>
+              <td  class="number_align">{{ obj.VV_INVITED_PENDING | indianNumber }}</td>
+              <td  class="number_align">{{ obj.TOTAL_NO_OF_PARTICIPANTS | indianNumber }}</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="districtLevelDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_RBKS | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_VILLAGES | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.FARMERS_REGISTERED | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.FMR_REGIS_SMS_SENT | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.NO_OF_SCHEDULES_CREATED | indianNumber }}</td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.SCHEDULE_INVITATION_SENT | indianNumber }}
+              </td>
+              <td class="font-weight-bold number_align">{{ reportTotals.VV_INVITED | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.VV_INVITED_PENDING | indianNumber }}</td>
+              <td class="font-weight-bold number_align">
+                {{ reportTotals.TOTAL_NO_OF_PARTICIPANTS | indianNumber }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

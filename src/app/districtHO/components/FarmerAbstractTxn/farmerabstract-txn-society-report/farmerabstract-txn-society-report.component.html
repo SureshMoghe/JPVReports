@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-3">
+    <h5>
+      <b> From Date : </b><span class="text-success">{{ fromDate }}</span>
+    </h5>
+  </div>
+  <div class="col-md-3">
+    <h5>
+      <b>To Date : </b><span class="text-success">{{ toDate }}</span>
+    </h5>
+  </div>
+  <div class="col-md-6" align="right">
+    <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+      BACK
+    </button>
+  </div>
+</div>
+
+<app-farmer-abstract-txn-society
+  [(districtId)]="districtId"
+  [(districtName)]="districtName"
+  [(mandalId)]="mandalId"
+  [(mandalName)]="mandalName"
+  [(rbkId)]="rbkId"
+  [(rbkName)]="rbkName"
+  [(villageId)]="villageId"
+  [(villageName)]="villageName"
+  [(fromDate)]="fromDate"
+  [(toDate)]="toDate"
+></app-farmer-abstract-txn-society>

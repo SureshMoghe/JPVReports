@@ -1,0 +1,426 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">BMCU Construction RBK Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> Mandal : </b><span class="text-success">{{ mandalName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> RBK : </b><span class="text-success">{{ rbkName }}</span>
+        </h5>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="rbkLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-bordered ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th rowspan="2">S.No.</th>
+              <th rowspan="2">Work ID</th>
+              <th rowspan="2">Village</th>
+              <th colspan="6">Feasibility Of Land</th>
+              <th colspan="5">Registration Of Land</th>
+              <th colspan="6">Facilities At Building Site</th>
+              <th colspan="6">Building Basement Level</th>
+              <th colspan="6">Super Structure</th>
+              <th colspan="10">Finishings Level</th>
+              <th colspan="10">Other Infrastructure</th>
+            </tr>
+            <tr>
+              <th>Length And Breadth Is Of The Given Type Design</th>
+              <th>Image</th>
+              <th>Location Is Easily Accessible To The Women Pourers</th>
+              <th>Image</th>
+              <th>Road Connectivity For Vehicle Movement</th>
+              <th>Image</th>
+              <th>Registration Of The Land Is Done In Favour of The APDDCF</th>
+              <th>Image</th>
+              <th>Alienation / Handing Over Is Done</th>
+              <th>Image</th>
+              <th>Registration Certificate Image</th>
+              <th>Availability Of The Water-Borewell</th>
+              <th>Image</th>
+              <th>Availability Of The Drainage</th>
+              <th>Image</th>
+              <th>Availability Of The Sewage Connectivity</th>
+              <th>Image</th>
+              <th>Marking In The Presence Of The MDAC Women</th>
+              <th>Image</th>
+              <th>Foundation Concreting</th>
+              <th>Image</th>
+              <th>Plinth Beam Level</th>
+              <th>Image</th>
+              <th>Providing Columns</th>
+              <th>Image</th>
+              <th>Providing Slab</th>
+              <th>Image</th>
+              <th>Brick Work For Walls</th>
+              <th>Image</th>
+              <th>Plastering</th>
+              <th>Image</th>
+              <th>Flooring</th>
+              <th>Image</th>
+              <th>Placing Of Windows,Doors,Rolling Shutter,Ventilators</th>
+              <th>Image</th>
+              <th>Painting</th>
+              <th>Image</th>
+              <th>Logos And Name Board (MGNREGS,Navaratnalu,YSR Govt Supported Scheme)</th>
+              <th>Image</th>
+              <th>Electric Power Supply (Light,Fan,Switch Board)</th>
+              <th>Image</th>
+              <th>Earthing</th>
+              <th>Image</th>
+              <th>Water Supply - (Borewell,Tap)</th>
+              <th>Image</th>
+              <th>Sanitation (Drinage Connection, Soak Pit)</th>
+              <th>Image</th>
+              <th>SUMP</th>
+              <th>Image</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="rbkLevelDetails?.length > 0">
+            <tr *ngFor="let obj of rbkLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.WORK_ID }}</td>
+              <td>{{ obj.VILLAGE_NAME }}</td>
+              <td>{{ obj.F_LGTH_BRTH_DESIGN }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.F_LGTH_BRTH_DESIGN_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.F_LGTH_BRTH_DESIGN_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.F_LGTH_BRTH_DESIGN_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.F_LOCATION_ACCESS_WOMEN }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.F_LOCATION_ACCESS_WOMEN_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.F_LOCATION_ACCESS_WOMEN_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.F_LOCATION_ACCESS_WOMEN_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.F_ROAD_VEHICLE }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.F_ROAD_VEHICLE_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.F_ROAD_VEHICLE_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.F_ROAD_VEHICLE_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.R_REGIS_LAND_DDCF }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.R_REGIS_LAND_DDCF_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.R_REGIS_LAND_DDCF_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.R_REGIS_LAND_DDCF_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.R_ALIENATION_HANDING }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.R_ALIENATION_HANDING_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.R_ALIENATION_HANDING_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.R_ALIENATION_HANDING_IMG === 'NA'">NA</span>
+              </td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.R_REGIS_CERTIFI_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.R_REGIS_CERTIFI_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.R_REGIS_CERTIFI_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.OF_AVI_WATER_BOREWELL }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.OF_AVI_WATER_BOREWELL_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.OF_AVI_WATER_BOREWELL_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.OF_AVI_WATER_BOREWELL_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.OF_AVI_DRINAGE }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.OF_AVI_DRINAGE_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.OF_AVI_DRINAGE_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.OF_AVI_DRINAGE_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.OF_AVI_SEWAGE_CONNECT }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.OF_AVI_SEWAGE_CONNECT_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.OF_AVI_SEWAGE_CONNECT_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.OF_AVI_SEWAGE_CONNECT_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.MARKING_MDAC_WOMEN }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.MARKING_MDAC_WOMEN_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.MARKING_MDAC_WOMEN_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.MARKING_MDAC_WOMEN_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.FOUNDATION_CONCRET }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.FOUNDATION_CONCRET_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.FOUNDATION_CONCRET_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.FOUNDATION_CONCRET_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.PLINTH_BEAM }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.PLINTH_BEAM_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.PLINTH_BEAM_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.PLINTH_BEAM_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.PROVIDING_COLUMNS }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.PROVIDING_COLUMNS_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.PROVIDING_COLUMNS_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.PROVIDING_COLUMNS_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.PROVIDING_SLAB }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.PROVIDING_SLAB_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.PROVIDING_SLAB_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.PROVIDING_SLAB_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.BRICK_WORK_FOR_WALLS }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.BRICK_WORK_FOR_WALLS_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.BRICK_WORK_FOR_WALLS_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.BRICK_WORK_FOR_WALLS_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.PLASTERING }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.PLASTERING_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.PLASTERING_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.PLASTERING_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.FLOORING }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.FLOORING_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.FLOORING_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.FLOORING_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.WINDOWS_DOORS_VENTILAT }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.WINDOWS_DOORS_VENTILAT_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.WINDOWS_DOORS_VENTILAT_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.WINDOWS_DOORS_VENTILAT_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.PAINTING }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.PAINTING_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.PAINTING_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.PAINTING_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.LOGOS_NAMEBOARD }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.LOGOS_NAMEBOARD_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.LOGOS_NAMEBOARD_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.LOGOS_NAMEBOARD_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.ELE_POWER_LIGHT_FAN }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.ELE_POWER_LIGHT_FAN_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.ELE_POWER_LIGHT_FAN_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.ELE_POWER_LIGHT_FAN_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.EARTHING }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.EARTHING_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.EARTHING_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.EARTHING_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.WATER_SUPPLY_BORETAP }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.WATER_SUPPLY_BORETAP_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.WATER_SUPPLY_BORETAP_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.WATER_SUPPLY_BORETAP_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.SANITATION }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.SANITATION_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.SANITATION_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.SANITATION_IMG === 'NA'">NA</span>
+              </td>
+              <td>{{ obj.SUMP }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="obj.SUMP_IMG !== 'NA'"
+                  (click)="btnPhotoView(obj.SUMP_IMG)"
+                >
+                  VIEW
+                </button>
+                <span *ngIf="obj.SUMP_IMG === 'NA'">NA</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

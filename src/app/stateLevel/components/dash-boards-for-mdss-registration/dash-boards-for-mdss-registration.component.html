@@ -1,0 +1,330 @@
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 mt-2">
+        <div class="form-group total-HH bg-light-purple">
+            <label><b>TOTAL RBKs</b></label><br>
+            <span class="text-black">
+                <a class="hover-effect" (click)="TotalRBKS()">
+                    <u><b>{{MdssDashboardList.TOTAL_RBKS}}</b></u>
+                </a>
+            </span>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group box3">
+            <label><b>Registered<br> MDSS</b></label><br>
+            <span class="text-black">
+                <a class="hover-effect" (click)="RegisteredMDSS()">
+                    <u><b>{{MdssDashboardList.REGISTERED_RBKS}}</b></u>
+                </a>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group box3">
+            <label><b>PIC Committee<br>Appointed</b></label><br>
+            <span class="text-black">
+                <a class="hover-effect" (click)="PICCommitteAppointed()">
+                    <u><b>{{MdssDashboardList.PIC_COMMITTE_APPOINTED}}</b></u>
+                </a>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group box3">
+            <label><b>PIC Committee <br> Expiring in 30 Days</b></label><br>
+            <span class="text-black">
+                <a class="hover-effect" (click)="PICcommitteeexpiring()">
+                    <u><b>{{MdssDashboardList.PROMOTERS_EXP_IN_30_DAYS}}</b></u>
+                </a>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group box3">
+            <label><b>Eligible <br>MDSS</b></label><br>
+            <span class="text-black">
+                <a class="hover-effect" (click)="EligibleMDSS()">
+                    <u><b>{{MdssDashboardList.ELIGIBLE_RBKS}}</b></u>
+                </a>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="row bg-light-blue">
+    <div class="row mt-3">
+        <div class="col-md-1"></div>
+        <div class="row col-md-11">
+            <div class="col-md-4">
+                <div class="row box6">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>
+                                <h5><b>Meetings</b></h5>
+                            </label><br>
+                            <span class="text-black"><b></b></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group vender-kmf-one">
+                                    <label><b>Initiated MDSS</b></label><br>
+                                    <span class="text-black">
+                                        <a class="hover-effect" (click)="MeetingsInitiatedMDSS()">
+                                            <u><b>{{MdssDashboardList.SCHEDULED_RBKS}}</b></u>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group vender-kmf-two">
+                                    <label><b>Not Initiated MDSS</b></label><br>
+                                    <span class="text-black" (click)="MeetingNotInitiatedMDSS()">
+                                        <a class="hover-effect">
+                                            <u><b>{{MdssDashboardList.NOT_SCHEDULED_RBKS}}</b></u>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row box6">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>
+                                <h5><b>Attendance</b></h5>
+                            </label><br>
+                            <span class="text-black"><b></b></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group vender-gcmmf-one">
+                                    <label><b>Submitted</b></label><br>
+                                    <span class="text-black">
+                                        <a class="hover-effect" (click)="AttendanceSubmitted()">
+                                            <u><b>{{MdssDashboardList.MEETING_RBKS}}</b></u>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group vender-gcmmf-two">
+                                    <label><b>Not Submitted</b></label><br>
+                                    <span class="text-black">
+                                        <a class="hover-effect" (click)="AttendanceNotSubmitted()">
+                                            <u><b>{{MdssDashboardList.ATTENANCE_NOT_SUBMITTED}}</b></u>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row box6">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>
+                                <h5><b>Promoters</b></h5>
+                            </label><br>
+                            <span class="text-black"><b></b></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group vender-meghana-two">
+                                    <label><b>Added</b></label><br>
+                                    <span class="text-black">
+                                        <a class="hover-effect" (click)="PromotersAdded()">
+                                            <u><b>{{MdssDashboardList.PROMOTERS_ADDED}}</b></u>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group vender-kmf-two">
+                                    <label><b>Not Added</b></label><br>
+                                    <span class="text-black">
+                                        <a class="hover-effect" (click)="PromotersNotAdded()">
+                                            <u><b>{{MdssDashboardList.PROMOTERS_NOT_ADDED}}</b></u>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row box6">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>
+                                <h5><b>Documents</b></h5>
+                            </label><br>
+                            <span class="text-black"><b></b></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group vender-meghana-two">
+                                    <label><b>Uploaded</b></label><br>
+                                    <span class="text-black">
+                                        <a class="hover-effect" (click)="Documentsuploaded()">
+                                            <u><b>{{MdssDashboardList.DOC_UPLOADED_RBKS}}</b></u>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group vender-kmf-two">
+                                    <label><b>Not Uploaded</b></label><br>
+                                    <span class="text-black">
+                                        <a class="hover-effect" (click)="DocumentsNotuploaded()">
+                                            <u><b>{{MdssDashboardList.DOC_NOT_UPLOADED_RBKS}}</b></u>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row box6">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>
+                                <h5><b>Applications</b></h5>
+                            </label><br>
+                            <span class="text-black"><b></b></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group vender-meghana-two">
+                                    <label><b>Submitted</b></label><br>
+                                    <span class="text-black">
+                                        <a class="hover-effect" (click)="ApplicationsSubmitted()">
+                                            <u><b>{{MdssDashboardList.SUBMITTED_RBKS}}</b></u>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group vender-kmf-two">
+                                    <label><b>Not Submitted</b></label><br>
+                                    <span class="text-black">
+                                        <a class="hover-effect" (click)="ApplicationsNotSubmitted()">
+                                            <u><b>{{MdssDashboardList.NOT_SUBMITTED_RBKS}}</b></u>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row box6">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label><b>Roll Back RBKs</b></label><br>
+                            <span class="text-black">
+
+                                <a class="hover-effect" (click)="RollBackRbks()">
+                                    <u><b>{{MdssDashboardList.REJECTED_RBKS}}</b></u>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group vender-meghana-two">
+                                    <label><b>Re-submitted</b></label><br>
+                                    <span class="text-black">
+                                        <a class="hover-effect" (click)="ReSubmitted()">
+                                            <u><b>{{ MdssDashboardList.RE_SUBMITTED_RBKS}}</b></u>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group vender-kmf-two">
+                                    <label><b>Pending</b></label><br>
+                                    <span class="text-black">
+                                        <a class="hover-effect" (click)="Pending()">
+                                            <u><b>{{ MdssDashboardList.PENDING_RBKS}}</b></u>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group box3">
+            <label><b>Pending MDSS<br>at DLCO</b></label><br>
+            <span class="text-black">
+                <a class="hover-effect" (click)="PendingMDSSDLCO()">
+                    <u><b>{{MdssDashboardList.PENDING_RBKS_DLCO}}</b></u>
+                </a>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group box3">
+            <label><b>Pending MDSS <br>at DCO</b></label><br>
+            <span class="text-black">
+                <a class="hover-effect" (click)="PendingMDSSDCO()">
+                    <u><b>{{MdssDashboardList.PENDING_RBKS_DCO}}</b></u>
+                </a>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group box3">
+            <label><b>Pending MDSS <br>at AR/GM</b></label><br>
+            <span class="text-black">
+                <a class="hover-effect" (click)="PendingMDSSARGM()">
+                    <u><b>{{MdssDashboardList.PENDING_RBKS_GM}}</b></u>
+                </a>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group box3">
+            <label><b>Pending MDSS<br>at Commissioner</b></label><br>
+            <span class="text-black">
+                <a class="hover-effect" (clicl)="PendingMDSSCommissioner()">
+                    <!-- <u> -->
+                    <b>{{MdssDashboardList.PENDING_RBKS_COMM}}</b>
+                    <!-- </u> -->
+                </a>
+            </span>
+        </div>
+    </div>
+</div>

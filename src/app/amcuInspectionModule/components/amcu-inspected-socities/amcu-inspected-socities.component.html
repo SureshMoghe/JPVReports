@@ -1,0 +1,281 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">AMCU Inspected Societies Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> Type Of Inspection : </b
+          ><span class="text-success">{{ inspectionName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> Route : </b><span class="text-success">{{ routeName }}</span>
+        </h5>
+      </div>
+
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="detailLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white" *ngIf="typeOfInspection === '1'">
+            <tr>
+              <th>S.No.</th>
+              <th>Mandal Name</th>
+              <th>Society Name</th>
+              <th>Farmer ID</th>
+              <th>Farmer Name</th>
+              <th>Payment Cycle</th>
+              <th>Milk Quantity</th>
+              <th>Fat In Milk</th>
+              <th>SNF In Milk</th>
+              <th>Amount</th>
+              <th>Credited Amount</th>
+              <th>Payment Photo</th>
+              <th>Candidate Amount Photo</th>
+              <th>Inserted Date</th>
+            </tr>
+          </thead>
+          <thead class="bg-success text-white" *ngIf="typeOfInspection === '2'">
+            <tr>
+              <th>S.No.</th>
+              <th>MANDAL NAME</th>
+              <th>SOCIETY NAME</th>
+              <th>FARMER ID</th>
+              <th>FARMER NAME</th>
+              <th>MILK TYPE</th>
+              <th>FAT IN MILK</th>
+              <th>SNF IN MILK</th>
+              <th>AMOUNT</th>
+              <th>INSERTED DATE</th>
+            </tr>
+          </thead>
+          <thead class="bg-success text-white" *ngIf="typeOfInspection === '3'">
+            <tr>
+              <th>S.No.</th>
+              <th>MANDAL NAME</th>
+              <th>SOCIETY NAME</th>
+              <th>EQUIPMENT ID</th>
+              <th>EQUIPMENT NAME</th>
+              <th>REASON</th>
+              <th>REMARKS</th>
+              <th>IS EQUIPMENT WORKING</th>
+              <th>INSPECTION PHOTO</th>
+              <th>INSERTED DATE</th>
+            </tr>
+          </thead>
+          <thead
+            class="bg-success text-white"
+            [hidden]="typeOfInspection !== '4'"
+          >
+            <tr>
+              <th>S.No.</th>
+              <th>MANDAL NAME</th>
+              <th>SOCIETY NAME</th>
+              <th>SHIFT</th>
+              <th>MILK TYPE</th>
+              <th>MILK QUANTITY</th>
+              <th>FAT IN MILK</th>
+              <th>SNF IN MILK</th>
+              <th>AMOUNT</th>
+              <th>SUMMARY PHOTO</th>
+              <th>INSERTED DATE</th>
+              <th>INSPECTION DATE</th>
+            </tr>
+          </thead>
+
+          <tbody
+            *ngIf="detailLevelDetails?.length > 0"
+            [hidden]="typeOfInspection !== '1'"
+          >
+            <tr *ngFor="let obj of detailLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.MANDAL_NAME }}</td>
+              <td>{{ obj.SOCIETY_NAME }}</td>
+              <td>{{ obj.FARMER_ID }}</td>
+              <td>{{ obj.FARMER_NAME }}</td>
+              <td>{{ obj.PAYMENT_CYCLE }}</td>
+              <td>{{ obj.MILK_QUANTITY }}</td>
+              <td>{{ obj.FAT_IN_MILK }}</td>
+              <td>{{ obj.SNF_IN_MILK }}</td>
+              <td>{{ obj.AMOUNT }}</td>
+              <td>{{ obj.CREDITED_AMOUNT }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="
+                    obj.PAYMENT_SLIP_PHOTO !== null &&
+                    obj.PAYMENT_SLIP_PHOTO !== '' &&
+                    obj.PAYMENT_SLIP_PHOTO !== undefined
+                  "
+                  (click)="btnPhotoView(obj.PAYMENT_SLIP_PHOTO)"
+                >
+                  VIEW
+                </button>
+                <span
+                  *ngIf="
+                    obj.PAYMENT_SLIP_PHOTO === null ||
+                    obj.PAYMENT_SLIP_PHOTO === '' ||
+                    obj.PAYMENT_SLIP_PHOTO === undefined
+                  "
+                  >NA</span
+                >
+              </td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="
+                    obj.CANDIDATE_AMOUNT_PHOTO !== null &&
+                    obj.CANDIDATE_AMOUNT_PHOTO !== '' &&
+                    obj.CANDIDATE_AMOUNT_PHOTO !== undefined
+                  "
+                  (click)="btnPhotoView(obj.CANDIDATE_AMOUNT_PHOTO)"
+                >
+                  VIEW
+                </button>
+                <span
+                  *ngIf="
+                    obj.CANDIDATE_AMOUNT_PHOTO === null ||
+                    obj.CANDIDATE_AMOUNT_PHOTO === '' ||
+                    obj.CANDIDATE_AMOUNT_PHOTO === undefined
+                  "
+                  >NA</span
+                >
+              </td>
+              <td>{{ obj.INSERTED_ON }}</td>
+            </tr>
+          </tbody>
+          <tbody
+            *ngIf="detailLevelDetails?.length > 0"
+            [hidden]="typeOfInspection !== '2'"
+          >
+            <tr *ngFor="let obj of detailLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.MANDAL_NAME }}</td>
+              <td>{{ obj.SOCIETY_NAME }}</td>
+              <td>{{ obj.FARMER_ID }}</td>
+              <td>{{ obj.FARMER_NAME }}</td>
+              <td>{{ obj.MILK_TYPE === "B" ? "BUFFALO" : "COW" }}</td>
+              <td>{{ obj.FAT_IN_MILK }}</td>
+              <td>{{ obj.SNF_IN_MILK }}</td>
+              <td>{{ obj.AMOUNT }}</td>
+              <td>{{ obj.INSERTED_ON }}</td>
+            </tr>
+          </tbody>
+          <tbody
+            *ngIf="detailLevelDetails?.length > 0"
+            [hidden]="typeOfInspection !== '3'"
+          >
+            <tr *ngFor="let obj of detailLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.MANDAL_NAME }}</td>
+              <td>{{ obj.SOCIETY_NAME }}</td>
+              <td>{{ obj.EQUIPMENT_ID }}</td>
+              <td>{{ obj.EQUIPMENT_NAME }}</td>
+              <td>{{ obj.REASON_NAME }}</td>
+              <td>{{ obj.REMARKS }}</td>
+              <td>{{ obj.IS_EQUIPMENT_WORKING }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="
+                    obj.INSPECTION_PHOTO !== null &&
+                    obj.INSPECTION_PHOTO !== '' &&
+                    obj.INSPECTION_PHOTO !== undefined
+                  "
+                  (click)="btnPhotoView(obj.INSPECTION_PHOTO)"
+                >
+                  VIEW
+                </button>
+                <span
+                  *ngIf="
+                    obj.INSPECTION_PHOTO === null ||
+                    obj.INSPECTION_PHOTO === '' ||
+                    obj.INSPECTION_PHOTO === undefined
+                  "
+                  >NA</span
+                >
+              </td>
+              <td>{{ obj.INSERTED_ON }}</td>
+            </tr>
+          </tbody>
+          <tbody
+            *ngIf="detailLevelDetails?.length > 0"
+            [hidden]="typeOfInspection !== '4'"
+          >
+            <tr *ngFor="let obj of detailLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.MANDAL_NAME }}</td>
+              <td>{{ obj.SOCIETY_NAME }}</td>
+              <td>{{ obj.SHIFT }}</td>
+              <td>{{ obj.MILK_TYPE }}</td>
+              <td>{{ obj.MILK_QUANTITY }}</td>
+              <td>{{ obj.FAT_IN_MILK }}</td>
+              <td>{{ obj.SNF_IN_MILK }}</td>
+              <td>{{ obj.AMOUNT }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="
+                    obj.SUMMARY_IMG !== null &&
+                    obj.SUMMARY_IMG !== '' &&
+                    obj.SUMMARY_IMG !== undefined
+                  "
+                  (click)="btnPhotoView(obj.SUMMARY_IMG)"
+                >
+                  VIEW
+                </button>
+                <span
+                  *ngIf="
+                    obj.SUMMARY_IMG === null ||
+                    obj.SUMMARY_IMG === '' ||
+                    obj.SUMMARY_IMG === undefined
+                  "
+                  >NA</span
+                >
+              </td>
+              <td>{{ obj.INSERTED_ON }}</td>
+              <td>{{ obj.INS_DATE }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

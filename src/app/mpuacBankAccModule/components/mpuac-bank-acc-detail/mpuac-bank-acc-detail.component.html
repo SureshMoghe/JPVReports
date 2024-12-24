@@ -1,0 +1,90 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">MDAC Bank Account RBK Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div class="col-md-6">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-6">
+        <h5>
+          <b> Mandal : </b><span class="text-success">{{ mentorName }}</span>
+        </h5>
+      </div>
+
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="personDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>Route ID</th>
+              <th>RBK</th>
+              <th>Bank Account Number</th>
+              <th>Bank Account Name</th>
+              <th>Bank</th>
+              <th>Branch</th>
+              <th>Ifsc Code</th>
+              <th>Promoter1 Name</th>
+              <th>Promoter1 Mobile No</th>
+              <th>Promoter2 Name</th>
+              <th>Promoter2 Mobile No</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="personDetails?.length > 0">
+            <tr *ngFor="let obj of personDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.ROUTE_NAME }}</td>
+              <td>
+                <a
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetDetails(obj)"
+                  ><b>{{ obj.RBK_NAME }}</b></a
+                >
+              </td>
+              <td>{{ obj.BANK_ACCOUNT_NO }}</td>
+              <td>{{ obj.BANK_ACCOUNT_NAME }}</td>
+              <td>{{ obj.BANK_NAME }}</td>
+              <td>{{ obj.BRANCH_NAME }}</td>
+              <td>{{ obj.IFSCCODE }}</td>
+              <td>{{ obj.PRAMOTOR1_NAME }}</td>
+              <td>{{ obj.PRAMOTOR1_MOBILE }}</td>
+              <td>{{ obj.PRAMOTOR2_NAME }}</td>
+              <td>{{ obj.PRAMOTOR2_MOBILE }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

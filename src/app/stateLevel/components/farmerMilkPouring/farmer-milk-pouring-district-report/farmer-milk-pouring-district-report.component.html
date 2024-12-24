@@ -1,0 +1,25 @@
+<div class="col-md-12" align="right">
+  <div class="row">
+  <div class="col-md-5" align="right">
+  <b>  Phase Name :</b><span class="text-success">
+       
+     {{phasename}}
+    </span>
+   </div>
+
+  
+   
+   <div class="col-md-5" align="right">
+
+  
+  <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+    Back
+  </button>
+</div></div></div>
+<app-farmer-milk-pouring-district
+  [(districtId)]="districtId"
+  [(districtName)]="districtName"
+  [(phaseid)]="phaseid"
+  [(phasename)]="phasename"
+  (onRouteChange)="onRouteChange($event)"
+></app-farmer-milk-pouring-district>

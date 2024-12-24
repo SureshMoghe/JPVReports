@@ -1,0 +1,105 @@
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">VO Wise Farmers Report</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-10"></div>
+            <div class="col-md-2">
+                <button [hidden]="routeListDetails?.length < 1" type="button" class="btn btn-success btn-sm pull-right"
+                    (click)="btnExcel()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                    Download Excel
+                </button>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12 table-responsive" [hidden]="routeListDetails?.length < 1">
+                <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead class="bg-success text-white">
+                        <tr>
+                            <th class="tableheader_color">S.No.</th>
+                            <th class="tableheader_color">District Code</th>
+                            <th class="tableheader_color">District Name</th>
+                            <th class="tableheader_color">Mandal Code </th>
+                            <th class="tableheader_color">Mandal Name</th>
+
+                            <th class="tableheader_color">Secretarite Code</th>
+                            <th class="tableheader_color">Secretarite Name</th>
+                            <th class="tableheader_color">Society Code</th>
+                            <th class="tableheader_color">Village Code</th>
+                            <th class="tableheader_color">Village Name</th>
+                            <th class="tableheader_color">Farmer Code</th>
+                            <th class="tableheader_color">Farmer Name</th>
+                            <th class="tableheader_color">Mobile Number</th>
+                            <th class="tableheader_color">Cluster Id</th>
+                            <th class="tableheader_color">Volunteer Name</th>
+                            <th class="tableheader_color">Volunteer Mobile</th>
+                            <th class="tableheader_color">SGH Member Status</th>
+
+                            <th class="tableheader_color">VOA Name</th>
+                            <th class="tableheader_color">VOA Mobile</th>
+                            <th class="tableheader_color">VO Name</th>
+                            <th class="tableheader_color">VO Mobile</th>
+
+                        </tr>
+                        <tr>
+                            <th class="tableheader_color">1</th>
+                            <th class="tableheader_color">2</th>
+                            <th class="tableheader_color">3</th>
+                            <th class="tableheader_color">4</th>
+                            <th class="tableheader_color">5</th>
+                            <th class="tableheader_color">6</th>
+                            <th class="tableheader_color">7</th>
+                            <th class="tableheader_color">8</th>
+                            <th class="tableheader_color">9</th>
+                            <th class="tableheader_color">10</th>
+                            <th class="tableheader_color">11</th>
+                            <th class="tableheader_color">12</th>
+                            <th class="tableheader_color">13</th>
+                            <th class="tableheader_color">14</th>
+                            <th class="tableheader_color">15</th>
+                            <th class="tableheader_color">16</th>
+                            <th class="tableheader_color">17</th>
+                            <th class="tableheader_color">18</th>
+                            <th class="tableheader_color">19</th>
+                            <th class="tableheader_color">20</th>
+                            <th class="tableheader_color">21</th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="routeListDetails?.length > 0">
+                        <tr *ngFor="let obj of routeListDetails; let i = index">
+                            <td class="number_align">{{ i + 1 }}</td>
+                            <td class="number_align">{{ obj.DIST_CODE }}</td>
+                            <td style="text-align: left;" class="table_cells_borders">{{ obj.DISTRICT }}</td>
+                            <td class="number_align">{{ obj.MANDAL_CODE }}</td>
+                            <td style="text-align: left;" class="table_cells_borders">{{ obj.MANDAL_NAME }}</td>
+                            <td class="number_align">{{ obj.SECRETARIATE_CODE }}</td>
+                            <td style="text-align: left;" class="table_cells_borders">{{ obj.SECRETARIATE_NAME }}</td>
+                            <td class="number_align">{{ obj.SOCEITY_CODE }}</td>
+                            <td class="number_align">{{ obj.VILLAGE_CODE }}</td>
+                            <td style="text-align: left;" class="table_cells_borders">{{ obj.VILLAGE_NAME }}</td>
+                            <td class="number_align">{{ obj.FARMER_CODE }}</td>
+                            <td style="text-align: left;" class="table_cells_borders">{{ obj.FARMER_NAME }}</td>
+                            <td class="number_align">{{ obj.MOBILE_NUMBER }}</td>
+                            <td class="number_align">{{ obj.CLUSTER_ID }}</td>
+                            <td style="text-align: left;" class="table_cells_borders">{{ obj.VOLUNTEER_NAME }}</td>
+                            <td class="number_align">{{ obj.VOLUNTEER_MOBILE }}</td>
+                            <td class="number_align">{{ obj.SHG_MEMBER_STATUS }}</td>
+                            <td class="number_align">{{ obj.VOA_NAME }}</td>
+                            <td class="number_align">{{ obj.VOA_MOBILE }}</td>
+                            <td class="number_align">{{ obj.VO_NAME }}</td>
+                            <td class="number_align">{{ obj.VO_MOBILE }}</td>
+
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

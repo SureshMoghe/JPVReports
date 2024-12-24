@@ -1,0 +1,275 @@
+<div class="row">
+
+    <div class="col-md-12 my-3" *ngIf="dayWiseMilkCowBuffPoured?.length > 0">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0 secondary-heading pb-0">
+                    Day Wise Milk Poured By Women Farmers
+                </h5>
+            </div>
+            <div class="card-body py-0">
+                <div id="chart">
+                    <apx-chart [series]="stbchartOptions.series" [chart]="stbchartOptions.chart" [dataLabels]="stbchartOptions.dataLabels"
+                        [plotOptions]="stbchartOptions.plotOptions" [xaxis]="stbchartOptions.xaxis" [stroke]="stbchartOptions.stroke"
+                        [fill]="stbchartOptions.fill" [yaxis]="stbchartOptions.yaxis" [title]="stbchartOptions.title"
+                        [tooltip]="stbchartOptions.tooltip" [legend]="stbchartOptions.legend"></apx-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 my-3" *ngIf="milkPouredList?.length > 0">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0 secondary-heading pb-0">
+                    Week Wise Milk Poured by Women Farmers (upto last week)
+                </h5>
+            </div>
+            <div class="card-body py-0">
+                <div id="chart">
+                    <apx-chart [series]="dashedLineChartOptions.series" [chart]="dashedLineChartOptions.chart"
+                        [xaxis]="dashedLineChartOptions.xaxis" [stroke]="dashedLineChartOptions.stroke"
+                        [tooltip]="dashedLineChartOptions.tooltip" [dataLabels]="dashedLineChartOptions.dataLabels"
+                        [legend]="dashedLineChartOptions.legend" [markers]="dashedLineChartOptions.markers"
+                        [grid]="dashedLineChartOptions.grid" [yaxis]="dashedLineChartOptions.yaxis" [title]="dashedLineChartOptions.title"
+                        [fill]="dashedLineChartOptions.fill" [colors]="dashedLineChartOptions.colors"></apx-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 my-3" *ngIf="totalMilkPouredList?.length > 0">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0 secondary-heading pb-0">
+                    Day Wise Milk Poured by Women Farmers
+                </h5>
+            </div>
+            <div class="card-body py-0">
+                <div id="chart">
+                    <apx-chart [series]="dashedLineDayWiseChartOptions.series" [chart]="dashedLineDayWiseChartOptions.chart"
+                        [xaxis]="dashedLineDayWiseChartOptions.xaxis" [stroke]="dashedLineDayWiseChartOptions.stroke"
+                        [tooltip]="dashedLineDayWiseChartOptions.tooltip" [dataLabels]="dashedLineDayWiseChartOptions.dataLabels"
+                        [legend]="dashedLineDayWiseChartOptions.legend" [markers]="dashedLineDayWiseChartOptions.markers"
+                        [grid]="dashedLineDayWiseChartOptions.grid" [yaxis]="dashedLineDayWiseChartOptions.yaxis"
+                        [title]="dashedLineDayWiseChartOptions.title" [fill]="dashedLineDayWiseChartOptions.fill"
+                        [colors]="dashedLineDayWiseChartOptions.colors"></apx-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 
+  <div class="col-md-6 my-3"*ngIf="milkNonPourer.apiData?.length > 0">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0 secondary-heading pb-0">
+          Milk Non Pouring Women (Not Poured in last 30 days) Pecentage
+        </h5>
+      </div>
+      <div class="card-body py-0">
+        <div id="chart">
+          <apx-chart
+            [series]="dashedLineNonMilkPourerChartOptions.series"
+            [chart]="dashedLineNonMilkPourerChartOptions.chart"
+            [xaxis]="dashedLineNonMilkPourerChartOptions.xaxis"
+            [stroke]="dashedLineNonMilkPourerChartOptions.stroke"
+            [tooltip]="dashedLineNonMilkPourerChartOptions.tooltip"
+            [dataLabels]="dashedLineNonMilkPourerChartOptions.dataLabels"
+            [legend]="dashedLineNonMilkPourerChartOptions.legend"
+            [markers]="dashedLineNonMilkPourerChartOptions.markers"
+            [grid]="dashedLineNonMilkPourerChartOptions.grid"
+            [yaxis]="dashedLineNonMilkPourerChartOptions.yaxis"
+            [title]="dashedLineNonMilkPourerChartOptions.title"
+            [fill]="dashedLineNonMilkPourerChartOptions.fill"
+            [colors]="dashedLineNonMilkPourerChartOptions.colors"
+          ></apx-chart>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+    <div class="col-md-6 my-3" *ngIf="milkFATSNF.apiData?.length > 0">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0 secondary-heading pb-0">
+                    Day Wise FAT & SNF In Milk Poured By Women Farmers
+                </h5>
+            </div>
+            <div class="card-body py-0">
+                <div id="chart">
+                    <apx-chart [series]="dashedLineSNFFATChartOptions.series" [chart]="dashedLineSNFFATChartOptions.chart"
+                        [xaxis]="dashedLineSNFFATChartOptions.xaxis" [stroke]="dashedLineSNFFATChartOptions.stroke"
+                        [tooltip]="dashedLineSNFFATChartOptions.tooltip" [dataLabels]="dashedLineSNFFATChartOptions.dataLabels"
+                        [legend]="dashedLineSNFFATChartOptions.legend" [markers]="dashedLineSNFFATChartOptions.markers"
+                        [grid]="dashedLineSNFFATChartOptions.grid" [yaxis]="dashedLineSNFFATChartOptions.yaxis"
+                        [title]="dashedLineSNFFATChartOptions.title" [fill]="dashedLineSNFFATChartOptions.fill"
+                        [colors]="dashedLineSNFFATChartOptions.colors"></apx-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 my-3" *ngIf="routeWiseMilkCollection.renderGraph">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 secondary-heading pb-0">Route Wise Milk Poured Data</h5>
+                <h5 style="cursor: pointer" class="btn-link pull-right" *ngIf="isPersonLoggedIn"
+                    (click)="btnReportClick('ROUTE_WISE_MILK_POURING')">
+                    Route Wise Report
+                </h5>
+            </div>
+            <div class="card-body py-0">
+                <div id="chart">
+                    <apx-chart [series]="dashedLineRouteWiseMilkPourChartOptions.series"
+                        [chart]="dashedLineRouteWiseMilkPourChartOptions.chart" [xaxis]="dashedLineRouteWiseMilkPourChartOptions.xaxis"
+                        [stroke]="dashedLineRouteWiseMilkPourChartOptions.stroke"
+                        [tooltip]="dashedLineRouteWiseMilkPourChartOptions.tooltip"
+                        [dataLabels]="dashedLineRouteWiseMilkPourChartOptions.dataLabels"
+                        [legend]="dashedLineRouteWiseMilkPourChartOptions.legend"
+                        [markers]="dashedLineRouteWiseMilkPourChartOptions.markers" [grid]="dashedLineRouteWiseMilkPourChartOptions.grid"
+                        [yaxis]="dashedLineRouteWiseMilkPourChartOptions.yaxis" [title]="dashedLineRouteWiseMilkPourChartOptions.title"
+                        [fill]="dashedLineRouteWiseMilkPourChartOptions.fill"
+                        [colors]="dashedLineRouteWiseMilkPourChartOptions.colors"></apx-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 my-3" *ngIf="topTenSocietiesList?.length > 0">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0 secondary-heading pb-0">
+                    Top 10 Milk Poured Societies
+                </h5>
+            </div>
+            <div class="card-body py-0 table-responsive" style="height: 350px; overflow: auto">
+                <table class="table table-striped ah-table text-center">
+                    <thead class="bg-success text-white">
+                        <tr>
+                            <th>S.No.</th>
+                            <th>District</th>
+                            <th>Mandal</th>
+                            <th>RBK</th>
+                            <th>Society</th>
+                            <th>Total Milk in Litres</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="topTenSocietiesList?.length > 0">
+                        <tr *ngFor="let obj of topTenSocietiesList; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ obj.DISTRICT }}</td>
+                            <td>{{ obj.SUB_DISTIRCT }}</td>
+                            <td>{{ obj.RBK_NAME }}</td>
+                            <td>{{ obj.VDCSNAME }}</td>
+                            <td>{{ obj.TOTAL_MILK }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 my-3" *ngIf="leastTenSocietiesList?.length > 0">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0 secondary-heading pb-0">
+                    Least 10 Milk Poured Societies
+                </h5>
+            </div>
+            <div class="card-body py-0 table-responsive" style="height: 350px; overflow: auto">
+                <table class="table table-striped ah-table text-center">
+                    <thead class="bg-success text-white">
+                        <tr>
+                            <th>S.No.</th>
+                            <th>District</th>
+                            <th>Mandal</th>
+                            <th>RBK</th>
+                            <th>Society</th>
+                            <th>Total Milk in Litres</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="leastTenSocietiesList?.length > 0">
+                        <tr *ngFor="let obj of leastTenSocietiesList; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ obj.DISTRICT }}</td>
+                            <td>{{ obj.SUB_DISTIRCT }}</td>
+                            <td>{{ obj.RBK_NAME }}</td>
+                            <td>{{ obj.VDCSNAME }}</td>
+                            <td>{{ obj.TOTAL_MILK }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 my-3" *ngIf="topFiveMembersList?.length > 0">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0 secondary-heading pb-0">Top 5 Milk Poured Members</h5>
+            </div>
+            <div class="card-body py-0 table-responsive">
+                <table class="table table-striped ah-table text-center">
+                    <thead class="bg-success text-white">
+                        <tr>
+                            <th>S.No.</th>
+                            <th>District</th>
+                            <th>Mandal</th>
+                            <th>RBK</th>
+                            <th>Society</th>
+                            <th>Farmer Name</th>
+                            <th>Total Milk in Litres</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="topFiveMembersList?.length > 0">
+                        <tr *ngFor="let obj of topFiveMembersList; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ obj.DISTRICT }}</td>
+                            <td>{{ obj.SUB_DISTIRCT }}</td>
+                            <td>{{ obj.RBK_NAME }}</td>
+                            <td>{{ obj.SOCIETY_NAME }}</td>
+                            <td>{{ obj.FARMER_NAME }}</td>
+                            <td>{{ obj.TOTAL_MILK }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-6 my-3" *ngIf="leastFiveMembersList?.length > 0">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0 secondary-heading pb-0">Least 5 Milk Poured Members</h5>
+            </div>
+            <div class="card-body py-0 table-responsive">
+                <table class="table table-striped ah-table text-center">
+                    <thead class="bg-success text-white">
+                        <tr>
+                            <th>S.No.</th>
+                            <th>District</th>
+                            <th>Mandal</th>
+                            <th>RBK</th>
+                            <th>Society</th>
+                            <th>Farmer Name</th>
+                            <th>Total Milk in Litres</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="leastFiveMembersList?.length > 0">
+                        <tr *ngFor="let obj of leastFiveMembersList; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ obj.DISTRICT }}</td>
+                            <td>{{ obj.SUB_DISTIRCT }}</td>
+                            <td>{{ obj.RBK_NAME }}</td>
+                            <td>{{ obj.SOCIETY_NAME }}</td>
+                            <td>{{ obj.FARMER_NAME }}</td>
+                            <td>{{ obj.TOTAL_MILK }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

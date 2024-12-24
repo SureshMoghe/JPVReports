@@ -1,0 +1,101 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Farmer Abstract Transaction Village Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right" 
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div class="col-md-3">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+
+      <div class="col-md-3">
+        <h5>
+          <b> Mandal : </b><span class="text-success">{{ mandalName }}</span>
+        </h5>
+      </div>
+
+      <div class="col-md-3">
+        <h5>
+          <b> RBK : </b><span class="text-success">{{ rbkName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-3">
+        <h5>
+          <b> Village : </b><span class="text-success">{{ villageName }}</span>
+        </h5>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="societyDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>Farmer Name</th>
+              <th>Farmer Code</th>
+              <th>Shift</th>
+              <th>Cow Milk In LTRS</th>
+              <th>Cow Milk Amount</th>
+              <th>Buffalo Milk In LTRS</th>
+              <th>Buffalo Milk Amount</th>
+              <th>Transaction Date</th>
+            </tr>
+            <tr >             
+              <th >(1)</th>
+              <th >(2)</th>
+              <th >(3)</th>
+              <th >(4)</th>
+              <th >(5)</th>
+              <th >(6)</th>
+              <th >(7)</th>
+              <th >(8)</th>
+              <th >(9)</th>
+               
+            </tr>
+			
+          </thead>
+          <tbody *ngIf="societyDetails?.length > 0">
+            <tr *ngFor="let obj of societyDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td  class="text_align_color">{{ obj.FARMER_NAME }}</td>
+              <td  class="number_align">{{ obj.FARMER_CODE }}</td>
+              <td  class="number_align">{{ obj.SHIFT }}</td>
+              <td  class="number_align">{{ obj.COW_MILK_LITERS }}</td>
+              <td  class="number_align">{{ obj.COW_MILK_AMOUNT }}</td>
+              <td  class="number_align">{{ obj.BUFFALO_MILK_LITER }}</td>
+              <td  class="number_align">{{ obj.BUFFALO_MILK_AMOUNT }}</td>
+              <td  class="number_align">{{ obj.TRANSACTION_DATE }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

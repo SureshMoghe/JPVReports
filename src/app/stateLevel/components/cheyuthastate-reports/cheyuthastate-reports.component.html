@@ -1,0 +1,65 @@
+<div class="row align-items-center">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="fromDate"
+          >From Date : <span style="color: red">*</span></label
+        >
+        <app-date-picker
+          [PlaceHolder]="'Please Select From Date'"
+          [(selectedDate)]="fromDate"
+        ></app-date-picker>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="toDate">To Date : <span style="color: red">*</span></label>
+        <app-date-picker
+          [PlaceHolder]="'Please Select To Date'"
+          [(selectedDate)]="toDate"
+        ></app-date-picker>
+      </div>
+    </div>
+     
+ 
+  
+    <div class="col-md-3">
+      <button
+        type="button"
+        class="btn btn-primary btn-sm mt-3"
+        (click)="btnLoadReport()"
+      >
+        <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+        GO
+      </button>
+    </div>
+  </div>
+
+<app-cheyutha-districts-reports   
+[(fromDate)]="fromDate"
+  [(toDate)]="toDate" 
+  
+
+(onDistrictChange)="onDistrictChange($event);"
+(onRouteChange)="onRouteChange($event)"  
+ 
+  (onVILLAGECOUNTChange)="onVILLAGECOUNTChange($event)" 
+(onJpvRegisteredfarmerChange)="onJpvRegisteredfarmerChange($event)" 
+(oncheybeneRegjpvfarmerChange)="oncheybeneRegjpvfarmerChange($event)" 
+(oncheybeneRegjpvfarmergroundedanimalChange)="oncheybeneRegjpvfarmergroundedanimalChange($event)"
+(oncheybeneRegNonjpvfarmergroundedanimalChange)="oncheybeneRegNonjpvfarmergroundedanimalChange($event)"
+(onTotalCheyuthaBeneficiariesGroundedwithanimalsChange)="onTotalCheyuthaBeneficiariesGroundedwithanimalsChange($event)"
+(onjpvRegFaranimalgroundingChange)="onjpvRegFaranimalgroundingChange($event)"
+(onjpvStatestreenidhiChange)="onjpvStatestreenidhiChange($event)" 
+(onjpvStatesunnathiChange)="onjpvStatesunnathiChange($event)"
+(onbanklinkChange)="onbanklinkChange($event)"
+(ontotalnoofanimalsChange)="ontotalnoofanimalsChange($event)"
+(onsurveyedwithanimalsChange)="onsurveyedwithanimalsChange($event)"
+(onsurveyedwithoutanimalsChange)="onsurveyedwithoutanimalsChange($event)"
+(onSurvyednonRegisteredBeneficiariesChange)="onSurvyednonRegisteredBeneficiariesChange($event)"
+(onnonsurveyedChange)="onnonsurveyedChange($event)" 
+
+(onSurveyedRegFarmersCount)="onSurveyedRegFarmersCount($event)" 
+
+
+></app-cheyutha-districts-reports>  
+ 

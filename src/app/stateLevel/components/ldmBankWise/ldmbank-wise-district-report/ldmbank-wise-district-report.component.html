@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-12" align="right">
+    <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+      Back
+    </button>
+  </div>
+</div>
+
+<app-ldm-bank-wise-district
+  [(bankName)]="bankName"
+  (onDistrictChange)="onDistrictChange($event)"
+>
+</app-ldm-bank-wise-district>

@@ -1,0 +1,135 @@
+<div class="row">
+    <div class="col-md-3">
+      <h5>
+        <b> From Date : </b><span class="text-success">{{ fromDate }}</span>
+      </h5>
+    </div>
+    <div class="col-md-3">
+      <h5>
+        <b>To Date : </b><span class="text-success">{{ toDate }}</span>
+      </h5>
+    </div> 
+    <div class="col-md-6" align="right">
+      <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+        Back
+      </button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0"> Bank Linkage Beneficiaries Report</h5>
+    </div> 
+
+    <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+
+            <div class="col-md-8">
+               
+                 <span class="text-success">{{ distmanrbk }}</span>
+               
+            </div>
+
+              <button
+              type="button"
+              class="btn btn-success btn-sm pull-right"
+              (click)="btnExcel()"
+            >
+              <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+              Download Excel
+            </button>  
+            <!-- <button
+              type="button"
+              class="btn btn-danger btn-sm pull-right"
+              (click)="btnPDF()"
+            >
+              <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+              Download PDF
+            </button> -->
+          </div>   </div>
+<div class="row" >
+
+  <div
+          class="col-md-12 table-responsive"
+          [hidden]="routeListDetails?.length < 1"
+        >
+          <table  
+            class="table table-striped ah-table text-center"
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger" 
+          > 
+          
+            <thead class="bg-success text-white">   
+              <tr >  
+                
+
+          <th >S.No.</th>
+          <th  >DISTRICT NAME</th>
+          <th  >MANDAL NAME</th>
+          <th  >SEC NAME</th>
+          <th  >BENEFICIARY AADHAR</th>
+          <th  >BENEFICIARY NAME</th>
+          <th  >BENEFICIARY MOBILE</th>
+          <th  >ANIMAL TYPE</th>
+          <th>GROUNDING STATUS</th>            
+        </tr>   
+        
+        <tr >             
+          <th  class="tableheader_color"  >(1)</th>
+          <th  class="tableheader_color" >(2)</th>
+          <th  class="tableheader_color" >(3)</th>
+          <th  class="tableheader_color" >(4)</th>
+          <th  class="tableheader_color" >(5)</th>
+          <th  class="tableheader_color" >(6)</th>
+          <th  class="tableheader_color" >(7)</th>
+          <th  class="tableheader_color" >(8)</th>
+          <th  class="tableheader_color" >(9)</th> 
+        </tr> 
+
+      </thead>
+      <tbody *ngIf="routeListDetails?.length > 0"  >
+        <tr *ngFor="let obj of routeListDetails; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td  class="text_align_color">{{  obj.DISTRICT_NAME }}   </td>
+          <td  class="text_align_color">{{  obj.MANDAL_NAME   }}</td>
+          <td  class="text_align_color">{{  obj.SEC_NAME }}</td>
+          <td  class="text_align_color">{{  obj.BENEFICIARY_AADHAR }}</td>
+          <td  class="text_align_color">{{  obj.BENEFICIARY_NAME }}</td>
+          <td  class="text_align_color">{{  obj.BENEFICIARY_MOBILE }}</td>
+          <td  class="text_align_color">{{  obj.ANIMAL_TYPE	 }}</td>
+          <td  class="text_align_color">{{  obj.GROUNDING_STATUS }}</td>
+            
+
+        </tr>
+      </tbody>
+      <tbody *ngIf="routeListDetails?.length > 0">
+       <tr>
+             <!-- <td>--</td> 
+          <td>
+            <b>TOTAL</b>
+          </td>
+          <td>{{ reportTotals.TOTAL_RBK | indianNumber }}</td>
+          <td>{{ reportTotals.TOTAL_VILLAGE | indianNumber }}</td>
+          <td>{{ reportTotals.TOTAL_VOLUNTEERS | indianNumber }}</td>
+
+          <td>{{ reportTotals.tt_REG_FARMERS | indianNumber }}</td>
+          <td> {{ reportTotals.tt_MILK_POURING_FARMERS | indianNumber }} </td>
+          <td>{{ reportTotals.tt_COW_MILK_LTR | indianNumber }}</td>
+          <td>{{ reportTotals.tt_COW_MILK_AMOUNT | indianNumber }}</td>
+          <td> {{ reportTotals.tt_BUFFALO_MILK_LTR | indianNumber }}     </td>
+          <td>{{ reportTotals.tt_BUFFALO_MILK_AMOUNT | indianNumber }}</td>
+          <td>{{ reportTotals.tt_MILK_LTR | indianNumber }}</td>
+          <td>{{ reportTotals.tt_MILK_AMOUNT | indianNumber }}</td>  -->
+
+
+ 
+
+        </tr>
+      </tbody> 
+    </table>
+  </div>
+</div>
+
+</div>

@@ -1,0 +1,123 @@
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">
+        BMCU Equipments Details
+      </h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        
+           
+       <div class="col-md-3">
+          <h5 class="pull-left">
+            <b> DISTRICT : </b
+            ><span class="text-success">{{ districtName }}</span>
+          </h5>
+        </div>
+
+        
+        <div class="col-md-3">
+          <h5 class="pull-left">
+            <b> MANDAL : </b
+            ><span class="text-success">{{ mandalName }}</span>
+          </h5>
+        </div>
+
+        <div class="col-md-3">
+          <h5 class="pull-left">
+            <b> BMCU : </b
+            ><span class="text-success">{{ bmcuName }}</span>
+          </h5>
+        </div>
+        <div class="col-md-3">
+          <button
+            type="button"
+            class="btn btn-success btn-sm pull-right"
+            (click)="btnExcel()"
+          >
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            Download Excel
+          </button>
+          <!-- <button
+            type="button"
+            class="btn btn-danger btn-sm pull-right"
+            (click)="btnPDF()"
+          >
+            <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+            Download PDF
+          </button> --> 
+        </div>
+        <div
+          class="col-md-12 table-responsive"
+          [hidden]="comparitiveMilkPouringDetails?.length < 1"
+        >
+          <table
+            class="table table-striped ah-table text-center"
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger"
+          >
+            <thead class="bg-success text-white">
+              <tr>
+                <th>S NO</th> 
+                <th>EQUIPMENT NAME</th>
+                <th>CAPACITY</th>
+                <th>UOM</th>
+                <th>SERIAL NUMBER</th>
+                <th>MAKE</th>
+                <th>INSTALLATION DATE</th>
+                <th>WORKING CONDITION</th>
+                <th>EQUIPMENT IMAGE</th> 
+              </tr>              
+              <tr >             
+                <th >(1)</th>
+                <th >(2)</th>
+                <th >(3)</th>
+                <th >(4)</th>
+                <th >(5)</th>
+                <th >(6)</th>
+                <th >(7)</th>
+                <th >(8)</th>
+                <th >(9)</th> 
+              </tr>
+  
+            </thead>
+            <tbody *ngIf="comparitiveMilkPouringDetails?.length > 0">
+              <tr
+                *ngFor="let obj of comparitiveMilkPouringDetails; let i = index"
+              >
+                <td>{{ i + 1 }}</td>                
+                <td class="text_align_color">{{ obj.DEVICE_NAME }}</td>
+                <td class="number_align">{{ obj.CAPACITY_IN }}</td>
+                <td class="text_align_color">{{ obj.UOM }}</td>
+                <td class="number_align">{{ obj.SERIAL_NUMBER }}</td>
+                <td class="text_align_color">{{ obj.MAKER }}</td>
+                <td class="number_align">{{ obj.PURCHASE_DATE }}</td>
+                <td class="text_align_color">{{ obj.WORKING_STATUS }}</td>
+              
+                
+                <td class="number_align" style="width: 100px;">
+                    <button type="button" class="btn btn-link btn-sm" *ngIf="
+                                obj.PHOTO_UPD !== null &&
+                                obj.PHOTO_UPD !== '' &&
+                                obj.PHOTO_UPD !== 'NA' &&
+                                obj.PHOTO_UPD !== undefined
+                              " (click)="btnViewImage(obj.PHOTO_UPD)">
+                      VIEW
+                    </button>
+                    <span *ngIf="
+                                obj.PHOTO_UPD === null ||
+                                obj.PHOTO_UPD === '' ||
+                                obj.PHOTO_UPD === 'NA' ||
+                                obj.PHOTO_UPD === undefined
+                              ">NA</span>
+                  </td> 
+                
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

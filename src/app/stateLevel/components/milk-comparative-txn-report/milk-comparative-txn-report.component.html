@@ -1,0 +1,117 @@
+<div class="row align-items-center">
+    <div class="col-md-2">
+        <div class="form-group">
+            <label for="fromDate">From Date : <span style="color: red">*</span></label>
+            <app-date-picker [PlaceHolder]="'Please Select From Date'" [(selectedDate)]="fromDate"></app-date-picker>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label for="toDate">To Date : <span style="color: red">*</span></label>
+            <app-date-picker [PlaceHolder]="'Please Select To Date'" [(selectedDate)]="toDate"></app-date-picker>
+        </div>
+    </div> 
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="unionid">UNION <span style="color: red">*</span></label>
+            <select id="unionid" class="form-control" [(ngModel)]="unionid" (change)="onUnionChange()"> 
+                <option disabled selected value="undefined">-- SELECT UNION --</option>  
+                <option value="{{ obj.UNION_CODE }}" *ngFor="let obj of UNIONLIST">
+                    {{ obj.UNION_NAME }}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="districtId">DISTRICT <span style="color: red">*</span></label>
+            <select id="districtId" class="form-control" [(ngModel)]="districtId"> 
+                <option   selected value="0">-- SELECT ALL--</option>  
+                <option value="{{ obj.DIST_CODE }}" *ngFor="let obj of DISTRICTLIST">
+                    {{ obj.DISTRICT }}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <button type="button" class="btn btn-primary btn-sm mt-3" (click)="btnLoadReport()">
+            <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+            Find
+        </button>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">Comparative Report on Milk Transaction Data</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                    Download Excel
+                </button> 
+            </div>
+            <div class="col-md-12 table-responsive" [hidden]="UnionTransactionList?.length < 1">
+                <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead class="bg-success text-white">
+                        <tr>
+                            <th  class="tableheader_color">S.No</th>
+                            <th  class="tableheader_color">Date</th>
+                            <th  class="tableheader_color">District Name</th>
+                            <th  class="tableheader_color">Field</th>
+                            <th  class="tableheader_color">Amcs</th>
+                            <th  class="tableheader_color">APDDCFL</th>
+                            <th  class="tableheader_color">Field-Amcs</th>
+                            <th  class="tableheader_color">Amcs-APDDCFL</th>
+                            <th   class="tableheader_color">Field-APDDCFL</th> 
+                        </tr> 
+                        <tr>
+                            <th class="tableheader_color">(1)</th>
+                            <th class="tableheader_color">(2)</th>
+                            <th class="tableheader_color">(3)</th>
+                            <th class="tableheader_color">(4)</th>
+                            <th class="tableheader_color">(5)</th>
+                            <th class="tableheader_color">(6)</th>
+                            <th class="tableheader_color">(7)</th>
+                            <th class="tableheader_color">(8)</th>
+                            <th class="tableheader_color">(9)</th> 
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="UnionTransactionList?.length > 0">
+                        <tr *ngFor="let obj of UnionTransactionList; let i = index">
+                            <td class="number_align">{{ i + 1}}</td>
+                            <td class="table_cells_borders number_align" style="width: 60px !important;">{{obj.TDATE}}</td>
+                            <td  style="text-align: left;width: 150px !important;" class="table_cells_borders"   >{{obj.DISTRICT}}</td>
+                            <td class="table_cells_borders number_align" style="width: 80px !important;">{{obj.FIELD}}</td>
+                            <td class="table_cells_borders number_align" style="width: 80px !important;">{{obj.AMCUS}}</td>
+                            <td class="table_cells_borders number_align" style="width: 80px !important;">{{obj.APDDCF}}</td>
+                            <td class="table_cells_borders number_align" style="width: 80px !important;">{{obj.FIELD_AMCUS}}</td>
+                            <td class="table_cells_borders number_align" style="width: 80px !important;">{{obj.AMCUS_APDDCF}}</td> 
+                            <td class="table_cells_borders number_align" style="width: 80px !important;">{{obj.FIELD_APDDCF}}</td>  
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="UnionTransactionList?.length > 0">
+
+                        <tr>
+                            <td class="number_align">--</td>
+                            <td class="text_align_color"> <b>TOTAL</b> </td>
+                            <td class="number_align">--</td>                            
+                            <td class="font-weight-bold number_align">{{ reportTotals.Field |indianNumber }}</td>
+                            <td class="font-weight-bold number_align">{{ reportTotals.Amcs |indianNumber }}</td>
+                            <td class="font-weight-bold number_align">{{ reportTotals.APDDCFL |indianNumber }}</td>
+                            <td class="font-weight-bold number_align">{{ reportTotals.Field_Amcs |indianNumber }}</td>  
+                            <td class="font-weight-bold number_align">{{ reportTotals.Amcs_APDDCFL | indianNumber }}</td>
+                            <td class="font-weight-bold number_align">{{ reportTotals.Field_APDDCFL |indianNumber }}</td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+  

@@ -1,0 +1,130 @@
+<div class="row">
+    <div class="col-md-3">
+      <h5>
+        <b> From Date : </b><span class="text-success">{{ fromDate }}</span>
+      </h5>
+    </div>
+    <div class="col-md-3">
+      <h5>
+        <b>To Date : </b><span class="text-success">{{ toDate }}</span>
+      </h5>
+    </div>
+    <div class="col-md-6" align="right">
+      <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()"> 
+        Back
+      </button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Govt Supported Scheme  Beneficiary Wise Report</h5>
+    </div> 
+
+    <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+
+            <div class="col-md-8">
+               
+                 <span class="text-success">{{ distmanrbk }}</span>
+               
+            </div>
+
+              <button
+              type="button"
+              class="btn btn-success btn-sm pull-right"
+              (click)="btnExcel()"
+            >
+              <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+              Download Excel
+            </button>  
+            <!-- <button
+              type="button"
+              class="btn btn-danger btn-sm pull-right"
+              (click)="btnPDF()"
+            >
+              <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+              Download PDF
+            </button> -->
+          </div>   </div>
+<div class="row" >
+
+  <div
+          class="col-md-12 table-responsive"
+          [hidden]="routeListDetails?.length < 1"
+        >
+          <table  
+            class="table table-striped ah-table text-center"
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger" 
+          > 
+          
+          <thead class="bg-success text-white">
+            <tr>
+              <th  class="tableheader_color">S.No.</th> 
+              <th  class="tableheader_color">DISTRICT NAME</th>
+          <th  class="tableheader_color">MANDAL NAME</th>
+          <th  class="tableheader_color">SEC NAME</th>
+          <th class="tableheader_color" >BENEFICIARY NAME</th>
+          <th  class="tableheader_color">BENEFICIARY AADHAR</th>
+          <th class="tableheader_color" >BENEFICIARY MOBILE</th>
+          <th class="tableheader_color" >ANIMAL TYPE</th>
+          <th class="tableheader_color" >GROUNDING STATUS</th> 
+        </tr>
+        <tr >             
+          <th  class="tableheader_color"  >(1)</th>
+          <th  class="tableheader_color" >(2)</th>
+          <th  class="tableheader_color" >(3)</th>
+          <th  class="tableheader_color" >(4)</th>
+          <th  class="tableheader_color" >(5)</th>
+          <th  class="tableheader_color" >(6)</th>
+          <th  class="tableheader_color" >(7)</th>
+          <th  class="tableheader_color" >(8)</th>
+          <th  class="tableheader_color" >(9)</th>
+           
+        </tr> 
+      </thead>
+      <tbody *ngIf="routeListDetails?.length > 0"  >
+        <tr *ngFor="let obj of routeListDetails; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td class="text_align_color">   {{ obj.DISTRICT_NAME }}   </td>
+          <td  class="text_align_color">{{ obj.MANDAL_NAME   }}</td>
+          <td  class="text_align_color">{{ obj.SEC_NAME   }}</td>
+          <td  class="text_align_color">{{ obj.BENEFICIARY_NAME }}</td>
+          <td  class="text_align_color">{{ obj.BENEFICIARY_AADHAR   }}</td>
+          <td  class="number_align">{{ obj.BENEFICIARY_MOBILE  }}</td>
+          <td  class="text_align_color">{{ obj.ANIMAL_TYPE   }}</td>
+          <td  class="text_align_color">{{ obj.GROUNDING_STATUS   }}</td>
+          
+        </tr>
+      </tbody>
+      <tbody *ngIf="routeListDetails?.length > 0">
+       <tr>
+           <!-- <td>--</td>
+          <td>
+            <b>TOTAL</b>
+          </td>
+          <td>{{ reportTotals.TOTAL_RBK | indianNumber }}</td>
+          <td>{{ reportTotals.TOTAL_VILLAGE | indianNumber }}</td>
+          <td>{{ reportTotals.TOTAL_VOLUNTEERS | indianNumber }}</td>
+          <td>{{ reportTotals.TOTAL_VV_LOGEDIN | indianNumber }}</td>
+          <td>
+            {{ reportTotals.TOTAL_FARMERS_WITH_OUT_AINM | indianNumber }}
+          </td>
+          <td>{{ reportTotals.TOTAL_FARMERS_WITH_AINM | indianNumber }}</td>
+          <td>{{ reportTotals.TOTAL_APPROVED_FMR | indianNumber }}</td>
+          <td>
+            {{ reportTotals.TOTAL_APPROVED_FMR_PERCNT | indianNumber }}
+          </td>
+          <td>{{ reportTotals.TOTAL_ANIMALS | indianNumber }}</td>
+          <td>{{ reportTotals.AH_DEPT_VV_ANM_YES | indianNumber }}</td>
+          <td>{{ reportTotals.AH_DEPT_YES_VV_ANM_NO | indianNumber }}</td>-->
+        </tr>
+      </tbody> 
+    </table>
+  </div>
+</div>
+
+</div>

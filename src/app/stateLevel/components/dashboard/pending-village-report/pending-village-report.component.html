@@ -1,0 +1,49 @@
+ 
+
+<!-- <div class="row"> 
+    <div class="col-md-12" align="right">
+      <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()"> 
+        Back
+      </button>
+    </div>
+  </div> -->
+  <div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0"> Pending Village Details Report</h5>
+    </div>
+    <div class="card-body">
+  <div class="row">
+    <!-- <div class="col-md-3">
+      <h5>
+        <b> SOCIETY NAME : </b><span class="text-success">{{ SOCIETYNAME }}</span>
+      </h5>
+    </div>
+
+    <div class="col-md-3"> 
+      <h5>
+        <b> From Date : </b><span class="text-success">{{ fromDate }}</span>
+      </h5>
+    </div> -->
+     
+     
+  
+    <div class="col-md-12" align="right">
+      <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+        Back
+      </button>
+    </div>
+  </div>
+  
+  <app-pending-village-information 
+  [(VILLAGECODE)]="VILLAGECODE"
+    [(VILLAGENAME)]="VILLAGENAME" 
+    [(fromDate)]="fromDate" 
+    
+
+    
+
+    >
+  </app-pending-village-information>
+  
+   </div>
+ 

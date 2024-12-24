@@ -1,0 +1,152 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">State Level Land Allotment Report For AMCU</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <!-- <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button> -->
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="stateLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>District</th>
+              <th>Mandals</th>
+              <th>Submitted Mandals</th>
+              <th>Not Submitted Mandals</th>              
+              <th>RBKS</th> 
+              <!-- <th>TOTAL_SUBMIT_RBKS</th> -->
+              <th> Total Villages</th> 
+              <th> Villages Submitted </th> 
+              <th> Villages Submitted % </th>
+                              
+              <th> Villages Not Submitted </th>  
+             
+                <th>  Handover Submitted Villages</th>
+              <th>  Handover Submitted Villages %</th>
+              <th> Handover Not Submitted Villages </th> 
+
+              <!-- <th>Land Allotment Completed</th> -->
+                <!-- <th>Percentage Completed</th>
+              <th>Land Allotment Not Completed</th>
+              <th>Percentage Not Completed</th>
+              <th>Land Handover Completed</th>
+              <th>Land Handover Not Completed</th>   -->
+            </tr>
+          </thead>
+          <tbody *ngIf="stateLevelDetails?.length > 0">
+            <tr *ngFor="let obj of stateLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>
+                <a
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetDetails(obj)"
+                  ><b>{{ obj.DISTRICT_NAME }}</b></a
+                >
+              </td>
+              <td>{{ obj.TOTAL_MANDALS | indianNumber }}</td>
+              <td>{{ obj.TOTAL_SUBMIT_MANDALS | indianNumber }}</td>
+              <td>{{ obj.TOTAL_NOT_SUBMIT_MANDALS | indianNumber }}</td>
+              <td>{{ obj.TOTAL_RBKS | indianNumber }}</td>
+              <!-- <td>{{ obj.TOTAL_SUBMIT_RBKS | indianNumber }}</td> -->
+
+              <td>{{ obj.TOTAL_VILLAGES  | indianNumber }}</td>
+              <td>{{ obj.ALLOT_SUBMITED_VILLAGES  | indianNumber }}</td>
+                <td>{{ obj.PERCENT_ALLOT_VILLAGES_COMP }}%</td>              
+             <td>{{ obj.ALLOT_NOT_SUBMITTED_VILLAGES }}</td>
+
+             <td>{{ obj.SUBMITED_HAND_VILLAGES }}</td>
+             <td>{{ obj.PERCENT_HAND_VILLAGES_COMP }}</td>
+             <td>{{ obj.HAND_NOT_SUBMIT_VIL }}</td>
+
+
+
+             <!-- <td>{{ obj.TOTAL_LAND_HANDOVER_SUBMIT | indianNumber }}</td>
+             <td>{{ obj.PERCENT_HAND_VILLAGES_COMP }}</td>
+             <td>{{ obj.TOTAL_LAND_HANDOVER_NOT_SUBMIT | indianNumber }}</td> -->
+             
+
+            
+
+             <!-- <td>{{ obj.PERCENTAGE_COMPLETED }} %</td>
+              <td>{{ obj.TOTAL_NOT_SUBMIT_RBKS | indianNumber }}</td>
+              <td>{{ obj.PERCENTAGE_NOT_COMPLETED }} %</td>
+              -->
+
+              <!-- <td>{{ obj.ALLOT_NOT_SUBMITTED_VILLAGES }}</td>
+                -->
+
+            </tr>
+          </tbody>
+          <tbody *ngIf="stateLevelDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td>{{ reportTotals.TOTAL_MANDALS | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_SUBMIT_MANDALS | indianNumber }}</td>
+              <td>
+                {{ reportTotals.TOTAL_NOT_SUBMIT_MANDALS | indianNumber }}
+              </td>
+              <td>{{ reportTotals.TOTAL_RBKS | indianNumber }}</td>
+
+              <td>{{ reportTotals.TOTAL_VILLAGES | indianNumber }}</td>
+              <td>{{ reportTotals.ALLOT_SUBMITED_VILLAGES | indianNumber }}</td>
+
+
+            <td>{{ reportTotals.PERCENT_ALLOT_VILLAGES_COMP | indianNumber }}%</td> 
+                 <td>{{ reportTotals.ALLOT_NOT_SUBMITTED_VILLAGES | indianNumber }}</td>
+
+                 <td>
+                  {{ reportTotals.TOTAL_LAND_HANDOVER_SUBMIT | indianNumber }}
+                </td>
+                <td>{{ reportTotals.PERCENTAGE_COMPLETED }} %</td> 
+                <td>
+                  {{ reportTotals.HAND_NOT_SUBMIT_VIL | indianNumber }}
+                </td>
+
+             <!--
+              <td>
+                {{ reportTotals.TOTAL_NOT_SUBMIT_RBKS | indianNumber }}
+              </td>
+              <td>{{ reportTotals.PERCENTAGE_NOT_COMPLETED }} %</td>
+              <td>
+                {{ reportTotals.TOTAL_LAND_HANDOVER_SUBMIT | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.TOTAL_LAND_HANDOVER_NOT_SUBMIT | indianNumber }}
+              </td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

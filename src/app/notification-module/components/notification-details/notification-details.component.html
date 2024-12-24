@@ -1,0 +1,744 @@
+<section>
+    <div class="row ">
+        <div class=" row col-md-12 bg-white" *ngIf="marqueetext" style="height:40px;">
+            <marquee direction="left" height="40px" class="text-danger" style="margin-top: 10px;">
+                <b>{{ marqueetextdata}} </b>
+            </marquee>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card mt-4">
+                <div class="panel-group wrap" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel">
+                        <div class="panel-heading active" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true"
+                                    aria-controls="collapseOne">
+                                    <h5 class="mb-0 secondary-heading pb-0">Notifications</h5>
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body quik-links">
+
+                                <ul class="list-group">
+                                    <li class="list-group-item dropdown" *ngFor="let obj of DesiList; let i=index;">
+                                        <a class="dropbtn">
+                                            <div class="ql-circle">{{i+1}}</div>
+                                            <label (mouseenter)="handleMouseEnter(obj)">{{obj.DESIGNATION}}</label>
+                                        </a>
+                                        <ul class="dropdown-content" style="margin-left: -10px;">
+                                            <li *ngFor="let obj of SUBLIST;">
+                                                <a title="1" class="text-white" (click)="DesignationClick(obj)">{{obj.POSITION}}</a>
+
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="panel-heading active" role="tab" id="headingTwo">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true"
+                                    aria-controls="headingTwo">
+                                    <h5 class="mb-0 secondary-heading pb-0">Contact Details</h5>
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body quik-links">
+                                <div class="card">
+                                    <div class="row">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-10 mt-2">
+                                            <h5><b>Mobile Number</b></h5>
+                                            <i class="fa fa-phone-alt">
+                                                0863-2381085
+                                            </i>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-10 mt-2">
+                                            <h5><b>Email</b></h5>
+                                            <i class="fa fa-envelope">
+                                                mdap-ddcf@ap.gov.in
+                                            </i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-9 mt-4" style="margin-left: -20px;">
+            <div *ngIf="isexpequalone">
+                <div class="card">
+                    <h3 class="text-center mt-2">Qualification/Experience</h3>
+                    <hr>
+                    <div class="card-body">
+                        <div *ngFor="let obj of POSITIONLIST;">
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-2" style="text-align: center !important;">
+                                    <label for="Qualification">
+                                        <h5><b>Designation : </b></h5>
+                                    </label>
+                                </div>
+                                <div class="col-md-5" style="text-align: left !important;">
+                                    <h5 class="text-primary" style="text-align: left !important;">
+                                        {{reqobj.designation}}({{reqobj.Position}})</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10">
+                                    <label for="Qualification">
+                                        <h5><b>Qualification</b></h5>
+                                    </label>
+
+                                    <h5>
+                                        <ul>
+                                            <li>{{obj.QUALIFICATON}}</li>
+                                        </ul>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10">
+                                    <label for="Qualification">
+                                        <h5><b>Experience</b></h5>
+                                    </label>
+                                    <h5>
+                                        <ul>
+                                            <li>{{obj.EXPERIENCE}}</li>
+                                            <li *ngIf="obj.EXPERIENCE2">{{obj.EXPERIENCE2}}
+                                            </li>
+                                        </ul>
+                                    </h5>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2">
+
+                                    <button type="submit" class="btn btn-danger" (click)="closeCard()">Close</button>
+                                </div>
+                                <div class="col-md-6"></div>
+                                <div class="col-md-2">
+
+                                    <button type="submit" class="btn btn-primary" (click)="GoTopage(obj)">Apply</button>
+                                    <!-- <a class="btn btn-primary"
+                  href="http://apddcf.ap.gov.in/jpvReports/#/NotificationModule/RegistrationDetails"
+                  target="_blank"
+                  >Apply</a > -->
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-md-2">
+
+              <button type="submit" class="btn btn-primary" (click)="GoTopage()">Apply</button>
+            </div> -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup-modal" *ngIf="showPopup">
+        <div class="popup-content" style="min-width: 75%">
+            <div class="popup-header" [ngClass]="{'color-redbg':message=='REJECT','color-greenbg':message=='APPROVE'}">
+
+                <a type="button" class="close" style="cursor: pointer">
+                    <span (click)="onClearPreview()">×</span>
+                </a>
+            </div>
+
+            <div class="popup-body" style="max-height:500px; overflow-y: auto;">
+                <div *ngFor="let obj of DistDataSecond">
+                    <div class="row mt-3">
+                        <div class="col-md-5"></div>
+                        <label for="personaldetails"><b class="text-primary">PERSONAL DETAILS</b>
+                        </label>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <label for="FirstName">First Name</label>
+                                <div class="text-success">{{obj.FIRST_NAME}}</div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="MiddleName">Middle Name</label>
+                                <div class="text-success">{{obj.MIDDLE_NAME}}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="LastName">Last Name </label>
+                                <div class="text-success">{{obj.LAST_NAME}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+
+
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="DOB">Date Of Birth (as per SSC)</label>
+                                <div class="text-success">{{obj.DATE_OF_BIRTH_SCC}}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="EmailID">Email ID</label>
+                                <div class="text-success">{{obj.EMAIL_ID}}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="MobileNO">Mobile Number</label>
+                                <div class="text-success">{{obj.MOBILE_NUMBER}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+
+
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <label for="PermanentAddress"><b>Gender</b></label><br>
+                            <div class="text-success">{{obj.GENDER}}</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="EmailID">SO/DO/Guardian</label>
+                                <div class="text-success">{{obj.FATHER_OR_MOTHER_NAME}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md-1"></div>
+                        <label for="PermanentAddress"><b>Permanent Address</b></label>
+
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="DNoP">D.No And Street Name</label>
+                                <div class="text-success">{{obj.ADRESS}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+
+                                <label for="CitVill">Village/Area</label>
+                                <div class="text-success">{{obj.VILLAGE_AREA_PR}}</div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="form-group">
+                                <label for="City">City/Mandal</label>
+                                <div class="text-success">{{obj.CITY_OR_MANDAL_PR}}</div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="District">District</label>
+                                <div class="text-success">{{obj.DISTRICTNAME_PR}}</div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="State">State</label>
+                                <div class="text-success">{{obj.STATENAME_PR}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="Pincode">Pincode</label>
+                                <div class="text-success">{{obj.PINCODE_PR}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+
+
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-1"></div>
+                        <label for="CurrentAddress"><b>Current Address</b></label>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="CuDNoP">D.No And Street Name</label>
+                                <div class="text-success">{{obj.D_NO_STREET_NAME_CR}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="CuStreet">Village/Area</label>
+                                <div class="text-success">{{obj.VILLAGE_AREA_CR}}</div>
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="form-group">
+                                <label for="CuCity">City/Mandal</label>
+                                <div class="text-success">{{obj.CITY_OR_MANDAL_CR}}</div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="CuDistrict">District</label>
+                                <div class="text-success">{{obj.DISTRICTNAME_CR}}</div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="CUState">State</label>
+                                <div class="text-success">{{obj.STATENAME_CR}}</div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="CuPincode">Pincode</label>
+                                <div class="text-success">{{obj.PINCODE_CR}}</div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+
+
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md-5"></div>
+                        <label class="form-radio-label"><b class="text-primary">QUALIFICATIONS
+                                DETAILS</b></label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <label class="form-radio-label" id="Phd" for="Phd"><b>PhD</b></label><br>
+                            <div class="text-success">{{obj.PHD}}</div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <label class="form-label" id="pg" for="pg"><b>Post Graduation</b></label>
+                            <div class="text-success">{{obj.POST_GRADUATION}}</div>
+                        </div>
+                    </div>
+                    <div *ngIf="obj.POST_GRADUATION =='Yes'">
+                        <div class="row mt-2">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="Course">Course</label>
+                                    <div class="text-success">{{obj.COURSE_GRDN_PG}}</div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="BraSpl">Branch/Specialization</label>
+                                    <div class="text-success">{{obj.BRANCH_SPECIALIZATION_PG}}</div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="PCollege">College</label>
+                                    <div class="text-success">{{obj.COLLEGE_PG}}</div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="YearOfPassout">Year Of Passout</label>
+                                    <div class="text-success">{{obj.YEAR_OF_PASSEDOUT_PG}}</div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="MaGra">Marks/Grade</label>
+                                    <div class="text-success">{{obj.MARKS_GRADE__GRDN_PG}}</div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="UploadDocuments">Upload Documents</label><br>
+                                    <button class="btn btn-success" (click)="btnPdfView(obj.UPLOAD_DCNTS__GRDN_PG)">VIEW</button>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-1"></div>
+                        <label class="form-label" id="pg" for="pg"><b>Graduation/Degree</b></label>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="GdCourse">Course</label>
+                                <div class="text-success">{{obj.COURSE_GRDN_DEGREE}}</div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="GDBraSpl">Branch/Specialization</label>
+                                <div class="text-success">{{obj.BRANCH_SPECIALIZATION}}</div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="GDPCollege">College</label>
+                                <div class="text-success">{{obj.COLLEGE__GRDN_DEGREE}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="GdYearOfPassout">Year Of Passout</label>
+                                <div class="text-success">{{obj.YEAR_OF_PASSEDOUT_GRDN_DEGREE}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="GDMaGra">Marks/Grade</label>
+                                <div class="text-success">{{obj.MARKS_GRADE__GRDN_DEGREE}}</div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="GDUploadDocuments">Upload Documents</label><br>
+                                <button class="btn btn-success" (click)="btnPdfView(obj.UPLOAD_DCNTS__GRDN_DEGREE)">VIEW</button>
+
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-1"></div>
+                        <label class="form-label" id="pg" for="pg"><b>Inter/Diploma</b></label>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="IdCourse">Course</label>
+                                <div class="text-success">{{obj.COURSE_INTER_DIPL}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="IPCollege">College</label>
+                                <div class="text-success">{{obj.COLLEGE_DIPL}}</div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="IdYearOfPassout">Year Of Passout</label>
+                                <div class="text-success">{{obj.YEAR_OF_PASSEDOUT_DIPL}}</div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="IMaGra">Marks/Grade</label>
+                                <div class="text-success">{{obj.MARKS_GRADE_DIPL}}</div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="IUploadDocuments">Upload Documents</label><br>
+                                <button class="btn btn-success" (click)="btnPdfView(obj.UPLOAD_DCNTS_DIPL)">VIEW</button>
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-1"></div>
+                        <label class="form-label" id="pg" for="pg"><b>SSC</b></label>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="cbseState">CBSE/State Syllabus</label>
+                                <div class="text-success">{{obj.CBSE_STATE_SYLLABUS}}</div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="SSchool">School</label>
+                                <div class="text-success">{{obj.SCHOOL}}</div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="SYearOfPassout">Year Of Passout</label>
+                                <div class="text-success">{{obj.YEAR_OF_PASSEDOUT_SSC}}</div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="SMaGra">Marks/Grade</label>
+                                <div class="text-success">{{obj.MARKS_GRADE_SSC}}</div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="SUploadDocuments">Upload Documents</label><br>
+                                <button class="btn btn-success" (click)="btnPdfView(obj.UPLOAD_DCNTS_SSC)">VIEW</button>
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+
+                    <div class="row mt-5">
+                        <div class="col-md-6"></div>
+                        <label class="form-label"><b class="text-primary">EXPERIENCE DETAILS</b></label>
+                    </div>
+
+                    <div *ngIf="DistDataExper?.length > 0">
+                        <div class="row mt-4">
+                            <div class="col-md-1"></div>
+                            <label class="form-label" id="pg" for="pg"><b>Total Experience</b></label>
+                        </div>
+                        <div *ngFor="let req of DistDataExper">
+                            <div class="row mt-1">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+
+                                        <label for="Years">Years</label>
+                                        <div class="text-success">{{req.YEARS}}</div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+
+                                        <label for="Months">Months</label>
+                                        <div class="text-success">{{req.MONTHS}}</div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="Months">Employee Working Status</label>
+                                    <div class="text-success">{{req.CURRENT_EMP_STATUS}}</div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-1">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label>Current Organization Experience/Current Organization Offer Letter
+                                        </label><br>
+                                        <button class="btn btn-success" (click)="btnPdfView(req.EXPERIENCE_LTR_UPLOAD)">VIEW</button>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label for="CvUpload">Upload CV</label><br>
+
+                                        <button class="btn btn-success" (click)="btnPdfView(req.CV_UPLOAD)">VIEW</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngFor="let obj of DistData">
+                            <div class="row mt-1">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label for="OrganiCom">Organization Name</label>
+                                            <div class="text-success">{{obj.ORGANIZATION_NAME}}</div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="Role">Role</label>
+                                        <div class="text-success">{{obj.ROLE}}</div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="Duties">Duties</label>
+                                        <div class="text-success">{{obj.DUTIES}}</div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+
+                                        <label for="FromDate">From Date</label>
+                                        <div class="text-success">{{obj.FROM_DATE}}</div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+
+                                        <label for="ToDate">To Date</label>
+                                        <div class="text-success">{{obj.TO_DATE}}</div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div *ngIf="obj.SKILLS !== null">
+                        <div class="row mt-4">
+                            <div class="col-md-1"></div>
+                            <label class="form-label"><b>Fresher</b></label>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+
+                                <div class="form-group">
+
+                                    <label for="Skills">Skills</label>
+                                    <div class="text-success">{{obj.SKILLS}}</div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+
+                                    <label for="CvUploadFresher">Upload CV</label><br>
+                                    <button class="btn btn-success" (click)="btnPdfView(obj.CV_UPLOAD)">VIEW</button>
+
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-1"></div>
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="row mt-5">
+
+                        <div class="col-md-5"></div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-warning" (click)="Edit()">
+                                Edit
+                            </button>
+
+                            <button type="submit" class="btn btn-primary" (click)="ApplyJob()">Submit</button>
+                        </div>
+
+                        <div class="col-md-3"></div>
+                    </div>
+                </div>
+            </div>
+                 
+        </div>
+    </div>
+
+
+</section>

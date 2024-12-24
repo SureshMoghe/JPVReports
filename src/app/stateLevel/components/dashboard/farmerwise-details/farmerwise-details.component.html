@@ -1,0 +1,155 @@
+
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Farmer Wise Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12 row">
+          <div class="col-md-3">
+            <label for="toDate">
+                DISTRICT :
+                <span class="text-success">
+                  <b> {{ districtName | uppercase }}</b>
+                </span>
+              </label>
+        </div>
+        <div class="col-md-3">
+          <label for="toDate">
+              MANDAL :
+              <span class="text-success">
+                <b> {{ MandalName | uppercase }}</b>
+              </span>
+            </label>
+        </div>
+        <div class="col-md-3">
+          <label for="toDate">
+              RBK :
+              <span class="text-success">
+                <b> {{ RbkName | uppercase }}</b>
+              </span>
+            </label>
+        </div>
+       <div class="col-md-3"> 
+        <label for="toDate">
+          VILLAGE :
+          <span class="text-success">
+            <b> {{ VillageName | uppercase }}</b>
+          </span>
+        </label>        
+       </div>
+     
+     
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <!-- <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button> -->
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="totalMandalDetails?.length < 1"          
+      >
+        <table  class="table table-striped ah-table text-center " 
+        datatable
+        [dtOptions]="dtOptions"
+        [dtTrigger]="dtTrigger"
+        
+        >
+        
+          <thead class="bg-success text-white" style="border: 1px solid white;">
+
+            <!-- border-color: white; -->
+            <tr   >
+              <th   class="tableheader_color"  >S.No.</th>                
+              <th   class="tableheader_color"  >Districts</th>                
+              <th   class="tableheader_color"  >RBKs</th>                
+              <th   class="tableheader_color" >Villages</th>
+              <th   class="tableheader_color" >Farmer Code</th>
+              <th   class="tableheader_color" > Farmer Name</th>
+              <th   class="tableheader_color" > Mobile Number</th>
+              <!-- <th   class="tableheader_color" >Milk Pouring Women Farmers</th> -->
+              <th  class="tableheader_color" >Total Buffalo Milk in Ltrs.</th>
+              <th   class="tableheader_color" >Total Buffalo Milk Amount</th>
+              <th  class="tableheader_color" >Total Cow Milk in Ltrs.</th>
+              <th  class="tableheader_color" >Total Cow Milk Amount</th>
+            </tr>
+           
+            <tr >             
+              <th  class="tableheader_color"  >(1)</th>
+              <th  class="tableheader_color" >(2)</th>
+              <th  class="tableheader_color" >(3)</th>
+              <th  class="tableheader_color" >(4)</th>
+              <th  class="tableheader_color" >(5)</th>
+              <th  class="tableheader_color" >(6)</th>
+              <th  class="tableheader_color" >(7)</th>
+              <th  class="tableheader_color" >(8)</th>              
+              <th  class="tableheader_color" >(9)</th>              
+              <th  class="tableheader_color" >(10)</th>              
+              <th  class="tableheader_color" >(11)</th>              
+              <!-- <th  class="tableheader_color" >(12)</th>               -->
+             
+            </tr> 
+
+          </thead>
+          <tbody *ngIf="totalMandalDetails?.length > 0">
+            <tr *ngFor="let obj of totalMandalDetails; let i = index">
+              <td   class="number_align">{{ i + 1 }}</td>
+              <!-- <td class="text_align_color">
+                <b>{{ obj.DISTRICT_NAME }}</b>
+              </td> -->
+                           
+              
+              <td  style="text-align: left;" class="table_cells_borders">{{ obj.DISTRICT_NAME }}</td>
+              <td  style="text-align: left;" class="table_cells_borders">{{ obj.RBK_NAME }}</td>
+              <td  style="text-align: left;" class="table_cells_borders">{{ obj.VILLAGE_NAME }}</td>
+              <td   class="number_align">{{ obj.TOTAL_FARMERS }}</td>
+              <td  style="text-align: left;" class="table_cells_borders">{{ obj.NAME }}</td>
+              <td   class="number_align">{{ obj.MOBILE_NUMBER }}</td>
+              <!-- <td   class="number_align">{{ obj.TOTAL_WOMEN_FARMERS }}</td> -->
+              <td   class="number_align">{{ obj.TOTAL_BUFFALO_MILK_LTR}}</td>
+              <td   class="number_align">{{ obj.TOTAL_BUFFALO_MILK_AMOUNT }}</td>
+              <td   class="number_align">{{ obj.TOTAL_COW_MILK_LTR }}</td>
+              <td   class="number_align">{{ obj.TOTAL_COW_MILK_AMOUNT }}</td>
+            </tr>
+          </tbody> 
+
+          <tbody *ngIf="totalMandalDetails?.length > 0">
+            <tr  >
+              <td class="number_align" style="border-color: cadetblue !important">--</td>
+              <td  class="text_align_color">
+                <b>TOTAL</b>
+              </td>
+              <td class="number_align" style="border-color: cadetblue !important">--</td>
+              <td class="number_align" style="border-color: cadetblue !important">--</td>
+              <td class="number_align" style="border-color: cadetblue !important">--</td>
+              <td class="number_align" style="border-color: cadetblue !important">--</td>
+              <td class="number_align" style="border-color: cadetblue !important">--</td>               
+              <td   class="font-weight-bold number_align">{{  reportTotals.Total_Buffalo_Milk_in_Litres }}</td>
+              <td   class="font-weight-bold number_align">{{  reportTotals.Total_Buffalo_Milk_Amount }}</td>
+              <td    class="font-weight-bold number_align">{{ reportTotals.Total_Cow_Milk_in_Litres }}</td>
+              <td    class="font-weight-bold number_align">{{ reportTotals.Total_Cow_Milk_Amount }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

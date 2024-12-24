@@ -1,0 +1,157 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">    Comparative Farmer Milk Pouring Report  </h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <h5 class="pull-left">
+          <b> District : </b  
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="comparitivemilkpouringDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th class="tableheader_color"  rowspan="2">S.No.</th>
+              <th class="tableheader_color"  rowspan="2">Year</th>
+              <th class="tableheader_color"  rowspan="2">Month</th>
+              <th class="tableheader_color"  rowspan="2">No Of Socities</th>
+              <th class="tableheader_color"  rowspan="2">Registerd Farmers</th>
+              <th class="tableheader_color"  rowspan="2">No Of Milk Pourers</th>
+              <th class="tableheader_color"  rowspan="2">New Milk Pourers</th>
+              <th class="tableheader_color"  colspan="3">Milk Pouring Days</th>
+              <th  class="tableheader_color"  rowspan="2">Non Milk Pourers</th>
+            </tr>
+            <tr>
+              <th  class="tableheader_color" >10 Days Milk Pourers</th>
+              <th  class="tableheader_color" >20 Days Milk Pourers</th>
+              <th  class="tableheader_color" >30 Days Milk Pourers</th>
+            </tr>
+
+            <tr >             
+              <th  class="tableheader_color"  >(1)</th>
+              <th  class="tableheader_color" >(2)</th>
+              <th  class="tableheader_color" >(3)</th>
+              <th  class="tableheader_color" >(4)</th>
+              <th  class="tableheader_color" >(5)</th>
+              <th  class="tableheader_color" >(6)</th>
+              <th  class="tableheader_color" >(7)</th>
+              <th  class="tableheader_color" >(8)</th>
+              <th  class="tableheader_color" >(9)</th>
+              <th  class="tableheader_color" >(10)</th>
+              <th  class="tableheader_color" >(11)</th>
+            </tr> 
+          </thead>
+          <tbody *ngIf="comparitivemilkpouringDetails?.length > 0">
+            <tr
+              *ngFor="let obj of comparitivemilkpouringDetails; let i = index"
+            >
+              <td>{{ i + 1 }}</td>
+              <td class="number_align">{{ obj.YEAR_VALUE }}</td>
+              <td class="text_align_color">{{ obj.MONTH_DISPLAY }}</td>
+              <td class="number_align">{{ obj.TOTAL_SOCIETYS }}</td>
+              <td class="number_align">{{ obj.REGI_FARMERS }}</td>
+              <td class="number_align">
+                <b>{{ obj.NO_OF_MILK_POURERS }}</b>
+              </td>
+              <td class="number_align">{{ obj.NO_OF_NEW_MILK_POURS | indianNumber }}</td>
+              <td class="number_align">
+                <a
+                  *ngIf="obj.MILK_10_DAYS !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetMilkPouringDetails(obj, '1')"
+                  ><b>{{ obj.MILK_10_DAYS | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.MILK_10_DAYS === '0'"
+                  ><b>{{ obj.MILK_10_DAYS | indianNumber }}</b></span
+                >
+              </td>
+              <td class="number_align">
+                <a
+                  *ngIf="obj.MILK_20_DAYS !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetMilkPouringDetails(obj, '2')"
+                  ><b>{{ obj.MILK_20_DAYS | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.MILK_20_DAYS === '0'"
+                  ><b>{{ obj.MILK_20_DAYS | indianNumber }}</b></span
+                >
+              </td>
+              <td class="number_align">
+                <a
+                  *ngIf="obj.MILK_31_DAYS !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetMilkPouringDetails(obj, '3')"
+                  ><b>{{ obj.MILK_31_DAYS | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.MILK_31_DAYS === '0'"
+                  ><b>{{ obj.MILK_31_DAYS | indianNumber }}</b></span
+                >
+              </td>
+              <td class="number_align">
+                <a
+                  *ngIf="obj.NON_POURERS !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetMilkPouringDetails(obj, '4')"
+                  ><b>{{ obj.NON_POURERS | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.NON_POURERS === '0'"
+                  ><b>{{ obj.NON_POURERS | indianNumber }}</b></span
+                >
+              </td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="comparitivemilkpouringDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td  class="font-weight-bold number_align">{{ reportTotals.TOTAL_SOCIETYS | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.REGI_FARMERS | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.NO_OF_MILK_POURERS | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.NO_OF_NEW_MILK_POURS | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.MILK_10_DAYS | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.MILK_20_DAYS | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.MILK_31_DAYS | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.NON_POURERS | indianNumber }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

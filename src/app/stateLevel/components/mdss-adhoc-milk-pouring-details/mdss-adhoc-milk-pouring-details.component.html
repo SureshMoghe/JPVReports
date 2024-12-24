@@ -1,0 +1,102 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">{{ headingname }}</h5>
+  </div>
+  <div class="card-body">
+
+    <div class="row"> 
+        <div class="col-md-3">
+          <h5>
+            <b>From Date : </b><span class="text-success">{{ fromDate }}</span>
+          </h5>
+        </div>
+        <div class="col-md-3">
+          <h5>
+            <b>To Date : </b><span class="text-success">{{ toDate }}</span>
+          </h5>
+        </div>
+        <div class="col-md-3">
+          <h5>
+            <b>DISTRICT : </b><span class="text-success">{{ districtName }}</span>
+          </h5>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
+          <h5>
+            <b>MANDAL : </b><span class="text-success">{{ MandalName }}</span>
+          </h5>
+        </div>
+        <div class="col-md-3">
+          <h5>
+            <b>RBK : </b><span class="text-success">{{ RBKName }}</span>
+          </h5>
+        </div>
+        <div class="col-md-6" > 
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        > 
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button> 
+        <button type="button"  class="btn btn-primary btn-sm pull-right" (click)="btnBack()">
+          Back
+        </button> 
+      </div>
+    </div> 
+    <div class="row">
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="MDSSPromotersMilkPouringStatusDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr> 
+              <th>S.No</th>
+              <th>Name</th>
+              <th>Designation</th>
+              <th>Mobile Number</th>                
+              <th>Last Date Of Milk Pouring</th>
+              <th>No of Litres Milk Poured</th> 
+            </tr> 
+            <tr >             
+              <th >(1)</th>
+              <th >(2)</th>
+              <th >(3)</th>
+              <th >(4)</th>
+              <th >(5)</th>
+              <th >(6)</th> 
+            </tr> 
+
+          </thead>
+          <tbody *ngIf="MDSSPromotersMilkPouringStatusDetails?.length > 0">
+            <tr *ngFor="let obj of MDSSPromotersMilkPouringStatusDetails; let i = index">
+              <td class="number_align">{{ i + 1 }}</td>
+              <td  class="text_align_color">{{ obj.NAME | uppercase }}</td>
+              <td class="text_align_color">{{ obj.DESIGNATION }}</td>
+              <td class="number_align">{{ obj.MOBILE_NUMBER }}</td>
+              <td class="number_align" >{{ obj.LAST_DATE.slice(0,10) }}</td>
+              <td class="number_align" >{{ obj.MILK_IN_LITERS  | indianNumber}}</td> 
+            </tr>
+          </tbody>
+          <tbody *ngIf="MDSSPromotersMilkPouringStatusDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>TOTAL</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.MILK_IN_LITERS | indianNumber }}</td> 
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

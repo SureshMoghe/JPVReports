@@ -1,0 +1,206 @@
+<div class="card" >
+    <div class="card-header p-2">
+      <h5 class="mb-0">Milk Secnario Report</h5>
+    </div>
+    <div class="card-body">
+<div class="row">
+    <div class="col-md-2 mt-2 mb-4">
+        <div class="form-group">
+            <label for="oldRbkId"
+              ><b>From Year</b> <span style="color: red">*</span></label
+            >
+            <select
+              id="oldRbkId"
+              class="form-control" [(ngModel)]="MilksecnarioCls.fromyearId" (change)="onyearMChange()"
+              
+            >
+              <option value="">-- From Year --</option>
+              <option value="{{ obj.FROM_YEAR }}" *ngFor="let obj of YearDetailsdata">
+                {{ obj.FROM_YEAR }}
+              </option>
+            </select>
+          </div>
+        
+    </div>
+
+    <div class="col-md-2 mt-2 mb-4">
+        <div class="form-group">
+            <label for="oldRbkId"
+              ><b>From Month </b><span style="color: red">*</span></label
+            >
+            <select
+              id="oldRbkId"
+              class="form-control" [(ngModel)]="MilksecnarioCls.fromMonths"
+              
+            >
+              <option value="">-- From Month --</option>
+              <option value="{{ obj.FROM_MONTH_NO }}" *ngFor="let obj of MonthList">
+                {{ obj.FROM_MONTH }}
+              </option>
+            </select>
+          </div>
+    </div>
+     
+    <div class="col-md-2 mt-2 mb-4">
+        <div class="form-group">
+            <label for="oldRbkId"
+              ><b>To Year </b><span style="color: red">*</span></label
+            >
+            <select
+              id="oldRbkId"
+              class="form-control" [(ngModel)]="MilksecnarioCls.ToyearId" (change)="ontoyearMChange()"
+              
+            >
+              <option value="">-- To Year --</option>
+              <option value="{{ obj.TO_YEAR }}" *ngFor="let obj of toyeardetails">
+                {{ obj.TO_YEAR }}
+              </option>
+            </select>
+          </div>
+        
+    </div>
+
+    <div class="col-md-2 mt-2 mb-4">
+        <div class="form-group">
+            <label for="oldRbkId"
+              ><b>To Month</b> <span style="color: red">*</span></label
+            >
+            <select
+              id="oldRbkId"
+              class="form-control" [(ngModel)]="MilksecnarioCls.ToMonths"
+              
+            >
+              <option value="">-- To Month --</option>
+              <option value="{{ obj.TO_MONTH_NO }}" *ngFor="let obj of tomonthdetails">
+                {{ obj.TO_MONTH }}
+              </option>
+            </select>
+          </div>
+    </div>
+    <div class="col-md-2 mt-2 mb-4">
+        <div class="form-group">
+            <label for="oldRbkId"
+              ><b>Milk Type</b> <span style="color: red">*</span></label
+            >
+            <select
+              id="oldRbkId"
+              class="form-control" [(ngModel)]="MilksecnarioCls.Milktype" (change)="onmilkTypeChange()" 
+              
+            >
+              <option value="">-- Select Type --</option>
+              <option value="{{ obj.MILK_TYPE_CODE }}" *ngFor="let obj of milktypedetails">
+                {{ obj.MILK_TYPE }}
+              </option>
+            </select>
+          </div>
+    </div>
+     
+    <div class="col-md-2 mt-2 mb-4">
+        <div class="form-group">
+            <label for="oldRbkId"
+              > </label
+            >
+            <button
+          type="button"
+          class="btn btn-success btn-sm pull-right" style="margin-top: 31px;"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+          </div>
+    </div>
+     
+
+    
+
+    
+
+</div>
+      <div class="row">
+        
+<div class="col-md-12" style="overflow-x:auto;"> 
+   
+     <table
+        class="table table-striped ah-table text-center" 
+        datatable  [dtOptions]="dtOptions"  [dtTrigger]="dtTrigger"
+        
+      >
+        <thead class="bg-success text-white">
+          <tr>
+            <th rowspan="4">S.No.</th>
+            <th rowspan="4">DISTRICT NAME</th>            
+            <th colspan="4">UNIONS </th>
+            <th colspan="4">PRIVATE DAIRIES</th>
+            <th colspan="4">TOTAL</th>  
+          </tr>
+          <tr>
+          <th>No of Farmers <br>(In Lakhs)</th>
+          <th>Milk Quantity <br>(LLPD)</th>
+          <th>Benefit To Farmer <br>(In Lakhs)</th>         
+          <th> Price <br>(KgFat/TS)</th>
+          <th>No of Farmers<br>(In Lakhs)</th>
+          <th>Milk Quantity<br>(LLPD)</th>
+          <th>Benefit To Farmer<br>(In Lakhs)</th>         
+          <th> Price <br>(KgFat/TS)</th>
+          <th>No of Farmers<br>(In Lakhs)</th>
+          <th>Milk Quantity<br>(LLPD)</th>
+          <th>Benefit To Farmer<br>(In Lakhs)</th>
+          <th> Price <br>(KgFat/TS)</th>
+           
+        </tr>
+           
+        </thead>
+        <tbody *ngIf="MilkSecnarioData?.length > 0">
+          <tr *ngFor="let obj of MilkSecnarioData; let j = index">
+            <td>{{ j+1 }}</td>
+            <td>{{ obj.DISTRICT_NAME }}</td>                       
+            <td>{{ obj.UNION_FAR_CNT | number : '1.2-2'}}</td>
+            <td>{{ obj.UNION_MILK_QTY | number : '1.2-2'}}</td>
+            <td>{{ obj.UNION_BENFIT_AMOUNT | number : '1.2-2'}}</td>
+            <td>{{ obj.UNION_CRNT_AMT  }}</td>         
+            <td>{{ obj.PVT_FAR_CNT | number : '1.2-2'}}</td>
+            <td>{{ obj.PVT_MILK_QTY | number : '1.2-2'}}</td>
+            <td>{{ obj.PVT_BENFIT_AMOUNT | number : '1.2-2'}}</td>
+            <td>{{ obj.PVT_CRNT_AMT  }}</td>           
+            <td>{{ obj.FAR_CNT | number : '1.2-2'}}</td>
+            <td>{{ obj.MILK_QTY | number : '1.2-2'}}</td>
+            <td>{{ obj.BENFIT_AMOUNT | number : '1.2-2'}}</td>
+            <td>{{ obj.CRNT_AMT  }}</td>
+           
+                
+          </tr>
+        </tbody>
+        <tbody *ngIf="MilkSecnarioData?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td><b>{{ MilkDetailsRpt.UNION_FAR_CNT  | number : '1.2-2'}}</b></td>
+              <td><b>{{ MilkDetailsRpt.UNION_MILK_QTY | number : '1.2-2'}}</b></td>
+              <td><b>{{ MilkDetailsRpt.UNION_BENFIT_AMOUNT | number : '1.2-2'}}</b></td>
+              <td><b>{{ MilkDetailsRpt.UNION_CRNT_AMT | number : '1.2-2' }}</b></td>
+              <td><b>{{ MilkDetailsRpt.PVT_FAR_CNT | number : '1.2-2'}}</b></td>
+              <td><b>{{ MilkDetailsRpt.PVT_MILK_QTY | number : '1.2-2'}}</b></td>
+              <td><b>{{ MilkDetailsRpt.PVT_BENFIT_AMOUNT | number : '1.2-2'}}</b></td>
+              <td><b>{{ MilkDetailsRpt.PVT_CRNT_AMT | number : '1.2-2'}}</b></td>
+              <td><b>{{ MilkDetailsRpt.FAR_CNT | number : '1.2-2'}}</b></td>
+              <td><b>{{ MilkDetailsRpt.MILK_QTY | number : '1.2-2'}}</b></td>
+              <td><b>{{ MilkDetailsRpt.BENFIT_AMOUNT | number : '1.2-2'}}</b></td>
+              <td><b>{{ MilkDetailsRpt.CRNT_AMT | number : '1.2-2'}}</b></td>
+                          
+             
+            </tr>
+          </tbody>
+      </table>
+        
+      </div>
+      </div>
+    </div>
+
+
+     
+ </div>
+ 
+

@@ -1,0 +1,145 @@
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">BMCU EQUIPMENT STATUS REPORT</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12"> 
+          <button
+            type="button"
+            class="btn btn-success btn-sm pull-right"
+            (click)="btnExcel()"
+          >
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            Download Excel
+          </button>
+          <!-- <button
+            type="button"
+            class="btn btn-danger btn-sm pull-right"
+            (click)="btnPDF()"
+          >
+            <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+            Download PDF
+          </button> -->
+        </div>
+        <div
+          class="col-md-12 table-responsive"
+          [hidden]="stateLevelDetails?.length < 1"
+        > 
+          <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th rowspan="2">S NO</th>
+              <th rowspan="2">DISTRICT</th>    
+              <th rowspan="2">TOTAL MANDALS</th>
+              <th rowspan="2">TOTAL BMCU</th>  
+              <th colspan="2">SUBMITTED</th>
+              <th rowspan="2">NOT SUBMITTED</th> 
+            </tr>
+            <tr>
+              <th>APPROVED</th> 
+              <th>REJECTED</th> 
+            </tr>
+
+            <tr >             
+              <th >(1)</th>
+              <th >(2)</th>
+              <th >(3)</th>
+              <th >(4)</th>
+              <th >(5)</th>
+              <th >(6)</th> 
+              <th >(7)</th> 
+            </tr>
+
+
+          </thead>
+          <tbody *ngIf="stateLevelDetails?.length > 0" class="bmctext-size">
+            <tr *ngFor="let obj of stateLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td> 
+              <td  class="text_align_color">{{ obj.DISTRICT }}</td>
+              <td  class="number_aligncen">{{ obj.MANDAL   }}</td>
+              <td  class="number_aligncen">{{ obj.BMCU }}</td>
+              <!-- <td  class="number_align">{{ obj.SUBMITTED }}</td> -->
+
+
+              <!-- <td class="number_align">
+                <a
+                  *ngIf="obj.SUBMITTED !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnSubmittedDetails(obj,'35')"
+                  ><b>{{ obj.SUBMITTED }}</b></a
+                >
+                <span *ngIf="obj.SUBMITTED === '0'"
+                  >{{ obj.SUBMITTED }}</span
+                >
+              </td> -->
+
+              <td class="number_aligncen">
+                <a
+                  *ngIf="obj.APPROVED !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnSubmittedDetails(obj,'35')"
+                  ><b>{{ obj.APPROVED }}</b></a
+                >
+                <span *ngIf="obj.APPROVED === '0'"
+                  >{{ obj.APPROVED }}</span
+                >
+              </td>
+
+              <td class="number_aligncen">
+                <a
+                  *ngIf="obj.REJECTED !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnSubmittedDetails(obj,'41')"
+                  ><b>{{ obj.REJECTED }}</b></a
+                >
+                <span *ngIf="obj.REJECTED === '0'"
+                  >{{ obj.REJECTED }}</span
+                >
+              </td>
+
+
+              <td class="number_aligncen">
+                <a
+                  *ngIf="obj.NOT_SUBMITTED !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnSubmittedDetails(obj,'37')"
+                  ><b>{{ obj.NOT_SUBMITTED }}</b></a
+                >
+                <span *ngIf="obj.NOT_SUBMITTED === '0'"
+                  >{{ obj.NOT_SUBMITTED }}</span
+                >
+              </td>
+
+
+              <!-- <td  class="number_align">{{ obj.NOT_SUBMITTED }}</td>  -->
+            </tr>
+          </tbody>
+          <tbody *ngIf="stateLevelDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td> 
+              <td class="font-weight-bold number_aligncen">{{ reportTotals.MANDAL }}</td>
+              <td class="font-weight-bold number_aligncen">{{ reportTotals.BMCU  }}</td>
+              <td class="font-weight-bold number_aligncen">{{ reportTotals.APPROVED  }}</td>
+              <td class="font-weight-bold number_aligncen">{{ reportTotals.REJECTED  }}</td>
+              <td class="font-weight-bold number_aligncen">{{ reportTotals.NOT_SUBMITTED }}</td> 
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

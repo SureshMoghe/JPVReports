@@ -1,0 +1,19 @@
+<h5 class="text-center font-weight-bold mb-3 border-bottom text-success">
+    {{ReportName}}( <span style="color: black;">{{Selected_Date}} {{Reportdate}}</span>)
+</h5>
+<div class="row">
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-6" align="right">
+        <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+            Back
+        </button>
+    </div>
+</div>
+<app-dist-wise-village-details-report [Selected_Date]="Selected_Date" [(VillageId)]="VillageId" [(VillageName)]="VillageName"
+    [(MandalName)]="MandalName" [(MandalId)]="MandalId" [(districtName)]="districtName" [(RbkName)]="RbkName" [(RbkId)]="RbkId"
+    [(districtId)]="districtId" [(Status)]="Status" (onVillageChange)="onVillageChange($event)"></app-dist-wise-village-details-report>

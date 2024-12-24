@@ -1,0 +1,126 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Farmer Approval Mandal Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <!-- <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button> -->
+      </div>
+      <div class="col-md-6">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-6">
+        <h5>
+          <b> Mandal : </b><span class="text-success">{{ mandalName }}</span>
+        </h5>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="mandalLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>Route</th>
+              <th>RBKS</th>
+              <th>Villages</th>
+              <th>Volunteers</th>
+              <th>Volunteers Logged In</th>
+              <th>Households</th>
+              <th>Volunteer Registered Farmers</th>
+              <th>Approved</th>
+              <th>Rejected</th>
+              <th>Pending Farmers With Animals</th>
+              <th>Farmers Surveyed Without Animals</th>
+              <th>VA/DA/WEA/ Approved</th>
+              <th>Mentor Approved</th>
+              <th>RIC Approved</th>
+              <th>DA/Mentor/RIC Registered Farmer Withoutmilch Animals</th>
+              <th>Milch Animal Data Collection Pending At Volunteer</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="mandalLevelDetails?.length > 0">
+            <tr *ngFor="let obj of mandalLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>
+                <a
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetDetails(obj)"
+                  ><b>{{ obj.ROUTE_NAME }}</b></a
+                >
+              </td>
+              <td>{{ obj.TOTAL_RBK | indianNumber }}</td>
+              <td>{{ obj.TOTAL_VILLAGE | indianNumber }}</td>
+              <td>{{ obj.TOT_VV | indianNumber }}</td>
+              <td>{{ obj.TOT_VV_LOGIN | indianNumber }}</td>
+              <td>{{ obj.TOT_HH | indianNumber }}</td>
+              <td>{{ obj.VV_REG_FARMERS | indianNumber }}</td>
+              <td>{{ obj.APPROVED | indianNumber }}</td>
+              <td>{{ obj.REJECTED | indianNumber }}</td>
+              <td>{{ obj.PENDING_FMR_WITH_ANIMALS | indianNumber }}</td>
+              <td>{{ obj.PENDING_FMR_WITH_OUT_ANIMALS | indianNumber }}</td>
+              <td>{{ obj.VA_DA_APPROVED | indianNumber }}</td>
+              <td>{{ obj.MENTOR_APPROVED | indianNumber }}</td>
+              <td>{{ obj.RIC_APPROVED | indianNumber }}</td>
+              <td>{{ obj.WITHOUT_MILCH | indianNumber }}</td>
+              <td>{{ obj.MILCH_DATA_COL_PENDING | indianNumber }}</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="mandalLevelDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td>{{ reportTotals.TOTAL_RBK | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_VILLAGE | indianNumber }}</td>
+              <td>{{ reportTotals.TOT_VV | indianNumber }}</td>
+              <td>{{ reportTotals.TOT_VV_LOGIN | indianNumber }}</td>
+              <td>{{ reportTotals.TOT_HH | indianNumber }}</td>
+              <td>{{ reportTotals.VV_REG_FARMERS | indianNumber }}</td>
+              <td>{{ reportTotals.APPROVED | indianNumber }}</td>
+              <td>{{ reportTotals.REJECTED | indianNumber }}</td>
+              <td>
+                {{ reportTotals.PENDING_FMR_WITH_ANIMALS | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.PENDING_FMR_WITH_OUT_ANIMALS | indianNumber }}
+              </td>
+              <td>{{ reportTotals.VA_DA_APPROVED | indianNumber }}</td>
+              <td>{{ reportTotals.MENTOR_APPROVED | indianNumber }}</td>
+              <td>{{ reportTotals.RIC_APPROVED | indianNumber }}</td>
+              <td>{{ reportTotals.WITHOUT_MILCH | indianNumber }}</td>
+              <td>{{ reportTotals.MILCH_DATA_COL_PENDING | indianNumber }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

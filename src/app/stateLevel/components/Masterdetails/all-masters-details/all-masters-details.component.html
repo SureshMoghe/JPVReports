@@ -1,0 +1,103 @@
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Master Details</h5>
+    </div>
+    <div class="card-body">
+        <div class="col-md-12 row">
+            <div class="col-md-10"></div> <div class="col-md-2">
+            <button
+            type="button"
+            class="btn btn-success btn-sm pull-right"
+            (click)="btnExcel()" 
+          >
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            Download Excel
+          </button>
+        </div>
+
+        </div>
+
+        <div
+        class="col-md-12 table-responsive"   [hidden]="masterDetails?.length < 1"   >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th   class="tableheader_color">S.No.</th>
+              <th  class="tableheader_color">DISTRICT NAME	</th>
+              <th  class="tableheader_color">MANDAL NAME	</th>
+              <th  class="tableheader_color">RBK NAME	</th>
+              <th  class="tableheader_color">SECRETARIAT NAME</th>	 
+              <th  class="tableheader_color">VILLAGE NAME</th>	 
+              <th  class="tableheader_color">SOCIETY NAME</th>	 
+              <th  class="tableheader_color">DIVISION NAME</th> 
+              <th  class="tableheader_color">ROUTE NAME	 </th>
+              <th  class="tableheader_color">NAME_OF THE_MENTOR</th>
+  
+
+              <th  class="tableheader_color">MENTOR MOBILE_NO</th>
+              <th  class="tableheader_color">NAME_OF_THE ROUTE_INCHARGE</th>
+              <th  class="tableheader_color">ROUTE_INCHARGE MOBILE_NO</th>
+              <th  class="tableheader_color">PHASE</th>
+              <th  class="tableheader_color">ACTIVE STATUS</th>
+ 
+
+            </tr>
+
+            <tr >             
+                <th  class="tableheader_color"  >(1)</th>
+                <th  class="tableheader_color" >(2)</th>
+                <th  class="tableheader_color" >(3)</th>
+                <th  class="tableheader_color" >(4)</th>
+                <th  class="tableheader_color" >(5)</th>
+                <th  class="tableheader_color" >(6)</th>
+                <th  class="tableheader_color" >(7)</th>
+                <th  class="tableheader_color" >(8)</th>
+                <th  class="tableheader_color" >(9)</th>
+                <th  class="tableheader_color" >(10)</th>  
+                <th  class="tableheader_color" >(11)</th>
+                <th  class="tableheader_color" >(12)</th>
+                <th  class="tableheader_color" >(13)</th>
+                <th  class="tableheader_color" >(14)</th>
+                <th  class="tableheader_color" >(15)</th>
+               
+                
+              </tr>  
+
+          </thead>
+          <tbody *ngIf="masterDetails?.length > 0">
+            <tr *ngFor="let obj of masterDetails; let i = index">
+                <td>{{ i + 1 }}</td>     
+                
+
+
+                <td style="text-align: left;" class="table_cells_borders">{{ obj.DISTRICT_NAME }}</td>	 
+                <td style="text-align: left;" class="table_cells_borders">{{ obj.MANDAL_NAME	 }}</td> <td>{{ obj.RBK_NAME	 }}</td> 
+
+                <td style="text-align: left;" class="table_cells_borders">{{ obj.SECRETARIATE_NAME	  }}</td>
+                <td style="text-align: left;" class="table_cells_borders">{{ obj.VILLAGE_NAME }}</td>	 
+                <td style="text-align: left;" class="table_cells_borders">{{ obj.SOCIETY_NAME }}</td>	 
+                <td style="text-align: left;" class="table_cells_borders">{{ obj.DIVISION_NAME }}</td>	 
+                <td style="text-align: left;" class="table_cells_borders">{{ obj.ROUTE_NAME	  }}</td>
+                <td style="text-align: left;" class="table_cells_borders">{{ obj.NAME_OF_THE_MENTOR }}</td>
+
+                <td style="text-align: right;" class="table_cells_borders">{{ obj.MENTOR_MOBILE_NO }}</td>
+                <td style="text-align: left;" class="table_cells_borders">{{ obj.NAME_OF_THE_ROUTE_INCHARGE }}</td>
+                <td style="text-align: right;" class="table_cells_borders">{{ obj.ROUTE_INCHARGE_MOBILE_NO }}</td>
+                <td style="text-align: right;" class="table_cells_borders">{{ obj.PHASE }}</td>
+                <td style="text-align: right;" class="table_cells_borders">{{ obj.ACTIVE_STATUS }}</td>
+                 
+
+            </tr>
+          </tbody>
+         
+        </table>
+      </div>
+      </div>
+    </div>
+  
+  

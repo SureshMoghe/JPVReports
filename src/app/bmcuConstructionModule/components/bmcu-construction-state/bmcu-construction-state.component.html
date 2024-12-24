@@ -1,0 +1,151 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">BMCU Construction State Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="stateLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-bordered ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th rowspan="2">S.No.</th>
+              <th rowspan="2">District</th>
+              <th colspan="2">Feasibility Of Land</th>
+              <th colspan="2">Registration Of Land</th>
+              <th colspan="2">Facilities At Building Site</th>
+              <th colspan="3">Building Basement Level</th>
+              <th colspan="3">Super Structure</th>
+              <th colspan="3">Finishings Level</th>
+              <th colspan="3">Other Infrastructure</th>
+            </tr>
+            <tr>
+              <th>Submitted</th>
+              <th>Not Submitted</th>
+              <th>Submitted</th>
+              <th>Not Submitted</th>
+              <th>Submitted</th>
+              <th>Not Submitted</th>
+              <th>Submitted</th>
+              <th>Not Submitted</th>
+              <th>Partially Submitted</th>
+              <th>Submitted</th>
+              <th>Not Submitted</th>
+              <th>Partially Submitted</th>
+              <th>Submitted</th>
+              <th>Not Submitted</th>
+              <th>Partially Submitted</th>
+              <th>Submitted</th>
+              <th>Not Submitted</th>
+              <th>Partially Submitted</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="stateLevelDetails?.length > 0">
+            <tr *ngFor="let obj of stateLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>
+                <a
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetDetails(obj)"
+                  ><b>{{ obj.DISTRICT }}</b></a
+                >
+              </td>
+              <td>{{ obj.FEASIB_OF_LAND_SUBMIT | indianNumber }}</td>
+              <td>{{ obj.FEASIB_OF_LAND_NOT_SUBMIT | indianNumber }}</td>
+              <td>{{ obj.REGIS_OF_LAND_SUBMIT | indianNumber }}</td>
+              <td>{{ obj.REGIS_OF_LAND_NOT_SUBMIT | indianNumber }}</td>
+              <td>{{ obj.FACIL_AT_BUILD_SITE_SUBMIT | indianNumber }}</td>
+              <td>{{ obj.FACIL_AT_BUILD_SITE_NOT_SUBMIT | indianNumber }}</td>
+              <td>{{ obj.BUILD_BASE_LEVEL_SUBMIT | indianNumber }}</td>
+              <td>{{ obj.BUILD_BASE_LEVEL_NOT_SUBMIT | indianNumber }}</td>
+              <td>{{ obj.BUILD_BASE_LEVEL_PARTI_SUBMIT | indianNumber }}</td>
+              <td>{{ obj.SUPER_STRUCTURE_SUBMIT | indianNumber }}</td>
+              <td>{{ obj.SUPER_STRUCTURE_NOT_SUBMIT | indianNumber }}</td>
+              <td>{{ obj.SUPER_STRUC_SUBMIT_PART_SUBMIT | indianNumber }}</td>
+              <td>{{ obj.FINISH_LEVEL_SUBMIT | indianNumber }}</td>
+              <td>{{ obj.FINISH_LEVEL_NOT_SUBMIT | indianNumber }}</td>
+              <td>{{ obj.FINISH_LEVEL_PART_SUBMIT | indianNumber }}</td>
+              <td>{{ obj.OTHER_INFRASTRAC_SUBMIT | indianNumber }}</td>
+              <td>{{ obj.OTHER_INFRASTRAC_NOT_SUBMIT | indianNumber }}</td>
+              <td>{{ obj.OTHER_INFRASTRAC_PARTI_SUBMIT | indianNumber }}</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="stateLevelDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td>{{ reportTotals.FEASIB_OF_LAND_SUBMIT | indianNumber }}</td>
+              <td>
+                {{ reportTotals.FEASIB_OF_LAND_NOT_SUBMIT | indianNumber }}
+              </td>
+              <td>{{ reportTotals.REGIS_OF_LAND_SUBMIT | indianNumber }}</td>
+              <td>
+                {{ reportTotals.REGIS_OF_LAND_NOT_SUBMIT | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.FACIL_AT_BUILD_SITE_SUBMIT | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.FACIL_AT_BUILD_SITE_NOT_SUBMIT | indianNumber }}
+              </td>
+              <td>{{ reportTotals.BUILD_BASE_LEVEL_SUBMIT | indianNumber }}</td>
+              <td>
+                {{ reportTotals.BUILD_BASE_LEVEL_NOT_SUBMIT | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.BUILD_BASE_LEVEL_PARTI_SUBMIT | indianNumber }}
+              </td>
+              <td>{{ reportTotals.SUPER_STRUCTURE_SUBMIT | indianNumber }}</td>
+              <td>
+                {{ reportTotals.SUPER_STRUCTURE_NOT_SUBMIT | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.SUPER_STRUC_SUBMIT_PART_SUBMIT | indianNumber }}
+              </td>
+              <td>{{ reportTotals.FINISH_LEVEL_SUBMIT | indianNumber }}</td>
+              <td>{{ reportTotals.FINISH_LEVEL_NOT_SUBMIT | indianNumber }}</td>
+              <td>
+                {{ reportTotals.FINISH_LEVEL_PART_SUBMIT | indianNumber }}
+              </td>
+              <td>{{ reportTotals.OTHER_INFRASTRAC_SUBMIT | indianNumber }}</td>
+              <td>
+                {{ reportTotals.OTHER_INFRASTRAC_NOT_SUBMIT | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.OTHER_INFRASTRAC_PARTI_SUBMIT | indianNumber }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

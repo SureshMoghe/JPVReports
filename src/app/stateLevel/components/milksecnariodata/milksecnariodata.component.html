@@ -1,0 +1,205 @@
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Milk Secnario</h5>
+    </div>
+    <div class="card-body">
+<div class="row">
+    <div class="col-md-3 mt-2 mb-4">
+        <div class="form-group">
+            <label for="oldRbkId"
+              >Select Year <span style="color: red">*</span></label
+            >
+            <select
+              id="oldRbkId"
+              class="form-control" [(ngModel)]="MilksecnarioCls.yearId"
+              
+            >
+              <option value="">-- SELECT Year --</option>
+              <option value="{{ obj.YEAR }}" *ngFor="let obj of YearDetailsdata">
+                {{ obj.YEAR }}
+              </option>
+            </select>
+          </div>
+        
+    </div>
+
+    <div class="col-md-3 mt-2 mb-4">
+        <div class="form-group">
+            <label for="oldRbkId"
+              >Select Month <span style="color: red">*</span></label
+            >
+            <select
+              id="oldRbkId"
+              class="form-control" (change)="onyearMChange()" [(ngModel)]="MilksecnarioCls.Months"
+              
+            >
+              <option value="">-- SELECT Cycle --</option>
+              <option value="{{ obj.MONTH_NO }}" *ngFor="let obj of MonthList">
+                {{ obj.MONTH }}
+              </option>
+            </select>
+          </div>
+    </div>
+    <div class="col-md-3 mt-2 mb-4">
+       
+    </div>
+    <div class="col-md-3 mt-2 mb-4">
+       
+    </div>
+
+    <div class="col-md-3 mt-2 mb-4">
+        <div class="form-group">
+            <label 
+              ><b>Select District</b> <span style="color: red">*</span></label
+            >
+            <select  class="form-control" [(ngModel)]="MilksecnarioCls.DistrictId" (change)="onDistrictChange()"              
+            >
+              <option value="">-- Select District --</option>
+              <option value="{{ obj.DISTRICT_CODE }}" *ngFor="let obj of districtListdata">
+                {{ obj.DISTRICT_NAME }}
+              </option>
+            </select>
+          </div>
+    </div>
+    <div class="col-md-3 mt-2 mb-4">
+        <div class="form-group">
+            <label for="oldRbkId"
+              ><b>Select Dairy </b><span style="color: red">*</span></label
+            >
+            <select
+              id="oldRbkId"
+              class="form-control" [(ngModel)]="MilksecnarioCls.Dairynames"
+              
+            >
+              <option value="">-- Select Dairy --</option>
+              <option value="{{ obj.UNION_TYPE }}" *ngFor="let obj of DairyList">
+                {{ obj.DAIRY }}
+              </option>
+            </select>
+          </div>
+    </div>
+
+    <div class="col-md-3 mt-2 mb-4">
+        <div class="form-group">
+            <label for="oldRbkId"
+              ><b>Milk Type</b> <span style="color: red">*</span></label
+            >
+            <select
+              id="oldRbkId"
+              class="form-control" [(ngModel)]="MilksecnarioCls.Milktype" (change)="onmilkTypeChange()" 
+              
+            >
+              <option value="">-- Select Type --</option>
+              <option value="{{ obj.MILK_TYPE_CODE }}" *ngFor="let obj of MilkData">
+                {{ obj.MILK_TYPE }}
+              </option>
+            </select>
+          </div>
+    </div>
+    <div class="col-md-3 mt-2 mb-4">
+      <div class="form-group">
+          <label for="oldRbkId"
+            ><b>Base Price</b> <span style="color: red">*</span></label
+          >
+          <input type="text"  disabled maxlength="8" [(ngModel)]="MilksecnarioCls.Baseprice" class="form-control"/>
+        </div>
+  </div>
+
+    
+
+    <div class="col-md-3 mt-2 mb-4">
+        <div class="form-group">
+            <label for="oldRbkId"
+              > <b>Farmer (Lakhs)</b> </label
+            >
+            <input type="text" [disabled]="false"  NumbersOnly maxlength="8" [(ngModel)]="MilksecnarioCls.FarmerLaks" class="form-control"/>
+          </div>
+    </div>
+    <div class="col-md-3 mt-2 mb-4">
+        <div class="form-group">
+            <label for="oldRbkId"
+              > <b>Milk Procureman (LLPD)</b> </label
+            >
+            <input type="text" [disabled]="false"  NumbersOnly maxlength="8" [(ngModel)]="MilksecnarioCls.Milk_LLPD" class="form-control"/>
+          </div>
+    </div>
+    <div class="col-md-3 mt-2 mb-4">
+        <div class="form-group">
+            <label for="oldRbkId"
+              > <b>Price Fat / TS</b> </label
+            >
+            <input type="text" [disabled]="false"  NumbersOnly maxlength="8" [(ngModel)]="MilksecnarioCls.Price_Fat" class="form-control"/>
+          </div>
+    </div>
+    <div class="col-md-3 mt-2 mb-4" *ngIf="btn_enabled_calculation">
+      <div class="form-group">
+            <button type="button" class="btn btn-success btn-sm" style="margin-top: 31px;" (click)="onbtnSubmitcalculater()"><b>Calculate</b></button>
+        </div>
+  </div>
+    
+    <div class="col-md-3 mt-2 mb-4" *ngIf="btn_enabled">
+        <div class="form-group">
+            <label for="oldRbkId"> <b style="font-size: 14px;">Additional benefit to Farmer</b> </label>
+            <input type="text"  NumbersOnly maxlength="8" disabled [(ngModel)]="MilksecnarioCls.Additional_Benfts" class="form-control"/>
+            <button  type="button" *ngIf="btn_enabled1" class="btn btn-success btn-sm" (click)="onbtnSubmit()" style="margin-top: -56px;margin-left: 235px;"><b>SUBMIT</b></button>
+          </div>
+    </div>
+    
+
+    
+
+</div>
+      <div class="row">
+        
+<div class="col-md-12" style="overflow-x:auto;" *ngIf="FramerTablediv"> 
+   
+     <table
+        class="table table-striped ah-table text-center" 
+        datatable [dtOptions]="dtOptions"
+        [dtTrigger]="dtTrigger"
+        
+      >
+        <thead class="bg-success text-white">
+          <tr>
+            <th>S.No.</th>
+            <th>District</th>
+            <th>Dairy </th>
+            <th>Milk Type</th>
+            <th>Base Prise</th>
+            <th>Submit Date & Time</th>
+            <th>Farmers in Lak</th>
+            <th>Milk LLPD</th>
+            <th>Price Fat / TS</th>
+            <th>Additinal Benfits</th>
+            
+           
+          </tr>
+        </thead>
+        <tbody *ngIf="MilkSecnarioData?.length > 0">
+          <tr *ngFor="let obj of MilkSecnarioData; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ obj.DISTRICT_NAME }}</td>
+            <td>{{ obj.AGENCY_TYPE }}</td>
+            <td>{{ obj.MILK_TYPE }}</td>           
+            <td>{{ obj.BASE_PRICE }}</td>
+            <td>{{ obj.LAST_RECORD_TIME }}</td>
+            <td>{{ obj.FAR_COUNT }}</td>
+            <td>{{ obj.MILK_QTY }}</td>
+            <td>{{ obj.AMOUNT }}</td>
+            <td>{{ obj.BENFIT_AMOUNT }}</td>
+            
+            
+                
+          </tr>
+        </tbody>
+      </table>
+        
+      </div>
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+

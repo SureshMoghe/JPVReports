@@ -1,0 +1,125 @@
+<div class="row align-items-center">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="fromDate">From Date : <span style="color: red">*</span></label>
+            <app-date-picker [PlaceHolder]="'Please Select From Date'" [(selectedDate)]="fromDate"></app-date-picker>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="toDate">To Date : <span style="color: red">*</span></label>
+            <app-date-picker [PlaceHolder]="'Please Select To Date'" [(selectedDate)]="toDate"></app-date-picker>
+        </div>
+    </div>
+
+    <!-- <div class="col-md-3">
+        <div class="form-group">
+            <label for="districtId">Union <span style="color: red">*</span></label>
+            <select id="unionid" class="form-control" [(ngModel)]="unionid" (change)="onUnionChange()"> 
+                <option  disabled selected value="undefined">--SELECT UNION--</option>
+                <option value="{{ obj.UNION_CODE }}" *ngFor="let obj of UNIONLIST">
+                    {{ obj.UNION_NAME }}
+                </option>
+            </select>
+        </div>
+    </div> -->
+
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="districtId">Union <span style="color: red">*</span></label>
+            <select id="unionid" class="form-control" [(ngModel)]="unionid" (change)="onUnionChange()"> 
+                <!-- <option disabled selected value="undefined"></option> -->
+                <option value="0">ALL</option>
+                <option value="{{ obj.UNION_CODE }}" *ngFor="let obj of UNIONLIST">
+                    {{ obj.UNION_NAME }}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <button type="button" class="btn btn-primary btn-sm mt-3" (click)="btnLoadReport()">
+            <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+            Find
+        </button>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">Union Wise Data Sync Status</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                    Download Excel
+                </button> 
+            </div>
+            <div class="col-md-12 table-responsive" [hidden]="UnionTransactionList?.length < 1">
+                <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead class="bg-success text-white">
+                        <tr>
+                            <th  class="tableheader_color">S.No</th>
+                            <th  class="tableheader_color">Date</th>
+                            <th  class="tableheader_color">Union Name</th>
+                            <th  class="tableheader_color">No of Societies</th>
+                            <th  class="tableheader_color">No of Farmers</th>
+                            <th  class="tableheader_color">No of Transactions</th>
+                            <th  class="tableheader_color">Total Litres</th>
+                            <th  class="tableheader_color">Total Amount</th>
+                            <th   class="tableheader_color">Ex-1</th>
+                            <th  class="tableheader_color">Ex-2</th>
+                        </tr> 
+                        <tr>
+                            <th class="tableheader_color">(1)</th>
+                            <th class="tableheader_color">(2)</th>
+                            <th class="tableheader_color">(3)</th>
+                            <th class="tableheader_color">(4)</th>
+                            <th class="tableheader_color">(5)</th>
+                            <th class="tableheader_color">(6)</th>
+                            <th class="tableheader_color">(7)</th>
+                            <th class="tableheader_color">(8)</th>
+                            <th class="tableheader_color">(9)</th>
+                            <th class="tableheader_color">(10)</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="UnionTransactionList?.length > 0">
+                        <tr *ngFor="let obj of UnionTransactionList; let i = index">
+                            <td class="number_align">{{ i + 1}}</td>
+                            <td class="table_cells_borders number_align">{{obj.TXN_DATE.slice(0,10)}}</td>
+                            <td  style="text-align: left;" class="table_cells_borders">{{obj.UNION_NAME}}</td>
+                            <td class="table_cells_borders number_align">{{obj.NOOFSOCIETY}}</td>
+                            <td class="table_cells_borders number_align">{{obj.NOOF_FARMERS}}</td>
+                            <td class="table_cells_borders number_align">{{obj.NOOFTXN}}</td>
+                            <td class="table_cells_borders number_align">{{obj.MILK_IN_LITERS}}</td>
+                            <td class="table_cells_borders number_align">{{obj.MILK_AMOUNT}}</td> 
+                            <td class="table_cells_borders number_align">{{obj.EX_1}}</td> 
+                            <td class="table_cells_borders number_align">{{obj.EX_2}}</td> 
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="UnionTransactionList?.length > 0">
+
+                        <tr>
+                            <td class="number_align">--</td>
+                            <td class="number_align">--</td>
+                            <td class="text_align_color"> <b>TOTAL</b> </td>
+                            <td class="font-weight-bold number_align">{{ reportTotals.NO_OF_SOCIETIES |indianNumber }}</td>
+                            <td class="font-weight-bold number_align">{{ reportTotals.NO_OF_FARMERS |indianNumber }}</td>
+                            <td class="font-weight-bold number_align">{{ reportTotals.NO_OF_TRANSACTIONS |indianNumber }}</td>
+                            <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_LITRES |indianNumber }}</td>  
+                            <td class="font-weight-bold number_align">{{ reportTotals.TOTAL_AMOUNT | indianNumber }}</td>
+                            <td class="font-weight-bold number_align">{{ reportTotals.EX_1 |indianNumber }}</td> 
+                            <td class="font-weight-bold number_align">{{ reportTotals.EX_2 |indianNumber }}</td>              
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+  

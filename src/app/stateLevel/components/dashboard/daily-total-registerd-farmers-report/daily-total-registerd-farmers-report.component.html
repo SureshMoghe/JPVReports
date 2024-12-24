@@ -1,0 +1,69 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Daily Total Registered Farmers Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="dailyRegisteredFarmersDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>District</th>
+              <th>RBK </th>
+              <th>Village</th>
+              <th>AMC ID</th>
+              <th>Farmer Code</th>
+              <th>Farmer Name</th>
+              <th>Moile No.</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="dailyRegisteredFarmersDetails?.length > 0">
+            <tr
+              *ngFor="let obj of dailyRegisteredFarmersDetails; let i = index"
+            >
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.DISTRICT_NAME }}</td>
+              <td>{{ obj.RBK_NAME }}</td>
+              <td>{{ obj.VILLAGE_NAME }}</td>
+              <td>{{ obj.AMC_ID }}</td>
+              <td>{{ obj.FARMER_CODE }}</td>
+              <td>
+                <b>{{ obj.NAME }}</b>
+              </td>
+              <td>{{ obj.MOBILE_NUMBER }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

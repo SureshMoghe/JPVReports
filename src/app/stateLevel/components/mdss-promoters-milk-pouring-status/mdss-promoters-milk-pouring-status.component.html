@@ -1,0 +1,241 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">MDSS Promoters Milk Pouring Status</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        > 
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <!-- <button  
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button> -->
+      </div>
+    </div>
+    <div class="row align-items-center"> 
+      <div class="col-md-2">
+        <div class="form-group">
+          <label for="fromDate"
+            >From Date : <span style="color: red">*</span></label
+          >
+          <app-date-picker
+            [PlaceHolder]="'Please Select From Date'"
+            [(selectedDate)]="fromDate"
+          ></app-date-picker>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label for="toDate"
+            >To Date : <span style="color: red">*</span></label
+          >
+          <app-date-picker
+            [PlaceHolder]="'Please Select To Date'"
+            [(selectedDate)]="toDate"
+          ></app-date-picker>
+        </div>
+      </div>
+      <div class="col-md-3">
+          <div class="form-group">
+            <label for="districtId"
+              >District <span style="color: red">*</span></label
+            >
+            <select
+              id="districtId"
+              class="form-control"
+              [(ngModel)]="MDSSPromotersMilkPouringStatus.DIST_CODE"
+              (change)="onDistrictIdChange()"
+            >
+              <option value="0">ALL</option>
+              <option
+                value="{{ obj.DIST_CODE }}"
+                *ngFor="let obj of districtList"
+              >
+                {{ obj.DISTRICT }}
+              </option>
+            </select>
+          </div>
+        </div>
+      <div class="col-md-3">
+        <div class="form-group"> 
+      
+          <label for="mandalId"
+            >Mandal <span style="color: red">*</span></label> 
+          <select
+          id="mandalId"
+          class="form-control"
+          [(ngModel)]="MDSSPromotersMilkPouringStatus.MANDAL_CODE"
+         
+        >  
+        <!-- (change)="onReportPhaseTypeChange()" -->
+          <option value="0">ALL</option>
+          <option
+            value="{{ obj.MANDAL_CODE }}"
+            *ngFor="let obj of mandalList"
+          >
+            {{ obj.MANDAL_NAME }}
+          </option>
+        </select>
+    
+        </div>
+      </div>  
+
+      <div class="col-md-2">
+        <button
+          type="button"
+          class="btn btn-primary btn-sm mt-3"
+          (click)="btnLoadReport()"
+        >
+          <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+          GO
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="MDSSPromotersMilkPouringStatusDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr> 
+              <th rowspan="2">S.No</th>
+              <th rowspan="2">District</th>
+              <th rowspan="2">Mandal</th>
+              <th rowspan="2">RBKs</th>                
+              <th colspan="3">Adhoc Committee Members</th>
+              <th colspan="3">No of Promoters</th> 
+            </tr>
+            <tr>
+              <th>Total</th>
+              <th>Milk Pouring Members</th>
+              <th>Milk Not Pouring Members</th>
+              <th>Total</th>
+              <th>Milk Pouring Members</th>
+              <th>Milk Not Pouring Members</th>
+            </tr>
+            <tr >             
+              <th >(1)</th>
+              <th >(2)</th>
+              <th >(3)</th>
+              <th >(4)</th>
+              <th >(5)</th>
+              <th >(6)</th>
+              <th >(7)</th>
+              <th >(8)</th>
+              <th >(9)</th>
+              <th >(10)</th> 
+            </tr> 
+
+          </thead>
+          <tbody *ngIf="MDSSPromotersMilkPouringStatusDetails?.length > 0">
+            <tr *ngFor="let obj of MDSSPromotersMilkPouringStatusDetails; let i = index">
+              <td class="number_align">{{ i + 1 }}</td>
+              <td  class="text_align_color">{{ obj.DISTRICT_NAME }}</td>
+              <td class="text_align_color">{{ obj.MANDAL_NAME }}</td>
+              <td class="text_align_color">{{ obj.RBK_NAME }}</td>
+              <td class="number_align" >{{ obj.ADHOC_TOTAL  | indianNumber}}</td>
+              <!-- <td class="number_align">{{ obj.MILK_POURED_FARMER_CNT | indianNumber }}</td> -->
+
+              <td class="number_align">  
+                <a
+                *ngIf="obj.MILK_POURED_FARMER_CNT !== '0'"
+                style="cursor: pointer; text-decoration: underline"
+                class="text-primary"
+                (click)="AdhocMilkPouredFarmerCount(obj)"
+                ><b>{{
+                  obj.MILK_POURED_FARMER_CNT | indianNumber
+                }}</b></a
+              >
+              <span *ngIf="obj.MILK_POURED_FARMER_CNT === '0'">{{
+                obj.MILK_POURED_FARMER_CNT
+              }}</span>
+              </td>
+
+              <!-- <td class="number_align">{{ obj.MILK_NOT_POURED_FARMER_CNT | indianNumber }}</td> -->
+               
+              <td class="number_align"> 
+                <a
+                *ngIf="obj.MILK_NOT_POURED_FARMER_CNT !== '0'"
+                style="cursor: pointer; text-decoration: underline"
+                class="text-primary"
+                (click)="AdhocMilkNotPouredFarmerCount(obj)"
+                ><b>{{
+                  obj.MILK_NOT_POURED_FARMER_CNT | indianNumber
+                }}</b></a
+              >
+              <span *ngIf="obj.MILK_NOT_POURED_FARMER_CNT === '0'">{{
+                obj.MILK_NOT_POURED_FARMER_CNT
+              }}</span>
+              </td>
+
+              <td class="number_align">{{ obj.NO_OF_PROMOTER  | indianNumber}}</td>
+              <!-- <td class="number_align">{{ obj.MILK_POURED_FMR_CNT | indianNumber }}</td> -->
+
+              <td class="number_align"> 
+                <a
+                *ngIf="obj.MILK_POURED_FMR_CNT !== '0'"
+                style="cursor: pointer; text-decoration: underline"
+                class="text-primary"
+                (click)="PromotersMilkPouredFarmerCount(obj)"
+                ><b>{{
+                  obj.MILK_POURED_FMR_CNT | indianNumber
+                }}</b></a
+              >
+              <span *ngIf="obj.MILK_POURED_FMR_CNT === '0'">{{
+                obj.MILK_POURED_FMR_CNT
+              }}</span>
+              </td>
+              <!-- <td class="number_align">{{ obj.MILK_NOT_POURED_FMR_CNT | indianNumber }}</td>  -->
+              
+              <td class="number_align"> 
+                <a
+                *ngIf="obj.MILK_NOT_POURED_FMR_CNT !== '0'"
+                style="cursor: pointer; text-decoration: underline"
+                class="text-primary"
+                (click)="PromotersMilkNotPouredFarmerCount(obj)"
+                ><b>{{
+                  obj.MILK_NOT_POURED_FMR_CNT | indianNumber
+                }}</b></a
+              >
+              <span *ngIf="obj.MILK_NOT_POURED_FMR_CNT === '0'">{{
+                obj.MILK_NOT_POURED_FMR_CNT
+              }}</span>
+              </td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="MDSSPromotersMilkPouringStatusDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>TOTAL</td>
+              <td>--</td>
+              <td>--</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.ADHOC_TOTAL | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.MILK_POURED_FARMER_CNT }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.MILK_NOT_POURED_FARMER_CNT }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.NO_OF_PROMOTER }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.MILK_POURED_FMR_CNT | indianNumber }}</td>
+              <td class="font-weight-bold number_align">{{ reportTotals.MILK_NOT_POURED_FMR_CNT | indianNumber }}</td> 
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

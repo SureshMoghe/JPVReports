@@ -1,0 +1,144 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Farmer Nature Of Unit Branch Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div class="col-md-6">
+        <h5>
+          <b> Bank : </b><span class="text-success">{{ bank }}</span>
+        </h5>
+      </div>
+      <div class="col-md-6">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="branchLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>Branch</th>
+              <th>Sheep To Buffalo</th>
+              <th>Goat To Buffalo</th>
+              <th>Sheep To Cow</th>
+              <th>Goat To Cow</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="branchLevelDetails?.length > 0">
+            <tr *ngFor="let obj of branchLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>
+                <b>{{ obj.BRANCH }}</b>
+              </td>
+              <td>
+                <a
+                  *ngIf="obj.SHEEP_TO_BUFFALO !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="
+                    btnGetSheepToBuffalo(
+                      obj,
+                      'Live Stock-SHEEP',
+                      'Live Stock-BUFFALO'
+                    )
+                  "
+                  ><b>{{ obj.SHEEP_TO_BUFFALO | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.SHEEP_TO_BUFFALO === '0'">{{
+                  obj.SHEEP_TO_BUFFALO
+                }}</span>
+              </td>
+              <td>
+                <a
+                  *ngIf="obj.GOAT_TO_BUFFALO !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="
+                    btnGetGoatToBuffalo(
+                      obj,
+                      'Live Stock-GOAT',
+                      'Live Stock-BUFFALO'
+                    )
+                  "
+                  ><b>{{ obj.GOAT_TO_BUFFALO | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.GOAT_TO_BUFFALO === '0'">{{
+                  obj.GOAT_TO_BUFFALO
+                }}</span>
+              </td>
+              <td>
+                <a
+                  *ngIf="obj.SHEEP_TO_COW !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="
+                    btnGetSheepToCow(obj, 'Live Stock-SHEEP', 'Live Stock-COW')
+                  "
+                  ><b>{{ obj.SHEEP_TO_COW | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.SHEEP_TO_COW === '0'">{{
+                  obj.SHEEP_TO_COW
+                }}</span>
+              </td>
+              <td>
+                <a
+                  *ngIf="obj.GOAT_TO_COW !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="
+                    btnGetGoatToCow(obj, 'Live Stock-GOAT', 'Live Stock-COW')
+                  "
+                  ><b>{{ obj.GOAT_TO_COW | indianNumber }}</b></a
+                >
+                <span *ngIf="obj.GOAT_TO_COW === '0'">{{
+                  obj.GOAT_TO_COW
+                }}</span>
+              </td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="branchLevelDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td>{{ reportTotals.SHEEP_TO_BUFFALO | indianNumber }}</td>
+              <td>{{ reportTotals.GOAT_TO_BUFFALO | indianNumber }}</td>
+              <td>{{ reportTotals.SHEEP_TO_COW | indianNumber }}</td>
+              <td>{{ reportTotals.GOAT_TO_COW | indianNumber }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

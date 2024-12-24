@@ -1,0 +1,12 @@
+<div class="col-md-12" align="right">
+  <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+    Back
+  </button>
+</div>
+<app-farmer-milk-pouring-route
+  [(districtId)]="districtId"
+  [(districtName)]="districtName"
+  [(routeId)]="routeId"
+  [(routeName)]="routeName"
+  (onMandalChange)="onMandalChange($event)"
+></app-farmer-milk-pouring-route>

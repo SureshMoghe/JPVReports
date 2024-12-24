@@ -1,0 +1,333 @@
+<div class="card" >
+  <div class="card-header p-2">
+    <h5 class="mb-0">MDSS Registration Report</h5>
+  </div>
+  <div class="card-body" *ngIf="statediv">
+    <div class="row">
+
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+      </div>
+      
+   <div class="col-md-12" style="overflow-x:auto;"> 
+ 
+   <table
+      class="table table-striped ah-table text-center" 
+      datatable  [dtOptions]="dtOptions"  [dtTrigger]="dtTrigger"
+      
+    >
+      <thead class="bg-success text-white">
+       
+        <tr>
+          <th >S.No.</th>
+          <th >DISTRICT NAME</th>
+         
+        <th>NO OF ROUTES</th>
+        <th>ELIGIBLE RBKS</th>
+        <th> SCHEDULED RBKS</th>
+                 
+
+        <th>NO OF MEETING COMPLETED RBKS        </th>
+         
+        <th>CORRECT DOCUMENTS UPLOADED RBKS        </th>
+         <th>SUBMITTED RBKS        </th>
+        <th>ROLLBACKED RBKS        </th>
+        <th> PENDING RBKS DLCO        </th>
+        <th>PENDING RBKS DCO        </th>
+        <th>PENDING RBKS GM/ AR      </th>
+        <th>PENDING RBKS COMMISSIONER        </th>
+        <th>REGISTERED RBKS  </th>
+
+        <!-- <th>BANK ACCOUNT AND PAN DETAILS SUBMITTED</th>
+        <th>VERIFIED UPDATED BANK AND PAN DETAILS  </th> -->
+        
+         
+      </tr>
+         
+      </thead>
+      <tbody *ngIf="MdssRegGetData?.length > 0">
+        <tr *ngFor="let obj of MdssRegGetData; let i = index">
+          <td>{{ i+1 }}</td>
+          <td> <a
+          style="cursor: pointer; text-decoration: underline"
+          class="text-primary"
+          (click)="btnDistrictDetails(obj)">
+          <b>{{ obj.DISTRICT }}</b></a></td>                  
+          <td>{{ obj.NO_OF_ROUTES }}</td>
+          <td>{{ obj.ELIGIBLE_RBKS }}</td>
+          <td>{{ obj.SCHEDULED_RBKS }}</td>
+          <td>{{ obj.MEETING_RBKS }}</td>         
+          <td>{{ obj.DOC_UPLOADED_RBKS }}</td>
+          <td>{{ obj.SUBMITTED_RBKS }}</td>
+          <td>{{ obj.REJECTED_RBKS }}</td>
+          <td>{{ obj.PENDING_RBKS_DLCO }}</td>           
+          <td>{{ obj.PENDING_RBKS_DCO }}</td>
+          <td>{{ obj.PENDING_RBKS_GM }}</td>
+          <td>{{ obj.PENDING_RBKS_COMM }}</td>
+          <td>{{ obj.REGISTERED_RBKS }}</td>
+          <!-- <td>{{ obj.TOTAL_SUBMITED_BANK_DETAILS }}</td>
+          <td>{{ obj.TOTAL_APPROVED_BANK_DETAILS }}</td> -->
+          
+          
+        </tr>
+      </tbody>
+      <tbody *ngIf="MdssRegGetData?.length > 0">
+          <tr>
+            <td>--</td>
+            <td>
+              <b>TOTAL</b>
+            </td>
+            <td><b>{{ MdssRegTotal.NO_OF_ROUTES | indianNumber}}</b></td>
+       <td><b>{{ MdssRegTotal.ELIGIBLE_RBKS | indianNumber}}</b></td>
+       <td><b>{{ MdssRegTotal.SCHEDULED_RBKS | indianNumber}}</b></td>
+       <td><b>{{ MdssRegTotal.MEETING_RBKS | indianNumber}}</b></td>         
+       <td><b>{{ MdssRegTotal.DOC_UPLOADED_RBKS| indianNumber }}</b></td>
+       <td><b>{{ MdssRegTotal.SUBMITTED_RBKS | indianNumber}}</b></td>
+       <td><b>{{ MdssRegTotal.REJECTED_RBKS | indianNumber}}</b></td>
+       <td><b>{{ MdssRegTotal.PENDING_RBKS_DLCO | indianNumber }}</b></td>           
+       <td><b>{{ MdssRegTotal.PENDING_RBKS_DCO | indianNumber}}</b></td>
+       <td><b>{{ MdssRegTotal.PENDING_RBKS_GM | indianNumber}}</b></td>
+       <td><b>{{ MdssRegTotal.PENDING_RBKS_COMM | indianNumber}}</b></td>
+       <td>
+        <a style="cursor: pointer; text-decoration: underline" class="text-primary"
+            (click)="RegisteredRBKsTotal()"><b>{{ MdssRegTotal.REGISTERED_RBKS | indianNumber}}</b></a>
+    </td>
+       <!-- <td><b>{{ MdssRegTotal.REGISTERED_RBKS | indianNumber}}</b></td> -->
+
+       <!-- <td><b>{{ MdssRegTotal.TOTAL_SUBMITED_BANK_DETAILS | indianNumber}}</b></td>
+       <td><b>{{ MdssRegTotal.TOTAL_APPROVED_BANK_DETAILS | indianNumber}}</b></td> -->
+                        
+           
+          </tr>
+        </tbody>
+    </table>
+      
+    </div>
+    </div>
+  </div>
+
+
+  <div class="card-body" *ngIf="distctdiv">
+    <div class="row">
+      <div class="col-md-12 row">
+        <div class="col-md-3">
+          <label>
+              DISTRICT :
+              <span class="text-success">
+                <b> {{ DISTRICT }}</b>
+              </span>
+            </label>
+      </div>
+      <div class="col-md-3"></div>
+      <div class="col-md-3"></div>
+      <div class="col-md-3">
+        <button
+                type="button"
+                class="btn btn-sm btn-info pull-right"
+                (click)="btnback(obj)"
+              >Back</button>
+    </div> 
+      </div>
+      
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btndistExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+      </div>
+      
+   <div class="col-md-12" style="overflow-x:auto;"> 
+ 
+   <table
+      class="table table-striped ah-table text-center" 
+      datatable  [dtOptions]="dtOptions"  [dtTrigger]="dtTrigger"
+      
+    >
+      <thead class="bg-success text-white">
+       
+        <tr>
+        <th >S.No.</th>
+        <th >DISTRICT NAME</th>           
+        <th>ROUTE NAME</th>
+        <th>ELIGIBLE RBKS</th>
+        <th> SCHEDULED RBKS</th>                   
+        <th>NO OF MEETING COMPLETED RBKS </th>           
+        <th>CORRECT DOCUMENTS UPLOADED RBKS</th>
+         <th>SUBMITTED RBKS        </th>
+        <th>ROLLBACKED RBKS        </th>
+        <th> PENDING RBKS DLCO        </th>
+        <th>PENDING RBKS DCO        </th>
+        <th>PENDING RBKS GM/ AR      </th>
+        <th>PENDING RBKS COMMISSIONER        </th>
+        <th>REGISTERED RBKS  </th>
+        
+         
+      </tr>
+         
+      </thead>
+      <tbody *ngIf="MdssRegGetDatadist?.length > 0">
+        <tr *ngFor="let obj of MdssRegGetDatadist; let j = index">
+          <td>{{ j+1 }}</td>
+          <td style="float: left;">{{ obj.DISTRICT }}</td>                       
+          <td><a
+            style="cursor: pointer; text-decoration: underline"
+            class="text-primary"
+            (click)="btnrouteDetails(obj)">
+            <b>{{ obj.ROUTE_NO }}</b></a></td>
+          <td>{{ obj.ELIGIBLE_RBKS }}</td>
+          <td>{{ obj.SCHEDULED_RBKS }}</td>
+          <td>{{ obj.MEETING_RBKS }}</td>         
+          <td>{{ obj.DOC_UPLOADED_RBKS }}</td>
+          <td>{{ obj.SUBMITTED_RBKS }}</td>
+          <td>{{ obj.REJECTED_RBKS }}</td>
+          <td>{{ obj.PENDING_RBKS_DLCO }}</td>           
+          <td>{{ obj.PENDING_RBKS_DCO }}</td>
+          <td>{{ obj.PENDING_RBKS_GM }}</td>
+          <td>{{ obj.PENDING_RBKS_COMM }}</td>
+          <td>{{ obj.REGISTERED_RBKS }}</td>
+         
+              
+        </tr>
+      </tbody>
+      <tbody *ngIf="MdssRegGetDatadist?.length > 0">
+      <tr>
+      <td>--</td>
+      <td>
+      <b>TOTAL</b>
+      </td>
+      <td><b>--</b></td>
+       <td><b>{{ MdssRegTotaldist.ELIGIBLE_RBKS | indianNumber}}</b></td>
+       <td><b>{{ MdssRegTotaldist.SCHEDULED_RBKS | indianNumber}}</b></td>
+       <td><b>{{ MdssRegTotaldist.MEETING_RBKS | indianNumber}}</b></td>         
+       <td><b>{{ MdssRegTotaldist.DOC_UPLOADED_RBKS| indianNumber }}</b></td>
+       <td><b>{{ MdssRegTotaldist.SUBMITTED_RBKS | indianNumber}}</b></td>
+       <td><b>{{ MdssRegTotaldist.REJECTED_RBKS | indianNumber}}</b></td>
+       <td><b>{{ MdssRegTotaldist.PENDING_RBKS_DLCO | indianNumber }}</b></td>           
+       <td><b>{{ MdssRegTotaldist.PENDING_RBKS_DCO | indianNumber}}</b></td>
+       <td><b>{{ MdssRegTotaldist.PENDING_RBKS_GM | indianNumber}}</b></td>
+       <td><b>{{ MdssRegTotaldist.PENDING_RBKS_COMM | indianNumber}}</b></td>
+       <td><b>{{ MdssRegTotaldist.REGISTERED_RBKS | indianNumber}}</b></td>
+                        
+           
+          </tr>
+        </tbody>
+    </table>
+      
+    </div>
+    </div>
+  </div>
+
+  <div class="card-body" *ngIf="routediv">
+    <div class="row">
+      <div class="col-md-12 row">
+        <div class="col-md-3">
+          <label>
+              DISTRICT :
+              <span class="text-success">
+                <b> {{ DISTRICT }}</b>
+              </span>
+            </label>
+      </div>
+      <div class="col-md-3">
+        <label>
+          ROUTE :
+          <span class="text-success">
+            <b> {{ ROUTE }}</b>
+          </span>
+        </label>
+
+      </div>
+      <div class="col-md-3"></div>
+      <div class="col-md-3">
+        <button
+                type="button"
+                class="btn btn-sm btn-info pull-right"
+                (click)="btnbackdist(obj)"
+              >Back</button>
+    </div> 
+      </div>        
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnrouteExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+      </div>
+      
+   <div class="col-md-12 table-responsive"
+   [hidden]="MdssRegGetDataroute?.length < 1"> 
+ 
+   <table
+      class="table table-striped ah-table text-center" 
+      datatable  [dtOptions]="dtOptions"  [dtTrigger]="dtTrigger"
+      
+    >
+      <thead class="bg-success text-white">
+       
+        <tr>
+        <th >S.No.</th>
+        <th >DISTRICT NAME</th>           
+        <th>RBK CODE</th>
+        <th>RBK NAME</th>
+        <th> RBK SCHEDULE STATUS</th>                   
+        <th>SCHEDULE CREATED DATE </th>           
+        <th>SCHEDULE MEETING DATE</th>
+         <th>SCHEDULE MEETING STATUS</th>
+        <th>STATUS AT RIC      </th>
+        <!-- <th> FINAL STATUS </th> -->
+         
+      </tr>
+         
+      </thead>
+      <tbody *ngIf="MdssRegGetDataroute?.length > 0">
+        <tr *ngFor="let obj of MdssRegGetDataroute; let i = index">
+          <td>{{ i+1 }}</td>
+          <td>{{ obj.DISTRICT_NAME }}</td>                       
+          <td>{{ obj.RBK_CODE }}</td>
+          <td>{{ obj.RBK_NAME }}</td>
+          <td>{{ obj.SCHEDULE_STATUS }}</td>
+          <td>{{ obj.SCHEDULE_CREATED_DATE }}</td>         
+          <td>{{ obj.MEETING_DATE }}</td>
+          <td>{{ obj.MEETING_STATUS }}</td>
+          <td>{{ obj.RIC_FINAL_STATUS }}</td>
+          <!-- <td>{{ obj.FINAL_STATUS }}</td>            -->
+         
+              
+        </tr>
+      </tbody>
+       <tbody *ngIf="MdssRegGetDataroute?.length > 0">
+      <tr>
+      <td>--</td>
+      <td>
+      <b>TOTAL</b>
+      </td>
+      <td><b>--</b></td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>  
+      </tr>
+      </tbody>
+    </table>
+      
+    </div>
+    </div>
+  </div>
+
+</div>

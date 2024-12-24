@@ -1,0 +1,133 @@
+<div class="card">
+    <div class="card-header p-2" style="text-align: left !important;color: black !important;">
+        <h5 class="mb-0" style="text-align: left !important;color: black !important;">RBK Wise Report</h5>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12 row">
+                <div class="col-md-3">
+                    <label for="toDate" style="text-align: left !important;color: black !important;">
+                        DISTRICT :</label>
+                    <span class="text-success">
+                        <b> {{ districtName | uppercase }}</b>
+                    </span>
+
+                </div>
+                <div class="col-md-3">
+                    <label for="toDate" style="text-align: left !important;color: black !important;">
+                        MANDAL : </label>
+                    <span class="text-success">
+                        <b> {{ MandalName | uppercase }}</b>
+                    </span>
+
+                </div>
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <!-- <button
+               type="button"
+               class="btn btn-info btn-sm mt-3 pull-right"
+               (click)="btnback()"
+               >
+               <i class="fa fa-arrow-left mr-2" aria-hidden="true"></i>
+                Back
+           </button> -->
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                    Download Excel
+                </button>
+                <!-- <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button> -->
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-12" [hidden]="totalMandalDetails?.length < 1">
+
+                <table class="table table-striped ah-table text-center " datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                    <thead class="bg-success text-white">
+
+                        <!-- border-color: white; -->
+                        <tr>
+                            <th class="tableheader_color">S.No.</th>
+                            <th class="tableheader_color"> RBKs</th>
+                            <th class="tableheader_color">Villages</th>
+                            <th class="tableheader_color">Women Farmers</th>
+                            <th class="tableheader_color">Milk Pouring Women Farmers</th>
+                            <th class="tableheader_color">Total Buffalo Milk in Ltrs.</th>
+                            <th class="tableheader_color">Total Buffalo Milk Amount</th>
+                            <th class="tableheader_color">Total Cow Milk in Ltrs.</th>
+                            <th class="tableheader_color">Total Cow Milk Amount</th>
+                        </tr>
+
+                        <tr>
+                            <th class="tableheader_color">(1)</th>
+                            <th class="tableheader_color">(2)</th>
+                            <th class="tableheader_color">(3)</th>
+                            <th class="tableheader_color">(4)</th>
+                            <th class="tableheader_color">(5)</th>
+                            <th class="tableheader_color">(6)</th>
+                            <th class="tableheader_color">(7)</th>
+                            <th class="tableheader_color">(8)</th>
+                            <th class="tableheader_color">(9)</th>
+
+                        </tr>
+
+                    </thead>
+                    <tbody *ngIf="totalMandalDetails?.length > 0">
+                        <tr *ngFor="let obj of totalMandalDetails; let i = index">
+                            <td class="number_align">{{ i + 1 }}</td>
+                            <!-- <td class="text_align_color">
+                <b>{{ obj.DISTRICT_NAME }}</b>
+              </td> -->
+                            <td style="text-align: left;" class="table_cells_borders">
+                                <a style="cursor: pointer; text-decoration: underline" class="text-primary "
+                                    (click)="btnGetDetails(obj)"><b>{{ obj.RBK_NAME }}</b></a>
+                            </td>
+
+                            <td class="number_align">{{ obj.TOTAL_VILLAGES }}</td>
+                            <td class="number_align">{{ obj.TOTAL_FARMERS }}</td>
+                            <td class="number_align">{{ obj.TOTAL_WOMEN_FARMERS }}</td>
+                            <td class="number_align">{{ obj.TOTAL_BUFFALO_MILK_LTR }}</td>
+                            <td class="number_align">{{ obj.TOTAL_BUFFALO_MILK_AMOUNT }}</td>
+                            <td class="number_align">{{ obj.TOTAL_COW_MILK_LTR }}</td>
+                            <td class="number_align">{{ obj.TOTAL_COW_MILK_AMOUNT }}</td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="totalMandalDetails?.length > 0">
+                        <tr>
+                            <td class="number_align" style="border-color: cadetblue !important">--</td>
+                            <td class="text_align_color">
+                                <b>TOTAL</b>
+                            </td>
+                            <td class="font-weight-bold number_align">{{ reportTotals1.Villages }}</td>
+                            <td class="font-weight-bold number_align">{{ reportTotals1.Women_Farmers }}</td>
+                            <td class="font-weight-bold number_align">{{ reportTotals1.Milk_Pouring_Women_Farmers }}</td>
+                            <td class="font-weight-bold number_align">{{ reportTotals1.Total_Buffalo_Milk_in_Litres }}</td>
+                            <td class="font-weight-bold number_align">{{ reportTotals1.Total_Buffalo_Milk_Amount }}</td>
+                            <td class="font-weight-bold number_align">{{ reportTotals1.Total_Cow_Milk_in_Litres }}</td>
+                            <td class="font-weight-bold number_align">{{ reportTotals1.Total_Cow_Milk_Amount }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

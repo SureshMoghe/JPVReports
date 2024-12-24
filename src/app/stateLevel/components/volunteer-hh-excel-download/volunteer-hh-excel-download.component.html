@@ -1,0 +1,69 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Volunteer HH Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row align-items-center">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="districtId">District</label>
+          <select
+            id="districtId"
+            class="form-control"
+            [(ngModel)]="districtId"
+            (change)="onDistrictChange()"
+          >
+            <option value="">-- Select District --</option>
+            <option
+              *ngFor="let obj of districtList"
+              value="{{ obj.DISTRICT_ID }}"
+            >
+              {{ obj.DISTRICT_NAME }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <button
+          type="button"
+          class="btn btn-primary btn-sm mt-3"
+          (click)="btnDownloadReport()"
+        >
+          <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+            <label for="natureOfUnit">List Of Reports</label>
+            <select
+              id="Typechange"
+              class="form-control"
+              [(ngModel)]="Typechange"
+              
+            >
+              <option value="0"> --Select Type-- </option>
+              <option value="1">Mdss Eligible List(1)</option>
+              <option value="2">Route Master(2)</option>
+              <option value="3">AMCU Allotment Alination Status(3)</option>
+              <option value="4">BMCU Allotment Alination Status(3)</option>
+            </select>
+  
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <button
+          type="button"
+          class="btn btn-primary btn-sm mt-3"
+          (click)="btnexcelDownloadReport()"
+        >
+          <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+      </div>
+      
+    </div>
+  </div>
+</div>

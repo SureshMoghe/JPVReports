@@ -1,0 +1,277 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Building Inspection Detail Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> Mentor : </b><span class="text-success">{{ mentorName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-4">
+        <h5>
+          <b> RBK : </b><span class="text-success">{{ rbkName }}</span>
+        </h5>
+      </div>
+
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="inspectionDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>Village Name</th>
+              <th>AMC ID</th>
+              <th>Route ID</th>
+              <th>Inspection Date</th>
+              <th>Inspection Time</th>
+              <th>AMCU Building Available</th>
+              <th>Building Name</th>
+              <th>Building Interior Photo</th>
+              <th>Building Exterior Photo</th>
+              <th>Building Located In Center</th>
+              <th>Safety Arrangements Available</th>
+              <th>Safety Arrangements Photo</th>
+              <th>Electricity Connection Available</th>
+              <th>Electricity Connection Photo</th>
+              <th>Available Electricity Connection Earthened</th>
+              <th>Electricity Connection Earthened Photo</th>
+              <th>Space Available For Vehicle Movement</th>
+              <th>Space Available For Vehicle Movement Photo</th>
+              <th>Availability Of Road To Approach AMCU</th>
+              <th>Road To Approach AMCU Photo</th>
+              <th>Required Milk Cans</th>
+              <th>Network Connectivity</th>
+              <th>Building Address</th>
+              <th>Street</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
+              <th>Unique ID</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="inspectionDetails?.length > 0">
+            <tr *ngFor="let obj of inspectionDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.VILLAGE_NAME }}</td>
+              <td>{{ obj.AMC_ID }}</td>
+              <td>{{ obj.ROUTE_NAME }}</td>
+              <td>{{ obj.IS_INSPECTION_DATE }}</td>
+              <td>{{ obj.IS_INSPECTION_TIME }}</td>
+              <td>{{ obj.IS_AMCU_BUILDING === "1" ? "YES" : "NO" }}</td>
+              <td>{{ obj.BUILDING_NAME }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="
+                    obj.BUILDING_INTERIOR_IMG !== null &&
+                    obj.BUILDING_INTERIOR_IMG !== '' &&
+                    obj.BUILDING_INTERIOR_IMG !== undefined
+                  "
+                  (click)="btnPhotoView(obj.BUILDING_INTERIOR_IMG)"
+                >
+                  VIEW
+                </button>
+                <span
+                  *ngIf="
+                    obj.BUILDING_INTERIOR_IMG === null ||
+                    obj.BUILDING_INTERIOR_IMG === '' ||
+                    obj.BUILDING_INTERIOR_IMG === undefined
+                  "
+                  >NA</span
+                >
+              </td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="
+                    obj.BUILDING_EXTERIOR_IMG !== null &&
+                    obj.BUILDING_EXTERIOR_IMG !== '' &&
+                    obj.BUILDING_EXTERIOR_IMG !== undefined
+                  "
+                  (click)="btnPhotoView(obj.BUILDING_EXTERIOR_IMG)"
+                >
+                  VIEW
+                </button>
+                <span
+                  *ngIf="
+                    obj.BUILDING_EXTERIOR_IMG === null ||
+                    obj.BUILDING_EXTERIOR_IMG === '' ||
+                    obj.BUILDING_EXTERIOR_IMG === undefined
+                  "
+                  >NA</span
+                >
+              </td>
+              <td>
+                {{ obj.IS_VILLAGE_LOCATED_IN_CENTERLY === "1" ? "YES" : "NO" }}
+              </td>
+              <td>{{ obj.IS_SAFETY_ARRANGEMENTS === "1" ? "YES" : "NO" }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="
+                    obj.IS_SAFETY_ARRANGEMENTS_IMG !== null &&
+                    obj.IS_SAFETY_ARRANGEMENTS_IMG !== '' &&
+                    obj.IS_SAFETY_ARRANGEMENTS_IMG !== undefined
+                  "
+                  (click)="btnPhotoView(obj.IS_SAFETY_ARRANGEMENTS_IMG)"
+                >
+                  VIEW
+                </button>
+                <span
+                  *ngIf="
+                    obj.IS_SAFETY_ARRANGEMENTS_IMG === null ||
+                    obj.IS_SAFETY_ARRANGEMENTS_IMG === '' ||
+                    obj.IS_SAFETY_ARRANGEMENTS_IMG === undefined
+                  "
+                  >NA</span
+                >
+              </td>
+              <td>
+                {{ obj.IS_AVIL_ELECTRIC_CONNECTION === "1" ? "YES" : "NO" }}
+              </td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="
+                    obj.IS_AVIL_ELECTRIC_CONN_IMG !== null &&
+                    obj.IS_AVIL_ELECTRIC_CONN_IMG !== '' &&
+                    obj.IS_AVIL_ELECTRIC_CONN_IMG !== undefined
+                  "
+                  (click)="btnPhotoView(obj.IS_AVIL_ELECTRIC_CONN_IMG)"
+                >
+                  VIEW
+                </button>
+                <span
+                  *ngIf="
+                    obj.IS_AVIL_ELECTRIC_CONN_IMG === null ||
+                    obj.IS_AVIL_ELECTRIC_CONN_IMG === '' ||
+                    obj.IS_AVIL_ELECTRIC_CONN_IMG === undefined
+                  "
+                  >NA</span
+                >
+              </td>
+              <td>
+                {{ obj.IS_AVIL_ELECTRIC_EARTHING === "1" ? "YES" : "NO" }}
+              </td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="
+                    obj.IS_AVIL_ELECTRIC_EARTHING_IMG !== null &&
+                    obj.IS_AVIL_ELECTRIC_EARTHING_IMG !== '' &&
+                    obj.IS_AVIL_ELECTRIC_EARTHING_IMG !== undefined
+                  "
+                  (click)="btnPhotoView(obj.IS_AVIL_ELECTRIC_EARTHING_IMG)"
+                >
+                  VIEW
+                </button>
+                <span
+                  *ngIf="
+                    obj.IS_AVIL_ELECTRIC_EARTHING_IMG === null ||
+                    obj.IS_AVIL_ELECTRIC_EARTHING_IMG === '' ||
+                    obj.IS_AVIL_ELECTRIC_EARTHING_IMG === undefined
+                  "
+                  >NA</span
+                >
+              </td>
+              <td>
+                {{ obj.IS_AVIL_SPACE_VEHICAL_MOVMENT === "1" ? "YES" : "NO" }}
+              </td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="
+                    obj.IS_AVIL_SPACE_VEHICLE_MOVE_IMG !== null &&
+                    obj.IS_AVIL_SPACE_VEHICLE_MOVE_IMG !== '' &&
+                    obj.IS_AVIL_SPACE_VEHICLE_MOVE_IMG !== undefined
+                  "
+                  (click)="btnPhotoView(obj.IS_AVIL_SPACE_VEHICLE_MOVE_IMG)"
+                >
+                  VIEW
+                </button>
+                <span
+                  *ngIf="
+                    obj.IS_AVIL_SPACE_VEHICLE_MOVE_IMG === null ||
+                    obj.IS_AVIL_SPACE_VEHICLE_MOVE_IMG === '' ||
+                    obj.IS_AVIL_SPACE_VEHICLE_MOVE_IMG === undefined
+                  "
+                  >NA</span
+                >
+              </td>
+              <td>
+                {{ obj.IS_AVIL_ROAD_TO_APPROCH_AMCU === "1" ? "YES" : "NO" }}
+              </td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-link btn-sm"
+                  *ngIf="
+                    obj.BUILDING_ROAD_LEADING_IMG !== null &&
+                    obj.BUILDING_ROAD_LEADING_IMG !== '' &&
+                    obj.BUILDING_ROAD_LEADING_IMG !== undefined
+                  "
+                  (click)="btnPhotoView(obj.BUILDING_ROAD_LEADING_IMG)"
+                >
+                  VIEW
+                </button>
+                <span
+                  *ngIf="
+                    obj.BUILDING_ROAD_LEADING_IMG === null ||
+                    obj.BUILDING_ROAD_LEADING_IMG === '' ||
+                    obj.BUILDING_ROAD_LEADING_IMG === undefined
+                  "
+                  >NA</span
+                >
+              </td>
+              <td>{{ obj.REQ_MILK_CANS }}</td>
+              <td>{{ obj.IS_HAVING_NETWORK_CONNECTIVITY }}</td>
+              <td>{{ obj.BUILDING_ADDRESS }}</td>
+              <td>{{ obj.BUILDING_STREET }}</td>
+              <td>{{ obj.BUILDING_LAT }}</td>
+              <td>{{ obj.BUILDING_LONG }}</td>
+              <td>{{ obj.UNIQUE_ID }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

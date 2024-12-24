@@ -1,0 +1,139 @@
+<div class="card">
+  <div class="card-header p-2">
+      <h5 class="mb-0">SMScodes</h5>
+    </div>
+    <div class="card-body">
+<div class="row align-items-center">
+  <div class="col-md-2">
+      <div class="form-group">   
+    <label for="natureOfUnit"
+      >Select Type <span style="color: red">*</span></label
+    > 
+    <select
+      id="Rpttype"
+      class="form-control"
+      [(ngModel)]="Rpttype"
+      (change)="onRpttypeChange()" 
+      
+    >
+     [(ngModel)]="natureOfUnit"
+      (change)="onNatureOfUnitChange()" 
+      <option value="0">-- Select Type --</option>
+      <!-- <option value="1">A</option> -->
+      <option value="2">Login Credentials(2)</option>
+      <option value="3">Farmer Invitation(3)</option>
+      <option value="6">Sample Milk Collection(6)</option>
+      <option value="7">Vehicle MOvement(7)</option>
+      <option value="8">New Village MilkCollection Start(8)</option>
+     
+    </select> 
+  </div>
+</div>
+
+<div class="col-md-2">
+  <div class="form-group" *ngIf="fromdt">
+    <label for="fromDate"
+      >From Date : <span style="color: red">*</span></label
+    >
+    <app-date-picker
+      [PlaceHolder]="'Please Select From Date'"
+      [(selectedDate)]="fromDate"
+    ></app-date-picker>
+  </div>
+</div>
+<div class="col-md-2">
+  <div class="form-group" *ngIf="todt">
+    <label for="toDate">To Date : <span style="color: red">*</span></label>
+    <app-date-picker
+      [PlaceHolder]="'Please Select To Date'"
+      [(selectedDate)]="toDate"
+    ></app-date-picker>
+  </div>
+</div>
+  <div class="col-md-1">
+    <div class="form-group" *ngIf="sttime">
+      <label for="meetingTime"
+        >Start Time:</label
+      >
+      <input
+        id="meetingTime"
+        type="time"
+        class="form-control"
+        placeholder="Please Select Time"
+        maxlength="3"
+        autocomplete="off"
+      />
+      
+    </div>
+  </div>
+
+  <div class="col-md-1">
+    <div class="form-group" *ngIf="sttime1">
+      <label for="meetingTime"
+        >End Time:</label
+      >
+      <input
+        id="meetingTime"
+        type="time"
+        class="form-control"
+        placeholder="Please Select Time"
+        maxlength="3"
+        autocomplete="off"
+      />
+      
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <label for="number"
+        >Test SMS Mobile Number</label
+      >
+      <input
+        id="number"
+        type="text"
+        class="form-control"
+        [(ngModel)]="number"
+        placeholder="Please Enter Mobilenumber"
+        maxlength="10"
+        autocomplete="off"
+        (keypress)="numberOnly($event)"
+      />
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <button
+      type="button"
+      class="btn btn-primary btn-sm mt-3"
+      (click)="btnLoadReport()"
+     
+    >
+      Test Sms
+    </button>
+  </div>
+
+  <div class="col-md-6">
+    <div class="form-group" *ngIf="msg">
+      <label>&nbsp;&nbsp; Content Of Message</label><br>
+      <textarea ng-model="myTextarea" style="height:200px;width:600px;"></textarea>
+      
+    </div>   
+      </div>
+
+      <div class="col-md-2" *ngIf="sub">
+        <button
+          type="button"
+          class="btn btn-primary btn-sm mt-3"
+          (click)="btnGetReport1()"
+         
+        >
+          Submit
+        </button>
+      </div>
+</div>
+</div>
+</div>
+
+
+

@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-3">
+    <h5>
+      <b> From Date : </b><span class="text-success">{{ fromDate }}</span>
+    </h5>
+  </div>
+  <div class="col-md-3">
+    <h5>
+      <b>To Date : </b><span class="text-success">{{ toDate }}</span>
+    </h5>
+  </div>
+  <div class="col-md-3">
+    <h5>
+      <b>PHASE : </b><span class="text-success">{{ phasename }}</span>
+    </h5>
+  </div>
+  <div class="col-md-3" align="right">
+    <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+      Back
+    </button>
+  </div>
+</div>
+<app-farmer-scheme-mandal
+  [(fromDate)]="fromDate"
+  [(toDate)]="toDate"
+  [(districtId)]="districtId"
+  [(districtName)]="districtName"
+  [(route)]="route"
+  [(routeName)]="routeName"
+  [(mandalId)]="mandalId"
+  [(mandalName)]="mandalName"
+  [(phaseid)]="phaseid"
+  [(phasename)]="phasename"
+
+  (onRbkChange)="onRbkChange($event)"
+  (onNonMilkPourersChange)="onNonMilkPourersChange($event)"
+></app-farmer-scheme-mandal>

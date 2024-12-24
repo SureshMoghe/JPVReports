@@ -1,0 +1,175 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Village Level Meetings Calibration Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div class="col-md-3">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-3">
+        <h5>
+          <b> Mentor : </b><span class="text-success">{{ mentorName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-3">
+        <h5>
+          <b> RBK : </b><span class="text-success">{{ rbkName }}</span>
+        </h5>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="calibrationDetails?.length < 1"
+      >
+        <table
+          class="table table-bordered ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th rowspan="2">S.No.</th>
+              <th rowspan="2">Village</th>
+              <th rowspan="2">Route ID</th>
+              <th rowspan="2">AMCU ID</th>
+              <th colspan="2">Inspection</th>
+              <th colspan="4">Desktop</th>
+              <th colspan="3">CPU</th>
+              <th colspan="3">Mouse</th>
+              <th colspan="3">Keyboard</th>
+              <th colspan="3">UPS</th>
+              <th rowspan="2">Ultrasonic Milk Analyzer Availability</th>
+              <th colspan="2">Electronic Weight Scale</th>
+              <th rowspan="2">UPS 1KVA Availability</th>
+              <th colspan="2">Battery</th>
+              <th colspan="2">Remote Display Unit</th>
+              <th colspan="4">24PIN 80 COL Matrix Printer</th>
+              <th colspan="4">Ultrasonic Stirrer</th>
+              <th rowspan="2">Cow Milk FAT</th>
+              <th rowspan="2">Cow Milk SNF</th>
+              <th rowspan="2">Buffalo Milk FAT</th>
+              <th rowspan="2">Buffalo Milk SNF</th>
+              <th colspan="3">Internet Device</th>
+            </tr>
+            <tr>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Availability</th>
+              <th>Maker</th>
+              <th>Serial No</th>
+              <th>Code</th>
+              <th>Maker</th>
+              <th>Serial No</th>
+              <th>Code</th>
+              <th>Maker</th>
+              <th>Serial No</th>
+              <th>Code</th>
+              <th>Maker</th>
+              <th>Serial No</th>
+              <th>Code</th>
+              <th>Maker</th>
+              <th>Serial No</th>
+              <th>Code</th>
+              <th>Availability</th>
+              <th>Code</th>
+              <th>Availability</th>
+              <th>Code</th>
+              <th>Availability</th>
+              <th>Code</th>
+              <th>Availability</th>
+              <th>Maker</th>
+              <th>Serial No</th>
+              <th>Code</th>
+              <th>Availability</th>
+              <th>Maker</th>
+              <th>Serial No</th>
+              <th>Code</th>
+              <th>Device</th>
+              <th>Maker</th>
+              <th>Serial No</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="calibrationDetails?.length > 0">
+            <tr *ngFor="let obj of calibrationDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.VILLAGE_NAME }}</td>
+              <td>{{ obj.ROUTE_NAME }}</td>
+              <td>{{ obj.AMCU_ID }}</td>
+              <td>{{ obj.INSPECTION_DATE }}</td>
+              <td>{{ obj.INSPECTION_TIME }}</td>
+              <td>{{ obj.IS_DESKTOP_AVILABLE === "1" ? "YES" : "NO" }}</td>
+              <td>{{ obj.DESKTOP_MAKER }}</td>
+              <td>{{ obj.DESKTOP_SERIAL_NO }}</td>
+              <td>{{ obj.DEV_DESKTOP_CODE }}</td>
+              <td>{{ obj.CPU_MAKER }}</td>
+              <td>{{ obj.CPU_SERIAL_NO }}</td>
+              <td>{{ obj.DEV_CPU_CODE }}</td>
+              <td>{{ obj.MOUSE_MAKER }}</td>
+              <td>{{ obj.MOUSE_SERIAL_NO }}</td>
+              <td>{{ obj.DEV_MOUSE_CODE }}</td>
+              <td>{{ obj.KEYBOARD_MAKER }}</td>
+              <td>{{ obj.KEYBOARD_SERIAL_NO }}</td>
+              <td>{{ obj.DEV_KEYBOARD_CODE }}</td>
+              <td>{{ obj.UPS_MAKER }}</td>
+              <td>{{ obj.UPS_SERIAL_NO }}</td>
+              <td>{{ obj.DEV_UPS_CODE }}</td>
+              <td>
+                {{ obj.IS_ULTRASONIC_MILK_ANALYSER === "1" ? "YES" : "NO" }}
+              </td>
+              <td>{{ obj.IS_ELE_WEIGHT_SCALE === "1" ? "YES" : "NO" }}</td>
+              <td>{{ obj.DEV_ELE_WEIGHT_SCALE_CODE }}</td>
+              <td>{{ obj.IS_UPS_1KVA === "1" ? "YES" : "NO" }}</td>
+              <td>{{ obj.IS_BATTERY === "1" ? "YES" : "NO" }}</td>
+              <td>{{ obj.DEV_BATTERY_CODE }}</td>
+              <td>{{ obj.IS_REMOTE_DISPLAY_UINT === "1" ? "YES" : "NO" }}</td>
+              <td>{{ obj.DEV_REMOTE_DISPALY_CODE }}</td>
+              <td>
+                {{ obj.IS_24PIN_80COL_MATRIX_PRINTER === "1" ? "YES" : "NO" }}
+              </td>
+              <td>{{ obj.MARTIX_PRINTER_MAKER }}</td>
+              <td>{{ obj.MATRIX_PRINTER_SERIALNO }}</td>
+              <td>{{ obj.DEV_MATRIX_PRINTER_CODE }}</td>
+              <td>{{ obj.IS_ULTRASONIC_STIRRER === "1" ? "YES" : "NO" }}</td>
+              <td>{{ obj.ULTRASONIC_STIRRER_MAKER }}</td>
+              <td>{{ obj.ULTRASONIC_STIRRER_SERIALNO }}</td>
+              <td>{{ obj.DEV_ULTRASONIC_STIRRER_CODE }}</td>
+              <td>{{ obj.COW_MILK_FAT }}</td>
+              <td>{{ obj.COW_MILK_SNF }}</td>
+              <td>{{ obj.BUFFALO_MILK_FAT }}</td>
+              <td>{{ obj.BUFFALO_MILK_SNF }}</td>
+              <td>
+                <span *ngIf="obj.INTERNET_DEVICE === '0'"> NO </span>
+                <span *ngIf="obj.INTERNET_DEVICE === '1'"> DONGLE </span>
+                <span *ngIf="obj.INTERNET_DEVICE === '2'"> MODEM </span>
+              </td>
+              <td>{{ obj.INTERNET_DEVICE_MAKER }}</td>
+              <td>{{ obj.INTERNET_DEVICE_SERIAL_NO }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

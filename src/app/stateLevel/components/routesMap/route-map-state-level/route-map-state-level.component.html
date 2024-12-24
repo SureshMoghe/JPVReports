@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-4 offset-1">
+        <label for="districtId">SELECT DISTRICT</label>
+        <select
+          id="districtId"
+          class="form-control"
+          [(ngModel)]="districtId"
+          (change)="onDistrictChange()"
+        >
+          <option value="">-- SELECT DISTRICT --</option>
+          <option
+            *ngFor="let obj of districtList"
+            value="{{ obj.DISTRICT_ID }}"
+          >
+            {{ obj.DISTRICT_NAME }}
+          </option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="row" *ngIf="routeDetailsList?.length > 1">
+      <app-rbk-routes-map-component
+        [(routeDetailsList)]="routeDetailsList"
+      ></app-rbk-routes-map-component>
+    </div>
+
+  </div>
+</div>

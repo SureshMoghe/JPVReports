@@ -1,0 +1,66 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">LDM Bank RBK Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-6">
+        <h5>
+          <b> Branch : </b><span class="text-success">{{ branchName }}</span>
+        </h5>
+      </div>
+
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="bankLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>Branch</th>
+              <th>RBK</th>
+              <th>Applications</th>
+              <th>To Be Verified</th>
+              <th>Approved</th>
+              <th>Rejected</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="bankLevelDetails?.length > 0">
+            <tr *ngFor="let obj of bankLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.BRANCH_NAME }}</td>
+              <td>{{ obj.SECRETARIAT_NAME | indianNumber }}</td>
+              <td>{{ obj.TOTAL_APPLICATION | indianNumber }}</td>
+              <td>{{ obj.TO_BE_VERIFIED | indianNumber }}</td>
+              <td>{{ obj.APPROVED | indianNumber }}</td>
+              <td>{{ obj.REJECTED | indianNumber }}</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="bankLevelDetails?.length > 0">
+            <tr>
+              <td colspan="3">
+                <b>TOTAL</b>
+              </td>
+              <td>{{ reportTotals.TOTAL_APPLICATION | indianNumber }}</td>
+              <td>{{ reportTotals.TO_BE_VERIFIED | indianNumber }}</td>
+              <td>{{ reportTotals.APPROVED | indianNumber }}</td>
+              <td>{{ reportTotals.REJECTED | indianNumber }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,175 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Building Inspection Abstract RBK Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h5>
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+      </div>
+      <div class="col-md-6">
+        <h5>
+          <b> Mandal : </b><span class="text-success">{{ mandalName }}</span>
+        </h5>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="rbkLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>RBK</th>
+              <th>MDAC Code</th>
+              <th>Routes</th>
+              <th>Villages</th>
+              <th>GOVT Buildings</th>
+              <th>Private Buildings</th>
+              <th>Buildings Located In Center Of Village</th>
+              <th>Buildings Not Located In Center Of Village</th>
+              <th>Buildings With Safety Arrangements</th>
+              <th>Buildings With No Safety Arrangements</th>
+              <th>Buildings With Phase1 Electricity Connection</th>
+              <th>Buildings With Phase2 Electricity Connection</th>
+              <th>Buildings With No Electricity Connection</th>
+              <th>Buildings With Eartherned Electricity Connection</th>
+              <th>Buildings With No Eartherned Electricity Connection</th>
+              <th>Buildings With Vehicle Movement Space</th>
+              <th>Buildings With No Vehicle Movement Space</th>
+              <th>Buildings With Available Road To Approach AMCU</th>
+              <th>Buildings With No Available Road To Approach AMCU</th>
+              <th>Buildings With Network Connectivity</th>
+              <th>Buildings With No Network Connectivity</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="rbkLevelDetails?.length > 0">
+            <tr *ngFor="let obj of rbkLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>
+                <a
+                  *ngIf="obj.TOTAL_INSPECTED_BUILDING !== '0'"
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetDetails(obj)"
+                  ><b>{{ obj.RBK_NAME }}</b></a
+                >
+                <span *ngIf="obj.TOTAL_INSPECTED_BUILDING === '0'">{{
+                  obj.RBK_NAME
+                }}</span>
+              </td>
+              <td>{{ obj.MDAC_CODE }}</td>
+              <td>{{ obj.TOTAL_ROUTES | indianNumber }}</td>
+              <td>{{ obj.TOTAL_VILLAGES | indianNumber }}</td>
+              <td>{{ obj.IS_AMCU_BUILDING_GOVERNMENT | indianNumber }}</td>
+              <td>{{ obj.IS_AMCU_BUILDING_PRIVATE | indianNumber }}</td>
+              <td>{{ obj.IS_VILLAGE_LOC_IN_CENTERLY | indianNumber }}</td>
+              <td>{{ obj.IS_VILLAGE_LOC_NOT_IN_CENTERLY | indianNumber }}</td>
+              <td>{{ obj.IS_SAFETY_ARRANGEMENTS | indianNumber }}</td>
+              <td>{{ obj.IS_NOT_SAFETY_ARRANGEMENTS | indianNumber }}</td>
+              <td>{{ obj.IS_AVIL_ELECTRIC_CONC_1_PHASE | indianNumber }}</td>
+              <td>{{ obj.IS_AVIL_ELECTRIC_CONC_2_PHASE | indianNumber }}</td>
+              <td>{{ obj.IS_NOT_AVIL_ELECTRICCONNECTION | indianNumber }}</td>
+              <td>{{ obj.IS_AVIL_ELECTRIC_EARTHING | indianNumber }}</td>
+              <td>{{ obj.IS_NOT_AVIL_ELECTRIC_EARTHING | indianNumber }}</td>
+              <td>{{ obj.IS_AVIL_SPACE_VEHI_MOVMENT | indianNumber }}</td>
+              <td>{{ obj.IS_NOT_AVIL_SPACE_VEHI_MOVMENT | indianNumber }}</td>
+              <td>{{ obj.IS_AVIL_ROAD_TO_APPROCH_AMCU | indianNumber }}</td>
+              <td>{{ obj.ISNOT_AVIL_ROADTO_APPROCH_AMCU | indianNumber }}</td>
+              <td>{{ obj.IS_HAVING_NETWORK_CONNECT | indianNumber }}</td>
+              <td>{{ obj.ISNOT_HAVING_NETWORK_CONNECT | indianNumber }}</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="rbkLevelDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td>{{ reportTotals.TOTAL_ROUTES | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_VILLAGES | indianNumber }}</td>
+              <td>
+                {{ reportTotals.IS_AMCU_BUILDING_GOVERNMENT | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.IS_AMCU_BUILDING_PRIVATE | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.IS_VILLAGE_LOC_IN_CENTERLY | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.IS_VILLAGE_LOC_NOT_IN_CENTERLY | indianNumber }}
+              </td>
+              <td>{{ reportTotals.IS_SAFETY_ARRANGEMENTS | indianNumber }}</td>
+              <td>
+                {{ reportTotals.IS_NOT_SAFETY_ARRANGEMENTS | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.IS_AVIL_ELECTRIC_CONC_1_PHASE | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.IS_AVIL_ELECTRIC_CONC_2_PHASE | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.IS_NOT_AVIL_ELECTRICCONNECTION | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.IS_AVIL_ELECTRIC_EARTHING | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.IS_NOT_AVIL_ELECTRIC_EARTHING | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.IS_AVIL_SPACE_VEHI_MOVMENT | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.IS_NOT_AVIL_SPACE_VEHI_MOVMENT | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.IS_AVIL_ROAD_TO_APPROCH_AMCU | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.ISNOT_AVIL_ROADTO_APPROCH_AMCU | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.IS_HAVING_NETWORK_CONNECT | indianNumber }}
+              </td>
+              <td>
+                {{ reportTotals.ISNOT_HAVING_NETWORK_CONNECT | indianNumber }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

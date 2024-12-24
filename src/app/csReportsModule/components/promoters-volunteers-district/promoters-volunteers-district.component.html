@@ -1,0 +1,111 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Promoters And Volunteers Milk Pouring Status</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <h5 class="pull-left">
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <!-- <button
+              type="button"
+              class="btn btn-danger btn-sm pull-right"
+              (click)="btnPDF()"
+            >
+              <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+              DOWNLOAD PDF
+            </button> -->
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="promotersVolunteersDetails?.length < 1"
+      >
+        <table
+          class="table table-bordered ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th rowspan="2">S.No.</th>
+              <th rowspan="2">Year</th>
+              <th rowspan="2">Month</th>
+              <th rowspan="2">No. Of Mandals</th>
+              <th rowspan="2">No. Of RBKs</th>
+              <th rowspan="2">No. Of AMCUs in Operation</th>
+              <th colspan="3">Promoters</th>
+              <th colspan="3">Volunteers</th>
+            </tr>
+            <tr>
+              <th>No. of Registered Pourers</th>
+              <th>No. of Milk Pouring Promoters</th>
+              <!-- <th>% of Milk Pouring Promoters</th> -->
+              <th>No. of Non Milk pouring Promoters</th>
+              <th>No. of Registered Volunteers</th>
+              <th>No. of Milk Pouring Volunteers</th>
+              <!-- <th>% of Milk Pouring Volunteers</th> -->
+              <th>No. of Non Milk pouring Volunteers</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="promotersVolunteersDetails?.length > 0">
+            <tr *ngFor="let obj of promotersVolunteersDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ obj.YEAR }}</td>
+              <td>{{ obj.MONTH_NAME }}</td>
+              <td>{{ obj.NO_OF_MANDALS | indianNumber }}</td>
+              <td>{{ obj.NO_OF_RBKS | indianNumber }}</td>
+              <td>{{ obj.NO_OF_AMCU | indianNumber }}</td>
+              <td>{{ obj.NO_OF_PROMOTER_REGIS_FARMER | indianNumber }}</td>
+              <td>{{ obj.MILK_POURING_PROMO | indianNumber }}</td>
+              <!-- <td>{{ obj.MILK_NOT_POURING_PROMO}}</td> -->
+              <td>{{ obj.MILK_NOT_POURING_PROMO | indianNumber }}</td>
+              <td>{{ obj.NO_OF_VOLUNTEER_REGIS_FARMER | indianNumber }}</td>
+              <td>{{ obj.MILK_POURING_VOLUNTEERS | indianNumber }}</td>
+              <!-- <td>{{ obj.MILK_NOT_POURING_PROMO}}</td> -->
+              <td>{{ obj.MILK_NOT_POURING_VOLUNTEERS | indianNumber }}</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="promotersVolunteersDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td>{{ reportTotals.NO_OF_MANDALS | indianNumber }}</td>
+              <td>{{ reportTotals.NO_OF_RBKS | indianNumber }}</td>
+              <td>{{ reportTotals.NO_OF_AMCU | indianNumber }}</td>
+              <td>
+                {{ reportTotals.NO_OF_PROMOTER_REGIS_FARMER | indianNumber }}
+              </td>
+              <td>{{ reportTotals.MILK_POURING_PROMO | indianNumber }}</td>
+              <!-- <td>{{ reportTotals.MILK_NOT_POURING_PROMO}}</td> -->
+              <td>{{ reportTotals.MILK_NOT_POURING_PROMO | indianNumber }}</td>
+              <td>
+                {{ reportTotals.NO_OF_VOLUNTEER_REGIS_FARMER | indianNumber }}
+              </td>
+              <td>{{ reportTotals.MILK_POURING_VOLUNTEERS | indianNumber }}</td>
+              <!-- <td>{{ reportTotals.MILK_NOT_POURING_PROMO}}</td> -->
+              <td>
+                {{ reportTotals.MILK_NOT_POURING_VOLUNTEERS | indianNumber }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

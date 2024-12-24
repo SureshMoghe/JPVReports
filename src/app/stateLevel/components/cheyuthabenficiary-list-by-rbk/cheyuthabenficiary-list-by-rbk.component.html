@@ -1,0 +1,125 @@
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Govt Supported Scheme  Benficiary Level Report</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <button
+            type="button"
+            class="btn btn-success btn-sm pull-right"
+            (click)="btnExcel()"
+          >
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            Download Excel
+          </button>
+          <!-- <button
+            type="button"
+            class="btn btn-danger btn-sm pull-right"
+            (click)="btnPDF()"
+          >
+            <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+            Download PDF
+          </button> -->
+        </div></div>
+        <div class="row"> 
+        <div class="col-md-3">
+          <h5>
+            <b> District : </b
+            ><span class="text-success">{{ districtName }}</span>
+          </h5>
+        </div>
+        <div class="col-md-3">
+          <h5>
+            <b> Mandal : </b><span class="text-success">{{ mandalName }}</span>
+          </h5>
+        </div> 
+        <div class="col-md-3">
+            <h5>
+              <b> RBK Name : </b><span class="text-success">{{ rbkName }}</span>
+            </h5>
+          </div> 
+          </div>
+          <div class="row">
+        <div 
+          class="col-md-12 table-responsive"
+          [hidden]="rbkLevelDetails?.length < 1"
+        >
+          <table
+            class="table table-striped ah-table text-center"
+            
+          >
+            <thead class="bg-success text-white">
+              <tr>
+                <th>S.No.</th>
+                <th>DISTRICT NAME	</th>
+<th>MANDAL NAME	</th>
+<th>SECRETARIAT NAME</th>	 
+<th>BENEFICIARY NAME</th>	 
+<th>BENEFICIARY AADHAR</th>	 
+<th>BENEFICIARY MOBILE	</th> 
+<th>ANIMAL TYPE	 </th>
+<th>GROUNDING STATUS</th>
+                <!-- <th>CHEYUTHA BEN NAME</th>
+                <th  >JPV_REG STATUS</th>    
+                <th  >JPV REG_STATUS WITH_ANML</th>
+                <th  >START DATE</th>
+                <th  >LATEST DATE</th>
+                <th  >MILK QTY</th>
+                <th  >MILK AMOUNT</th>
+                <th  >ANML GRND_STATUS</th>
+                <th  >ANML TYPE</th> -->
+              </tr>
+            </thead>
+            <tbody *ngIf="rbkLevelDetails?.length > 0">
+              <tr *ngFor="let obj of rbkLevelDetails; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ obj.DISTRICT_NAME }}</td>	 
+<td>{{ obj.MANDAL_NAME	 }}</td> 
+<td>{{ obj.SEC_NAME	  }}</td>
+<td>{{ obj.BENEFICIARY_NAME }}</td>	 
+<td>{{ obj.BENEFICIARY_AADHAR }}</td>	 
+<td>{{ obj.BENEFICIARY_MOBILE }}</td>	 
+<td>{{ obj.ANIMAL_TYPE	  }}</td>
+<td>{{ obj.GROUNDING_STATUS }}</td>
+                  <!-- <td>
+                  <a
+                    style="cursor: pointer; text-decoration: underline"
+                    class="text-primary"
+                    (click)="btnGetDetails(obj)"
+                    ><b>{{ obj.RBK_NAME }}</b></a
+                  >
+                </td>    -->
+                 <!-- <td>{{ obj.CHEYUTHA_BEN_NAME }}</td>    
+                <td>{{ obj.JPV_REG_STATUS  }}</td>
+                <td>{{ obj.JPV_REG_STATUS_WITH_ANML }}</td>
+                <td>{{ obj.START_DATE}}</td>
+                <td>{{ obj.LATEST_DATE}}</td>
+                <td>{{ obj.MILK_QTY  }}</td>
+                <td>{{ obj.MILK_AMOUNT  }}</td> 
+                <td>{{ obj.ANML_GRND_STATUS }}</td>
+                <td>{{ obj.ANML_TYPE}}</td> -->
+              </tr>
+            </tbody>
+               <!-- <tbody *ngIf="rbkLevelDetails?.length > 0">
+              <tr>
+                <td>--</td>
+                <td>
+                  <b>TOTAL</b>
+                </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td>{{ totreportTotals.tt_MILK_QTY | indianNumber }}</td> 
+                <td>{{ totreportTotals.tt_MILK_AMOUNT | indianNumber }}</td>
+                <td> </td>  
+                <td> </td>
+              </tr>
+            </tbody>   -->
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+   

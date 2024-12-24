@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-12" align="right">
+    <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+      Back
+    </button>
+  </div>
+</div>
+
+<app-farmer-nature-of-unit-mandal
+  [(districtId)]="districtId"
+  [(districtName)]="districtName"
+  [(mandalId)]="mandalId"
+  [(mandalName)]="mandalName"
+  (onSheepToBuffaloChange)="onSheepToBuffaloChange($event)"
+  (onGoatToBuffaloChange)="onGoatToBuffaloChange($event)"
+  (onSheepToCowChange)="onSheepToCowChange($event)"
+  (onGoatToCowChange)="onGoatToCowChange($event)"
+>
+</app-farmer-nature-of-unit-mandal>

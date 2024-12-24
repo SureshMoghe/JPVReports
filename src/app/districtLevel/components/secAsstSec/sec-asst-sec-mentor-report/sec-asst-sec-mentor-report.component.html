@@ -1,0 +1,42 @@
+<div class="row align-items-center">
+  <div class="col-md-3">
+    <div class="form-group">
+      <label for="fromDate"
+        >From Date : <span style="color: red">*</span></label
+      >
+      <app-date-picker
+        [PlaceHolder]="'Please Select From Date'"
+        [(selectedDate)]="fromDate"
+      ></app-date-picker>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group">
+      <label for="toDate">To Date : <span style="color: red">*</span></label>
+      <app-date-picker
+        [PlaceHolder]="'Please Select To Date'"
+        [(selectedDate)]="toDate"
+      ></app-date-picker>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <button
+      type="button"
+      class="btn btn-primary btn-sm mt-3"
+      (click)="btnLoadReport()"
+    >
+      <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+      GO
+    </button>
+  </div>
+</div>
+<app-sec-asst-sec-mentor-level
+  [(districtId)]="districtId"
+  [(districtName)]="districtName"
+  [(fromDate)]="fromDate"
+  [(toDate)]="toDate"
+  (onMentorChange)="onMentorChange($event)"
+  (onAsstSecChange)="onAsstSecChange($event)"
+  (onDetailsChange)="onDetailsChange($event)"
+>
+</app-sec-asst-sec-mentor-level>

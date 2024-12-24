@@ -1,0 +1,221 @@
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Data Push Report</h5>
+    </div>
+    <div class="card-body">
+      <div class="row align-items-center">
+
+
+        <div class="col-md-2" style="text-align: right;">
+          <div class="form-group" >
+            <label for="districtId">District</label>
+          </div></div>
+            <div class="col-md-4">
+              <div class="form-group">
+            <select
+              id="districtId"
+              class="form-control"
+              [(ngModel)]="districtId"
+             
+            > 
+            <!-- (change)="onDistrictChange()" -->
+              <option value="">-- Select All --</option>
+              <option
+                *ngFor="let obj of districtList"
+                value="{{ obj.DISTRICT_ID }}"
+              >
+                {{ obj.DISTRICT_NAME }}
+              </option>
+            </select>
+          </div>  
+        </div>
+      
+        <div class="col-md-2"  >
+          <button
+            type="button"
+            class="btn btn-success btn-sm"
+            (click)="btnfarmerDetails()">   
+            Get Details
+          </button> 
+        </div>
+
+         <div class="col-md-2">
+          <button
+            type="button"
+            class="btn btn-primary btn-sm mt-3"
+            (click)="btnExcel()"  >       
+            <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+            Download Excel
+          </button>
+
+          <!-- (click)=" btnDownloadReport()" -->
+          
+        </div>  
+
+      </div>
+        <div class="row">
+          <div class="col-md-12 table-responsive" [hidden]="DataReportList?.length < 1">
+              <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                  <thead class="bg-success text-white">
+                      <tr>
+
+                          <th class="tableheader_color">S NO </th>
+                          <th class="tableheader_color">Dist Code </th>
+                          <th class="tableheader_color">District </th>
+                          <th class="tableheader_color">Mandal Code </th>
+                          <th class="tableheader_color">Mandal Name </th>
+                          <th class="tableheader_color">Rbk Code </th>
+                          <th class="tableheader_color">Rbk Name </th>
+                          <th class="tableheader_color">Rounte No </th>
+                          <th class="tableheader_color">Route Name </th>
+                          <th class="tableheader_color">Village Code </th>
+                          <th class="tableheader_color">Village Name </th>
+                          <th class="tableheader_color">Society Code </th>
+                          <th class="tableheader_color">Head Of Village </th>
+                          <th class="tableheader_color">Name Of The Mentor </th>
+                          <th class="tableheader_color">Mentor Designation </th>
+                          <th class="tableheader_color">Mentor Mobile Num </th>
+                          <th class="tableheader_color">Name Of The Route Incharge</th>
+                          <th class="tableheader_color">Route Incharge Designation</th>
+                          <th class="tableheader_color">Route Incharge Mobile No </th>
+                          <th class="tableheader_color">Is Record Pushed </th>
+                          <th class="tableheader_color">Record Pushed On </th>
+                      </tr >
+                      <tr>
+                      <th class="tableheader_color">(1)</th>
+                      <th class="tableheader_color">(2)</th>
+                      <th class="tableheader_color">(3)</th>
+                      <th class="tableheader_color">(4)</th>
+                      <th class="tableheader_color">(5)</th>
+                      <th class="tableheader_color">(6)</th>
+                      <th class="tableheader_color">(7)</th>
+                      <th class="tableheader_color">(8)</th>
+                      <th class="tableheader_color">(9)</th>
+                      <th class="tableheader_color">(10)</th>
+                      <th class="tableheader_color">(11)</th>
+                      <th class="tableheader_color">(12)</th>
+                      <th class="tableheader_color">(13)</th>
+                      <th class="tableheader_color">(14)</th>
+                      <th class="tableheader_color">(15)</th>
+                      <th class="tableheader_color">(16)</th>
+                      <th class="tableheader_color">(17)</th>
+                      <th class="tableheader_color">(18)</th>
+                      <th class="tableheader_color">(19)</th>
+                      <th class="tableheader_color">(20)</th>
+                      <th class="tableheader_color">(21)</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="DataReportList?.length > 0">
+                      <tr *ngFor="let obj of DataReportList; let i = index">
+                          <td class="number_align">{{ i + 1 }}</td>
+                          <td class="number_align">{{obj.DIST_CODE}}</td>
+                          <td class="text_align_color">{{ obj.DISTRICT}}</td>
+                          <td class="number_align">{{ obj.MANDAL_CODE}}</td>
+                          <td class="text_align_color">{{ obj.MANDAL_NAME}}</td>
+                          <td class="number_align">{{ obj.RBK_CODE1}}</td>
+                          <td class="text_align_color">{{ obj.RBK_NAME1}}</td>
+                          <td class="number_align"> {{ obj.ROUNTE_NOS}}</td>
+                          <td class="text_align_color">{{ obj.ROUTE_NAME}}</td>
+                          <td class="number_align">{{ obj.VILLAGECODE}}</td>
+                          <td class="text_align_color">{{ obj.VILLAGE_NAME}}</td>
+                          <td class="number_align">{{ obj.SOCIETY_CODE}}</td>
+                          <td class="text_align_color">{{ obj.HEAD_OF_VILLAGE}}</td>
+                          <td class="text_align_color">{{ obj.NAME_OF_THE_MENTOR}}</td>
+                          <td class="text_align_color">{{ obj.MENTOR_DESIGNATION}}</td>
+                          <td class="number_align">{{ obj.MENTOR_MBL_NUM}}</td>
+                          <td class="text_align_color">{{ obj.NAME_OF_THE_ROUTE_INCHARGE}}</td>
+                          <td class="text_align_color"> {{ obj.ROUTE_INCHARGE_DESIGNATION}}</td>
+                          <td class="text_align_color">{{ obj.ROUTE_INCHARGE_MOBILE_NO}}</td>
+                          <td class="text_align_color">{{ obj.IS_RECORD_PUSHED}}</td>
+                          <td class="number_align">{{ obj.RECORD_PUSHED_ON}}</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+
+        <!-- <div class="row" id="ExistingLoansreportsgriddata">
+          <div class="col-md-12 table-responsive" [hidden]="DataReportList?.length < 1">
+           <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+              data-page-length='-1'>
+              <thead class="bg-success text-white">
+                <tr>
+                  <th>SL.NO</th>
+                  <th>DIST_CODE</th>
+                  <th>DISTRICT</th>
+                  <th>MANDAL_CODE</th>
+                  <th>MANDAL_NAME</th>
+                  <th>RBK_CODE1</th>
+                  <th>RBK_NAME1</th>  
+                  <th>ROUNTE_NOS</th>
+                  <th>ROUTE_NAME</th>
+                  <th>VILLAGECODE</th>
+                  <th>VILLAGE_NAME</th>
+                  <th>SOCIETY_CODE</th>
+                  <th>HEAD_OF_VILLAGE</th>
+                  <th>NAME_OF_THE_MENTOR</th>
+                  <th>MENTOR_DESIGNATION</th>
+                  <th>MENTOR_MBL_NUM</th>
+                  <th>NAME_OF_THE_ROUTE_INCHARGE</th>
+                  <th>ROUTE_INCHARGE_DESIGNATION</th>
+                  <th>ROUTE_INCHARGE_MOBILE_NO</th>
+                  <th>IS_RECORD_PUSHED</th>
+                  <th>RECORD_PUSHED_ON</th>
+
+                </tr>
+              </thead>
+              <tbody *ngIf="DataReportList?.length > 0">
+
+
+
+
+                  <td>{{obj.DIST_CODE}}</td>
+                  <td>{{ obj.DISTRICT}}</td>
+                  <td>{{ obj.MANDAL_CODE}}</td>
+                  <td>{{ obj.MANDAL_NAME}}</td>
+                  <td>{{ obj.RBK_CODE1}}</td>
+                  <td>{{ obj.RBK_NAME1}}</td>  
+                  <td>{{ obj.ROUNTE_NOS}}</td>
+                  <td>{{ obj.ROUTE_NAME}}</td>
+                  <td>{{ obj.VILLAGECODE}}</td>
+                  <td>{{ obj.VILLAGE_NAME}}</td>
+                  <td>{{ obj.SOCIETY_CODE}}</td>
+                  <td>{{ obj.HEAD_OF_VILLAGE}}</td>
+                  <td>{{ obj.NAME_OF_THE_MENTOR}}</td>
+                  <td>{{ obj.MENTOR_DESIGNATION}}</td>
+                  <td>{{ obj.MENTOR_MBL_NUM}}</td>
+                  <td>{{ obj.NAME_OF_THE_ROUTE_INCHARGE}}</td>
+                  <td>{{ obj.ROUTE_INCHARGE_DESIGNATION}}</td>
+                  <td>{{ obj.ROUTE_INCHARGE_MOBILE_NO}}</td>
+                  <td>{{ obj.IS_RECORD_PUSHED}}</td>
+                  <td>{{ obj.RECORD_PUSHED_ON}}</td>
+               
+              </tbody>
+            </table>
+        
+          </div>
+        </div>    -->
+
+
+
+ <!-- <tr *ngFor="let obj of ExistingLoansreportsList; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ obj.DISTRICT }}</td>
+                  <td>{{ obj.MANDAL_NAME }}</td>
+                  <td>{{ obj.DIVISION_NAME }}</td>
+                  <td>{{ obj.RBK_NAME }}</td>
+                  <td>{{ obj.RBK_CODE }}</td>  
+                  <td> <button class="btn btn-sm btn-info block"
+                      (click)="btnAllapprovedPdf(obj.RBK_CODE+','+obj.DIST_CODE+','+obj.MANDAL_CODE)">
+                      <i>VIEW</i></button></td>
+                </tr> -->
+
+
+
+
+
+
+       
+    </div>
+  </div>
+  

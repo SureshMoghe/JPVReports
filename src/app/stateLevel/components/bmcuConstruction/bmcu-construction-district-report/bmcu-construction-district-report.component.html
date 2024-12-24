@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-12" align="right">
+    <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+      Back
+    </button>
+  </div>
+</div>
+<app-bmcu-construction-district
+  [(districtId)]="districtId"
+  [(districtName)]="districtName"
+   (onMandalChange)="onMandalChange($event)"
+></app-bmcu-construction-district>

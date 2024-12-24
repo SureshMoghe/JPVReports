@@ -1,0 +1,247 @@
+<div class="card">
+      <div class="card-header p-2">
+      <h5 class="mb-0"> Milk Collection Data Not Received Societies Report</h5>  
+    </div>  
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12" style="text-align: right;">  
+          <button type="button"  class="btn btn-success btn-sm" (click)="btntotalsocieties()">
+            Day Wise Milk Poured Villages & Societies
+          </button>
+
+          <button type="button" class="btn btn-primary btn-sm" (click)="btnDashboard()">
+            Dash Board
+          </button><br />
+          <button
+          type="button"  class="btn btn-success btn-sm" 
+          (click)="btnExcel()"
+        >
+
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button> 
+          <!-- -->
+            <button
+            type="button"
+            class="btn btn-danger btn-sm pull-right"
+            (click)="btnPDF()"
+          >
+            <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+            Download PDF
+          </button>  
+        </div>
+      </div>
+     
+      <div class="row align-items-center">
+         <div class="col-md-2" style="text-align: right;"> 
+          <div class="form-group">
+            <label for="districtId"
+              >District <span style="color: red">*</span></label
+            >
+</div></div>
+            <div class="col-md-2"> 
+              <div class="form-group">
+
+            <select
+              id="districtId"
+              class="form-control"
+              [(ngModel)]="district_Id"
+              (change)="onDistrictIdChange()"
+            >
+              <option value="0">ALL</option>
+              <option
+                value="{{ obj.DISTRICT_ID }}"
+                *ngFor="let obj of districtList"
+              >
+                {{ obj.DISTRICT_NAME }}
+              </option>
+            </select>
+          </div>
+        </div>  
+        
+        <div class="col-md-2" style="text-align: right;">
+            <div class="form-group" style="text-align: right;">
+              <label for="fromDate"
+                >From Date : <span style="color: red">*</span></label
+              >
+              </div>
+              </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            
+            <app-date-picker
+              [PlaceHolder]="'Please Select From Date'"
+              [(selectedDate)]="fromDate"
+            ></app-date-picker>
+          </div>
+        </div>
+        <!-- <div class="col-md-2">
+          <div class="form-group">
+            <label for="toDate"
+              >To Date : <span style="color: red">*</span></label
+            >
+            <app-date-picker
+              [PlaceHolder]="'Please Select To Date'"
+              [(selectedDate)]="toDate"
+            ></app-date-picker>
+          </div>
+        </div> -->
+  
+  
+<!--     
+        <div class="col-md-3">
+          <div class="form-group"> 
+        
+            <label for="PhaseType"
+              >Phase Type <span style="color: red">*</span></label>
+              
+          
+            <select
+            id="PhaseType"
+            class="form-control"
+            [(ngModel)]="PhaseType"
+            (change)="onReportPhaseTypeChange()"
+          >  
+            <option
+              value="{{ obj.PHASEID }}"
+              *ngFor="let obj of PhaseTypeList"
+            >
+              {{ obj.PHASENAME }}
+            </option>
+          </select>
+      
+          </div>
+        </div>  -->
+  
+  
+  
+        <div class="col-md-2" style="margin-top: -23px;">
+          <button style="margin-top: -100px;"
+            type="button"
+            class="btn btn-primary btn-sm mt-3"
+            (click)="btnLoadReport()"
+          >
+            <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+            GO
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div
+          class="col-md-12 table-responsive"
+          [hidden]="societyAbstractDetails?.length < 1"
+        >
+          <table
+            class="table table-striped ah-table text-center"
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger"
+          >
+            <thead class="bg-success text-white">
+ 
+              <tr  > 
+
+                 	 	 	 					
+
+
+                <th  class="tableheader_color" >S No</th>
+                <th  class="tableheader_color" >District Name</th>
+                <th  class="tableheader_color" >Mandal Name</th>
+                <th  class="tableheader_color" >RBK Name</th>
+                <th  class="tableheader_color" >Society Code</th>
+                <th  class="tableheader_color" >Society Name</th>
+                <th  class="tableheader_color" >No of Registered Farmers</th>
+                <th  class="tableheader_color"   ><p>Milk Pouring_Status on {{fromDate}} </p></th>
+                <th  class="tableheader_color" ><p>Present Society Status</p></th>
+                <th  class="tableheader_color"  ><p>Milk Pouring_Status after {{fromDate}}</p></th>  
+                <th  class="tableheader_color" > <p>Last Milk_Poured_Date</p></th>
+                <th  class="tableheader_color" > <p>No of Days Milk_Not_Poured Since {{fromDate}} (In {{DAYS_SINCE_LAST_DATE}} Days )</p></th>
+                <th  class="tableheader_color"  > <p>No of Days Milk_Not_Poured In Current Month ( In {{ CURRENT_MONTH_DAYS}} Days )</p></th>
+                <th  class="tableheader_color"  > <p>No of Days Milk_Not_Poured In Last 60 Days (As On   {{fromDate}} )	</p></th>
+                <th  class="tableheader_color"  > <p>No of Days Milk_Not_Poured In Curret Financial Year (In {{CURRENT_FIN_YEAR_DAYS}} Days)</p></th>
+                <th  class="tableheader_color"  > <p>Quantity Of Milk Poured In Current Financial_Year</p></th>
+                <th  class="tableheader_color"  > <p>Total Milk Poured Amount In Current Financial_Year</p></th>
+
+
+              </tr>
+  
+  
+               <tr >             
+                <th  class="tableheader_color"  >(1)</th>
+                <th  class="tableheader_color" >(2)</th>
+                <th  class="tableheader_color" >(3)</th>
+                <th  class="tableheader_color" >(4)</th>
+                <th  class="tableheader_color" >(5)</th>
+                <th  class="tableheader_color" >(6)</th>
+                <th  class="tableheader_color" >(7)</th>
+                <th  class="tableheader_color" >(8)</th>
+                <th  class="tableheader_color" >(9)</th>
+                <th  class="tableheader_color" >(10)</th>
+                <th  class="tableheader_color"  >(11)</th>
+                <th  class="tableheader_color" >(12)</th>
+                <th  class="tableheader_color" >(13)</th>
+                <th  class="tableheader_color" >(14)</th>
+                <th  class="tableheader_color" >(15)</th>
+                <th  class="tableheader_color" >(16)</th>
+                <th  class="tableheader_color" >(17)</th>
+                 
+              </tr> 
+            </thead>
+            <tbody *ngIf="societyAbstractDetails?.length > 0">
+              <tr *ngFor="let obj of societyAbstractDetails; let i = index">
+                <td>{{ i + 1 }}</td> 
+                 	 	 			 
+
+
+                <td  class="text_align_column">{{ obj.DISTRICT_NAME }}</td>
+                <td  class="text_align_column">{{ obj.MANDAL_NAME }}</td>
+                <td  class="text_align_column">{{ obj.RBK_NAME }}</td>
+                <td  class="number_align">{{ obj.SOCIETY_CODE }} </td> 
+
+                <td style="text-align: left;" class="table_cells_borders">
+                  <a style="cursor: pointer; text-decoration: underline"
+                    class="text-primary " 
+                    (click)="btnGetDetails(obj)" ><b>{{ obj.SOCIETY_NAME }}</b></a>            </td> 
+
+
+                <td  class="text_align_column">{{ obj.REG_FAREMRS   }}</td>
+                <td  class="text_align_column">{{ obj.CURRENT_DAY_POURING_STATUS  }}</td>
+                <td  class="text_align_column">{{ obj.CURRENT_SOCIETY_STATUS   }}</td>
+                <td  class="number_align">{{ obj.LATER_POURING_STATUS  }}</td>
+
+                <td  class="number_align" >{{ obj.LAST_POURING_DATE  }}</td>
+                <td  class="number_align"  >{{ obj.SINCE_LASTDATE_NOT_COUNT  }}</td>
+                <td  class="number_align"  >{{ obj.CURRENT_MONTH_NOT_COUNT  }}</td>
+                <td  class="number_align" >{{ obj.LAST_60_DAYS_NOT_COUNT  }}</td>
+                <td  class="number_align" >{{ obj.CURRENT_FIN_YEAR_NOT_COUNT  }}</td>
+                <td  class="number_align" >{{ obj.CURRENT_FIN_YEAR_QTY  }}</td>
+                <td  class="number_align" >{{ obj.CURRENT_FIN_YEAR_AMOUNT  }}</td>
+                 
+
+                
+              </tr>
+            </tbody>
+            <tbody *ngIf="societyAbstractDetails?.length > 0">
+              <!-- <tr>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>
+                  <b>TOTAL</b>
+                </td>
+                <td   class="font-weight-bold number_align">{{ reportTotals.NO_OF_FARMERS | indianNumber }}</td>
+                <td  class="font-weight-bold number_align">{{ reportTotals.NO_OF_MILK_POURER_FARMERS | indianNumber }}</td>
+                <td  class="font-weight-bold number_align">{{ reportTotals.TOTAL_BUFFALO_MILK_LTR | indianNumber }}</td>
+                <td  class="font-weight-bold number_align">   {{ reportTotals.TOTAL_BUFFALO_MILK_AMOUNT | indianNumber }}
+                </td>
+                <td  class="font-weight-bold number_align">{{ reportTotals.TOTAL_COW_MILK_LTR | indianNumber }}</td>
+                
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

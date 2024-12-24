@@ -1,0 +1,94 @@
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">Society Monitoring Report</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                    Download Excel
+                </button>
+                <!-- <button type="button" class="btn btn-danger btn-sm pull-right" (click)="btnPDF()">
+                    <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+                    Download PDF
+                </button> -->
+            </div>
+            <div class="col-md-12 table-responsive" [hidden]="stateLevelDetails?.length < 1">
+                <table class="table table-bordered ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead class="bg-success text-white">
+                        <tr>
+                            <th rowspan="2" class="tableheader_color">S.No</th>
+                            <th rowspan="2" class="tableheader_color">Date</th>
+                            <th rowspan="2" class="tableheader_color">District</th>
+                            <th colspan="2" class="tableheader_color">Morning Shift</th>
+                            <th colspan="2" class="tableheader_color">Evening Shift</th>
+                            <th rowspan="2" class="tableheader_color">Total<br> No of Societies</th>
+                        </tr>
+                        <tr>
+                            <th class="tableheader_color">No of<br>Societies<br> Data Received</th>
+                            <th class="tableheader_color">No of<br>Societies <br>Data Not Received </th>
+                            <th class="tableheader_color">No of <br>Societies<br> Data Received </th>
+                            <th class="tableheader_color">No of<br>Societies<br> Data Not Received </th>
+                        </tr>
+                        <tr>
+                            <th class="tableheader_color">(1)</th>
+                            <th class="tableheader_color">(2)</th>
+                            <th class="tableheader_color">(3)</th>
+                            <th class="tableheader_color">(4)</th>
+                            <th class="tableheader_color">(5)</th>
+                            <th class="tableheader_color">(6)</th>
+                            <th class="tableheader_color">(7)</th>
+                            <th class="tableheader_color">(8)</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="stateLevelDetails?.length > 0">
+                        <tr *ngFor="let obj of stateLevelDetails; let i = index">
+                            <td class="number_align">{{ i + 1}}</td>
+                            <td class="table_cells_borders number_align">{{obj.TXN_DATE}}</td>
+                            <td style="text-align: left;" class="table_cells_borders">{{obj.DISTRICT}}</td>
+                            <td class="number_align">
+                                <a style="cursor: pointer; text-decoration: underline" class="text-primary" class="text-primary "
+                                    (click)="btnGetDetailsMrg(obj)"><b>{{obj.MORNING_SOCIETY_COUNT}}</b></a>
+
+                            </td>
+                            <td class="number_align"><a style="cursor: pointer; text-decoration: underline" class="text-primary"
+                                    class="text-primary " (click)="btnGetDetailsMrgNotRece(obj)"><b>{{obj.NOT_RECIEVED_M}}</b></a></td>
+                            <td class="number_align">
+                                <a style="cursor: pointer; text-decoration: underline" class="text-primary" class="text-primary "
+                                    (click)="btnGetDetailsEvg(obj)"><b>{{obj.EVENING_SOCIETY_COUNT}}</b></a>
+                            </td>
+
+                            <td class="number_align">
+                                <a style="cursor: pointer; text-decoration: underline" class="text-primary" class="text-primary "
+                                    (click)="btnGetDetailsEvgNotRec(obj)"><b>{{obj.NOT_RECIEVED_E}}</b></a>
+                            </td>
+                            <td class="number_align">
+                                <a style="cursor: pointer; text-decoration: underline" class="text-primary" class="text-primary "
+                                    (click)="btnGetDetailsDay(obj)"><b>{{obj.DAY_WISE_SOCIETY_COUNTS}}</b></a>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="stateLevelDetails?.length > 0">
+
+                        <tr>
+                            <td class="number_align">--</td>
+                            <td class="number_align">--</td>
+                            <td class="text_align_color"> <b>TOTAL</b> </td>
+                            <td class="font-weight-bold number_align">{{ reportTotals.MORNING_SHIFT_NO_OF_SOCIETIES_DATA_RECEIVED |
+                                indianNumber }}</td>
+                            <td class="font-weight-bold number_align">{{ reportTotals.MORNING_SHIFT_NO_OF_SOCIETIES_DATA_NOT_RECEIVED |
+                                indianNumber }}</td>
+                            <td class="font-weight-bold number_align">{{ reportTotals.EVENING_SHIFT_NO_OF_SOCIETIES_DATA_RECEIVED |
+                                indianNumber }}</td>
+                            <td class="font-weight-bold number_align">{{ reportTotals.EVENING_SHIFT_NO_OF_SOCIETIES_DATA_NOT_RECEIVED |
+                                indianNumber }}</td>
+                            <td class="font-weight-bold number_align">{{ reportTotals.TOATL_NO_OF_SOCIETIES | indianNumber }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

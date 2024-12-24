@@ -1,0 +1,17 @@
+<h5 class="text-center font-weight-bold mb-3 border-bottom text-success">
+    TOTAL RBKs ABSTRACT REPORT ON( <span style="color: black;">{{Selected_Date}} {{Reportdate}}</span>)
+</h5>
+<div class="row">
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-6" align="right">
+        <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+            Back
+        </button>
+    </div>
+</div>
+<app-noof-rbk-count-details [Selected_Date]="Selected_Date" (onDistrictChange)="onDistrictChange($event)"></app-noof-rbk-count-details>

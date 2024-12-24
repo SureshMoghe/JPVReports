@@ -1,0 +1,114 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">Volunteer Farmer Registration Mentor Level Report</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="mentorLevelDetails?.length < 1"
+      >
+        <table
+          class="table table-bordered ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th rowspan="2">S.No.</th>
+              <th rowspan="2">RBK</th>
+              <th rowspan="2">Villages</th>
+              <th rowspan="2">Volunteers</th>
+              <th rowspan="2">Volunteers Logged In</th>
+              <th colspan="2">Volunteers Added Farmers</th>
+              <th rowspan="2">Approved Farmers With Animals</th>
+              <th rowspan="2">Approved Farmers Percentage</th>
+              <th rowspan="2">No Of Animals Added</th>
+              <th colspan="2">
+                Volunteers Added Farmers As Per AH DEPT With Animals
+              </th>
+            </tr>
+            <tr>
+              <th>Without Animals</th>
+              <th>With Animals</th>
+              <th>AH DEPT Having With Animals</th>
+              <th>AH DEPT Without Animals</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="mentorLevelDetails?.length > 0">
+            <tr *ngFor="let obj of mentorLevelDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>
+                <a
+                  style="cursor: pointer; text-decoration: underline"
+                  class="text-primary"
+                  (click)="btnGetDetails(obj)"
+                  ><b>{{ obj.RBK_NAME }}</b></a
+                >
+              </td>
+              <td>{{ obj.TOTAL_VILLAGE | indianNumber }}</td>
+              <td>{{ obj.TOTAL_VOLUNTEERS | indianNumber }}</td>
+              <td>{{ obj.TOTAL_VV_LOGEDIN | indianNumber }}</td>
+              <!-- <td>
+                  <a *ngIf="obj.TOTAL_VOLUNTEERS !== '0'" style="cursor: pointer; text-decoration: underline;" class="text-primary" (click)="btnGetVolunteers(obj);"><b>{{ obj.TOTAL_VOLUNTEERS }}</b></a>
+                <span *ngIf="obj.TOTAL_VOLUNTEERS === '0'">{{obj.TOTAL_VOLUNTEERS }}</span>
+                </td>
+                <td>
+                  <a *ngIf="obj.TOTAL_VV_LOGEDIN !== '0'" style="cursor: pointer; text-decoration: underline;" class="text-primary" (click)="btnGetLoggedIn(obj);"><b>{{ obj.TOTAL_VV_LOGEDIN }}</b></a>
+                <span *ngIf="obj.TOTAL_VV_LOGEDIN === '0'">{{obj.TOTAL_VV_LOGEDIN }}</span>
+                </td> -->
+              <td>{{ obj.TOTAL_FARMERS_WITH_OUT_AINM | indianNumber }}</td>
+              <td>{{ obj.TOTAL_FARMERS_WITH_AINM | indianNumber }}</td>
+              <td>{{ obj.TOTAL_APPROVED_FMR | indianNumber }}</td>
+              <td>{{ obj.TOTAL_APPROVED_FMR_PERCNT | indianNumber }}</td>
+              <td>{{ obj.TOTAL_ANIMALS | indianNumber }}</td>
+              <td>{{ obj.AH_DEPT_VV_ANM_YES | indianNumber }}</td>
+              <td>{{ obj.AH_DEPT_YES_VV_ANM_NO | indianNumber }}</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="mentorLevelDetails?.length > 0">
+            <tr>
+              <td>--</td>
+              <td>
+                <b>TOTAL</b>
+              </td>
+              <td>{{ reportTotals.TOTAL_VILLAGE | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_VOLUNTEERS | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_VV_LOGEDIN | indianNumber }}</td>
+              <td>
+                {{ reportTotals.TOTAL_FARMERS_WITH_OUT_AINM | indianNumber }}
+              </td>
+              <td>{{ reportTotals.TOTAL_FARMERS_WITH_AINM | indianNumber }}</td>
+              <td>{{ reportTotals.TOTAL_APPROVED_FMR | indianNumber }}</td>
+              <td>
+                {{ reportTotals.TOTAL_APPROVED_FMR_PERCNT | indianNumber }}
+              </td>
+              <td>{{ reportTotals.TOTAL_ANIMALS | indianNumber }}</td>
+              <td>{{ reportTotals.AH_DEPT_VV_ANM_YES | indianNumber }}</td>
+              <td>{{ reportTotals.AH_DEPT_YES_VV_ANM_NO | indianNumber }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

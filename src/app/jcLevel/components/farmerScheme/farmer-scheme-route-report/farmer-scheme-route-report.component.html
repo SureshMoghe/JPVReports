@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-3">
+    <h5>
+      <b> From Date : </b><span class="text-success">{{ fromDate }}</span>
+    </h5>
+  </div>
+  <div class="col-md-3">
+    <h5>
+      <b>To Date : </b><span class="text-success">{{ toDate }}</span>
+    </h5>
+  </div>
+  <div class="col-md-6" align="right">
+    <button type="button" class="btn btn-primary btn-sm" (click)="btnBack()">
+      BACK
+    </button>
+  </div>
+</div>
+<app-farmer-scheme-route
+  [(fromDate)]="fromDate"
+  [(toDate)]="toDate"
+  [(districtId)]="districtId"
+  [(districtName)]="districtName"
+  [(route)]="route"
+  [(routeName)]="routeName"
+  (onMandalChange)="onMandalChange($event)"
+  (onNonMilkPourersChange)="onNonMilkPourersChange($event)"
+></app-farmer-scheme-route>

@@ -1,0 +1,102 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">
+      {{ headingText }}
+    </h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <h5 class="pull-left">
+          <b> District : </b
+          ><span class="text-success">{{ districtName }}</span>
+        </h5>
+
+        <button
+          type="button"
+          class="btn btn-success btn-sm pull-right"
+          (click)="btnExcel()"
+        >
+          <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+          Download Excel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm pull-right"
+          (click)="btnPDF()"
+        >
+          <i class="fa fa-file-pdf-o mr-2" aria-hidden="true"></i>
+          Download PDF
+        </button>
+      </div>
+
+      <div
+        class="col-md-12 table-responsive"
+        [hidden]="comparitiveMilkPouringDetails?.length < 1"
+      >
+        <table
+          class="table table-striped ah-table text-center"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+        >
+          <thead class="bg-success text-white">
+            <tr>
+              <th rowspan="2">S.No.</th>
+              <th rowspan="2">District</th>
+              <th rowspan="2">Mandal</th>
+              <th rowspan="2">RBK</th>
+              <th rowspan="2">RBK Code</th>
+              <th rowspan="2">AMCU Code</th>
+              <th rowspan="2">Village</th>
+              <th rowspan="2">Farmer Code</th>
+              <th rowspan="2">Farmer Name</th>
+              <th rowspan="2">Aadhar Number</th>
+              <th rowspan="2">Mobile Number</th>
+              <th colspan="2">No Of Milch Cattle Owned By The Milk Pourer</th>
+            </tr>
+            <tr>
+              <th>Cows</th>
+              <th>Buffalos</th>
+            </tr>
+            <tr >             
+              <th >(1)</th>
+              <th >(2)</th>
+              <th >(3)</th>
+              <th >(4)</th>
+              <th >(5)</th>
+              <th >(6)</th>
+              <th >(7)</th>
+              <th >(8)</th>
+              <th >(9)</th>
+              <th >(10)</th>
+              <th >(11)</th>
+              <th >(12)</th>
+              <th >(13)</th>
+            </tr>
+
+          </thead>
+          <tbody *ngIf="comparitiveMilkPouringDetails?.length > 0">
+            <tr
+              *ngFor="let obj of comparitiveMilkPouringDetails; let i = index"
+            >
+              <td>{{ i + 1 }}</td>
+              <td  class="text_align_color">{{ obj.DISTRICT }}</td>
+              <td  class="text_align_color">{{ obj.MANDAL_NAME }}</td>
+              <td  class="text_align_color">{{ obj.RBK_NAME }}</td>
+              <td class="number_align">{{ obj.RBK_CODE }}</td>
+              <td class="number_align">{{ obj.AMCU_CODE }}</td>
+              <td  class="text_align_color">{{ obj.VILLAGE }}</td>
+              <td class="number_align">{{ obj.FARMER_CODE }}</td>
+              <td  class="text_align_color">{{ obj.FARMER_NAME }}</td>
+              <td class="text_align_color">{{ obj.UID_NUM }}</td>
+              <td class="number_align">{{ obj.MOBILE_NUMBER }}</td>           
+              <td class="number_align">{{ obj.COWS }}</td>
+              <td class="number_align">{{ obj.BUFFALOS }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
